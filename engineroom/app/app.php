@@ -3,18 +3,19 @@
 // ############################################################################
 // DEFINITIONS.
 
-DEFINE('CONTROLROOM',   SCRIPT_ROOT . '/controlroom');
-DEFINE('ENGINEROOM',    SCRIPT_ROOT . '/engineroom');
+DEFINE('CONTROLROOM',     SCRIPT_ROOT . '/controlroom');
+DEFINE('ENGINEROOM',      SCRIPT_ROOT . '/engineroom');
 
-DEFINE('APP_SCRIPTS',   ENGINEROOM . '/app');
-DEFINE('APP_TEMPLATES', ENGINEROOM . '/app-templates');
-DEFINE('APP_ASSETS',    ENGINEROOM . '/app-assets');
+DEFINE('APP_SCRIPTS',     ENGINEROOM . '/app');
+DEFINE('APP_TEMPLATES',   ENGINEROOM . '/app-templates');
+DEFINE('APP_ASSETS',      ENGINEROOM . '/app-assets');
 
-DEFINE('APS',            SCRIPT_ROOT . '/anypages');
+DEFINE('APS',             SCRIPT_ROOT . '/anypages');
 
-DEFINE('APS_TEMPLATES',  APS . '/aps-templates');
-DEFINE('APS_CONTENTS',   APS . '/aps-contents');
-DEFINE('APS_ASSETS',     APS . '/aps-assets');
+DEFINE('APS_TEMPLATES',   APS . '/aps-templates');
+DEFINE('APS_CONTENTS',    APS . '/aps-contents');
+DEFINE('APS_ASSETS',      APS . '/aps-assets');
+DEFINE('APS_DEFINITIONS', APS . '/aps-definitions');
 
 
 // ############################################################################
@@ -95,7 +96,7 @@ $Response->setProtocolVersion('1.1');
 if (!empty($document)) {
   $Response->headers->set('Content-Type', 'text/html');
 
-  if ($ProcessInfo->get('page_id') != '404') {
+  if ($ProcessInfo->get('page_id') != 'app_404') {
     // 200.
     $Response->setContent($document);
     $Response->setStatusCode(Response::HTTP_OK);

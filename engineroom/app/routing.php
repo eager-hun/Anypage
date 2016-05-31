@@ -103,7 +103,7 @@ function determine_page_id($Config, $ApsSetup, $ProcessInfo, $routing) {
     }
     // Else 404.
     else {
-      $ProcessInfo->set('page_id', '404');
+      $ProcessInfo->set('page_id', 'app_404');
     }
   }
 }

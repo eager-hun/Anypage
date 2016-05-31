@@ -13,50 +13,36 @@ class ContentProvider {
   }
 
   public function buildContent($page_id) {
-
-    if ($page_id == '404') {
+    if ($page_id == 'app_404') {
       return 'Not found.';
     }
 
-    $output = 'Content for ' . $page_id;
+    $page_definition = $this->apsSetup->get('pages')[$page_id];
 
-    // Dummy content.
-    $output .= $this->sg_item();
-    $output .= $this->sg_item();
 
-    return $output;
-  }
+    $content_prescription_file = APS_DEFINITIONS
+      . '/page-prescriptions/'
+      . $page_definition['filename_for_content']
+      . '.php';
 
-  // Building dummy content.
+    $output = 'Content for ' . $page_id . '.<br>';
 
-  private function sg_component_sample() {
-    $template_name = 'layout-sample';
-    $variables = [
-      'top'    => 'Content in top',
-      'bottom' => 'Content in bottom',
-    ];
 
-    return $this->templating->render($template_name, $variables);
-  }
+    if (file_exists($content_prescription_file)) {
+      // Let's make the templating device available in the prescriptions's
+      // scope.
+      $Templating = $this->templating;
 
-  private function sg_item() {
-    $template_name = 'sg-item';
-
-    $view_code = 'Code not found.'; // Fallback.
-    if (file_exists($this->templating->locate_template('layout-sample'))) {
-      $view_code = htmlspecialchars(
-        file_get_contents($this->templating->locate_template('layout-sample'))
-      );
+      ob_start();
+      include($content_prescription_file);
+      $output .= ob_get_clean();
+    }
+    else {
+      // TODO: error handling?
+      echo 'Error: content prescription was not found.';
     }
 
-    $variables = [
-      'title'       => 'Sample item title',
-      'description' => 'Sample item description.',
-      'code'        => 'Code:<br><pre><code>' . $view_code . '</code></pre>',
-      'content'     => $this->sg_component_sample($this->templating),
-    ];
-
-    return $this->templating->render($template_name, $variables, 'app');
+    return $output;
   }
 }
 
