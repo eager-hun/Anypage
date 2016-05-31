@@ -18,24 +18,21 @@ class ContentProvider {
     }
 
     $page_definition = $this->apsSetup->get('pages')[$page_id];
-
-
     $content_prescription_file = APS_DEFINITIONS
       . '/page-prescriptions/'
       . $page_definition['filename_for_content']
       . '.php';
 
-    $output = 'Content for ' . $page_id . '.<br>';
-
-
     if (file_exists($content_prescription_file)) {
-      // Let's make the templating device available in the prescriptions's
-      // scope.
+      // Let's make the templating device available in the common functions'
+      // and the prescriptions' scope.
       $Templating = $this->templating;
+
+      include(APS . '/aps-common-functions.php');
 
       ob_start();
       include($content_prescription_file);
-      $output .= ob_get_clean();
+      $output = ob_get_clean();
     }
     else {
       // TODO: error handling?
