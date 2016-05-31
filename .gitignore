@@ -1,0 +1,8 @@
+
+**/libraries-backend/*
+!**/libraries-backend/.htaccess
+
+**/node_modules/
+
+**/theme-being-worked-on/
+

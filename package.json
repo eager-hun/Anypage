@@ -1,0 +1,10 @@
+{
+    "config": {
+      "vendor-dir": "engineroom/libraries-backend/"
+    },
+    "require": {
+        "michelf/php-markdown": "1.4.1",
+        "symfony/http-foundation": "^3.0"
+    }
+}
+

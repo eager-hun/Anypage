@@ -1,0 +1,22 @@
+<Files .htaccess>
+  order allow,deny
+  deny from all
+</Files>
+
+DirectoryIndex index.php index.html
+Options -Indexes
+ErrorDocument 404 index.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.php [L]
+</IfModule>
+
+<IfModule mod_deflate.c>
+  <FilesMatch "\.(html|css|js|svg|ttf|eot|otf|woff)$">
+    SetOutputFilter DEFLATE
+  </FilesMatch>
+</IfModule>
+
