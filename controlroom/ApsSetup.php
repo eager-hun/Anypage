@@ -22,15 +22,15 @@ class ApsSetup {
   private $pages = [
     'home' => [
       'path' => '',
-      'filename_for_content' => 'content_for_home',
+      'filename_for_content' => 'content-for-home',
     ],
-    'foo_page' => [
-      'path' => 'foo',
-      'filename_for_content' => 'content_for_foo',
+    'components_list_page' => [
+      'path' => 'components-list',
+      'filename_for_content' => 'content-for-components-list',
     ],
-    'bar_page' => [
-      'path' => 'bar',
-      'filename_for_content' => 'content_for_bar',
+    'sample_page' => [
+      'path' => 'sample-page',
+      'filename_for_content' => 'content-for-sample-page',
     ],
   ];
 }

@@ -1,4 +1,4 @@
-<div class="layout layout--sample has-top has-bottom">
+<div class="layout layout--sample-dummy has-top has-bottom">
   <div class="slot slot--top">
     <?php print $top; ?>
   </div>
