@@ -12,14 +12,14 @@ class Config {
     }
   }
 
-  public $env = [
+  private $env = [
     'http_protocol' => 'http',
     // No leading or trailing slashes.
     // Provide an empty string if the index.php is located in the public root.
     'working_dir' => 'anypage',
   ];
 
-  public $app = [
+  private $app = [
     /**
      * Reserved paths.
      *
@@ -31,7 +31,7 @@ class Config {
     ],
   ];
 
-  public $cache_bust_str = '20160531-1';
+  private $cache_bust_str = '20160531-1';
 
   /**
    * Stylesheets to be included with the document.
@@ -45,7 +45,7 @@ class Config {
    * overwriting). The order of the asset inclusion on the page is the order of
    * the declaration here.
    */
-  public $stylesheets = [
+  private $stylesheets = [
     'internal1' => 'engineroom/app-assets/app-ui.css',
     //'internal2' => 'theme-being-worked-on/**/foo.css',
     //'internal3' => 'theme-being-worked-on/**/bar.css',
@@ -63,7 +63,7 @@ class Config {
    * overwriting). The order of the asset inclusion on the page is the order of
    * the declaration here.
    */
-  public $scripts = [
+  private $scripts = [
     'head' => [
       'internal1' => '',
       'external1' => '',

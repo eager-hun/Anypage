@@ -28,19 +28,19 @@ else {
     $routing['uri_path_items'] = explode('/', $routing['uri_path']);
 
     // Determining special task.
-    if (!empty($Config->env['working_dir'])) {
-      $working_dir_items = explode('/', $Config->env['working_dir']);
+    if (!empty($Config->get('env')['working_dir'])) {
+      $working_dir_items = explode('/', $Config->get('env')['working_dir']);
       $pivotal_key = count($working_dir_items);
       $special_task = array_search(
         $routing['uri_path_items'][$pivotal_key],
-        $Config->app['reserved_paths']
+        $Config->get('app')['reserved_paths']
       );
     }
     else {
       $special_task =
         array_search(
           $routing['uri_path_items'][0],
-          $Config->app['reserved_paths']
+          $Config->get('app')['reserved_paths']
         );
     }
 
@@ -51,8 +51,8 @@ else {
     else {
       $ProcessInfo->set('task_type', 'page');
 
-      if (!empty($Config->env['working_dir'])) {
-        $home_path = $Config->env['working_dir'] . '/';
+      if (!empty($Config->get('env')['working_dir'])) {
+        $home_path = $Config->get('env')['working_dir'] . '/';
 
         if ($routing['uri_path'] == $home_path) {
           $ProcessInfo->set('task_type', 'page');

@@ -14,9 +14,9 @@ Class Utils {
   }
 
   public function base_url() {
-    $output = $this->config->env['http_protocol'] . '://'
+    $output = $this->config->get('env')['http_protocol'] . '://'
       . $this->request->server->get('HTTP_HOST') . '/'
-      . $this->config->env['working_dir'] . '/';
+      . $this->config->get('env')['working_dir'] . '/';
     return $output;
   }
 }

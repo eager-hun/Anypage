@@ -14,7 +14,7 @@ Class Engine {
   }
 
   public function renderStylesheetLink($href) {
-    $cb = $this->config->cache_bust_str;
+    $cb = $this->config->get('cache_bust_str');
 
     $output = <<<EOT
 <link rel="stylesheet" type="text/css" href="{$href}?v={$cb}">
@@ -25,7 +25,7 @@ EOT;
 
   public function renderScriptTag($src, $opts = []) {
     // TODO: $opts.
-    $cb = $this->config->cache_bust_str;
+    $cb = $this->config->get('cache_bust_str');
 
     $output = <<<EOL
 <script src="{$src}?v={$cb}"></script>
@@ -36,7 +36,7 @@ EOL;
   public function provideStylesheets() {
 
     $output = '';
-    $stylesheets = $this->config->stylesheets;
+    $stylesheets = $this->config->get('stylesheets');
 
     if (!empty($stylesheets)) {
       foreach ($stylesheets as $key => $val) {
@@ -60,7 +60,7 @@ EOL;
     }
 
     $output = '';
-    $cluster = $this->config->scripts[$location];
+    $cluster = $this->config->get('scripts')[$location];
 
     if (!empty($cluster)) {
       foreach ($cluster as $key => $val) {
