@@ -45,7 +45,7 @@ class PageProvider {
       'body_scripts' => $this->engine->provideScripts('body'),
     ];
 
-    return $this->templating->render($template_name, $variables, 'app');
+    return $this->templating->render($template_name, $variables);
   }
 }
 

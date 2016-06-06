@@ -7,7 +7,6 @@ DEFINE('CONTROLROOM',     SCRIPT_ROOT . '/controlroom');
 DEFINE('ENGINEROOM',      SCRIPT_ROOT . '/engineroom');
 
 DEFINE('APP_SCRIPTS',     ENGINEROOM . '/app');
-DEFINE('APP_TEMPLATES',   ENGINEROOM . '/app-templates');
 DEFINE('APP_ASSETS',      ENGINEROOM . '/app-assets');
 
 DEFINE('APS',             SCRIPT_ROOT . '/anypages');

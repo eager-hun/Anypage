@@ -86,6 +86,6 @@ function demonstrate_component($arguments) {
   ];
 
   // Render the 'sg-item' template, that is one of the app's own templates.
-  return $Templating->render('sg-item', $variables_for_presentation, 'app');
+  return $Templating->render('cd-item', $variables_for_presentation);
 }
 

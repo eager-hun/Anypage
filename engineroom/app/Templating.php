@@ -8,8 +8,8 @@ class Templating {
     $this->config = $config;
   }
 
-  public function locate_template($template_name, $template_source = 'anypages') {
-    $src = ($template_source == 'anypages') ? APS_TEMPLATES : APP_TEMPLATES;
+  public function locate_template($template_name) {
+    $src = APS_TEMPLATES;
     return $src . '/' . $template_name . '.template.php';
   }
 

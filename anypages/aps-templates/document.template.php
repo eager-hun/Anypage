@@ -15,7 +15,7 @@
   </head>
   <body>
 
-    <div class="x-app-page">
+    <div class="x-cd-page">
       <?php print $page_content; ?>
     </div>
 

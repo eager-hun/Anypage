@@ -9,34 +9,34 @@ html {
   border-right: 10px solid teal;
 }
 
-.x-app-page {
+.x-cd-page {
   padding: 1em;
 }
 
-.x-app-item {
+.x-cd-item {
   padding: 3em 0;
 }
-.x-app-item + .x-app-item {
+.x-cd-item + .x-cd-item {
   border-top: 1px solid lightgray;
 }
-.x-app-item > div {
+.x-cd-item > div {
   margin-bottom: 0.75rem;
 }
-.x-app-item > div:last-child {
+.x-cd-item > div:last-child {
   margin-bottom: 0;
 }
-.x-app-item__title {
+.x-cd-item__title {
   font-size: 1.5rem;
 }
-.x-app-item__description {
+.x-cd-item__description {
   color: slategray;
   font-style: italic;
   font-size: 0.9rem;
 }
-.x-app-item__code {
+.x-cd-item__code {
 
 }
-.x-app-item__content {
+.x-cd-item__content {
   border: 1px solid lightgray;
   padding: 2rem;
 }
