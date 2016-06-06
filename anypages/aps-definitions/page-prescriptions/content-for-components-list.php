@@ -6,7 +6,7 @@ use \Michelf\Markdown;
 // ############################################################################
 // Regular page header.
 
-echo render_page_header($Templating);
+echo render_page_header();
 
 
 // ############################################################################
@@ -22,20 +22,20 @@ $args_for_header_demo = [
   'component_variables' => [
     'site_name' => 'Component demo site name',
     'site_slogan' => 'Component demo site slogan',
-    'header_widgets' => render_page_header_widgets($Templating),
+    'header_widgets' => render_page_header_widgets(),
   ],
 ];
-echo demonstrate_component($Templating, $args_for_header_demo);
+echo demonstrate_component($args_for_header_demo);
 
 $args_for_footer_demo = [
   'component_name'      => 'page-footer',
   'title'               => 'Page footer',
   'description'         => 'This is the demonstration of the page footer.',
   'component_variables' => [
-    'footer_widgets' => render_page_footer_widgets($Templating),
+    'footer_widgets' => render_page_footer_widgets(),
   ],
 ];
-echo demonstrate_component($Templating, $args_for_footer_demo);
+echo demonstrate_component($args_for_footer_demo);
 
 
 // ----------------------------------------------------------------------------
@@ -56,11 +56,11 @@ $args_for_layout_demo = [
     'bottom' => 'Content in the bottom slot of this layout.',
   ],
 ];
-echo demonstrate_component($Templating, $args_for_layout_demo);
+echo demonstrate_component($args_for_layout_demo);
 
 
 // ############################################################################
 // Regular page footer.
 
-echo render_page_footer($Templating);
+echo render_page_footer();
 

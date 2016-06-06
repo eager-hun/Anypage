@@ -3,14 +3,9 @@
 class Templating {
 
   private $config;
-  private $utils;
 
-  public function __construct(
-    Config $config,
-    Utils $utils
-  ) {
+  public function __construct(Config $config) {
     $this->config = $config;
-    $this->utils  = $utils;
   }
 
   public function locate_template($template_name, $template_source = 'anypages') {

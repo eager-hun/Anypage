@@ -61,7 +61,7 @@ $ApsSetup          = new ApsSetup();
 
 $ProcessInfo       = new ProcessInfo();
 $Utils             = new Utils($Config, $Request);
-$Templating        = new Templating($Config, $Utils);
+$Templating        = new Templating($Config);
 
 $Engine            = new Engine($Config, $Utils);
 $ContentProvider   = new ContentProvider($ApsSetup, $Templating);

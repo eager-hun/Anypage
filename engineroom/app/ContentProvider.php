@@ -24,12 +24,9 @@ class ContentProvider {
       . '.php';
 
     if (file_exists($content_prescription_file)) {
-      // Let's make the templating device available in the common functions'
-      // and the prescriptions' scope.
-      $Templating = $this->templating;
-
+      // Pick up shared functions.
       include(APS . '/aps-common-functions.php');
-
+      // Bring in page's content.
       ob_start();
       include($content_prescription_file);
       $output = ob_get_clean();

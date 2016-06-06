@@ -6,38 +6,42 @@
 // ----------------------------------------------------------------------------
 // Shortcut to print a regular page header.
 
-function render_page_header($Templating) {
+function render_page_header() {
   $template_name = 'page-header';
   $variables = [
     'site_name'      => 'This is the site name',
     'site_slogan'    => 'This is the site slogan',
-    'header_widgets' => render_page_header_widgets($Templating),
+    'header_widgets' => render_page_header_widgets(),
   ];
 
+  $Templating = new Templating(new Config);
   return $Templating->render($template_name, $variables);
 }
 
-function render_page_header_widgets($Templating) {
+function render_page_header_widgets() {
   $template_name = 'page-header-widgets';
 
+  $Templating = new Templating(new Config);
   return $Templating->render($template_name, array());
 }
 
 // ----------------------------------------------------------------------------
 // Shortcut to print a regular page footer.
 
-function render_page_footer($Templating) {
+function render_page_footer() {
   $template_name = 'page-footer';
   $variables = [
-    'footer_widgets' => render_page_footer_widgets($Templating),
+    'footer_widgets' => render_page_footer_widgets(),
   ];
 
+  $Templating = new Templating(new Config);
   return $Templating->render($template_name, $variables);
 }
 
-function render_page_footer_widgets($Templating) {
+function render_page_footer_widgets() {
   $template_name = 'page-footer-widgets';
 
+  $Templating = new Templating(new Config);
   return $Templating->render($template_name, array());
 }
 
@@ -60,7 +64,9 @@ function render_page_footer_widgets($Templating) {
  *   component_variables:
  *     array of data that will populate the rendered demonstrated component.
  */
-function demonstrate_component($Templating, $arguments) {
+function demonstrate_component($arguments) {
+  $Templating = new Templating(new Config);
+
   $component_name = $arguments['component_name'];
 
   if (file_exists($Templating->locate_template($component_name))) {

@@ -6,7 +6,7 @@ use \Michelf\Markdown;
 // ############################################################################
 // Regular page header.
 
-echo render_page_header($Templating);
+echo render_page_header();
 
 
 // ############################################################################
@@ -19,5 +19,5 @@ echo Markdown::defaultTransform($content);
 // ############################################################################
 // Regular page footer.
 
-echo render_page_footer($Templating);
+echo render_page_footer();
 
