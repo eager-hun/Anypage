@@ -4,12 +4,6 @@ use \Michelf\Markdown;
 
 
 // ############################################################################
-// Regular page header.
-
-echo render_page_header();
-
-
-// ############################################################################
 // List of component demos.
 
 // ----------------------------------------------------------------------------
@@ -57,10 +51,4 @@ $args_for_layout_demo = [
   ],
 ];
 echo demonstrate_component($args_for_layout_demo);
-
-
-// ############################################################################
-// Regular page footer.
-
-echo render_page_footer();
 

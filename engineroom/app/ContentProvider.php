@@ -12,7 +12,7 @@ class ContentProvider {
     $this->templating = $templating;
   }
 
-  public function buildContent($page_id) {
+  public function renderContent($page_id) {
     if ($page_id == 'app_404') {
       return 'Not found.';
     }

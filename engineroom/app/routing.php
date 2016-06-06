@@ -124,6 +124,6 @@ else {
   //var_dump($ProcessInfo->get('page_id'));
 
   // Assign to controller.
-  $document = $PageProvider->buildPage();
+  $document = $PageProvider->renderPage();
 }
 

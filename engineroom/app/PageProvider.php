@@ -25,27 +25,28 @@ class PageProvider {
   // --------------------------------------------------------------------------
   // METHODS.
 
-  public function buildPage() {
+  public function renderPage() {
     $page_id = $this->processInfo->get('page_id');
-    $content = $this->contentProvider->buildContent($page_id);
+    $page_content = $this->contentProvider->renderContent($page_id);
 
-    return $this->page($content);
-  }
+    $variables_for_page = [
+      'page_header' => render_page_header(),
+      'page_main'   => $page_content,
+      'page_footer' => render_page_footer(),
+    ];
 
-  private function page($page_content) {
-    $template_name = 'document';
-    $variables = [
+    $variables_for_document = [
       'lang'         => 'en',
       'classes'      => 'no-js',
       'head_title'   => 'Styleguide',
       'head_desc'    => 'HEAD_DESC',
       'styles'       => $this->engine->provideStylesheets(),
       'head_scripts' => $this->engine->provideScripts('head'),
-      'page_content' => $page_content,
+      'page_content' => $this->templating->render('page', $variables_for_page),
       'body_scripts' => $this->engine->provideScripts('body'),
     ];
 
-    return $this->templating->render($template_name, $variables);
+    return $this->templating->render('document', $variables_for_document);
   }
 }
 
