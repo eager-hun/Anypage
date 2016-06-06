@@ -10,7 +10,7 @@ use \Michelf\Markdown;
 // Demonstrate header and footer.
 
 $args_for_header_demo = [
-  'component_name'      => 'page-header',
+  'template_name'       => 'page-header',
   'title'               => 'Page header',
   'description'         => 'This is the demonstration of the page header.',
   'component_variables' => [
@@ -19,17 +19,17 @@ $args_for_header_demo = [
     'header_widgets' => render_page_header_widgets(),
   ],
 ];
-echo demonstrate_component($args_for_header_demo);
+echo render_cd_item($args_for_header_demo);
 
 $args_for_footer_demo = [
-  'component_name'      => 'page-footer',
+  'template_name'       => 'page-footer',
   'title'               => 'Page footer',
   'description'         => 'This is the demonstration of the page footer.',
   'component_variables' => [
     'footer_widgets' => render_page_footer_widgets(),
   ],
 ];
-echo demonstrate_component($args_for_footer_demo);
+echo render_cd_item($args_for_footer_demo);
 
 
 // ----------------------------------------------------------------------------
@@ -42,7 +42,7 @@ Also, I can haz markdown for this text.
 EOT;
 
 $args_for_layout_demo = [
-  'component_name'      => 'sample-dummy-layout',
+  'template_name'       => 'sample-dummy-layout',
   'title'               => 'Sample dummy layout',
   'description'         => Markdown::defaultTransform($description_for_layout_demo),
   'component_variables' => [
@@ -50,5 +50,19 @@ $args_for_layout_demo = [
     'bottom' => 'Content in the bottom slot of this layout.',
   ],
 ];
-echo demonstrate_component($args_for_layout_demo);
+echo render_cd_item($args_for_layout_demo);
+
+
+// ----------------------------------------------------------------------------
+// Demonstrate arbitrary text.
+
+// TODO: this should be made a function/method shomehow.
+$raw_text = file_get_contents(APS_CONTENTS . '/arbitrary/arbitrary-text.md');
+$text = Markdown::defaultTransform($raw_text);
+
+$args_for_text_demo = [
+  'title'   => 'Demo with arbitrary text',
+  'content' => $text,
+];
+echo render_cd_item($args_for_text_demo);
 

@@ -55,34 +55,66 @@ function render_page_footer_widgets() {
  * rendered instance of the component.
  *
  * @param array $arguments
- *   component_name:
- *     name of the template of the demonstrated component.
- *   title:
- *     the title of the demo.
- *   description:
- *     long text.
- *   component_variables:
- *     array of data that will populate the rendered demonstrated component.
+ *   string template_name:
+ *     Name of the template of the demonstrated component.
+ *       Optional.
+ *   string title:
+ *     The title of the demo.
+ *       Mandatory.
+ *   string description:
+ *     Long text.
+ *       Optional.
+ *   array component_variables:
+ *     Array of data that will populate the rendered demonstrated component.
+ *       Optional. (Mandatory if template_name was provided.)
+ *   string content:
+ *     Directly defined content, for cases when template_name was not passed
+ *     in.
  */
-function demonstrate_component($arguments) {
+function render_cd_item($arguments) {
   $Templating = new Templating(new Config);
 
-  $component_name = $arguments['component_name'];
+  // If there's a template named, then we provide its code and then render it
+  // with the arguments that were provided for that.
+  if (!empty($arguments['template_name'])) {
+    $template_name = $arguments['template_name'];
 
-  if (file_exists($Templating->locate_template($component_name))) {
-    $view_code = htmlspecialchars(
-      file_get_contents($Templating->locate_template($component_name))
-    );
+    if (file_exists($Templating->locate_template($template_name))) {
+      $view_code = htmlspecialchars(
+        file_get_contents($Templating->locate_template($template_name))
+      );
+    }
+    else {
+      $view_code = 'Code not found.';
+    }
+    $variables_for_code_template = [
+      'code' => $view_code,
+    ];
+    $code    = $Templating->render('cd-code-view', $variables_for_code_template);
+    $content = $Templating->render($template_name, $arguments['component_variables']);
+  }
+  // Elseif a content was directly provided, we present that.
+  elseif (array_key_exists('content', $arguments)) {
+    $code    = FALSE; // The code template will not print anything.
+    $content = $arguments['content'];
   }
   else {
-    $view_code = 'Code not found.';
+    // TODO: error handling.
+    echo 'Insufficient arguments for render_cd_item()';
+  }
+
+  if (array_key_exists('description', $arguments)) {
+    $description = $arguments['description'];
+  }
+  else {
+    $description = FALSE;
   }
 
   $variables_for_presentation = [
     'title'       => $arguments['title'],
-    'description' => $arguments['description'],
-    'code'        => 'Code:<br><pre><code>' . $view_code . '</code></pre>',
-    'content'     => $Templating->render($component_name, $arguments['component_variables'])
+    'description' => $description,
+    'code'        => $code,
+    'content'     => $content,
   ];
 
   // Render the 'sg-item' template, that is one of the app's own templates.
