@@ -1,3 +1,4 @@
 [submodule "frontend-setup"]
 	path = frontend-setup
 	url = https://github.com/eager-hun/frontend-setup
+  ignore = dirty
