@@ -14,11 +14,7 @@
     <?php print $head_scripts; ?>
   </head>
   <body>
-
-    <div class="x-cd-page">
-      <?php print $page_content; ?>
-    </div>
-
+    <?php print $page_content; ?>
     <?php print $body_scripts; ?>
   </body>
 </html>

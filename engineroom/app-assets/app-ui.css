@@ -1,23 +1,12 @@
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-}
-html {
-  border-right: 10px solid teal;
-}
-
-.x-cd-page {
-  padding: 1em;
-}
+/* Component-demo items' template. */
 
 .x-cd-item {
-  padding: 3em 0;
+  border: 1px solid lightgray;
+  padding: 2em;
 }
 .x-cd-item + .x-cd-item {
-  border-top: 1px solid lightgray;
+  margin-top: 3em;
 }
 .x-cd-item > div {
   margin-bottom: 0.75rem;
@@ -30,13 +19,17 @@ html {
 }
 .x-cd-item__description {
   color: slategray;
-  font-style: italic;
   font-size: 0.9rem;
+  font-style: italic;
 }
-.x-cd-item__code {
-
+.x-cd-item__label {
+  display: block;
+  margin: 1rem 0;
+  font-style: italic;
+  font-weight: 700;
 }
-.x-cd-item__content {
+.x-cd-item__code pre {
+  background: whitesmoke;
   border: 1px solid lightgray;
   padding: 2rem;
 }

@@ -43,10 +43,12 @@ class Config {
    *
    * The numbers in the array keys provide just uniqueness (to prevent
    * overwriting). The order of the asset inclusion on the page is the order of
-   * the declaration here.
+   * the declaration here (I assume, as long as the array key is a string).
    */
   private $stylesheets = [
     'internal1' => 'engineroom/app-assets/app-ui.css',
+    'internal2' => 'frontend-setup/build/css/style-bundle-custom.css',
+    'internal3' => 'frontend-setup/build/css/style-bundle-foundation.css',
     //'internal2' => 'theme-being-worked-on/**/foo.css',
     //'internal3' => 'theme-being-worked-on/**/bar.css',
   ];
@@ -61,7 +63,7 @@ class Config {
    *
    * The numbers in the array keys provide just uniqueness (to prevent
    * overwriting). The order of the asset inclusion on the page is the order of
-   * the declaration here.
+   * the declaration here (I assume, as long as the array key is a string).
    */
   private $scripts = [
     'head' => [
@@ -70,6 +72,9 @@ class Config {
     ],
     'body' => [
       'internal1' => 'engineroom/app-assets/app-ui.js',
+      'internal2' => 'frontend-setup/build/js/libs.js',
+      'internal3' => 'frontend-setup/build/js/foundation.js',
+      'internal4' => 'frontend-setup/build/js/custom.js',
       //'internal2' => 'theme-being-worked-on/**/foo.js',
       //'internal3' => 'theme-being-worked-on/**/bar.js',
     ],
