@@ -1,8 +1,14 @@
 
+
+# Libraries and packages and stuff.
+
 **/libraries-backend/*
 !**/libraries-backend/.htaccess
-
 **/node_modules/
+
+# Themes being worked on - other than the "frontend-setup" 'theme', which is
+# made a submodule of this repo (therefore that one doesn't seem to need to be
+# gitignored).
 
 **/theme-being-worked-on/
 
