@@ -36,9 +36,9 @@ echo render_cd_item($args_for_footer_demo);
 // Demonstrate a dummy layout.
 
 $description_for_layout_demo = <<<EOT
-This is the demonstration of a sample dummy layout.
+This is the description text for the demonstration of a sample dummy layout.
 
-Also, I can haz markdown for this text.
+Also, this text is processed by Markdown.
 EOT;
 
 $args_for_layout_demo = [

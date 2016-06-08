@@ -80,8 +80,10 @@ function render_cd_item($arguments) {
     $template_name = $arguments['template_name'];
 
     if (file_exists($Templating->locate_template($template_name))) {
-      $view_code = htmlspecialchars(
-        file_get_contents($Templating->locate_template($template_name))
+      $view_code = trim(
+        htmlspecialchars(
+          file_get_contents($Templating->locate_template($template_name))
+        )
       );
     }
     else {

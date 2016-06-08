@@ -17,15 +17,17 @@
     </div>
   <?php endif; ?>
 
-  <?php if (!empty($code)): ?>
-    <div class="x-cd-item__code">
-      <?php print $code; ?>
+  <?php if (!empty($content)): ?>
+    <span class="x-cd-item__label">Rendered sample:</span>
+    <div class="x-cd-item__content">
+      <?php print $content; ?>
     </div>
   <?php endif; ?>
 
-  <?php if (!empty($content)): ?>
-    <div class="x-cd-item__content">
-      <?php print $content; ?>
+  <?php if (!empty($code)): ?>
+    <span class="x-cd-item__label">Code:</span>
+    <div class="x-cd-item__code">
+      <?php print $code; ?>
     </div>
   <?php endif; ?>
 
