@@ -7,62 +7,97 @@ use \Michelf\Markdown;
 // List of component demos.
 
 // ----------------------------------------------------------------------------
-// Demonstrate header and footer.
-
-$args_for_header_demo = [
-  'template_name'       => 'page-header',
-  'title'               => 'Page header',
-  'description'         => 'This is the demonstration of the page header.',
-  'component_variables' => [
-    'site_name' => 'Component demo site name',
-    'site_slogan' => 'Component demo site slogan',
-    'header_widgets' => render_page_header_widgets(),
-  ],
-];
-echo render_cd_item($args_for_header_demo);
-
-$args_for_footer_demo = [
-  'template_name'       => 'page-footer',
-  'title'               => 'Page footer',
-  'description'         => 'This is the demonstration of the page footer.',
-  'component_variables' => [
-    'footer_widgets' => render_page_footer_widgets(),
-  ],
-];
-echo render_cd_item($args_for_footer_demo);
-
-
-// ----------------------------------------------------------------------------
 // Demonstrate a dummy layout.
 
-$description_for_layout_demo = <<<EOT
+$desc_raw = <<<EOT
 This is the description text for the demonstration of a sample dummy layout.
 
 Also, this text is processed by Markdown.
 EOT;
 
-$args_for_layout_demo = [
+$component_args = [
   'template_name'       => 'sample-dummy-layout',
   'title'               => 'Sample dummy layout',
-  'description'         => Markdown::defaultTransform($description_for_layout_demo),
+  'description'         => Markdown::defaultTransform($desc_raw),
   'component_variables' => [
     'top'    => 'Content in the top slot of this layout.',
     'bottom' => 'Content in the bottom slot of this layout.',
   ],
 ];
-echo render_cd_item($args_for_layout_demo);
+echo render_cd_item($component_args);
+
+// ----------------------------------------------------------------------------
+// Demonstrate typography on basic texts.
+
+// TODO: this should be made a function/method shomehow.
+$text = file_get_contents(APS_CONTENTS . '/arbitrary/sample-texts.html');
+
+$component_args = [
+  'title'   => 'Texts for checking typography',
+  'content' => $text,
+];
+echo render_cd_item($component_args);
 
 
 // ----------------------------------------------------------------------------
-// Demonstrate arbitrary text.
+// Demonstrate typography on lists.
 
 // TODO: this should be made a function/method shomehow.
-$raw_text = file_get_contents(APS_CONTENTS . '/arbitrary/arbitrary-text.md');
-$text = Markdown::defaultTransform($raw_text);
+$text = file_get_contents(APS_CONTENTS . '/arbitrary/sample-lists.html');
 
-$args_for_text_demo = [
-  'title'   => 'Demo with arbitrary text',
+$component_args = [
+  'title'   => 'Lists for checking typography',
   'content' => $text,
 ];
-echo render_cd_item($args_for_text_demo);
+echo render_cd_item($component_args);
+
+
+// ----------------------------------------------------------------------------
+// Sample grids.
+
+// TODO: this should be made a function/method shomehow.
+$text = file_get_contents(APS_CONTENTS . '/arbitrary/sample-grid-layouts.html');
+
+$component_args = [
+  'title'   => 'Sample grid layouts',
+  'content' => $text,
+];
+echo render_cd_item($component_args);
+
+
+// ----------------------------------------------------------------------------
+// On-demand grids.
+
+// TODO: this should be made a function/method shomehow.
+$text = file_get_contents(APS_CONTENTS . '/arbitrary/on-demand-grids-and-flexboxes.html');
+$desc_raw = <<<EOT
+NOTE: you can add `row--flexbox--wide` class in inspector to any `.row`s in this demo to flexboxify its children.
+EOT;
+
+$component_args = [
+  'title'       => 'On-demand grids and flexboxes',
+  'description' => Markdown::defaultTransform($desc_raw),
+  'content'     => $text,
+];
+echo render_cd_item($component_args);
+
+
+// ----------------------------------------------------------------------------
+// Layout 2 sidebars.
+
+// TODO: this should be made a function/method shomehow.
+$text = file_get_contents(APS_CONTENTS . '/arbitrary/layout-2-sidebars.html');
+$desc_raw = <<<EOT
+"Layout 2 sidebars" is a custom, complex component, based on on-demand grids.
+
+It can be used to supply a variety of basic arrangements for page sections.
+EOT;
+
+$component_args = [
+  'title'   => 'Layout 2 sidebars demo',
+  'description' => Markdown::defaultTransform($desc_raw),
+  'content' => $text,
+];
+echo render_cd_item($component_args);
+
 
