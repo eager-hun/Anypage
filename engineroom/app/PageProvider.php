@@ -26,6 +26,10 @@ class PageProvider {
   // METHODS.
 
   public function renderPage() {
+
+    // Pick up shared functions (TODO: this might need a more senseful place).
+    include(APS . '/aps-common-functions.php');
+
     $page_id = $this->processInfo->get('page_id');
     $page_content = $this->contentProvider->renderContent($page_id);
 

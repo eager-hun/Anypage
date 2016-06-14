@@ -18,14 +18,13 @@ class ContentProvider {
     }
 
     $page_definition = $this->apsSetup->get('pages')[$page_id];
+
     $content_prescription_file = APS_DEFINITIONS
       . '/page-prescriptions/'
       . $page_definition['filename_for_content']
       . '.php';
 
     if (file_exists($content_prescription_file)) {
-      // Pick up shared functions.
-      include(APS . '/aps-common-functions.php');
       // Bring in page's content.
       ob_start();
       include($content_prescription_file);
