@@ -47,8 +47,8 @@ class Config {
    */
   private $stylesheets = [
     'internal1' => 'engineroom/app-assets/app-ui.css',
-    'internal2' => 'frontend-setup/build/css/style-bundle-custom.css',
-    'internal3' => 'frontend-setup/build/css/style-bundle-foundation.css',
+    'internal2' => 'frontend-setup/build/css/style-bundle-foundation.css',
+    'internal3' => 'frontend-setup/build/css/style-bundle-custom.css',
     //'internal2' => 'theme-being-worked-on/**/foo.css',
     //'internal3' => 'theme-being-worked-on/**/bar.css',
   ];
