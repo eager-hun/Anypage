@@ -3,14 +3,17 @@
 Class Engine {
 
   private $config;
+  private $apsSetup;
   private $utils;
 
   public function __construct(
     Config $config,
+    ApsSetup $apsSetup,
     Utils $utils
   ) {
-    $this->config = $config;
-    $this->utils  = $utils;
+    $this->config   = $config;
+    $this->apsSetup = $apsSetup;
+    $this->utils    = $utils;
   }
 
   public function renderStylesheetLink($href) {
@@ -75,6 +78,35 @@ EOL;
     }
 
     return $output;
+  }
+
+  public function provideAppMenu() {
+    $pagelist = $this->apsSetup->get('pages');
+    // Adding a link for the generator page, which is not part of the
+    // page definitions.
+    $pagelist['generate'] = [
+      'path'            => 'generate',
+      'menu_link_label' => 'Generate static HTML',
+    ];
+
+    $menu_items = '';
+    foreach ($pagelist as $page_data) {
+      $menu_items .= '<li>'
+        . '<a href="'
+        . $this->utils->base_url() . $page_data['path']
+        . '" class="app-menu__link">'
+        . $page_data['menu_link_label']
+        . '</a>'
+        . '</li>'
+        . PHP_EOL;
+    }
+
+    $menu = '<nav class="app-menu"><ul>'
+      . PHP_EOL
+      . $menu_items
+      . '</ul></nav>';
+
+    return $menu;
   }
 }
 

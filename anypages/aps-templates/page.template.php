@@ -21,3 +21,5 @@
   </div>
 </footer>
 
+<?php echo $app_menu; ?>
+

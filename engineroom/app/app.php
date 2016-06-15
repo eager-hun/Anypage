@@ -62,7 +62,7 @@ $ProcessInfo       = new ProcessInfo();
 $Utils             = new Utils($Config, $Request);
 $Templating        = new Templating($Config);
 
-$Engine            = new Engine($Config, $Utils);
+$Engine            = new Engine($Config, $ApsSetup, $Utils);
 $ContentProvider   = new ContentProvider($ApsSetup, $Templating);
 
 $PageProvider      = new PageProvider (

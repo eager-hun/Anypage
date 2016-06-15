@@ -32,11 +32,18 @@ class PageProvider {
 
     $page_id = $this->processInfo->get('page_id');
     $page_content = $this->contentProvider->renderContent($page_id);
+    $app_menu_template_vars = [
+      'app_menu' => $this->engine->provideAppMenu(),
+    ];
 
     $variables_for_page = [
       'page_header' => render_page_header(),
       'page_main'   => $page_content,
       'page_footer' => render_page_footer(),
+      'app_menu'    => $this->templating->render(
+        'meta-app-menu-wrapper',
+        $app_menu_template_vars
+      ),
     ];
 
     $variables_for_document = [

@@ -21,16 +21,19 @@ class ApsSetup {
    */
   private $pages = [
     'home' => [
-      'path' => '',
+      'path'                 => '',
       'filename_for_content' => 'content-for-home',
+      'menu_link_label'      => 'Home',
     ],
     'components_list_page' => [
-      'path' => 'components-list',
+      'path'                 => 'components-list',
       'filename_for_content' => 'content-for-components-list',
+      'menu_link_label'      => 'Components list',
     ],
     'sample_page' => [
-      'path' => 'sample-page',
+      'path'                 => 'sample-page',
       'filename_for_content' => 'content-for-sample-page',
+      'menu_link_label'      => 'Sample page',
     ],
   ];
 }

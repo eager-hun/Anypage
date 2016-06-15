@@ -1,4 +1,142 @@
 
+/* ######################################################################### */
+/* App menu. */
+
+#app-menu__toggle,
+.app-menu__toggle__icon,
+.app-menu__toggle__bg {
+  display: block;
+  width: 40px;
+  height: 40px;
+
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  position: fixed;
+  transition: opacity 0.25s ease-in-out,
+              background 0.25s ease-in-out,
+              box-shadow 0.12s ease-in-out;
+}
+#app-menu__toggle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+
+  cursor: pointer;
+  font-size: 40px;
+  opacity: 0;
+  z-index: 10030;
+}
+.app-menu__toggle__bg {
+  background: black;
+  opacity: 0.5;
+  z-index: 10010;
+}
+.app-menu__toggle__icon {
+  color: white;
+  z-index: 10020;
+}
+.app-menu__toggle__icon::before {
+  display: block;
+  font-size: 32px;
+  line-height: 40px;
+  opacity: 0.5;
+  text-align: center;
+  transition: opacity 0.25s ease-in-out;
+}
+.app-menu__toggle__icon.open {
+  opacity: 1;
+}
+.app-menu__toggle__icon.close {
+  opacity: 0;
+}
+.app-menu__toggle__icon.open::before {
+  /* This is not very crossbrowser consistent, but is at least cheap. */
+  /* utf8 hamburger, see: http://graphemica.com/%E2%98%B0 */
+  content: '\2630';
+}
+.app-menu__toggle__icon.close::before {
+  /* This is not very crossbrowser consistent, but is at least cheap. */
+  /* &times; , aka closing X. */
+  content: '\00D7';
+}
+
+
+
+/* Activated checkbox. */
+#app-menu__toggle:checked ~ .app-menu__toggle__icon.open {
+  opacity: 0;
+}
+#app-menu__toggle:checked ~ .app-menu__toggle__icon.close {
+  opacity: 1;
+}
+#app-menu__toggle:focus ~ .app-menu__toggle__icon::before,
+#app-menu__toggle:checked ~ .app-menu__toggle__icon::before {
+  opacity: 1;
+}
+#app-menu__toggle:focus ~ .app-menu__toggle__bg {
+  opacity: 1;
+  box-shadow: 0 0 4px 1px white, 0 0 15px 5px teal;
+}
+
+
+
+.app-menu__wrapper {
+  bottom: -1000px;
+  left: -1000px;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  transition: opacity 0.25s ease-in-out;
+  z-index: 10000;
+}
+
+/* Activated checkbox / menu. */
+#app-menu__toggle:checked ~ .app-menu__wrapper {
+  bottom: 0;
+  left: 0;
+  opacity: 1;
+  top: auto;
+}
+
+
+
+/* App-menu styles. */
+.app-menu {
+  border-top: 1px solid rgba(255,255,255,0.3);
+  border-right: 1px solid rgba(255,255,255,0.3);
+  background: black;
+  display: inline-block;
+  padding: 24px 24px 54px 54px;
+}
+.app-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+.app-menu a {
+  border-bottom: 1px solid transparent;
+  display: inline-block;
+  margin-bottom: 4px;
+  text-decoration: none;
+  transition: border-color 0.07s ease-in-out;
+}
+.app-menu a,
+.app-menu a:visited,
+.app-menu a:focus,
+.app-menu a:active,
+.app-menu a:hover {
+  color: white;
+}
+.app-menu a:focus,
+.app-menu a:hover {
+  outline: none;
+  border-color: #00b3b3;
+}
+
+/* ######################################################################### */
 /* Component-demo items' template. */
 
 .x-cd-item {
