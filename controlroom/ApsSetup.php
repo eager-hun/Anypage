@@ -18,22 +18,27 @@ class ApsSetup {
    * For "filename_for_content" provide a filename from the
    * anypages/aps-definitions/page-prescriptions/ directory, whithout its
    * extension (".php" will be assumed).
+   *
+   * For "html_filename", don't provide an extension; ".html" will be assumed.
    */
   private $pages = [
     'home' => [
       'path'                 => '',
       'filename_for_content' => 'content-for-home',
       'menu_link_label'      => 'Home',
+      'html_filename'        => 'index',
     ],
     'components_list_page' => [
       'path'                 => 'components-list',
       'filename_for_content' => 'content-for-components-list',
       'menu_link_label'      => 'Components list',
+      'html_filename'        => 'components-list',
     ],
     'sample_page' => [
       'path'                 => 'sample-page',
       'filename_for_content' => 'content-for-sample-page',
       'menu_link_label'      => 'Sample page',
+      'html_filename'        => 'sample-page',
     ],
   ];
 }

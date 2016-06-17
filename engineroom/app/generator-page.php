@@ -2,7 +2,7 @@
 
 <!--input id="html-generator-input-dirname" type="text" -->
 
-<button 
+<button
   id="html-generator-button"
   class="button html-generator-button"
   type="button">

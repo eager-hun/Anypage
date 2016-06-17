@@ -28,12 +28,12 @@ require_once(ENGINEROOM . '/libraries-backend/autoload.php');
 // See http://symfony.com/doc/current/book/http_fundamentals.html .
 use Symfony\Component\HttpFoundation\Request;
 $Request = new Request(
-    $_GET,
-    $_POST,
-    array(),
-    $_COOKIE,
-    $_FILES,
-    $_SERVER
+  $_GET,
+  $_POST,
+  array(),
+  $_COOKIE,
+  $_FILES,
+  $_SERVER
 );
 
 // ----------------------------------------------------------------------------
@@ -94,13 +94,12 @@ $Response->setProtocolVersion('1.1');
 if (!empty($document)) {
   $Response->headers->set('Content-Type', 'text/html');
 
+  // 200.
   if ($ProcessInfo->get('page_id') != 'app_404') {
-    // 200.
-    $Response->setContent($document);
-    $Response->setStatusCode(Response::HTTP_OK);
+    $Engine->respond($Request, $Response, $ApsSetup, $ProcessInfo, $document);
   }
+  // 404.
   else {
-    // 404.
     $Response->setContent($document);
     $Response->setStatusCode(Response::HTTP_NOT_FOUND);
   }

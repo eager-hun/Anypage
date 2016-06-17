@@ -11,3 +11,14 @@ function apputils_base_url() {
   return $output;
 }
 
+function apputils_validate_string_as($string, $as) {
+  if ($as == 'dirname') {
+    // TODO.
+    return TRUE;
+  }
+  else {
+    // TODO: message about not understanding instructions.
+    return FALSE;
+  }
+}
+

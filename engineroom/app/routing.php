@@ -70,6 +70,11 @@ else {
   }
 }
 
+if ($ProcessInfo->get('task_type') == 'page'
+  && !empty($Request->query->get('gen'))) {
+  $ProcessInfo->set('save_page_as_file', TRUE);
+}
+
 function determine_page_id($Config, $ApsSetup, $ProcessInfo, $routing) {
   // As of now, only 'page' type tasks will require a page_id.
   // It also might happen that we already have identified the homepage to be

@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Response;
+
 Class Engine {
 
   private $config;
@@ -105,8 +107,73 @@ EOL;
 
     return $menu;
   }
+
+  public function respond($Request, $Response, $ApsSetup, $ProcessInfo, $document) {
+    // Save page as HTML.
+    if (!empty($ProcessInfo->get('save_page_as_file'))) {
+      $error = FALSE;
+
+      $destination_subdir = $Request->query->get('dir');
+
+      if (empty($destination_subdir)) {
+        $error = 'No destination subdirectory was specified; aborting.';
+      }
+
+      if (empty($error)) {
+        if (empty(apputils_validate_string_as($destination_subdir, 'dirname'))) {
+          $error = 'The provided destination subdirectory name was not valid; aborting.';
+        }
+      }
+
+      if (empty($error)) {
+        // Create subdir.
+        $static_styleguide_dir_name = 'styleguide';
+        $new_dir_name = SCRIPT_ROOT . '/' . $static_styleguide_dir_name . '/' . $destination_subdir;
+
+        if (!file_exists($new_dir_name)) {
+          if (!mkdir($new_dir_name)) {
+            $error = 'The target subdirectory could not be created.';
+          }
+        }
+        else {
+          $error = 'The specified target directory already exists; aborting.';
+        }
+      }
+
+      if (empty($error)) {
+        // Save page as HTML.
+        $pages = $ApsSetup->get('pages');
+        $filename = $pages[$ProcessInfo->get('page_id')]['html_filename'] . '.html';
+        $file = SCRIPT_ROOT
+          . '/'
+          . $static_styleguide_dir_name
+          . '/'
+          . $destination_subdir
+          . '/'
+          . $filename;
+
+        if (file_put_contents($file, $document) !== FALSE) {
+          $message = 'Saved page of id: ' . $ProcessInfo->get('page_id') . ' to ' . $file;
+        }
+        else {
+          $error = 'Failed to save page of id: ' . $ProcessInfo->get('page_id');
+        }
+      }
+
+      if (empty($error)) {
+        $Response->setContent($message);
+        $Response->setStatusCode(Response::HTTP_OK);
+      }
+      else {
+        $Response->setContent($error);
+        $Response->setStatusCode(Response::HTTP_OK);
+      }
+    }
+    // Send back page.
+    else {
+      $Response->setContent($document);
+      $Response->setStatusCode(Response::HTTP_OK);
+    }
+  }
 }
-
-
-
 
