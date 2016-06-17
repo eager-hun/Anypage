@@ -4,16 +4,13 @@ Class Engine {
 
   private $config;
   private $apsSetup;
-  private $utils;
 
   public function __construct(
     Config $config,
-    ApsSetup $apsSetup,
-    Utils $utils
+    ApsSetup $apsSetup
   ) {
     $this->config   = $config;
     $this->apsSetup = $apsSetup;
-    $this->utils    = $utils;
   }
 
   public function renderStylesheetLink($href) {
@@ -45,7 +42,7 @@ EOL;
       foreach ($stylesheets as $key => $val) {
         if (!empty($val)) {
           if (strpos($key, 'internal') !== false) {
-            $val = $this->utils->base_url() . $val;
+            $val = apputils_base_url() . $val;
           }
           $output .= self::renderStylesheetLink($val);
         }
@@ -69,7 +66,7 @@ EOL;
       foreach ($cluster as $key => $val) {
         if (!empty($val)) {
           if (strpos($key, 'internal') !== FALSE) {
-            $val = $this->utils->base_url() . $val;
+            $val = apputils_base_url() . $val;
           }
           $output .= self::renderScriptTag($val);
         }
@@ -93,7 +90,7 @@ EOL;
     foreach ($pagelist as $page_data) {
       $menu_items .= '<li>'
         . '<a href="'
-        . $this->utils->base_url() . $page_data['path']
+        . apputils_base_url() . $page_data['path']
         . '" class="app-menu__link">'
         . $page_data['menu_link_label']
         . '</a>'

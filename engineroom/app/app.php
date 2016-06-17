@@ -43,29 +43,23 @@ $Request = new Request(
 
 
 // ----------------------------------------------------------------------------
-// Custom classes.
+// Custom resources.
 
 require_once(CONTROLROOM . '/Config.php');
+require_once(CONTROLROOM . '/ApsSetup.php');
 require_once(APP_SCRIPTS . '/ProcessInfo.php');
-
-require_once(APP_SCRIPTS . '/Utils.php');
 require_once(APP_SCRIPTS . '/Templating.php');
 require_once(APP_SCRIPTS . '/Engine.php');
-require_once(CONTROLROOM . '/ApsSetup.php');
 require_once(APP_SCRIPTS . '/ContentProvider.php');
 require_once(APP_SCRIPTS . '/PageProvider.php');
 
-$Config            = new Config();
-$ApsSetup          = new ApsSetup();
-
-$ProcessInfo       = new ProcessInfo();
-$Utils             = new Utils($Config, $Request);
-$Templating        = new Templating($Config);
-
-$Engine            = new Engine($Config, $ApsSetup, $Utils);
-$ContentProvider   = new ContentProvider($ApsSetup, $Templating);
-
-$PageProvider      = new PageProvider (
+$Config          = new Config();
+$ApsSetup        = new ApsSetup();
+$ProcessInfo     = new ProcessInfo();
+$Templating      = new Templating($Config);
+$Engine          = new Engine($Config, $ApsSetup);
+$ContentProvider = new ContentProvider($ApsSetup, $Templating);
+$PageProvider    = new PageProvider (
   $ApsSetup,
   $ProcessInfo,
   $ContentProvider,
@@ -73,6 +67,7 @@ $PageProvider      = new PageProvider (
   $Templating
 );
 
+require_once(APP_SCRIPTS . '/utility_functions.php');
 
 // ############################################################################
 // "ROUTING".
