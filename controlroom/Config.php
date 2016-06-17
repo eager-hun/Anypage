@@ -27,7 +27,7 @@ class Config {
      * become the task id for the request.
      */
     'reserved_paths' => [
-      'generate' => 'generate',
+      'generate-html-pages' => 'generate-html-pages',
     ],
   ];
 
@@ -46,7 +46,7 @@ class Config {
    * the declaration here (I assume, as long as the array key is a string).
    */
   private $stylesheets = [
-    'internal1' => 'engineroom/app-assets/app-ui.css',
+    'internal1' => 'engineroom/app-assets/anypage-app.css',
     'internal2' => 'frontend-setup/build/css/style-bundle-foundation.css',
     'internal3' => 'frontend-setup/build/css/style-bundle-custom.css',
     //'internal2' => 'theme-being-worked-on/**/foo.css',
@@ -71,7 +71,7 @@ class Config {
       'external1' => '',
     ],
     'body' => [
-      'internal1' => 'engineroom/app-assets/app-ui.js',
+      'internal1' => 'engineroom/app-assets/anypage-app.js',
       'internal2' => 'frontend-setup/build/js/libs.js',
       'internal3' => 'frontend-setup/build/js/foundation.js',
       'internal4' => 'frontend-setup/build/js/custom.js',

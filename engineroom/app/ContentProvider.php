@@ -1,15 +1,18 @@
 <?php
 
 class ContentProvider {
+  private $processInfo;
   private $apsSetup;
   private $templating;
 
   public function __construct(
+    ProcessInfo $processInfo,
     ApsSetup $apsSetup,
     Templating $templating
   ) {
-    $this->apsSetup = $apsSetup;
-    $this->templating = $templating;
+    $this->processInfo = $processInfo;
+    $this->apsSetup    = $apsSetup;
+    $this->templating  = $templating;
   }
 
   public function renderContent($page_id) {
@@ -17,12 +20,17 @@ class ContentProvider {
       return 'Not found.';
     }
 
-    $page_definition = $this->apsSetup->get('pages')[$page_id];
+    if ($this->processInfo->get('task_type') == 'generate-html-pages') {
+      $content_prescription_file = APP_SCRIPTS . '/generator-page.php';
+    }
+    else {
+      $page_definition = $this->apsSetup->get('pages')[$page_id];
 
-    $content_prescription_file = APS_DEFINITIONS
-      . '/page-prescriptions/'
-      . $page_definition['filename_for_content']
-      . '.php';
+      $content_prescription_file = APS_DEFINITIONS
+        . '/page-prescriptions/'
+        . $page_definition['filename_for_content']
+        . '.php';
+    }
 
     if (file_exists($content_prescription_file)) {
       // Bring in page's content.
@@ -36,6 +44,7 @@ class ContentProvider {
     }
 
     return $output;
+
   }
 }
 

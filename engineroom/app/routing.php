@@ -71,59 +71,49 @@ else {
 }
 
 function determine_page_id($Config, $ApsSetup, $ProcessInfo, $routing) {
-  // It might be that we already identified the homepage to be served.
-  if (!empty($ProcessInfo->get('page_id'))) {
+  // As of now, only 'page' type tasks will require a page_id.
+  // It also might happen that we already have identified the homepage to be
+  // served.
+  if ($ProcessInfo->get('task_type') != 'page'
+    || !empty($ProcessInfo->get('page_id'))) {
     return;
   }
+
+  $pages = $ApsSetup->get('pages');
+
+  // Find out how the path would look like without the working dir.
+  if (empty($Config->get('env')['working_dir'])) {
+    $prepared_uri_path = $routing['uri_path'];
+  }
+  // Else find out how it looks when there is a working dir.
   else {
-    $pages = $ApsSetup->get('pages');
+    $to_trim = $Config->get('env')['working_dir'] . '/';
+    $prepared_uri_path = substr($routing['uri_path'], strlen($to_trim));
+  }
 
-    // Find out how the path would look like without the working dir.
-    if (empty($Config->get('env')['working_dir'])) {
-      $prepared_uri_path = $routing['uri_path'];
-    }
-    // Else find out how it looks when there is a working dir.
-    else {
-      $to_trim = $Config->get('env')['working_dir'] . '/';
-      $prepared_uri_path = substr($routing['uri_path'], strlen($to_trim));
-    }
+  // Decide the page_id by comparing the path to our path records.
+  $path_records = [];
 
-    // Decide the page_id by comparing the path to our path records.
-    $path_records = [];
+  // Building a searchable array of the existing paths.
+  // This would be expensive for a large project but ours is expected to have
+  // only 5-20 pages.
+  foreach ($pages as $id => $data) {
+    $path_records[$id] = $data['path'];
+  }
 
-    // Building a searchable array of the existing paths.
-    // This would be expensive for a large project but ours is expected to have
-    // only 5-20 pages.
-    foreach ($pages as $id => $data) {
-      $path_records[$id] = $data['path'];
-    }
-
-    if (($index = array_search($prepared_uri_path, $path_records)) !== FALSE) {
-      $ProcessInfo->set('page_id', $index);
-    }
-    // Else 404.
-    else {
-      $ProcessInfo->set('page_id', 'app_404');
-    }
+  if (($index = array_search($prepared_uri_path, $path_records)) !== FALSE) {
+    $ProcessInfo->set('page_id', $index);
+  }
+  // Else 404.
+  else {
+    $ProcessInfo->set('page_id', 'app_404');
   }
 }
 
-// Routing the request to the right task.
+determine_page_id($Config, $ApsSetup, $ProcessInfo, $routing);
 
-if ($ProcessInfo->get('task_type') == 'generate') {
-  // Assign to generator controller.
-  //var_dump('Special task is Generator!');
+//var_dump($ProcessInfo->get('task_type'));
+//var_dump($ProcessInfo->get('page_id'));
 
-  $document = 'TODO.';
-}
-else {
-  // Find out which page to serve.
-  determine_page_id($Config, $ApsSetup, $ProcessInfo, $routing);
-
-  //var_dump($ProcessInfo->get('task_type'));
-  //var_dump($ProcessInfo->get('page_id'));
-
-  // Assign to controller.
-  $document = $PageProvider->renderPage();
-}
+$document = $PageProvider->renderPage();
 

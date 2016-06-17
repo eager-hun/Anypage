@@ -82,7 +82,7 @@ EOL;
     // Adding a link for the generator page, which is not part of the
     // page definitions.
     $pagelist['generate'] = [
-      'path'            => 'generate',
+      'path'            => 'generate-html-pages',
       'menu_link_label' => 'Generate static HTML',
     ];
 

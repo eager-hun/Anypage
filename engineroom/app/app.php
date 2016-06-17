@@ -41,7 +41,6 @@ $Request = new Request(
 //use \Michelf\Markdown;
 //print Markdown::defaultTransform('_italic_');
 
-
 // ----------------------------------------------------------------------------
 // Custom resources.
 
@@ -58,7 +57,11 @@ $ApsSetup        = new ApsSetup();
 $ProcessInfo     = new ProcessInfo();
 $Templating      = new Templating($Config);
 $Engine          = new Engine($Config, $ApsSetup);
-$ContentProvider = new ContentProvider($ApsSetup, $Templating);
+$ContentProvider = new ContentProvider(
+  $ProcessInfo,
+  $ApsSetup,
+  $Templating
+);
 $PageProvider    = new PageProvider (
   $ApsSetup,
   $ProcessInfo,
@@ -68,6 +71,7 @@ $PageProvider    = new PageProvider (
 );
 
 require_once(APP_SCRIPTS . '/utility_functions.php');
+
 
 // ############################################################################
 // "ROUTING".
