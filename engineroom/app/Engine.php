@@ -6,13 +6,16 @@ Class Engine {
 
   private $config;
   private $apsSetup;
+  private $processInfo;
 
   public function __construct(
     Config $config,
-    ApsSetup $apsSetup
+    ApsSetup $apsSetup,
+    ProcessInfo $processInfo
   ) {
     $this->config   = $config;
     $this->apsSetup = $apsSetup;
+    $this->processInfo = $processInfo;
   }
 
   public function renderStylesheetLink($href) {
@@ -61,6 +64,8 @@ EOL;
       return FALSE;
     }
 
+    $building_static_file = $this->processInfo->get('building_static_file');
+
     $output = '';
 
     if ($this->config->get('addJsSettingsObjectTo') == $location) {
@@ -85,17 +90,22 @@ EOL;
   }
 
   private function provideJsSettingsObjects() {
+    $building_static_file = $this->processInfo->get('building_static_file');
+
     $settings_items = array();
 
-    $base_url = apputils_base_url();
-    $pagelist = $this->apsSetup->get('pages');
+    if ($this->processInfo->get('task_type') == 'generator-ui'
+        && empty($building_static_file)) {
+      $base_url = apputils_base_url();
+      $pagelist = $this->apsSetup->get('pages');
 
-    $page_urls = [];
-    foreach ($pagelist as $page_data) {
-      $page_urls[] = $base_url
-        . $page_data['path'];
+      $page_urls = [];
+      foreach ($pagelist as $page_data) {
+        $page_urls[] = $base_url
+          . $page_data['path'];
+      }
+      $settings_items['pageUrlList'] = $page_urls;
     }
-    $settings_items['pageUrlList'] = $page_urls;
 
     $settings = json_encode($settings_items, JSON_FORCE_OBJECT);
     $script =<<<EOT
@@ -109,19 +119,34 @@ EOT;
   }
 
   public function provideAppMenu() {
+    $building_static_file = $this->processInfo->get('building_static_file');
+
     $pagelist = $this->apsSetup->get('pages');
-    // Adding a link for the generator page, which is not part of the
-    // page definitions.
-    $pagelist['generate'] = [
-      'path'            => 'generate-html-pages',
-      'menu_link_label' => 'Generate static HTML',
-    ];
+
+    if (empty($building_static_file)) {
+      // If this page does not end up as a static .html file, then we add a few
+      // extra links to the menu.
+      $pagelist['styleguide'] = [
+        'path'            => 'styleguide',
+        'menu_link_label' => 'Static exports',
+      ];
+      $pagelist['generate'] = [
+        'path'            => 'generator-ui',
+        'menu_link_label' => 'Static HTML generator ...',
+      ];
+    }
 
     $menu_items = '';
     foreach ($pagelist as $page_data) {
+      if (empty($building_static_file)) {
+        $url = apputils_base_url() . $page_data['path'];
+      }
+      else {
+        $url = $page_data['html_filename'] . '.html';
+      }
       $menu_items .= '<li>'
         . '<a href="'
-        . apputils_base_url() . $page_data['path']
+        . $url
         . '" class="app-menu__link">'
         . $page_data['menu_link_label']
         . '</a>'
@@ -139,7 +164,7 @@ EOT;
 
   public function respond($Request, $Response, $ApsSetup, $ProcessInfo, $document) {
     // Save page as HTML.
-    if (!empty($ProcessInfo->get('save_page_as_file'))) {
+    if (!empty($ProcessInfo->get('building_static_file'))) {
       $error = FALSE;
 
       $destination_subdir = $Request->query->get('dir');

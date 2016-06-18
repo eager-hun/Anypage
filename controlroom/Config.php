@@ -27,7 +27,7 @@ class Config {
      * become the task id for the request.
      */
     'reserved_paths' => [
-      'generate-html-pages' => 'generate-html-pages',
+      'generator-ui' => 'generator-ui',
     ],
   ];
 

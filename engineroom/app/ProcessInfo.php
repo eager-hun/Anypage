@@ -25,8 +25,8 @@ class ProcessInfo {
   // --------------------------------------------------------------------------
   // PROPS.
 
-  private $task_type         = 'page'; // Default.
-  private $page_id           = '';
-  private $save_page_as_file = FALSE; // Default.
+  private $task_type            = 'page'; // Default.
+  private $page_id              = '';
+  private $building_static_file = FALSE; // Default.
 }
 

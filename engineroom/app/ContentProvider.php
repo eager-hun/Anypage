@@ -20,8 +20,8 @@ class ContentProvider {
       return 'Not found.';
     }
 
-    if ($this->processInfo->get('task_type') == 'generate-html-pages') {
-      $content_prescription_file = APP_SCRIPTS . '/generator-page.php';
+    if ($this->processInfo->get('task_type') == 'generator-ui') {
+      $content_prescription_file = APP_SCRIPTS . '/generator-ui.php';
     }
     else {
       $page_definition = $this->apsSetup->get('pages')[$page_id];
