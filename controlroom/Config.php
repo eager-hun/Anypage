@@ -79,6 +79,8 @@ class Config {
       //'internal3' => 'theme-being-worked-on/**/bar.js',
     ],
   ];
+
+  private $addJsSettingsObjectTo = 'body';
 }
 
 

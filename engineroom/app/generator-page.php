@@ -13,5 +13,3 @@
 
 <div id="app-ajax-messages" class="app-ajax-messages"></div>
 
-
-

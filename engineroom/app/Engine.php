@@ -46,7 +46,7 @@ EOL;
           if (strpos($key, 'internal') !== false) {
             $val = apputils_base_url() . $val;
           }
-          $output .= self::renderStylesheetLink($val);
+          $output .= $this->renderStylesheetLink($val);
         }
       }
       unset($key, $val);
@@ -62,6 +62,11 @@ EOL;
     }
 
     $output = '';
+
+    if ($this->config->get('addJsSettingsObjectTo') == $location) {
+      $output .= $this->provideJsSettingsObjects();
+    }
+
     $cluster = $this->config->get('scripts')[$location];
 
     if (!empty($cluster)) {
@@ -70,13 +75,37 @@ EOL;
           if (strpos($key, 'internal') !== FALSE) {
             $val = apputils_base_url() . $val;
           }
-          $output .= self::renderScriptTag($val);
+          $output .= $this->renderScriptTag($val);
         }
       }
       unset($key, $val);
     }
 
     return $output;
+  }
+
+  private function provideJsSettingsObjects() {
+    $settings_items = array();
+
+    $base_url = apputils_base_url();
+    $pagelist = $this->apsSetup->get('pages');
+
+    $page_urls = [];
+    foreach ($pagelist as $page_data) {
+      $page_urls[] = $base_url
+        . $page_data['path'];
+    }
+    $settings_items['pageUrlList'] = $page_urls;
+
+    $settings = json_encode($settings_items, JSON_FORCE_OBJECT);
+    $script =<<<EOT
+<script>
+  window.apSettings = {$settings};
+  window.apAssets = {};
+</script>
+
+EOT;
+    return $script;
   }
 
   public function provideAppMenu() {
@@ -136,7 +165,12 @@ EOL;
           }
         }
         else {
-          $error = 'The specified target directory already exists; aborting.';
+          // Well, this currently lets only the first page to be saved; as the
+          // requests for the subsequent pages come in, they would fail as
+          // this dir will already exist.
+          // TODO: make this check possible by using an extra indicator in
+          // session?
+          // $error = 'The specified target directory already exists; aborting.';
         }
       }
 
