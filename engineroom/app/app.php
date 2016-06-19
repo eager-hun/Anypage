@@ -5,12 +5,9 @@
 
 DEFINE('CONTROLROOM',     SCRIPT_ROOT . '/controlroom');
 DEFINE('ENGINEROOM',      SCRIPT_ROOT . '/engineroom');
-
 DEFINE('APP_SCRIPTS',     ENGINEROOM . '/app');
-DEFINE('APP_ASSETS',      ENGINEROOM . '/app-assets');
 
 DEFINE('APS',             SCRIPT_ROOT . '/anypages');
-
 DEFINE('APS_TEMPLATES',   APS . '/aps-templates');
 DEFINE('APS_CONTENTS',    APS . '/aps-contents');
 DEFINE('APS_ASSETS',      APS . '/aps-assets');
@@ -96,7 +93,14 @@ if (!empty($document)) {
 
   // 200.
   if ($ProcessInfo->get('page_id') != 'app_404') {
-    $Engine->respond($Request, $Response, $ApsSetup, $ProcessInfo, $document);
+    if (!empty($ProcessInfo->get('building_static_file'))) {
+      $Engine->savePageAsHTML($Request, $Response, $ApsSetup, $ProcessInfo, $document);
+    }
+    else {
+      // Send back page.
+      $Response->setContent($document);
+      $Response->setStatusCode(Response::HTTP_OK);
+    }
   }
   // 404.
   else {

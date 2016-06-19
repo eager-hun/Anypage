@@ -12,75 +12,121 @@ class Config {
     }
   }
 
-  private $env = [
-    'http_protocol' => 'http',
-    // No leading or trailing slashes.
-    // Provide an empty string if the index.php is located in the public root.
-    'working_dir' => 'anypage',
-  ];
-
+  /**
+   * Vars describing app internals.
+   *
+   * key 'reserved_paths'.
+   *   The array value is the watched path fragment, and the array key will
+   *   become the task id for the request.
+   */
   private $app = [
-    /**
-     * Reserved paths.
-     *
-     * The array value is the watched path fragment, and the array key will
-     * become the task id for the request.
-     */
     'reserved_paths' => [
       'generator-ui' => 'generator-ui',
     ],
   ];
 
-  private $cache_bust_str = '20160531-1';
+  /**
+   * Describing the app's environment and locations.
+   * key 'working_dir':
+   *   The subdirectory path in which the application's index.php sits inside
+   *   the server document root.
+   *   Provide an empty string if the index.php is located in the public root.
+   *   No leading or trailing slashes.
+   *
+   * key 'path_to_app_assets':
+   *   Used internally by the php script and also for creating URLs.
+   *   Don't include "app-assets" itself.
+   *   No leading or trailing slashes.
+   *
+   * key 'path_to_theme':
+   *   Path leading to the "build" dir (containing .css & .js for the frontend).
+   *   Used internally by the php script and also for creating URLs.
+   *   Don't include "build" itself.
+   *   No leading or trailing slashes.
+   *
+   * key 'html_export_dir':
+   *   Used both internally in php script and to create URLs. Provide the
+   *   location relative to SCRIPT_ROOT.
+   *   No leading or trailing slashes.
+   *
+   * key 'http_protocol':
+   *   String used in creating URLs.
+   */
+  private $env = [
+    'working_dir'        => 'Anypage',
+    'path_to_app_assets' => 'engineroom',
+    'path_to_theme'      => 'frontend-setup',
+    'html_export_dir'    => 'styleguide',
+    'http_protocol'      => 'http',
+  ];
 
   /**
    * Stylesheets to be included with the document.
    *
-   * The array keys should contain either 'internal' or 'external' substrings.
+   * The array keys should contain either 'theme', 'app', or 'external'
+   * substrings.
    *
-   * Any one that contains 'internal' will have the base_url() prepended to it
-   * automatically.
+   * Use 'external' for assets whose url should be left alone, and inserted
+   * into the documents as is. Ideal for such things as e.g. 
+   * "https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"
+   *
+   * Use 'theme' for such files that are inside the theme directory; these
+   * strings will have the base_url and $this->env['path_to_theme'] prepended
+   * to them automatically when needed.
+   *
+   * Use 'app' for such files are sitting in /engineroom/app-assets.
    *
    * The numbers in the array keys provide just uniqueness (to prevent
    * overwriting). The order of the asset inclusion on the page is the order of
    * the declaration here (I assume, as long as the array key is a string).
    */
   private $stylesheets = [
-    'internal1' => 'engineroom/app-assets/anypage-app.css',
-    'internal2' => 'frontend-setup/build/css/style-bundle-foundation.css',
-    'internal3' => 'frontend-setup/build/css/style-bundle-custom.css',
-    //'internal2' => 'theme-being-worked-on/**/foo.css',
-    //'internal3' => 'theme-being-worked-on/**/bar.css',
+    'app1'   => 'app-assets/anypage-app.css',
+    'theme1' => 'build/css/style-bundle-foundation.css',
+    'theme2' => 'build/css/style-bundle-custom.css',
   ];
 
   /**
    * Javascript files to be included with the document.
+   * 
+   * Group the file locations into 'head' and 'body' arrays.
    *
-   * The array keys should contain either 'internal' or 'external' substrings.
+   * The file-describing array keys should contain either 'theme', 'app',
+   * or 'external' substrings.
    *
-   * Any one that contains 'internal' will have the base_url() prepended to it
-   * automatically.
+   * Use 'external' for assets whose url should be left alone, and inserted
+   * into the documents as is. Ideal for such things as e.g. 
+   * "https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"
+   *
+   * Use 'theme' for such files that are inside the theme directory; these
+   * strings will have the base_url and $this->env['path_to_theme'] prepended
+   * to them automatically when needed.
+   *
+   * Use 'app' for such files are sitting in /engineroom/app-assets.
    *
    * The numbers in the array keys provide just uniqueness (to prevent
    * overwriting). The order of the asset inclusion on the page is the order of
    * the declaration here (I assume, as long as the array key is a string).
    */
   private $scripts = [
-    'head' => [
-      'internal1' => '',
-      'external1' => '',
-    ],
+    'head' => [],
     'body' => [
-      'internal1' => 'engineroom/app-assets/anypage-app.js',
-      'internal2' => 'frontend-setup/build/js/libs.js',
-      'internal3' => 'frontend-setup/build/js/foundation.js',
-      'internal4' => 'frontend-setup/build/js/custom.js',
-      //'internal2' => 'theme-being-worked-on/**/foo.js',
-      //'internal3' => 'theme-being-worked-on/**/bar.js',
+      'app1'   => 'app-assets/anypage-app.js',
+      'theme1' => 'build/js/libs.js',
+      'theme2' => 'build/js/foundation.js',
+      'theme3' => 'build/js/custom.js',
     ],
   ];
 
+  /**
+   * Where window.apSettings and window.apAssets js objects should be printed.
+   * 
+   * Valid values are 'head' or 'body'.
+   */
   private $addJsSettingsObjectTo = 'body';
+
+  /**
+   * String to use in the '?v=' URL param for .css and .js files.
+   */
+  private $cache_bust_str = '20160618-1';
 }
-
-

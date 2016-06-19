@@ -38,55 +38,36 @@ EOL;
     return $output . PHP_EOL;
   }
 
-  public function provideStylesheets() {
-
-    $output = '';
-    $stylesheets = $this->config->get('stylesheets');
-
-    if (!empty($stylesheets)) {
-      foreach ($stylesheets as $key => $val) {
-        if (!empty($val)) {
-          if (strpos($key, 'internal') !== false) {
-            $val = apputils_base_url() . $val;
-          }
-          $output .= $this->renderStylesheetLink($val);
-        }
-      }
-      unset($key, $val);
-    }
-
-    return $output;
-  }
-
-  public function provideScripts($location) {
-    if ($location != 'head' && $location != 'body') {
-      // TODO: error msg.
-      return FALSE;
-    }
-
+  private function frontendAssetsHelper($assets, $kind, &$output) {
     $building_static_file = $this->processInfo->get('building_static_file');
 
-    $output = '';
+    foreach ($assets as $key => $val) {
+      if (strpos($key, 'theme') !== false
+        && empty($building_static_file)) {
+        $val = apputils_base_url()
+          . $this->config->get('env')['path_to_theme']
+          . '/'
+          . $val;
+      }
+      elseif (strpos($key, 'app') !== false
+        && empty($building_static_file)) {
+        $val = apputils_base_url()
+          . $this->config->get('env')['path_to_app_assets']
+          . '/'
+          . $val;
+      }
 
-    if ($this->config->get('addJsSettingsObjectTo') == $location) {
-      $output .= $this->provideJsSettingsObjects();
-    }
-
-    $cluster = $this->config->get('scripts')[$location];
-
-    if (!empty($cluster)) {
-      foreach ($cluster as $key => $val) {
-        if (!empty($val)) {
-          if (strpos($key, 'internal') !== FALSE) {
-            $val = apputils_base_url() . $val;
-          }
+      if (!empty($val)) {
+        if ($kind == 'styles') {
+          $output .= $this->renderStylesheetLink($val);
+        }
+        elseif ($kind == 'scripts') {
           $output .= $this->renderScriptTag($val);
         }
       }
-      unset($key, $val);
     }
 
-    return $output;
+    unset($key, $val);
   }
 
   private function provideJsSettingsObjects() {
@@ -118,6 +99,31 @@ EOT;
     return $script;
   }
 
+  public function provideStylesheets() {
+    $output = '';
+    $stylesheets = $this->config->get('stylesheets');
+    if (!empty($stylesheets)) {
+      $this->frontendAssetsHelper($stylesheets, 'styles', $output);
+    }
+    return $output;
+  }
+
+  public function provideScripts($location) {
+    if ($location != 'head' && $location != 'body') {
+      // TODO: error msg.
+      return FALSE;
+    }
+    $output = '';
+    if ($this->config->get('addJsSettingsObjectTo') == $location) {
+      $output .= $this->provideJsSettingsObjects();
+    }
+    $cluster = $this->config->get('scripts')[$location];
+    if (!empty($cluster)) {
+      $this->frontendAssetsHelper($cluster, 'scripts', $output);
+    }
+    return $output;
+  }
+
   public function provideAppMenu() {
     $building_static_file = $this->processInfo->get('building_static_file');
 
@@ -127,8 +133,8 @@ EOT;
       // If this page does not end up as a static .html file, then we add a few
       // extra links to the menu.
       $pagelist['styleguide'] = [
-        'path'            => 'styleguide',
-        'menu_link_label' => 'Static exports',
+        'path'            => $this->config->get('env')['html_export_dir'],
+        'menu_link_label' => 'Generated static instances',
       ];
       $pagelist['generate'] = [
         'path'            => 'generator-ui',
@@ -162,75 +168,106 @@ EOT;
     return $menu;
   }
 
-  public function respond($Request, $Response, $ApsSetup, $ProcessInfo, $document) {
-    // Save page as HTML.
-    if (!empty($ProcessInfo->get('building_static_file'))) {
-      $error = FALSE;
+  public function savePageAsHTML($Request, $Response, $ApsSetup, $ProcessInfo, $document) {
+    $error = FALSE;
 
-      $destination_subdir = $Request->query->get('dir');
+    $destination_subdir = $Request->query->get('dir');
 
-      if (empty($destination_subdir)) {
-        $error = 'No destination subdirectory was specified; aborting.';
-      }
-
-      if (empty($error)) {
-        if (empty(apputils_validate_string_as($destination_subdir, 'dirname'))) {
-          $error = 'The provided destination subdirectory name was not valid; aborting.';
-        }
-      }
-
-      if (empty($error)) {
-        // Create subdir.
-        $static_styleguide_dir_name = 'styleguide';
-        $new_dir_name = SCRIPT_ROOT . '/' . $static_styleguide_dir_name . '/' . $destination_subdir;
-
-        if (!file_exists($new_dir_name)) {
-          if (!mkdir($new_dir_name)) {
-            $error = 'The target subdirectory could not be created.';
-          }
-        }
-        else {
-          // Well, this currently lets only the first page to be saved; as the
-          // requests for the subsequent pages come in, they would fail as
-          // this dir will already exist.
-          // TODO: make this check possible by using an extra indicator in
-          // session?
-          // $error = 'The specified target directory already exists; aborting.';
-        }
-      }
-
-      if (empty($error)) {
-        // Save page as HTML.
-        $pages = $ApsSetup->get('pages');
-        $filename = $pages[$ProcessInfo->get('page_id')]['html_filename'] . '.html';
-        $file = SCRIPT_ROOT
-          . '/'
-          . $static_styleguide_dir_name
-          . '/'
-          . $destination_subdir
-          . '/'
-          . $filename;
-
-        if (file_put_contents($file, $document) !== FALSE) {
-          $message = 'Saved page of id: ' . $ProcessInfo->get('page_id') . ' to ' . $file;
-        }
-        else {
-          $error = 'Failed to save page of id: ' . $ProcessInfo->get('page_id');
-        }
-      }
-
-      if (empty($error)) {
-        $Response->setContent($message);
-        $Response->setStatusCode(Response::HTTP_OK);
-      }
-      else {
-        $Response->setContent($error);
-        $Response->setStatusCode(Response::HTTP_OK);
+    // Validations.
+    if (empty($destination_subdir)) {
+      $error = 'No destination subdirectory was specified; aborting.';
+    }
+    if (empty($error)) {
+      if (empty(apputils_validate_string_as($destination_subdir, 'dirname'))) {
+        $error = 'The provided destination subdirectory name was not valid; aborting.';
       }
     }
-    // Send back page.
+
+    // Create the subdir for the new styleguide instance.
+    if (empty($error)) {
+      $static_styleguide_dir_name = $this->config->get('env')['html_export_dir'];
+      $new_sg_instance_dirname = SCRIPT_ROOT
+        . DIRECTORY_SEPARATOR
+        . $static_styleguide_dir_name
+        . DIRECTORY_SEPARATOR
+        . $destination_subdir;
+
+      if (!file_exists($new_sg_instance_dirname)) {
+        if (!mkdir($new_sg_instance_dirname)) {
+          $error = 'The target subdirectory could not be created.';
+        }
+      }
+      else {
+        // Well, this currently lets only the first page to be saved; as the
+        // requests for the subsequent pages come in, they would fail as
+        // this dir will already exist.
+        // TODO: make this check possible by using an extra indicator in
+        // session?
+        // $error = 'The specified target directory already exists; aborting.';
+      }
+    }
+
+    // Copy over the frontend assets, if they are not there yet.
+    // FIXME.
+    // Copying directories in shell is just for the sake of the proof of
+    // concept.  Directory copying should be done with php, not in shell.
+    if (empty($error)) {
+
+      $location_of_original_build = SCRIPT_ROOT
+        . DIRECTORY_SEPARATOR
+        . $this->config->get('env')['path_to_theme']
+        . DIRECTORY_SEPARATOR
+        . 'build';
+      $build_dir_copy = $new_sg_instance_dirname
+        . DIRECTORY_SEPARATOR
+        . 'build';
+      //var_dump($location_of_original_build);
+      //var_dump($build_dir_copy);
+
+      if (!file_exists($build_dir_copy)) {
+        shell_exec("cp -r $location_of_original_build $build_dir_copy");
+      }
+
+      $app_assets_original = SCRIPT_ROOT
+        . DIRECTORY_SEPARATOR
+        . $this->config->get('env')['path_to_app_assets']
+        . DIRECTORY_SEPARATOR
+        . 'app-assets';
+      $app_assets_copy = $new_sg_instance_dirname
+        . DIRECTORY_SEPARATOR
+        . 'app-assets';
+
+      if (!file_exists($app_assets_copy)) {
+        shell_exec("cp -r $app_assets_original $app_assets_copy");
+      }
+    }
+
+    // Save page as HTML.
+    if (empty($error)) {
+      $pages = $ApsSetup->get('pages');
+      $filename = $pages[$ProcessInfo->get('page_id')]['html_filename'] . '.html';
+      $file = SCRIPT_ROOT
+        . DIRECTORY_SEPARATOR
+        . $static_styleguide_dir_name
+        . DIRECTORY_SEPARATOR
+        . $destination_subdir
+        . DIRECTORY_SEPARATOR
+        . $filename;
+
+      if (file_put_contents($file, $document) !== FALSE) {
+        $message = 'Saved page of id: ' . $ProcessInfo->get('page_id') . ' to ' . $file;
+      }
+      else {
+        $error = 'Failed to save page of id: ' . $ProcessInfo->get('page_id');
+      }
+    }
+
+    if (empty($error)) {
+      $Response->setContent($message);
+      $Response->setStatusCode(Response::HTTP_OK);
+    }
     else {
-      $Response->setContent($document);
+      $Response->setContent($error);
       $Response->setStatusCode(Response::HTTP_OK);
     }
   }
