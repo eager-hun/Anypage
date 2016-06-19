@@ -178,7 +178,7 @@ EOT;
       $error = 'No destination subdirectory was specified; aborting.';
     }
     if (empty($error)) {
-      if (empty(apputils_validate_string_as($destination_subdir, 'dirname'))) {
+      if (!apputils_string_valid_as($destination_subdir, 'dirname')) {
         $error = 'The provided destination subdirectory name was not valid; aborting.';
       }
     }
@@ -221,11 +221,9 @@ EOT;
       $build_dir_copy = $new_sg_instance_dirname
         . DIRECTORY_SEPARATOR
         . 'build';
-      //var_dump($location_of_original_build);
-      //var_dump($build_dir_copy);
 
       if (!file_exists($build_dir_copy)) {
-        shell_exec("cp -r $location_of_original_build $build_dir_copy");
+        exec('cp -r ' . escapeshellarg($location_of_original_build) . ' ' . escapeshellarg($build_dir_copy));
       }
 
       $app_assets_original = SCRIPT_ROOT
@@ -238,7 +236,7 @@ EOT;
         . 'app-assets';
 
       if (!file_exists($app_assets_copy)) {
-        shell_exec("cp -r $app_assets_original $app_assets_copy");
+        exec('cp -r ' . escapeshellarg($app_assets_original) . ' ' . escapeshellarg($app_assets_copy));
       }
     }
 

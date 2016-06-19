@@ -11,10 +11,10 @@ function apputils_base_url() {
   return $output;
 }
 
-function apputils_validate_string_as($string, $as) {
+function apputils_string_valid_as($string, $as) {
   if ($as == 'dirname') {
-    // TODO.
-    return TRUE;
+    $non_valid_parts = preg_replace('#[-_a-z0-9]#', '', $string);
+    return empty(strlen($non_valid_parts));
   }
   else {
     // TODO: message about not understanding instructions.
