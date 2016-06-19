@@ -93,7 +93,7 @@ if (!empty($document)) {
 
   // 200.
   if ($ProcessInfo->get('page_id') != 'app_404') {
-    if (!empty($ProcessInfo->get('building_static_file'))) {
+    if (BUILDING_STATIC_FILE) {
       $Engine->savePageAsHTML($Request, $Response, $ApsSetup, $ProcessInfo, $document);
     }
     else {

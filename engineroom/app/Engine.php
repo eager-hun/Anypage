@@ -39,18 +39,16 @@ EOL;
   }
 
   private function frontendAssetsHelper($assets, $kind, &$output) {
-    $building_static_file = $this->processInfo->get('building_static_file');
-
     foreach ($assets as $key => $val) {
       if (strpos($key, 'theme') !== false
-        && empty($building_static_file)) {
+        && empty(BUILDING_STATIC_FILE)) {
         $val = apputils_base_url()
           . $this->config->get('env')['path_to_theme']
           . '/'
           . $val;
       }
       elseif (strpos($key, 'app') !== false
-        && empty($building_static_file)) {
+        && empty(BUILDING_STATIC_FILE)) {
         $val = apputils_base_url()
           . $this->config->get('env')['path_to_app_assets']
           . '/'
@@ -71,12 +69,10 @@ EOL;
   }
 
   private function provideJsSettingsObjects() {
-    $building_static_file = $this->processInfo->get('building_static_file');
-
     $settings_items = array();
 
     if ($this->processInfo->get('task_type') == 'generator-ui'
-        && empty($building_static_file)) {
+        && empty(BUILDING_STATIC_FILE)) {
       $base_url = apputils_base_url();
       $pagelist = $this->apsSetup->get('pages');
 
@@ -125,11 +121,9 @@ EOT;
   }
 
   public function provideAppMenu() {
-    $building_static_file = $this->processInfo->get('building_static_file');
-
     $pagelist = $this->apsSetup->get('pages');
 
-    if (empty($building_static_file)) {
+    if (empty(BUILDING_STATIC_FILE)) {
       // If this page does not end up as a static .html file, then we add a few
       // extra links to the menu.
       $pagelist['styleguide'] = [
@@ -144,7 +138,7 @@ EOT;
 
     $menu_items = '';
     foreach ($pagelist as $page_data) {
-      if (empty($building_static_file)) {
+      if (empty(BUILDING_STATIC_FILE)) {
         $url = apputils_base_url() . $page_data['path'];
       }
       else {

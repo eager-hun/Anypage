@@ -72,7 +72,10 @@ else {
 
 if ($ProcessInfo->get('task_type') == 'page'
   && !empty($Request->query->get('gen'))) {
-  $ProcessInfo->set('building_static_file', TRUE);
+  define('BUILDING_STATIC_FILE', TRUE);
+}
+else {
+  define('BUILDING_STATIC_FILE', FALSE);
 }
 
 function determine_page_id($Config, $ApsSetup, $ProcessInfo, $routing) {

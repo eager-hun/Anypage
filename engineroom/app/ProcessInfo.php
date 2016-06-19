@@ -27,6 +27,5 @@ class ProcessInfo {
 
   private $task_type            = 'page'; // Default.
   private $page_id              = '';
-  private $building_static_file = FALSE; // Default.
 }
 
