@@ -61,11 +61,13 @@
   var generatePages = function (urlList) {
     var now = new Date();
     var dirname = [
-      now.getDate(),
-      '-',
-      now.getMonth() + 1,
+      'version',
       '-',
       now.getFullYear(),
+      '-',
+      (now.getMonth() + 1),
+      '-',
+      now.getDate(),
       '_',
       now.getHours(),
       '-',
@@ -85,18 +87,19 @@
         timeOut = timeOut + timeGap;
       }
     }
-  }
+  };
 
   var generatePagesCallback = function(preppedUrl, timeOut) {
     window.setTimeout(function() {
       window.apAssets.ajaxSuite.ajaxRequest({
         "url":                preppedUrl,
         "insertResponseInto": 'app-ajax-messages',
-        "action":             'append',
+        "action":             'append'
       });
     }, timeOut);
-  }
+  };
 
   document.body.addEventListener('click', callbackRouter, false);
+
 })();
 
