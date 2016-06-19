@@ -22,3 +22,14 @@ function apputils_string_valid_as($string, $as) {
   }
 }
 
+function apputils_import_file_content($file, $process = 'php') {
+  if ($process == 'php') {
+    ob_start();
+    include($file);
+    return ob_get_clean();
+  }
+  else {
+    // TODO: message about not understanding instructions.
+  }
+}
+
