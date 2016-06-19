@@ -33,3 +33,14 @@ function apputils_import_file_content($file, $process = 'php') {
   }
 }
 
+function apputils_print_path_to_theme() {
+  if (BUILDING_STATIC_FILE) {
+    $output = '';
+  }
+  else {
+    $config = new Config;
+    $output = $config->get('env')['path_to_theme'] . '/';
+  }
+  echo $output;
+}
+

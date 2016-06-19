@@ -147,7 +147,7 @@
     <div class="column">
       <div class="box">
         <div class="box__content">
-          <img src="frontend-setup/static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel close-up, for image demo purpose.">
+        <img src="<?php apputils_print_path_to_theme(); ?>static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel close-up, for image demo purpose.">
           <p>Lorem ipsum.</p>
         </div>
       </div>
@@ -167,7 +167,7 @@
         <div class="box__content">
           <p>Class aptent taciti sociosqu ad litora torquent per conubia
             nostra.</p>
-          <img src="frontend-setup/static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel close-up, for image demo purpose.">
+          <img src="<?php apputils_print_path_to_theme(); ?>static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel close-up, for image demo purpose.">
         </div>
       </div>
     </div>
