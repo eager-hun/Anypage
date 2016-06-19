@@ -136,39 +136,3 @@
   border-color: #00b3b3;
 }
 
-/* ######################################################################### */
-/* Component-demo items' template. */
-
-.x-cd-item {
-  border: 1px solid lightgray;
-  padding: 2em;
-}
-.x-cd-item + .x-cd-item {
-  margin-top: 3em;
-}
-.x-cd-item > div {
-  margin-bottom: 0.75rem;
-}
-.x-cd-item > div:last-child {
-  margin-bottom: 0;
-}
-.x-cd-item__title {
-  font-size: 1.5rem;
-}
-.x-cd-item__description {
-  color: slategray;
-  font-size: 0.9rem;
-  font-style: italic;
-}
-.x-cd-item__label {
-  display: block;
-  margin: 1rem 0;
-  font-style: italic;
-  font-weight: 700;
-}
-.x-cd-item__code pre {
-  background: whitesmoke;
-  border: 1px solid lightgray;
-  padding: 2rem;
-}
-

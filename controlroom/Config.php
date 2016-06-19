@@ -84,6 +84,8 @@ class Config {
     'app1'   => 'app-assets/anypage-app.css',
     'theme1' => 'build/css/style-bundle-foundation.css',
     'theme2' => 'build/css/style-bundle-custom.css',
+    'theme3' => 'build/css/style-bundle-styleguide.css',
+    'theme4' => 'static-assets/css/static.css',
   ];
 
   /**

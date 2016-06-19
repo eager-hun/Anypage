@@ -226,6 +226,19 @@ EOT;
         exec('cp -r ' . escapeshellarg($location_of_original_build) . ' ' . escapeshellarg($build_dir_copy));
       }
 
+      $orig_static_assets = SCRIPT_ROOT
+        . DIRECTORY_SEPARATOR
+        . $this->config->get('env')['path_to_theme']
+        . DIRECTORY_SEPARATOR
+        . 'static-assets';
+      $copy_of_static_assets = $new_sg_instance_dirname
+        . DIRECTORY_SEPARATOR
+        . 'static-assets';
+
+      if (!file_exists($copy_of_static_assets)) {
+        exec('cp -r ' . escapeshellarg($orig_static_assets) . ' ' . escapeshellarg($copy_of_static_assets));
+      }
+
       $app_assets_original = SCRIPT_ROOT
         . DIRECTORY_SEPARATOR
         . $this->config->get('env')['path_to_app_assets']
