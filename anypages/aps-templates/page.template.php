@@ -7,9 +7,7 @@
   </header>
 
   <div id=="page__main" class="page__level page__main">
-    <div class="container">
-      <?php echo $page_main; ?>
-    </div>
+    <?php echo $page_main; ?>
   </div>
 
   <div class="footer__room-preserve"></div>

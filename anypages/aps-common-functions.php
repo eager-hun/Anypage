@@ -46,6 +46,27 @@ function render_page_footer_widgets() {
 }
 
 // ----------------------------------------------------------------------------
+// Shortcuts to print a container.
+
+function aps_open_container($additional_classes = []) {
+  $orig_classes = [
+    'container'
+  ];
+  if (!empty($additional_classes)) {
+    $classes = array_merge($orig_classes, $additional_classes);
+  }
+  else {
+    $classes = $orig_classes;
+  }
+  $prepped_classes = implode(' ', $classes);
+  echo '<div class="' . $prepped_classes . '">';
+}
+
+function aps_close_container() {
+  echo '</div>';
+}
+
+// ----------------------------------------------------------------------------
 // Styleguide items' presentation.
 
 /**
