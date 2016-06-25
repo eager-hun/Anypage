@@ -148,7 +148,9 @@ EOT;
         . '<a href="'
         . $url
         . '" class="app-menu__link">'
+        . '<span class="link__text">'
         . $page_data['menu_link_text']
+        . '</span>'
         . '</a>'
         . '</li>'
         . PHP_EOL;

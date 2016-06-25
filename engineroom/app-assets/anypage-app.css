@@ -132,8 +132,12 @@
 .app-menu a:hover {
   outline: none;
 }
-.app-menu a:focus::after,
-.app-menu a:hover::after {
+.app-menu .link__text {
+  display: inline-block;
+  position: relative;
+}
+.app-menu a:focus .link__text::after,
+.app-menu a:hover .link__text::after {
   background: #00b3b3;
   bottom: 0;
   content: '';
