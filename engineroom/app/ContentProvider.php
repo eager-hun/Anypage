@@ -24,12 +24,10 @@ class ContentProvider {
       $content_prescription_file = APP_SCRIPTS . '/generator-ui.php';
     }
     else {
-      $page_definition = $this->apsSetup->get('pages')[$page_id];
-
       $content_prescription_file = APS_DEFINITIONS
         . '/page-prescriptions/'
-        . $page_definition['filename_for_content']
-        . '.php';
+        . $page_id
+        . '.prescription.php';
     }
 
     if (file_exists($content_prescription_file)) {

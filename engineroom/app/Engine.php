@@ -128,11 +128,11 @@ EOT;
       // extra links to the menu.
       $pagelist['styleguide'] = [
         'path'            => $this->config->get('env')['html_export_dir'],
-        'menu_link_label' => 'Static instances',
+        'menu_link_text' => 'Static instances',
       ];
       $pagelist['generate'] = [
         'path'            => 'generator-ui',
-        'menu_link_label' => 'Generate static .html ...',
+        'menu_link_text' => 'Generate static .html ...',
       ];
     }
 
@@ -148,7 +148,7 @@ EOT;
         . '<a href="'
         . $url
         . '" class="app-menu__link">'
-        . $page_data['menu_link_label']
+        . $page_data['menu_link_text']
         . '</a>'
         . '</li>'
         . PHP_EOL;
