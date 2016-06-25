@@ -53,7 +53,7 @@ class Config {
    *   String used in creating URLs.
    */
   private $env = [
-    'working_dir'        => 'Anypage',
+    'working_dir'        => 'anypage',
     'path_to_app_assets' => 'engineroom',
     'path_to_theme'      => 'frontend-setup',
     'html_export_dir'    => 'styleguide',
@@ -90,7 +90,7 @@ class Config {
 
   /**
    * Javascript files to be included with the document.
-   * 
+   *
    * Group the file locations into 'head' and 'body' arrays.
    *
    * The file-describing array keys should contain either 'theme', 'app',
