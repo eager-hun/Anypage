@@ -34,10 +34,9 @@ class ApsSetup {
    *
    * PATH:
    *
-   * You can imitate a directory structure in the 'path' parameter, e.g.
-   * 'demos/typography-demo'. This imitated directory structure will however
-   * not be applied when exporting to static .html. The .html files will
-   * be just placed flatly into the same directory.
+   * Do not use slashes in the path param, as currently it might break
+   * references to assets.
+   * (IOW, 'foo/bar' might break things, while 'foo-bar' is safe to use.)
    *
    * HTML FILENAME:
    *
@@ -50,22 +49,22 @@ class ApsSetup {
       'menu_link_text'       => 'Home',
     ],
     'typography_demo' => [
-      'path'                 => 'demos/typography-demo',
+      'path'                 => 'typography-demo',
       'html_filename'        => 'typography-demo',
       'menu_link_text'       => 'Typography demo',
     ],
     'grids_demo' => [
-      'path'                 => 'demos/grids-demo',
+      'path'                 => 'grids-demo',
       'html_filename'        => 'grids-demo',
       'menu_link_text'       => 'Grids demo',
     ],
     'layouts_demo' => [
-      'path'                 => 'demos/layouts-demo',
+      'path'                 => 'layouts-demo',
       'html_filename'        => 'layouts-demo',
       'menu_link_text'       => 'Layouts demo',
     ],
     'components_demo' => [
-      'path'                 => 'demos/components-demo',
+      'path'                 => 'components-demo',
       'html_filename'        => 'components-demo',
       'menu_link_text'       => 'Components demo',
     ],
