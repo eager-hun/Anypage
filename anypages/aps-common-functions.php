@@ -67,7 +67,7 @@ function render_page_footer_widgets() {
  *   array component_variables:
  *     Array of data that will populate the rendered demonstrated component.
  *       Optional. (Mandatory if template_name was provided.)
- *   string content:
+ *   string direct_content:
  *     Directly defined content, for cases when template_name was not passed
  *     in.
  */
@@ -92,13 +92,16 @@ function render_cd_item($arguments) {
     $variables_for_code_template = [
       'code' => $view_code,
     ];
-    $code    = $Templating->render('cd-code-view', $variables_for_code_template);
-    $content = $Templating->render($template_name, $arguments['component_variables']);
+
+    $content_label = 'Rendered sample:';
+    $content       = $Templating->render($template_name, $arguments['component_variables']);
+    $code          = $Templating->render('cd-code-view', $variables_for_code_template);
   }
   // Elseif a content was directly provided, we present that.
-  elseif (array_key_exists('content', $arguments)) {
-    $code    = FALSE; // The code template will not print anything.
-    $content = $arguments['content'];
+  elseif (array_key_exists('direct_content', $arguments)) {
+    $content_label = FALSE;
+    $content       = $arguments['direct_content'];
+    $code          = FALSE; // The code template will not print anything.
   }
   else {
     // TODO: error handling.
@@ -113,10 +116,11 @@ function render_cd_item($arguments) {
   }
 
   $variables_for_presentation = [
-    'title'       => $arguments['title'],
-    'description' => $description,
-    'code'        => $code,
-    'content'     => $content,
+    'title'         => $arguments['title'],
+    'description'   => $description,
+    'code'          => $code,
+    'content_label' => $content_label,
+    'content'       => $content,
   ];
 
   // Render the 'sg-item' template, that is one of the app's own templates.

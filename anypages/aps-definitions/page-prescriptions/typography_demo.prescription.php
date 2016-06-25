@@ -9,8 +9,8 @@ $text = apputils_import_file_content(
   APS_CONTENTS . '/arbitrary/sample-texts.php'
 );
 $component_args = [
-  'title'   => 'Texts for checking typography',
-  'content' => $text,
+  'title'          => 'Texts for checking typography',
+  'direct_content' => $text,
 ];
 echo render_cd_item($component_args);
 
@@ -22,8 +22,8 @@ $text = apputils_import_file_content(
   APS_CONTENTS . '/arbitrary/sample-lists.php'
 );
 $component_args = [
-  'title'   => 'Lists for checking typography',
-  'content' => $text,
+  'title'          => 'Lists for checking typography',
+  'direct_content' => $text,
 ];
 echo render_cd_item($component_args);
 

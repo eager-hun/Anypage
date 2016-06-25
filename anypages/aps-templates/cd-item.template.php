@@ -18,7 +18,11 @@
   <?php endif; ?>
 
   <?php if (!empty($content)): ?>
-    <span class="x-cd-item__label">Rendered sample:</span>
+    <?php if (!empty($content_label)): ?>
+      <span class="x-cd-item__label">
+        <?php echo $content_label; ?>
+      </span>
+    <?php endif; ?>
     <div class="x-cd-item__content">
       <?php print $content; ?>
     </div>

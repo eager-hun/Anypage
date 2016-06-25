@@ -9,8 +9,8 @@ $text = apputils_import_file_content(
   APS_CONTENTS . '/arbitrary/sample-grid-layouts.php'
 );
 $component_args = [
-  'title'   => 'Sample grid layouts',
-  'content' => $text,
+  'title'          => 'Sample grid layouts',
+  'direct_content' => $text,
 ];
 echo render_cd_item($component_args);
 
@@ -26,9 +26,9 @@ NOTE: you can add `row--flexbox--wide` class in inspector to any `.row`s in this
 EOT;
 
 $component_args = [
-  'title'       => 'On-demand grids and flexboxes',
-  'description' => Markdown::defaultTransform($desc_raw),
-  'content'     => $text,
+  'title'          => 'On-demand grids and flexboxes',
+  'description'    => Markdown::defaultTransform($desc_raw),
+  'direct_content' => $text,
 ];
 echo render_cd_item($component_args);
 

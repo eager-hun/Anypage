@@ -17,7 +17,7 @@ EOT;
 $component_args = [
   'title'   => 'Layout 2 sidebars demo',
   'description' => Markdown::defaultTransform($desc_raw),
-  'content' => $text,
+  'direct_content' => $text,
 ];
 echo render_cd_item($component_args);
 
