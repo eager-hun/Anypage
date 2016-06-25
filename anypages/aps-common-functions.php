@@ -95,7 +95,7 @@ function render_cd_item($arguments) {
 
     $content_label = 'Rendered sample:';
     $content       = $Templating->render($template_name, $arguments['component_variables']);
-    $code          = $Templating->render('cd-code-view', $variables_for_code_template);
+    $code          = $Templating->render('meta-cd-item-code-view', $variables_for_code_template);
   }
   // Elseif a content was directly provided, we present that.
   elseif (array_key_exists('direct_content', $arguments)) {
@@ -124,6 +124,6 @@ function render_cd_item($arguments) {
   ];
 
   // Render the 'sg-item' template, that is one of the app's own templates.
-  return $Templating->render('cd-item', $variables_for_presentation);
+  return $Templating->render('meta-cd-item', $variables_for_presentation);
 }
 
