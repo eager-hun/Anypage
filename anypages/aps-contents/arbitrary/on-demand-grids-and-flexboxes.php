@@ -1,19 +1,24 @@
+<?php
+use \Michelf\Markdown;
+?>
+
 
 <div class="grid-demos">
 
-  <p>These grids use the <code>.row</code> and <code>.column</code> classes, but <strong><em>nothing like</em></strong> <code>.narrow-l-3</code> or <code>.wide-12</code>.</p>
+<?php
+$text = <<<EOT
+These grids use the `.row` and `.column` classes, but **_nothing like_** `.narrow-l-3` or `.wide-12`.
 
-  <p>The width (and vertical margins) for these grid items is defined in the custom <em>sass/layouts/_on&#8209;demand&#8209;grids.scss</em> stylesheet.</p>
+The width (and vertical margins) for these grid items is defined in the custom `sass/layouts/_on-demand-grids.scss` stylesheet.
 
+NOTE: you can add `.row--flexbox--wide` class in inspector to any `.row`s in this demo to flexboxify its children.
+EOT;
 
-
+echo Markdown::defaultTransform($text);
+?>
 
 
   <h2 class="h4">3 column on-demand grid.</h2>
-
-  <!--
-  NOTE: you can add row--flexbox--wide class (in inspector) to flexboxify it.
-  -->
 
   <div class="row row--wrap row--wrap--3">
 
@@ -136,11 +141,15 @@
 
   <h2 class="h4">Flexboxified grid.</h2>
 
-  <p>Note: this is not using any Foundation flexbox-related resources, but
-    custom code.</p>
+<?php
+$text = <<<EOT
+Note: this is not using any Foundation flexbox-related resources, but custom code.
 
-  <p>Note: this will only work if a modernizr build is included and is producing
-    an .mdz-flexbox class on the :root element.</p>
+Note: this will only work if a modernizr build is included and is producing an .mdz-flexbox class on the :root element.
+EOT;
+
+echo Markdown::defaultTransform($text);
+?>
 
   <div class="row row--wrap row--flexbox--wide row--wrap--4 natural-fit">
 

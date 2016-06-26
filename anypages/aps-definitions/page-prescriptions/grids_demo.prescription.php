@@ -21,15 +21,10 @@ echo render_cd_item($component_args);
 $text = apputils_import_file_content(
   APS_CONTENTS . '/arbitrary/on-demand-grids-and-flexboxes.php'
 );
-$desc_raw = <<<EOT
-NOTE: you can add `row--flexbox--wide` class in inspector to any `.row`s in this demo to flexboxify its children.
-EOT;
 
 $component_args = [
   'title'          => 'On-demand grids and flexboxes',
-  'description'    => Markdown::defaultTransform($desc_raw),
   'direct_content' => $text,
 ];
 echo render_cd_item($component_args);
-
 

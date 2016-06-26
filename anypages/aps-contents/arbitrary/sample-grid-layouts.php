@@ -5,14 +5,14 @@
 
   <div class="row">
 
-    <div class="column narrow-l-12 wide-24 wide-m-12">
+    <div class="column narrow-l-6 wide-12 wide-m-6">
       <div class="box">
         <div class="box__content">
           Box 1
         </div>
       </div>
     </div>
-    <div class="column narrow-l-12 wide-24 wide-m-12">
+    <div class="column narrow-l-6 wide-12 wide-m-6">
       <div class="box">
         <div class="box__content">
           Box 2
@@ -28,21 +28,21 @@
 
   <div class="row">
 
-    <div class="column wide-12">
+    <div class="column wide-6">
       <div class="box">
         <div class="box__content">
           Box 1
         </div>
       </div>
     </div>
-    <div class="column wide-12">
+    <div class="column wide-6">
       <div class="box">
         <div class="box__content">
           Box 2
         </div>
       </div>
     </div>
-    <div class="column wide-12">
+    <div class="column wide-6">
       <div class="box">
         <div class="box__content">
           Box 3
@@ -56,21 +56,21 @@
 
   <div class="row">
 
-    <div class="column wide-12">
+    <div class="column wide-6">
       <div class="box">
         <div class="box__content">
           Box 1
         </div>
       </div>
     </div>
-    <div class="column wide-12">
+    <div class="column wide-6">
       <div class="box">
         <div class="box__content">
           Box 2
         </div>
       </div>
     </div>
-    <div class="column wide-12 end">
+    <div class="column wide-6 end">
       <div class="box">
         <div class="box__content">
           Box 3
@@ -84,18 +84,18 @@
 
   <div class="row">
 
-    <div class="column wide-18">
+    <div class="column wide-9">
 
       <div class="row">
 
-        <div class="column wide-12">
+        <div class="column wide-6">
           <div class="box">
             <div class="box__content">
               Inner row, box 1
             </div>
           </div>
         </div>
-        <div class="column wide-12">
+        <div class="column wide-6">
           <div class="box">
             <div class="box__content">
               Inner row, box 2
@@ -106,7 +106,7 @@
       </div>
 
     </div>
-    <div class="column wide-6">
+    <div class="column wide-3">
       <div class="box">
         <div class="box__content">
           Outer row, box 1
@@ -121,36 +121,36 @@
 
   <div class="row">
 
-    <div class="column wide-18">
+    <div class="column wide-9">
 
       <div class="row">
 
-        <div class="column wide-12">
+        <div class="column wide-6">
           <div class="box">
             <div class="box__content">
               Inner row, box 1
             </div>
           </div>
         </div>
-        <div class="column wide-12">
+        <div class="column wide-6">
 
           <div class="row">
 
-            <div class="column wide-m-12">
+            <div class="column wide-m-6">
               <div class="box">
                 <div class="box__content">
                   Innermost row, box 1
                 </div>
               </div>
             </div>
-            <div class="column wide-m-12">
+            <div class="column wide-m-6">
               <div class="box">
                 <div class="box__content">
                   Innermost row, box 2
                 </div>
               </div>
             </div>
-            <div class="column wide-m-12 end">
+            <div class="column wide-m-6 end">
               <div class="box">
                 <div class="box__content">
                   Innermost row, box 3
@@ -165,7 +165,7 @@
       </div>
 
     </div>
-    <div class="column wide-6">
+    <div class="column wide-3">
       <div class="box">
         <div class="box__content">
           Outer row, box 1
@@ -180,7 +180,7 @@
 
   <div class="row">
 
-    <div class="column wide-8 wide-centered wide-m-20">
+    <div class="column wide-4 wide-centered wide-m-10">
       <div class="box">
         <div class="box__content">
           Box 1
@@ -194,21 +194,21 @@
 
   <div class="row natural-fit">
 
-    <div class="column narrow-l-12 wide-m-8">
+    <div class="column narrow-l-6 wide-m-4">
       <div class="box">
         <div class="box__content">
           Box 1
         </div>
       </div>
     </div>
-    <div class="column narrow-l-12 wide-m-8">
+    <div class="column narrow-l-6 wide-m-4">
       <div class="box">
         <div class="box__content">
           Box 2
         </div>
       </div>
     </div>
-    <div class="column wide-m-8">
+    <div class="column wide-m-4">
       <div class="box">
         <div class="box__content">
           Box 3

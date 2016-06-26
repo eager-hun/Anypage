@@ -1,9 +1,22 @@
+<?php
+use \Michelf\Markdown;
+?>
 
 <div class="grid-demos l-2sb-demo">
 
-  <h2>"Layout two sidebars" variants and states</h2>
+<?php
+$text = <<<EOT
+"Layout 2 sidebars" is a custom, complex component, based on on-demand grids.
 
-  <p>This layout is used (best) for the primary layout of a page.</p>
+It can be used to supply a variety of basic arrangements for page sections.
+
+## "Layout two sidebars" variants and states
+
+This layout is used (best) for the primary layout of a page.
+EOT;
+
+echo Markdown::defaultTransform($text);
+?>
 
 
 
