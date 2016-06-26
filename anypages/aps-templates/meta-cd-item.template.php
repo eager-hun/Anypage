@@ -7,9 +7,9 @@
   <div class="container">
 
     <?php if (!empty($title)): ?>
-      <div class="x-cd-item__title">
+      <h2 class="x-cd-item__title">
         <?php print $title; ?>
-      </div>
+      </h2>
     <?php endif; ?>
 
     <?php if (!empty($description)): ?>
