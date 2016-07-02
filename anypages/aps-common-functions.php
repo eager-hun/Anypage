@@ -46,7 +46,28 @@ function render_page_footer_widgets() {
 }
 
 // ----------------------------------------------------------------------------
-// Shortcuts to print a container.
+// Shortcuts to print a .page__level.
+
+function aps_open_page_level($additional_classes = []) {
+  $orig_classes = [
+    'page__level'
+  ];
+  if (!empty($additional_classes)) {
+    $classes = array_merge($orig_classes, $additional_classes);
+  }
+  else {
+    $classes = $orig_classes;
+  }
+  $prepped_classes = implode(' ', $classes);
+  echo '<div class="' . $prepped_classes . '">';
+}
+
+function aps_close_page_level() {
+  echo '</div>';
+}
+
+// ----------------------------------------------------------------------------
+// Shortcuts to print a .container.
 
 function aps_open_container($additional_classes = []) {
   $orig_classes = [

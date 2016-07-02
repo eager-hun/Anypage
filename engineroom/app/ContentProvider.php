@@ -31,6 +31,9 @@ class ContentProvider {
     }
 
     if (file_exists($content_prescription_file)) {
+      // Let's make the $templating device available for page prescriptions.
+      $templating = $this->templating;
+
       // Bring in page's content.
       ob_start();
       include($content_prescription_file);
@@ -42,7 +45,6 @@ class ContentProvider {
     }
 
     return $output;
-
   }
 }
 

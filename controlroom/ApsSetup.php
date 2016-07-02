@@ -44,29 +44,34 @@ class ApsSetup {
    */
   private $pages = [
     'home' => [
-      'path'                 => '',
-      'html_filename'        => 'index',
-      'menu_link_text'       => 'Home',
+      'path'           => '',
+      'html_filename'  => 'index',
+      'menu_link_text' => 'Home',
     ],
     'typography_demo' => [
-      'path'                 => 'typography-demo',
-      'html_filename'        => 'typography-demo',
-      'menu_link_text'       => 'Typography demo',
+      'path'           => 'typography-demo',
+      'html_filename'  => 'typography-demo',
+      'menu_link_text' => 'Typography demo',
     ],
     'grids_demo' => [
-      'path'                 => 'grids-demo',
-      'html_filename'        => 'grids-demo',
-      'menu_link_text'       => 'Grids demo',
+      'path'           => 'grids-demo',
+      'html_filename'  => 'grids-demo',
+      'menu_link_text' => 'Grids demo',
     ],
     'layouts_demo' => [
-      'path'                 => 'layouts-demo',
-      'html_filename'        => 'layouts-demo',
-      'menu_link_text'       => 'Layouts demo',
+      'path'           => 'layouts-demo',
+      'html_filename'  => 'layouts-demo',
+      'menu_link_text' => 'Layouts demo',
     ],
-    'components_demo' => [
-      'path'                 => 'components-demo',
-      'html_filename'        => 'components-demo',
-      'menu_link_text'       => 'Components demo',
+    'custom_components' => [
+      'path'           => 'custom-components',
+      'html_filename'  => 'custom-components',
+      'menu_link_text' => 'Custom components',
+    ],
+    'sample_page_1' => [
+      'path'           => 'sample-page-1',
+      'html_filename'  => 'sample-page-1',
+      'menu_link_text' => 'Sample page 1',
     ],
   ];
 }
