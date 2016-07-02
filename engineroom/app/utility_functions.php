@@ -23,6 +23,11 @@ function apputils_string_valid_as($string, $as) {
 }
 
 function apputils_import_file_content($file, $process = 'php') {
+  if (!file_exists($file)) {
+    // TODO: error handling.
+    return FALSE;
+  }
+
   if ($process == 'php') {
     ob_start();
     include($file);

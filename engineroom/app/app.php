@@ -52,7 +52,7 @@ require_once(APP_SCRIPTS . '/PageProvider.php');
 $Config          = new Config();
 $ApsSetup        = new ApsSetup();
 $ProcessInfo     = new ProcessInfo();
-$Templating      = new Templating($Config);
+$Templating      = new Templating($Config, TRUE);
 $Engine          = new Engine($Config, $ApsSetup, $ProcessInfo);
 $ContentProvider = new ContentProvider(
   $ProcessInfo,

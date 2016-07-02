@@ -37,14 +37,14 @@ $main_col .= $accordion;
 $box_1_args = [
   'wrapper_extra_classes' => 'box--simple',
   'box_title'             => 'Sample box',
-  'box_content'           => 'Hujj.',
+  'box_content'           => $templating->add_filler_text('s', 1),
 ];
 $box_1 = $templating->render('box', $box_1_args);
 
 $box_2_args = [
   'wrapper_extra_classes' => 'box--simple',
   'box_title'             => 'Sample box two',
-  'box_content'           => 'Hajj.',
+  'box_content'           => $templating->add_filler_text('s', 2),
 ];
 $box_2 = $templating->render('box', $box_2_args);
 
