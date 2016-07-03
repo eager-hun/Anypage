@@ -16,12 +16,12 @@ $accordion_args = [
     [
       'extra_classes' => '',
       'title'         => 'Item title',
-      'content'       => 'Item content',
+      'content'       => $templating->add_filler_text('m', 1),
     ],
     [
       'extra_classes' => '',
       'title'         => 'Item title',
-      'content'       => 'Item content',
+      'content'       => $templating->add_filler_text('m', 2),
     ],
   ],
 ];
@@ -34,16 +34,21 @@ $main_col .= $accordion;
 // ############################################################################
 // Sidebar boxes.
 
+$sample_dropdowns = apputils_import_file_content(
+  APS_CONTENTS . '/arbitrary/sample-dropdowns.php'
+);
+
 $box_1_args = [
   'wrapper_extra_classes' => 'box--simple',
   'box_title'             => 'Sample box',
-  'box_content'           => $templating->add_filler_text('s', 1),
+  'box_content'           => $templating->add_filler_text('s', 1)
+                          . $sample_dropdowns,
 ];
 $box_1 = $templating->render('box', $box_1_args);
 
 $box_2_args = [
   'wrapper_extra_classes' => 'box--simple',
-  'box_title'             => 'Sample box two',
+  'box_title'             => 'Sample box two with a bit longer title',
   'box_content'           => $templating->add_filler_text('s', 2),
 ];
 $box_2 = $templating->render('box', $box_2_args);
