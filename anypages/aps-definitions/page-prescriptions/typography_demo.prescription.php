@@ -2,6 +2,8 @@
 
 use \Michelf\Markdown;
 
+echo aps_page_level_start();
+
 // ----------------------------------------------------------------------------
 // Demonstrate typography on basic texts.
 
@@ -26,4 +28,6 @@ $component_args = [
   'direct_content' => $text,
 ];
 echo render_cd_item($component_args);
+
+echo aps_page_level_end();
 

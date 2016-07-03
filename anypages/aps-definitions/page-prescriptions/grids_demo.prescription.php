@@ -2,6 +2,8 @@
 
 use \Michelf\Markdown;
 
+echo aps_page_level_start();
+
 // ----------------------------------------------------------------------------
 // Sample grids.
 
@@ -27,4 +29,6 @@ $component_args = [
   'direct_content' => $text,
 ];
 echo render_cd_item($component_args);
+
+echo aps_page_level_end();
 

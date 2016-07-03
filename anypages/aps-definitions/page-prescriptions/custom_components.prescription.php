@@ -2,6 +2,7 @@
 
 use \Michelf\Markdown;
 
+echo aps_page_level_start();
 
 // ############################################################################
 // List of component demos.
@@ -25,4 +26,6 @@ $component_args = [
   ],
 ];
 echo render_cd_item($component_args);
+
+echo aps_page_level_end();
 

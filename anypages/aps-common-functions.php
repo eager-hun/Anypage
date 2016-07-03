@@ -48,7 +48,7 @@ function render_page_footer_widgets() {
 // ----------------------------------------------------------------------------
 // Shortcuts to print a .page__level.
 
-function aps_open_page_level($additional_classes = []) {
+function aps_page_level_start($additional_classes = []) {
   $orig_classes = [
     'page__level'
   ];
@@ -59,17 +59,17 @@ function aps_open_page_level($additional_classes = []) {
     $classes = $orig_classes;
   }
   $prepped_classes = implode(' ', $classes);
-  echo '<div class="' . $prepped_classes . '">';
+  return '<div class="' . $prepped_classes . '">';
 }
 
-function aps_close_page_level() {
-  echo '</div>';
+function aps_page_level_end() {
+  return '</div>';
 }
 
 // ----------------------------------------------------------------------------
 // Shortcuts to print a .container.
 
-function aps_open_container($additional_classes = []) {
+function aps_container_start($additional_classes = []) {
   $orig_classes = [
     'container'
   ];
@@ -80,11 +80,11 @@ function aps_open_container($additional_classes = []) {
     $classes = $orig_classes;
   }
   $prepped_classes = implode(' ', $classes);
-  echo '<div class="' . $prepped_classes . '">';
+  return '<div class="' . $prepped_classes . '">';
 }
 
-function aps_close_container() {
-  echo '</div>';
+function aps_container_end() {
+  return '</div>';
 }
 
 // ----------------------------------------------------------------------------

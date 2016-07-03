@@ -2,8 +2,8 @@
 
 use \Michelf\Markdown;
 
-aps_open_page_level();
-aps_open_container();
+echo aps_page_level_start();
+echo aps_container_start();
 
 // ############################################################################
 // Main column content.
@@ -64,6 +64,6 @@ $layout_2sb_args = [
 ];
 echo $templating->render('meta-layout-2sb', $layout_2sb_args);
 
-aps_close_container();
-aps_close_page_level();
+echo aps_container_end();
+echo aps_page_level_end();
 

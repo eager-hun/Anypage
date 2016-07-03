@@ -1,12 +1,12 @@
 <div id="page__wrap" class="page__wrap">
 
-  <header id=="page__header" class="page__level page__header">
+  <header id="page__header" class="page__level page__header">
     <div class="container">
       <?php echo $page_header; ?>
     </div>
   </header>
 
-  <div id=="page__main" class="page__level page__main">
+  <div id="page__main" class="page__main">
     <?php echo $page_main; ?>
   </div>
 

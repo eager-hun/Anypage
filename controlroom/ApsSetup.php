@@ -41,6 +41,13 @@ class ApsSetup {
    * HTML FILENAME:
    *
    * For "html_filename", don't provide an extension; ".html" will be assumed.
+   *
+   * HAS OWN LAYOUT:
+   *
+   * If this value is not set, a default .page__level and .container wrappers
+   * will be applied around the pages's content. If you need anything else
+   * than these default wrappers, you need to set the value to true, and
+   * sort out your own wrappers in the prescription file.
    */
   private $pages = [
     'home' => [
@@ -52,26 +59,31 @@ class ApsSetup {
       'path'           => 'typography-demo',
       'html_filename'  => 'typography-demo',
       'menu_link_text' => 'Typography demo',
+      'has_own_layout' => TRUE,
     ],
     'grids_demo' => [
       'path'           => 'grids-demo',
       'html_filename'  => 'grids-demo',
       'menu_link_text' => 'Grids demo',
+      'has_own_layout' => TRUE,
     ],
     'layouts_demo' => [
       'path'           => 'layouts-demo',
       'html_filename'  => 'layouts-demo',
       'menu_link_text' => 'Layouts demo',
+      'has_own_layout' => TRUE,
     ],
     'custom_components' => [
       'path'           => 'custom-components',
       'html_filename'  => 'custom-components',
       'menu_link_text' => 'Custom components',
+      'has_own_layout' => TRUE,
     ],
     'sample_page_1' => [
       'path'           => 'sample-page-1',
       'html_filename'  => 'sample-page-1',
       'menu_link_text' => 'Sample page 1',
+      'has_own_layout' => TRUE,
     ],
   ];
 }
