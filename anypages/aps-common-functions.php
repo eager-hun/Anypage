@@ -19,10 +19,8 @@ function render_page_header() {
 }
 
 function render_page_header_widgets() {
-  $template_name = 'page-header-widgets';
-
   $Templating = new Templating(new Config);
-  return $Templating->render($template_name, array());
+  return $Templating->render('page-header-widgets', array());
 }
 
 // ----------------------------------------------------------------------------
@@ -39,10 +37,16 @@ function render_page_footer() {
 }
 
 function render_page_footer_widgets() {
-  $template_name = 'page-footer-widgets';
-
   $Templating = new Templating(new Config);
-  return $Templating->render($template_name, array());
+  return $Templating->render('page-footer-widgets', array());
+}
+
+// ----------------------------------------------------------------------------
+// Shortcut to print a page title.
+
+function aps_render_page_title($page_title) {
+  $Templating = new Templating(new Config);
+  return $Templating->render('page-title', ['page_title' => $page_title]);
 }
 
 // ----------------------------------------------------------------------------
@@ -85,6 +89,16 @@ function aps_container_start($additional_classes = []) {
 
 function aps_container_end() {
   return '</div>';
+}
+
+// ----------------------------------------------------------------------------
+// Shortcut to print a bunch of component demo items.
+
+function aps_render_component_demos($demos) {
+  $Templating = new Templating(new Config);
+  return $Templating->render('meta-component-demos', [
+    'demos' => implode(PHP_EOL, $demos)
+  ]);
 }
 
 // ----------------------------------------------------------------------------

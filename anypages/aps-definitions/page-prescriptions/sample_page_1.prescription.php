@@ -8,7 +8,7 @@ echo aps_container_start();
 // ############################################################################
 // Main column content.
 
-$main_col = '<h1 class="page__title">Sample page</h1>';
+$main_col = aps_render_page_title('Sample page');
 
 $accordion_args = [
   'wrapper_extra_classes' => 'hi',

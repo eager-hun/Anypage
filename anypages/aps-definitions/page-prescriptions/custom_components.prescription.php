@@ -4,8 +4,15 @@ use \Michelf\Markdown;
 
 echo aps_page_level_start();
 
+echo aps_container_start();
+echo aps_render_page_title('Custom components');
+echo aps_container_end();
+
+
 // ############################################################################
-// List of component demos.
+// Demo item definitions.
+
+$demos = [];
 
 // ----------------------------------------------------------------------------
 // Demonstrate a dummy component.
@@ -25,7 +32,13 @@ $component_args = [
     'bottom' => 'Content in the bottom slot of this layout.',
   ],
 ];
-echo render_cd_item($component_args);
+$demos[] = render_cd_item($component_args);
+
+
+// ############################################################################
+// Printing demo items.
+
+echo aps_render_component_demos($demos);
 
 echo aps_page_level_end();
 

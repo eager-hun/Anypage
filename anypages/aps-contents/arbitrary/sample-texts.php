@@ -4,6 +4,13 @@
 <a href="foo">tristique aliquet odio</a>. Integer sagittis purus turpis, in
 sodales lectus ullamcorper vitae.</p>
 
+<p>Etiam ultricies nisi vel augue. Praesent venenatis metus at tortor pulvinar
+varius. Aenean commodo ligula eget dolor. Duis lobortis massa imperdiet quam.
+Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id
+fringilla neque ante vel mi. Nullam sagittis. Quisque ut nisi. Nam quam nunc,
+blandit vel, luctus pulvinar, hendrerit id, lorem. In dui magna, posuere eget,
+vestibulum et, tempor auctor, justo. Sed cursus turpis vitae tortor.</p>
+
 
 <h1>Heading type one</h1>
 
@@ -12,8 +19,8 @@ Aenean elementum dictum mauris nec venenatis. Sed vehicula nunc at augue
 lacinia, vel cursus ligula interdum. Vivamus ut augue viverra, luctus leo a,
 mattis orci.</p>
 
-<span class="pseudo-heading h1">Heading type one long enough for multiple
-lines</span>
+<span class="pseudo-heading h1">Heading type one, whose extended volume ensures
+breaking to multiple lines</span>
 
 <p>Sed a libero ut <a href="#">nunc fringilla gravida</a> vel ut nibh. Ut et
 condimentum tellus. Donec dolor magna, vestibulum non ipsum eget, ultricies

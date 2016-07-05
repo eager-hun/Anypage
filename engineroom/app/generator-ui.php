@@ -1,4 +1,6 @@
 
+<?php echo aps_render_page_title('Generate static .html'); ?>
+
 <!--input id="html-generator-input-dirname" type="text" -->
 
 <button

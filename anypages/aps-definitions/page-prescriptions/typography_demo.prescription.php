@@ -4,6 +4,16 @@ use \Michelf\Markdown;
 
 echo aps_page_level_start();
 
+echo aps_container_start();
+echo aps_render_page_title('Typography demo');
+echo aps_container_end();
+
+
+// ############################################################################
+// Demo item definitions.
+
+$demos = [];
+
 // ----------------------------------------------------------------------------
 // Demonstrate typography on basic texts.
 
@@ -14,7 +24,7 @@ $component_args = [
   'title'          => 'Texts for checking typography',
   'direct_content' => $text,
 ];
-echo render_cd_item($component_args);
+$demos[] = render_cd_item($component_args);
 
 
 // ----------------------------------------------------------------------------
@@ -27,7 +37,13 @@ $component_args = [
   'title'          => 'Lists for checking typography',
   'direct_content' => $text,
 ];
-echo render_cd_item($component_args);
+$demos[] = render_cd_item($component_args);
+
+
+// ############################################################################
+// Printing demo items.
+
+echo aps_render_component_demos($demos);
 
 echo aps_page_level_end();
 

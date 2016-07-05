@@ -10,7 +10,7 @@ $text = <<<EOT
 
 It can be used to supply a variety of basic arrangements for page sections.
 
-## "Layout two sidebars" variants and states
+### Variants and states
 
 This layout is used (best) for the primary layout of a page.
 EOT;
@@ -25,17 +25,17 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h3>Variant: content in the middle</h3>
+  <h4>Variant: content in the middle</h4>
   <p><code>.layout--2sb.content-in-mid</code></p>
 
 
 
-  <h4>Only one sidebar</h4>
+  <h5>Only one sidebar</h5>
   <p><code>.layout--2sb.content-in-mid.has-1-sb</code></p>
 
 
 
-  <h5>Only sidebar 1</h5>
+  <h6>Only sidebar 1</h6>
 
   <p><code>.layout--2sb.content-in-mid.has-1-sb.sb-1</code></p>
 
@@ -60,7 +60,7 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h5>Only sidebar 2</h5>
+  <h6>Only sidebar 2</h6>
 
   <p><code>.layout--2sb.content-in-mid.has-1-sb.sb-2</code></p>
 
@@ -85,7 +85,7 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h4>Both sidebars</h4>
+  <h5>Both sidebars</h5>
 
   <p><code>.layout--2sb.content-in-mid.has-2-sb</code></p>
 
@@ -119,16 +119,16 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h3>Variant: content on the left, both sidebars on the right</h3>
+  <h4>Variant: content on the left, both sidebars on the right</h4>
   <p><code>.layout--2sb.content-on-left</code></p>
 
 
 
-  <h4>Only one sidebar</h4>
+  <h5>Only one sidebar</h5>
 
 
 
-  <h5>Only sidebar 1</h5>
+  <h6>Only sidebar 1</h6>
 
   <p><code>.layout--2sb.content-on-left.has-1-sb</code></p>
 
@@ -146,7 +146,7 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h5>Only sidebar 2</h5>
+  <h6>Only sidebar 2</h6>
 
   <p><code>.layout--2sb.content-on-left.has-1-sb</code></p>
 
@@ -164,7 +164,7 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h4>Both sidebars</h4>
+  <h5>Both sidebars</h5>
 
   <p><code>.layout--2sb.content-on-left.has-2-sb</code></p>
 
@@ -193,16 +193,16 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h3>Variant: content on the right, both sidebars on the left</h3>
+  <h4>Variant: content on the right, both sidebars on the left</h4>
   <p><code>.layout--2sb.content-on-right</code></p>
 
 
 
-  <h4>Only one sidebar</h4>
+  <h5>Only one sidebar</h5>
 
 
 
-  <h5>Only sidebar 1</h5>
+  <h6>Only sidebar 1</h6>
 
   <p><code>.layout--2sb.content-on-right.has-1-sb</code></p>
 
@@ -220,7 +220,7 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h5>Only sidebar 2</h5>
+  <h6>Only sidebar 2</h6>
 
   <p><code>.layout--2sb.content-on-right.has-1-sb</code></p>
 
@@ -238,7 +238,7 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h4>Both sidebars</h4>
+  <h5>Both sidebars</h5>
 
   <p><code>.layout--2sb.content-on-right.has-2-sb</code></p>
 
