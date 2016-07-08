@@ -3,16 +3,16 @@
 class ContentProvider {
   private $processInfo;
   private $apsSetup;
-  private $templating;
+  private $apsHelper;
 
   public function __construct(
     ProcessInfo $processInfo,
     ApsSetup $apsSetup,
-    Templating $templating
+    ApsHelper $apsHelper
   ) {
     $this->processInfo = $processInfo;
     $this->apsSetup    = $apsSetup;
-    $this->templating  = $templating;
+    $this->apsHelper   = $apsHelper;
   }
 
   public function renderContent($page_id) {
@@ -31,8 +31,8 @@ class ContentProvider {
       }
 
       if (file_exists($content_prescription_file)) {
-        // Let's make the $templating device available for page prescriptions.
-        $templating = $this->templating;
+        // Making helper stuffs available for page prescriptions.
+        $apsHelper  = $this->apsHelper;
 
         // Bring in page's content.
         ob_start();
@@ -46,11 +46,11 @@ class ContentProvider {
     }
 
     if (empty($this->apsSetup->get('pages')[$page_id]['has_own_layout'])) {
-      $output = aps_page_level_start()
-        . aps_container_start()
+      $output = $apsHelper->page_level_start()
+        . $apsHelper->container_start()
         . $output
-        . aps_container_end()
-        . aps_page_level_end();
+        . $apsHelper->container_end()
+        . $apsHelper->page_level_end();
     }
 
     return $output;

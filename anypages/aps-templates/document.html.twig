@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html class="{{ classes }}" lang="{{ lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ head_title }}</title>
+    <meta name="description" content="{{ head_desc }}">
+
+    <!-- That's an empty favicon, prevents 404s. -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    {{ styles }}
+    {{ head_scripts }}
+  </head>
+  <body>
+    {{ page_content }}
+    {{ body_scripts }}
+  </body>
+</html>
+

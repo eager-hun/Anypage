@@ -1,0 +1,19 @@
+
+{% if site_name %}
+  <a class="header__site-name" href="#">
+    {{ site_name }}
+  </a>
+{% endif %}
+
+{% if site_slogan %}
+  <div class="header__site-slogan">
+    {{ site_slogan }}
+  </div>
+{% endif %}
+
+{% if header_widgets %}
+  <div class="header__widgets">
+    {{ header_widgets }}
+  </div>
+{% endif %}
+

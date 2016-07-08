@@ -2,11 +2,11 @@
 
 use \Michelf\Markdown;
 
-echo aps_page_level_start();
+echo $apsHelper->page_level_start();
 
-echo aps_container_start();
-echo aps_render_page_title('Layouts demo');
-echo aps_container_end();
+echo $apsHelper->container_start();
+echo $apsHelper->render_page_title('Layouts demo');
+echo $apsHelper->container_end();
 
 
 // ############################################################################
@@ -25,13 +25,13 @@ $component_args = [
   'title'          => '"Layout 2 sidebars" demo',
   'direct_content' => $text,
 ];
-$demos[] = render_cd_item($component_args);
+$demos[] = $apsHelper->render_components_demo_item($component_args);
 
 
 // ############################################################################
 // Printing demo items.
 
-echo aps_render_component_demos($demos);
+echo $apsHelper->render_component_demos($demos);
 
-echo aps_page_level_end();
+echo $apsHelper->page_level_end();
 

@@ -131,4 +131,12 @@ class Config {
    * String to use in the '?v=' URL param for .css and .js files.
    */
   private $cache_bust_str = '20160618-1';
+
+  /**
+   * Templating.
+   */
+  private $templating = [
+    'twig_template_extension' => '.html.twig',
+    'php_template_extension'  => '.template.php',
+  ];
 }

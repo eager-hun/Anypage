@@ -2,13 +2,13 @@
 
 use \Michelf\Markdown;
 
-echo aps_page_level_start();
-echo aps_container_start();
+echo $apsHelper->page_level_start();
+echo $apsHelper->container_start();
 
 // ############################################################################
 // Main column content.
 
-$main_col = aps_render_page_title('Sample page');
+$main_col = $apsHelper->render_page_title('Sample page');
 
 $accordion_args = [
   'wrapper_extra_classes' => 'hi',
@@ -16,17 +16,17 @@ $accordion_args = [
     [
       'extra_classes' => '',
       'title'         => 'Item title',
-      'content'       => $templating->add_filler_text('m', 1),
+      'content'       => $apsHelper->add_filler_text('m', 1),
     ],
     [
       'extra_classes' => '',
       'title'         => 'Item title',
-      'content'       => $templating->add_filler_text('m', 2),
+      'content'       => $apsHelper->add_filler_text('m', 2),
     ],
   ],
 ];
 
-$accordion = $templating->render('accordion', $accordion_args);
+$accordion = $apsHelper->render('accordion', $accordion_args);
 
 $main_col .= $accordion;
 
@@ -41,17 +41,17 @@ $sample_dropdowns = apputils_import_file_content(
 $box_1_args = [
   'wrapper_extra_classes' => 'box--simple',
   'box_title'             => 'Sample box',
-  'box_content'           => $templating->add_filler_text('s', 1)
+  'box_content'           => $apsHelper->add_filler_text('s', 1)
                           . $sample_dropdowns,
 ];
-$box_1 = $templating->render('box', $box_1_args);
+$box_1 = $apsHelper->render('box', $box_1_args);
 
 $box_2_args = [
-  'wrapper_extra_classes' => 'box--simple',
+  //'wrapper_extra_classes' => 'box--simple',
   'box_title'             => 'Sample box two with a bit longer title',
-  'box_content'           => $templating->add_filler_text('s', 2),
+  'box_content'           => $apsHelper->add_filler_text('s', 2),
 ];
-$box_2 = $templating->render('box', $box_2_args);
+$box_2 = $apsHelper->render('box', $box_2_args);
 
 
 // ############################################################################
@@ -62,8 +62,8 @@ $layout_2sb_args = [
   'main_content'          => $main_col,
   'sidebar_1'             => $box_1 . $box_2,
 ];
-echo $templating->render('meta-layout-2sb', $layout_2sb_args);
+echo $apsHelper->render('meta-layout-2sb', $layout_2sb_args);
 
-echo aps_container_end();
-echo aps_page_level_end();
+echo $apsHelper->container_end();
+echo $apsHelper->page_level_end();
 

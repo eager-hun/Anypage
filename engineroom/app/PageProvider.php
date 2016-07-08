@@ -6,29 +6,26 @@ class PageProvider {
   private $processInfo;
   private $contentProvider;
   private $engine;
-  private $templating;
+  private $apsHelper;
 
   public function __construct(
     ApsSetup $apsSetup,
     ProcessInfo $processInfo,
     ContentProvider $contentProvider,
     Engine $engine,
-    Templating $templating
+    ApsHelper $apsHelper
   ) {
-    $this->apsSetup           = $apsSetup;
-    $this->processInfo        = $processInfo;
-    $this->contentProvider    = $contentProvider;
-    $this->engine             = $engine;
-    $this->templating         = $templating;
+    $this->apsSetup        = $apsSetup;
+    $this->processInfo     = $processInfo;
+    $this->contentProvider = $contentProvider;
+    $this->engine          = $engine;
+    $this->apsHelper       = $apsHelper;
   }
 
   // --------------------------------------------------------------------------
   // METHODS.
 
   public function renderPage() {
-
-    // Pick up shared functions (TODO: this might need a more senseful place).
-    include(APS . '/aps-common-functions.php');
 
     $page_id = $this->processInfo->get('page_id');
     $page_content = $this->contentProvider->renderContent($page_id);
@@ -37,10 +34,10 @@ class PageProvider {
     ];
 
     $variables_for_page = [
-      'page_header' => render_page_header(),
+      'page_header' => $this->apsHelper->render_page_header(),
       'page_main'   => $page_content,
-      'page_footer' => render_page_footer(),
-      'app_menu'    => $this->templating->render(
+      'page_footer' => $this->apsHelper->render_page_footer(),
+      'app_menu'    => $this->apsHelper->render(
         'meta-app-menu-wrapper',
         $app_menu_template_vars
       ),
@@ -53,11 +50,11 @@ class PageProvider {
       'head_desc'    => 'HEAD_DESC',
       'styles'       => $this->engine->provideStylesheets(),
       'head_scripts' => $this->engine->provideScripts('head'),
-      'page_content' => $this->templating->render('page', $variables_for_page),
+      'page_content' => $this->apsHelper->render('page', $variables_for_page),
       'body_scripts' => $this->engine->provideScripts('body'),
     ];
 
-    return $this->templating->render('document', $variables_for_document);
+    return $this->apsHelper->render('document', $variables_for_document);
   }
 }
 

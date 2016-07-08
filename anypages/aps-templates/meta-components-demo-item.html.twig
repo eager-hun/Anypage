@@ -1,0 +1,37 @@
+<div class="x-cd-item">
+  <div class="container">
+
+    {% if title %}
+      <h2 class="x-cd-item__title">
+        {{ title }}
+      </h2>
+    {% endif %}
+
+    {% if description %}
+      <div class="x-cd-item__description">
+        {{ description }}
+      </div>
+    {% endif %}
+
+    {% if content %}
+      {% if content_label %}
+        <span class="x-cd-item__label">
+          {{ content_label }}
+        </span>
+      {% endif %}
+
+      <div class="x-cd-item__content">
+        {{ content }}
+      </div>
+    {% endif %}
+
+    {% if code %}
+      <span class="x-cd-item__label">Code:</span>
+      <div class="x-cd-item__code">
+        {{ code }}
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+

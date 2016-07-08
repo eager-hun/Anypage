@@ -2,12 +2,12 @@
 
   <header id="page__header" class="page__level page__header">
     <div class="container">
-      <?php echo $page_header; ?>
+      {{ page_header }}
     </div>
   </header>
 
   <div id="page__main" class="page__main">
-    <?php echo $page_main; ?>
+    {{ page_main }}
   </div>
 
   <div class="footer__room-preserve"></div>
@@ -15,9 +15,9 @@
 
 <footer id="page__footer" class="page__level page__footer">
   <div class="container">
-    <?php echo $page_footer; ?>
+    {{ page_footer }}
   </div>
 </footer>
 
-<?php echo $app_menu; ?>
+{{ app_menu }}
 

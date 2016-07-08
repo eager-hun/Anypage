@@ -1,5 +1,10 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use \Michelf\Markdown;
+
+
 // ############################################################################
 // DEFINITIONS.
 
@@ -20,10 +25,9 @@ DEFINE('APS_DEFINITIONS', APS . '/aps-definitions');
 require_once(ENGINEROOM . '/libraries-backend/autoload.php');
 
 // ----------------------------------------------------------------------------
-// HttpFoundation.
+// HTTP FOUNDATION.
 // See http://symfony.com/doc/current/components/http_foundation/introduction.html .
 // See http://symfony.com/doc/current/book/http_fundamentals.html .
-use Symfony\Component\HttpFoundation\Request;
 $Request = new Request(
   $_GET,
   $_POST,
@@ -34,9 +38,20 @@ $Request = new Request(
 );
 
 // ----------------------------------------------------------------------------
-// Markdown.
-//use \Michelf\Markdown;
-//print Markdown::defaultTransform('_italic_');
+// TWIG.
+// See http://twig.sensiolabs.org/doc/api.html#environment-options .
+$twig_loader = new Twig_Loader_Filesystem(APS_TEMPLATES);
+$twig = new Twig_Environment($twig_loader, [
+  'debug'            => FALSE,
+  'cache'            => FALSE,
+  'strict_variables' => FALSE,
+  'autoescape'       => FALSE,
+  'optimizations'    => -1
+]);
+
+// ----------------------------------------------------------------------------
+// MARKDOWN testing.
+// echo Markdown::defaultTransform('_italic_');
 
 // ----------------------------------------------------------------------------
 // Custom resources.
@@ -44,27 +59,31 @@ $Request = new Request(
 require_once(CONTROLROOM . '/Config.php');
 require_once(CONTROLROOM . '/ApsSetup.php');
 require_once(APP_SCRIPTS . '/ProcessInfo.php');
-require_once(APP_SCRIPTS . '/Templating.php');
 require_once(APP_SCRIPTS . '/Engine.php');
 require_once(APP_SCRIPTS . '/ContentProvider.php');
 require_once(APP_SCRIPTS . '/PageProvider.php');
 
+require_once(APS . '/ApsHelper.php');
+
 $Config          = new Config();
 $ApsSetup        = new ApsSetup();
 $ProcessInfo     = new ProcessInfo();
-$Templating      = new Templating($Config, TRUE);
 $Engine          = new Engine($Config, $ApsSetup, $ProcessInfo);
+$ApsHelper       = new ApsHelper(
+  $Config,
+  $twig
+);
 $ContentProvider = new ContentProvider(
   $ProcessInfo,
   $ApsSetup,
-  $Templating
+  $ApsHelper
 );
 $PageProvider    = new PageProvider (
   $ApsSetup,
   $ProcessInfo,
   $ContentProvider,
   $Engine,
-  $Templating
+  $ApsHelper
 );
 
 require_once(APP_SCRIPTS . '/utility_functions.php');
@@ -82,8 +101,6 @@ require_once(APP_SCRIPTS . '/routing.php');
 // SENDING RESPONSE.
 // See http://symfony.com/doc/current/components/http_foundation/introduction.html#response .
 // See libraries-backend/symfony/http-foundation/Response.php
-
-use Symfony\Component\HttpFoundation\Response;
 
 $Response = new Response();
 $Response->setProtocolVersion('1.1');
