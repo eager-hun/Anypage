@@ -1,18 +1,39 @@
 <?php
 
 $aps_filler_texts = [
-  's' => [],
-  'm' => [],
-  'l' => [],
+  'xs' => [],
+  's'  => [],
+  'm'  => [],
+  'l'  => [],
 ];
 
 // ############################################################################
+// XS.
+
+$aps_filler_texts['xs'][1] = 'Donec posuere vulputate arcu. Vestibulum ullamcorper mauris at ligula.';
+
+$aps_filler_texts['xs'][2] = 'Cras sagittis. Integer tincidunt. Praesent nonummy mi in odio.';
+
+$aps_filler_texts['xs'][3] = 'Nunc nulla. Suspendisse enim turpis, dictum sed, iaculis a, condimentum ipsum primis.';
+
+$aps_filler_texts['xs'][4] = 'Quisque ut nisi. Etiam rhoncus. Vestibulum ante.';
+
+$aps_filler_texts['xs'][5] = 'Faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia.';
+
+
+
+// ############################################################################
 // S.
-$aps_filler_texts['s'][1] = 'Donec posuere vulputate arcu. Vestibulum ullamcorper mauris at ligula.';
 
-$aps_filler_texts['s'][2] = 'Cras sagittis. Integer tincidunt. Praesent nonummy mi in odio.';
+$aps_filler_texts['s'][1] = 'Fusce pharetra convallis urna. Sed in libero ut nibh placerat accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo.';
 
-$aps_filler_texts['s'][3] = 'Nunc nulla. Suspendisse enim turpis, dictum sed, iaculis a, condimentum.';
+$aps_filler_texts['s'][2] = 'Aenean vulputate eleifend tellus. Pellentesque commodo eros a enim. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi.';
+
+$aps_filler_texts['s'][3] = 'Etiam ut purus mattis mauris sodales aliquam. Fusce vulputate eleifend sapien. Aenean vulputate eleifend tellus. Curabitur vestibulum aliquam leo.';
+
+$aps_filler_texts['s'][4] = 'Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Fusce neque. Pellentesque posuere. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus.';
+
+$aps_filler_texts['s'][5] = 'In hac habitasse platea dictumst. Morbi ac felis. Mauris sollicitudin fermentum libero. Donec id justo. Fusce vulputate eleifend sapien.';
 
 
 // ############################################################################

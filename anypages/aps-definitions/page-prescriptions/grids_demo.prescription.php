@@ -17,7 +17,7 @@ $demos = [];
 // ----------------------------------------------------------------------------
 // Sample grids.
 
-$text = apputils_import_file_content(
+$text = $apsHelper->import_file_content(
   APS_CONTENTS . '/arbitrary/sample-grid-layouts.php'
 );
 $component_args = [
@@ -29,7 +29,7 @@ $demos[] = $apsHelper->render_components_demo_item($component_args);
 // ----------------------------------------------------------------------------
 // On-demand grids.
 
-$text = apputils_import_file_content(
+$text = $apsHelper->import_file_content(
   APS_CONTENTS . '/arbitrary/on-demand-grids-and-flexboxes.php'
 );
 

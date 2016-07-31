@@ -225,5 +225,27 @@ class ApsHelper {
   public function render_component_demos($demos) {
     return $this->render('meta-component-demos', ['demos' => implode(PHP_EOL, $demos)]);
   }
-}
 
+  // ##########################################################################
+  // Utilities.
+
+  public function import_file_content($file, $process = 'php') {
+    if (!file_exists($file)) {
+      // TODO: error handling.
+      return FALSE;
+    }
+
+    // Exposing the apsHelper's features inside the imported file.
+    $apsHelper = $this;
+
+    if ($process == 'php') {
+      ob_start();
+      include($file);
+      return ob_get_clean();
+    }
+    else {
+      // TODO: message about not understanding instructions.
+      return FALSE;
+    }
+  }
+}

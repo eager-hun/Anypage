@@ -17,7 +17,7 @@ $demos = [];
 // ----------------------------------------------------------------------------
 // Layout 2 sidebars.
 
-$text = apputils_import_file_content(
+$text = $apsHelper->import_file_content(
   APS_CONTENTS . '/arbitrary/layout-2-sidebars.php'
 );
 

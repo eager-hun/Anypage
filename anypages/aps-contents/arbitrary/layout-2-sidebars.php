@@ -1,6 +1,12 @@
 <?php
 use \Michelf\Markdown;
+
+$demo_box_for_main_content = $apsHelper->render('box', ['box_content' => 'Main']);
+$demo_box_for_sidebar_1 = $apsHelper->render('box', ['box_content' => 'Sidebar 1']);
+$demo_box_for_sidebar_2 = $apsHelper->render('box', ['box_content' => 'Sidebar 2']);
+
 ?>
+
 
 <div class="grid-demos l-2sb-demo">
 
@@ -47,15 +53,16 @@ echo Markdown::defaultTransform($text);
   - the one present sidebar is sidebar 1.
   -->
   <div class="row layout--2sb content-in-mid has-1-sb sb-1">
-
     <div class="column column--main">
-      <div class="box"><div class="box__content">Main</div></div>
-    </div>
 
+      <?php echo $demo_box_for_main_content; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--1">
-      <div class="box"><div class="box__content">Sidebar 1</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_1; ?>
+
+    </div>
   </div>
 
 
@@ -72,15 +79,16 @@ echo Markdown::defaultTransform($text);
   - the one present sidebar is sidebar 2.
   -->
   <div class="row layout--2sb content-in-mid has-1-sb sb-2">
-
     <div class="column column--main">
-      <div class="box"><div class="box__content">Main</div></div>
-    </div>
 
+      <?php echo $demo_box_for_main_content; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--2">
-      <div class="box"><div class="box__content">Sidebar 2</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_2; ?>
+
+    </div>
   </div>
 
 
@@ -96,19 +104,21 @@ echo Markdown::defaultTransform($text);
   - currently both sidebars are present.
   -->
   <div class="row layout--2sb content-in-mid has-2-sb">
-
     <div class="column column--main">
-      <div class="box"><div class="box__content">Main</div></div>
-    </div>
 
+      <?php echo $demo_box_for_main_content; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--1">
-      <div class="box"><div class="box__content">Sidebar 1</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_1; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--2">
-      <div class="box"><div class="box__content">Sidebar 2</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_2; ?>
+
+    </div>
   </div>
 
 
@@ -133,15 +143,16 @@ echo Markdown::defaultTransform($text);
   <p><code>.layout--2sb.content-on-left.has-1-sb</code></p>
 
   <div class="row layout--2sb content-on-left has-1-sb">
-
     <div class="column column--main">
-      <div class="box"><div class="box__content">Main</div></div>
-    </div>
 
+      <?php echo $demo_box_for_main_content; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--1">
-      <div class="box"><div class="box__content">Sidebar 1</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_1; ?>
+
+    </div>
   </div>
 
 
@@ -151,15 +162,16 @@ echo Markdown::defaultTransform($text);
   <p><code>.layout--2sb.content-on-left.has-1-sb</code></p>
 
   <div class="row layout--2sb content-on-left has-1-sb">
-
     <div class="column column--main">
-      <div class="box"><div class="box__content">Main</div></div>
-    </div>
 
+      <?php echo $demo_box_for_main_content; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--2">
-      <div class="box"><div class="box__content">Sidebar 2</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_2; ?>
+
+    </div>
   </div>
 
 
@@ -169,19 +181,21 @@ echo Markdown::defaultTransform($text);
   <p><code>.layout--2sb.content-on-left.has-2-sb</code></p>
 
   <div class="row layout--2sb content-on-left has-2-sb">
-
     <div class="column column--main">
-      <div class="box"><div class="box__content">Main</div></div>
-    </div>
 
+      <?php echo $demo_box_for_main_content; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--1">
-      <div class="box"><div class="box__content">Sidebar 1</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_1; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--2">
-      <div class="box"><div class="box__content">Sidebar 2</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_2; ?>
+
+    </div>
   </div>
 
 
@@ -207,15 +221,16 @@ echo Markdown::defaultTransform($text);
   <p><code>.layout--2sb.content-on-right.has-1-sb</code></p>
 
   <div class="row layout--2sb content-on-right has-1-sb">
-
     <div class="column column--main">
-      <div class="box"><div class="box__content">Main</div></div>
-    </div>
 
+      <?php echo $demo_box_for_main_content; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--1">
-      <div class="box"><div class="box__content">Sidebar 1</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_1; ?>
+
+    </div>
   </div>
 
 
@@ -225,15 +240,16 @@ echo Markdown::defaultTransform($text);
   <p><code>.layout--2sb.content-on-right.has-1-sb</code></p>
 
   <div class="row layout--2sb content-on-right has-1-sb">
-
     <div class="column column--main">
-      <div class="box"><div class="box__content">Main</div></div>
-    </div>
 
+      <?php echo $demo_box_for_main_content; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--2">
-      <div class="box"><div class="box__content">Sidebar 2</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_2; ?>
+
+    </div>
   </div>
 
 
@@ -246,19 +262,21 @@ echo Markdown::defaultTransform($text);
   arrangements, it's for fitting this demo example better into the
   accordion. -->
   <div class="row layout--2sb content-on-right has-2-sb natural-fit">
-
     <div class="column column--main">
-      <div class="box"><div class="box__content">Main</div></div>
-    </div>
 
+      <?php echo $demo_box_for_main_content; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--1">
-      <div class="box"><div class="box__content">Sidebar 1</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_1; ?>
+
+    </div>
     <div class="column column--sidebar column--sb--2">
-      <div class="box"><div class="box__content">Sidebar 2</div></div>
-    </div>
 
+      <?php echo $demo_box_for_sidebar_2; ?>
+
+    </div>
   </div>
 
 

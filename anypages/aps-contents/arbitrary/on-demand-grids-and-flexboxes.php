@@ -21,50 +21,31 @@ echo Markdown::defaultTransform($text);
   <h2 class="h4">3 column on-demand grid.</h2>
 
   <div class="row row--wrap row--wrap--3">
-
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Lorem ipsum.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 1)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Per inceptos hymenaeos. Donec elit libero, sodales nec, volutpat
-            a, suscipit non, turpis. Aenean vulputate eleifend tellus.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 1)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Class aptent taciti sociosqu ad litora torquent per conubia
-            nostra.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          Fusce neque.
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 3)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Natoque penatibus et magnis dis parturient montes, nascetur
-            ridiculus mus.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 3)]);?>
+
+    </div>
   </div><!-- /.row -->
 
 
@@ -73,66 +54,41 @@ echo Markdown::defaultTransform($text);
   <h2 class="h4">4 column on-demand grid.</h2>
 
   <div class="row row--wrap row--wrap--4">
-
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Lorem ipsum.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 1)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Per inceptos hymenaeos. Donec elit libero, sodales nec, volutpat
-            a, suscipit non, turpis. Aenean vulputate eleifend tellus.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 1)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Class aptent taciti sociosqu ad litora torquent per conubia
-            nostra.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          Fusce neque.
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 3)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Natoque penatibus et magnis dis parturient montes, nascetur
-            ridiculus mus.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 4)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Lorem ipsum.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 2)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Per inceptos hymenaeos. Donec elit libero, sodales nec.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 1)]);?>
+
+    </div>
   </div><!-- /.row -->
 
 
@@ -151,69 +107,52 @@ EOT;
 echo Markdown::defaultTransform($text);
 ?>
 
+<?php
+$boxes_with_images = [];
+
+$boxes_with_images[1] = '<img src="' . apputils_path_to_theme() . 'static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel.">'
+                      . $apsHelper->add_filler_text('xs', 1);
+
+$boxes_with_images[2] = $apsHelper->add_filler_text('xs', 2)
+                      . '<img src="' . apputils_path_to_theme() . 'static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel.">';
+?>
+
   <div class="row row--wrap row--flexbox--wide row--wrap--4 natural-fit">
-
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-        <img src="<?php apputils_print_path_to_theme(); ?>static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel close-up, for image demo purpose.">
-          <p>Lorem ipsum.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $boxes_with_images[1]]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Per inceptos hymenaeos. Donec elit libero, sodales nec, volutpat
-            a, suscipit non, turpis. Aenean vulputate eleifend tellus.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 3)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Class aptent taciti sociosqu ad litora torquent per conubia
-            nostra.</p>
-          <img src="<?php apputils_print_path_to_theme(); ?>static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel close-up, for image demo purpose.">
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $boxes_with_images[2]]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          Fusce neque.
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 1)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Natoque penatibus et magnis dis parturient montes, nascetur
-            ridiculus mus.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 2)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Lorem ipsum.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 4)]);?>
+
+    </div>
     <div class="column">
-      <div class="box">
-        <div class="box__content">
-          <p>Per inceptos hymenaeos. Donec elit libero, sodales nec.</p>
-        </div>
-      </div>
-    </div>
 
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
+
+    </div>
   </div><!-- /.row -->
 
 </div>

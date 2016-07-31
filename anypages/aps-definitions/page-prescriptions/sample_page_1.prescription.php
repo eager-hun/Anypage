@@ -5,6 +5,7 @@ use \Michelf\Markdown;
 echo $apsHelper->page_level_start();
 echo $apsHelper->container_start();
 
+
 // ############################################################################
 // Main column content.
 
@@ -34,7 +35,7 @@ $main_col .= $accordion;
 // ############################################################################
 // Sidebar boxes.
 
-$sample_dropdowns = apputils_import_file_content(
+$sample_dropdowns = $apsHelper->import_file_content(
   APS_CONTENTS . '/arbitrary/sample-dropdowns.php'
 );
 
