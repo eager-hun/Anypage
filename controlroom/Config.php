@@ -116,13 +116,14 @@ class Config {
       'app1'   => 'app-assets/anypage-app.js',
       'theme1' => 'build/js/libs.js',
       'theme2' => 'build/js/foundation.js',
-      'theme3' => 'build/js/custom.js',
+      'theme3' => 'build/js/styleguide.js',
+      'theme4' => 'build/js/custom.js',
     ],
   ];
 
   /**
    * Where window.apSettings and window.apAssets js objects should be printed.
-   * 
+   *
    * Valid values are 'head' or 'body'.
    */
   private $addJsSettingsObjectTo = 'body';
