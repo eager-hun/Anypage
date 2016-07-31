@@ -17,7 +17,7 @@ class ContentProvider {
 
   public function renderContent($page_id) {
     if ($page_id == 'app_404') {
-      $output = 'Not found.';
+      $output = '<h1>404</h1><p>This content was not found.</p>';
     }
     else {
       if ($this->processInfo->get('task_type') == 'generator-ui') {
@@ -46,11 +46,11 @@ class ContentProvider {
     }
 
     if (empty($this->apsSetup->get('pages')[$page_id]['has_own_layout'])) {
-      $output = $apsHelper->page_level_start()
-        . $apsHelper->container_start()
+      $output = $this->apsHelper->page_level_start()
+        . $this->apsHelper->container_start()
         . $output
-        . $apsHelper->container_end()
-        . $apsHelper->page_level_end();
+        . $this->apsHelper->container_end()
+        . $this->apsHelper->page_level_end();
     }
 
     return $output;
