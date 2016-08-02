@@ -134,7 +134,7 @@
 
   <p>Practical(-ish) example where we position boxes progressively next to each other, as growing width allows.</p>
 
-  <div class="row natural-fit">
+  <div class="row">
     <div class="column narrow-l-6 wide-m-4">
 
       <?php echo $apsHelper->render('box', ['box_content' => 'Box 1']);?>

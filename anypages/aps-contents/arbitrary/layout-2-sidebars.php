@@ -258,10 +258,7 @@ echo Markdown::defaultTransform($text);
 
   <p><code>.layout--2sb.content-on-right.has-2-sb</code></p>
 
-  <!-- NOTE: the .natural-fit class here is not related to the column
-  arrangements, it's for fitting this demo example better into the
-  accordion. -->
-  <div class="row layout--2sb content-on-right has-2-sb natural-fit">
+  <div class="row layout--2sb content-on-right has-2-sb">
     <div class="column column--main">
 
       <?php echo $demo_box_for_main_content; ?>

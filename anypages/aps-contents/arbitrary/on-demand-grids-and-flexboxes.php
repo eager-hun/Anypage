@@ -76,12 +76,12 @@ echo Markdown::defaultTransform($text);
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 4)]);?>
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 4)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 2)]);?>
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
 
     </div>
     <div class="column">
@@ -113,11 +113,11 @@ $boxes_with_images = [];
 $boxes_with_images[1] = '<img src="' . apputils_path_to_theme() . 'static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel.">'
                       . $apsHelper->add_filler_text('xs', 1);
 
-$boxes_with_images[2] = $apsHelper->add_filler_text('xs', 2)
+$boxes_with_images[2] = $apsHelper->add_filler_text('s', 2)
                       . '<img src="' . apputils_path_to_theme() . 'static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel.">';
 ?>
 
-  <div class="row row--wrap row--flexbox--wide row--wrap--4 natural-fit">
+  <div class="row row--wrap row--flexbox--wide row--wrap--4">
     <div class="column">
 
       <?php echo $apsHelper->render('box', ['box_content' => $boxes_with_images[1]]);?>
@@ -125,12 +125,12 @@ $boxes_with_images[2] = $apsHelper->add_filler_text('xs', 2)
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 3)]);?>
+      <?php echo $apsHelper->render('box', ['box_content' => $boxes_with_images[2]]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $boxes_with_images[2]]);?>
+      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 3)]);?>
 
     </div>
     <div class="column">

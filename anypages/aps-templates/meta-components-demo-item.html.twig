@@ -1,4 +1,4 @@
-<div class="x-cd-item">
+<div class="x-cd-item {{ wrapper_extra_classes }}">
   <div class="container">
 
     {% if title %}
@@ -7,28 +7,27 @@
       </h2>
     {% endif %}
 
-    {% if description %}
-      <div class="x-cd-item__description">
-        {{ description }}
-      </div>
-    {% endif %}
-
     {% if content %}
-      {% if content_label %}
-        <span class="x-cd-item__label">
-          {{ content_label }}
-        </span>
-      {% endif %}
-
       <div class="x-cd-item__content">
         {{ content }}
       </div>
     {% endif %}
 
+    {% if description %}
+      <div class="x-cd-item__description">
+        <span class="element__label">Description:</span>
+        <div class="element__content">
+          {{ description }}
+        </div>
+      </div>
+    {% endif %}
+
     {% if code %}
-      <span class="x-cd-item__label">Code:</span>
       <div class="x-cd-item__code">
-        {{ code }}
+        <span class="element__label">Code:</span>
+        <div class="element__content">
+          {{ code }}
+        </div>
       </div>
     {% endif %}
 

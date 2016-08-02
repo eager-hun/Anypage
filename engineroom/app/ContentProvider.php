@@ -17,7 +17,7 @@ class ContentProvider {
 
   public function renderContent($page_id) {
     if ($page_id == 'app_404') {
-      $output = '<h1>404</h1><p>This content was not found.</p>';
+      $output = '<h1 class="page__title">404</h1><p>This content was not found.</p>';
     }
     else {
       if ($this->processInfo->get('task_type') == 'generator-ui') {

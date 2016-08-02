@@ -3,10 +3,10 @@
 use \Michelf\Markdown;
 
 echo $apsHelper->page_level_start();
-
 echo $apsHelper->container_start();
 echo $apsHelper->render_page_title('Layouts demo');
 echo $apsHelper->container_end();
+echo $apsHelper->page_level_end();
 
 
 // ############################################################################
@@ -32,6 +32,3 @@ $demos[] = $apsHelper->render_components_demo_item($component_args);
 // Printing demo items.
 
 echo $apsHelper->render_component_demos($demos);
-
-echo $apsHelper->page_level_end();
-

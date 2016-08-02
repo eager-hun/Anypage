@@ -185,9 +185,8 @@ class ApsHelper {
         'code' => $view_code,
       ];
 
-      $content_label = 'Rendered sample:';
-      $content       = $this->render($template_name, $arguments['component_variables'], $is_twig);
-      $code          = $this->render('meta-cd-item-view-code', $variables_for_code_template);
+      $content = $this->render($template_name, $arguments['component_variables'], $is_twig);
+      $code    = $this->render('meta-cd-item-view-code', $variables_for_code_template);
     }
     // Elseif a content was directly provided, we present that.
     elseif (array_key_exists('direct_content', $arguments)) {
@@ -208,12 +207,16 @@ class ApsHelper {
     }
 
     $variables_for_presentation = [
-      'title'         => $arguments['title'],
-      'description'   => $description,
-      'code'          => $code,
-      'content_label' => $content_label,
-      'content'       => $content,
+      'wrapper_extra_classes' => '',
+      'title'                 => $arguments['title'],
+      'description'           => $description,
+      'code'                  => $code,
+      'content'               => $content,
     ];
+
+    if (!empty($template_name)) {
+      $variables_for_presentation['wrapper_extra_classes'] .= ' cd-item-content-extra-room';
+    }
 
     // Render the 'sg-item' template, that is one of the app's own templates.
     return $this->render('meta-components-demo-item', $variables_for_presentation);
