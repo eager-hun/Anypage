@@ -1,5 +1,5 @@
 
-<div class="grid-demos">
+<div class="appmeta__grid-demos">
 
   <p>These items start out as 100% wide, then as the screen grows, they go 50% wide, then 100% wide again, then 50% wide again.</p>
 

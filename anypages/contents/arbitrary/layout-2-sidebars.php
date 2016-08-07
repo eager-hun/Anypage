@@ -8,7 +8,7 @@ $demo_box_for_sidebar_2    = $apsHelper->render('components/box', ['box_content'
 ?>
 
 
-<div class="grid-demos l-2sb-demo">
+<div class="appmeta__grid-demos l-2sb-demo">
 
 <?php
 $text = <<<EOT

@@ -3,7 +3,7 @@ use \Michelf\Markdown;
 ?>
 
 
-<div class="grid-demos">
+<div class="appmeta__grid-demos">
 
 <?php
 $text = <<<EOT
