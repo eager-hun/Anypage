@@ -13,10 +13,9 @@ DEFINE('ENGINEROOM',      SCRIPT_ROOT . '/engineroom');
 DEFINE('APP_SCRIPTS',     ENGINEROOM . '/app');
 
 DEFINE('APS',             SCRIPT_ROOT . '/anypages');
-DEFINE('APS_TEMPLATES',   APS . '/aps-templates');
-DEFINE('APS_CONTENTS',    APS . '/aps-contents');
-DEFINE('APS_ASSETS',      APS . '/aps-assets');
-DEFINE('APS_DEFINITIONS', APS . '/aps-definitions');
+DEFINE('APS_TEMPLATES',   APS . '/templates');
+DEFINE('APS_CONTENTS',    APS . '/contents');
+DEFINE('APS_DEFINITIONS', APS . '/definitions');
 
 
 // ############################################################################
