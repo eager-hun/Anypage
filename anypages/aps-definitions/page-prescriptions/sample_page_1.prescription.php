@@ -27,7 +27,7 @@ $accordion_args = [
   ],
 ];
 
-$accordion = $apsHelper->render('accordion', $accordion_args);
+$accordion = $apsHelper->render('components/accordion', $accordion_args);
 
 $main_col .= $accordion;
 
@@ -45,14 +45,14 @@ $box_1_args = [
   'box_content'           => $apsHelper->add_filler_text('xs', 1)
                           . $sample_dropdowns,
 ];
-$box_1 = $apsHelper->render('box', $box_1_args);
+$box_1 = $apsHelper->render('components/box', $box_1_args);
 
 $box_2_args = [
   //'wrapper_extra_classes' => 'box--simple',
   'box_title'             => 'Sample box two with a bit longer title',
   'box_content'           => $apsHelper->add_filler_text('xs', 2),
 ];
-$box_2 = $apsHelper->render('box', $box_2_args);
+$box_2 = $apsHelper->render('components/box', $box_2_args);
 
 
 // ############################################################################
@@ -63,7 +63,7 @@ $layout_2sb_args = [
   'main_content'          => $main_col,
   'sidebar_1'             => $box_1 . $box_2,
 ];
-echo $apsHelper->render('meta-layout-2sb', $layout_2sb_args);
+echo $apsHelper->render('layouts/layout-2sb', $layout_2sb_args);
 
 echo $apsHelper->container_end();
 echo $apsHelper->page_level_end();

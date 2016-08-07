@@ -29,7 +29,12 @@ class ApsHelper {
     else {
       $extension = $this->config->get('templating')['php_template_extension'];
     }
-    return $src . '/' . $template_name . $extension;
+
+    if (empty($extension)) {
+      $extension = '.html';
+    }
+
+    return str_replace('..', '', $src . '/' . $template_name . $extension);
   }
 
   public function render($template_name, $variables, $is_twig = TRUE) {
@@ -163,6 +168,8 @@ class ApsHelper {
    *   string direct_content:
    *     Directly defined content, for cases when template_name was not passed
    *     in.
+   * @return string
+   *   Component demo item's rendered HTML.
    */
   public function render_components_demo_item($arguments, $is_twig = TRUE) {
 
@@ -186,7 +193,7 @@ class ApsHelper {
       ];
 
       $content = $this->render($template_name, $arguments['component_variables'], $is_twig);
-      $code    = $this->render('meta-cd-item-view-code', $variables_for_code_template);
+      $code    = $this->render('app-meta/components-demo-item-view-code', $variables_for_code_template);
     }
     // Elseif a content was directly provided, we present that.
     elseif (array_key_exists('direct_content', $arguments)) {
@@ -218,15 +225,14 @@ class ApsHelper {
       $variables_for_presentation['wrapper_extra_classes'] .= ' cd-item-content-extra-room';
     }
 
-    // Render the 'sg-item' template, that is one of the app's own templates.
-    return $this->render('meta-components-demo-item', $variables_for_presentation);
+    return $this->render('app-meta/components-demo-item', $variables_for_presentation);
   }
 
   // --------------------------------------------------------------------------
   // Shortcut to print an array of component demo items.
 
   public function render_component_demos($demos) {
-    return $this->render('meta-component-demos', ['demos' => implode(PHP_EOL, $demos)]);
+    return $this->render('app-meta/component-demos', ['demos' => implode(PHP_EOL, $demos)]);
   }
 
   // ##########################################################################

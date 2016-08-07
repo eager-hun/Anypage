@@ -1,9 +1,9 @@
 <?php
 use \Michelf\Markdown;
 
-$demo_box_for_main_content = $apsHelper->render('box', ['box_content' => 'Main']);
-$demo_box_for_sidebar_1 = $apsHelper->render('box', ['box_content' => 'Sidebar 1']);
-$demo_box_for_sidebar_2 = $apsHelper->render('box', ['box_content' => 'Sidebar 2']);
+$demo_box_for_main_content = $apsHelper->render('components/box', ['box_content' => 'Main']);
+$demo_box_for_sidebar_1    = $apsHelper->render('components/box', ['box_content' => 'Sidebar 1']);
+$demo_box_for_sidebar_2    = $apsHelper->render('components/box', ['box_content' => 'Sidebar 2']);
 
 ?>
 

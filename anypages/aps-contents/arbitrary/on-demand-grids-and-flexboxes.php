@@ -23,27 +23,27 @@ echo Markdown::defaultTransform($text);
   <div class="row row--wrap row--wrap--3">
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 1)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('xs', 1)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 1)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('s', 1)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 3)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('xs', 3)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 3)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('s', 3)]);?>
 
     </div>
   </div><!-- /.row -->
@@ -56,37 +56,37 @@ echo Markdown::defaultTransform($text);
   <div class="row row--wrap row--wrap--4">
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 1)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('xs', 1)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 1)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('s', 1)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 3)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('xs', 3)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 4)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('s', 4)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 1)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('xs', 1)]);?>
 
     </div>
   </div><!-- /.row -->
@@ -120,37 +120,37 @@ $boxes_with_images[2] = $apsHelper->add_filler_text('s', 2)
   <div class="row row--wrap row--flexbox--wide row--wrap--4">
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $boxes_with_images[1]]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $boxes_with_images[1]]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $boxes_with_images[2]]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $boxes_with_images[2]]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 3)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('xs', 3)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 1)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('s', 1)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('s', 2)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('s', 2)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 4)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('xs', 4)]);?>
 
     </div>
     <div class="column">
 
-      <?php echo $apsHelper->render('box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => $apsHelper->add_filler_text('xs', 2)]);?>
 
     </div>
   </div><!-- /.row -->

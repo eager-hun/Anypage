@@ -6,12 +6,12 @@
   <div class="row">
     <div class="column narrow-l-6 wide-12 wide-m-6">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 1']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 1']);?>
 
     </div>
     <div class="column narrow-l-6 wide-12 wide-m-6">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 2']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 2']);?>
 
     </div>
   </div>
@@ -23,17 +23,17 @@
   <div class="row">
     <div class="column wide-6">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 1']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 1']);?>
 
     </div>
     <div class="column wide-6">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 2']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 2']);?>
 
     </div>
     <div class="column wide-6">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 3']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 3']);?>
 
     </div>
   </div>
@@ -43,17 +43,17 @@
   <div class="row">
     <div class="column wide-6">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 1']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 1']);?>
 
     </div>
     <div class="column wide-6">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 2']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 2']);?>
 
     </div>
     <div class="column wide-6 end">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 3']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 3']);?>
 
     </div>
   </div>
@@ -65,19 +65,19 @@
       <div class="row">
         <div class="column wide-6">
 
-          <?php echo $apsHelper->render('box', ['box_content' => 'Inner row, box 1']);?>
+          <?php echo $apsHelper->render('components/box', ['box_content' => 'Inner row, box 1']);?>
 
         </div>
         <div class="column wide-6">
 
-          <?php echo $apsHelper->render('box', ['box_content' => 'Inner row, box 2']);?>
+          <?php echo $apsHelper->render('components/box', ['box_content' => 'Inner row, box 2']);?>
 
         </div>
       </div>
     </div>
     <div class="column wide-3">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Outer row, box 1']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Outer row, box 1']);?>
 
     </div>
   </div>
@@ -90,24 +90,24 @@
       <div class="row">
         <div class="column wide-6">
 
-          <?php echo $apsHelper->render('box', ['box_content' => 'Inner row, box 1']);?>
+          <?php echo $apsHelper->render('components/box', ['box_content' => 'Inner row, box 1']);?>
 
         </div>
         <div class="column wide-6">
           <div class="row">
             <div class="column wide-m-6">
 
-              <?php echo $apsHelper->render('box', ['box_content' => 'Innermost row, box 1']);?>
+              <?php echo $apsHelper->render('components/box', ['box_content' => 'Innermost row, box 1']);?>
 
             </div>
             <div class="column wide-m-6">
 
-              <?php echo $apsHelper->render('box', ['box_content' => 'Innermost row, box 2']);?>
+              <?php echo $apsHelper->render('components/box', ['box_content' => 'Innermost row, box 2']);?>
 
             </div>
             <div class="column wide-m-6 end">
 
-              <?php echo $apsHelper->render('box', ['box_content' => 'Innermost row, box 3']);?>
+              <?php echo $apsHelper->render('components/box', ['box_content' => 'Innermost row, box 3']);?>
 
             </div>
           </div>
@@ -116,7 +116,7 @@
     </div>
     <div class="column wide-3">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Outer row, box 1']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Outer row, box 1']);?>
 
     </div>
   </div>
@@ -127,7 +127,7 @@
   <div class="row">
     <div class="column wide-4 wide-centered wide-m-10">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 1']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 1']);?>
 
     </div>
   </div>
@@ -137,17 +137,17 @@
   <div class="row">
     <div class="column narrow-l-6 wide-m-4">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 1']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 1']);?>
 
     </div>
     <div class="column narrow-l-6 wide-m-4">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 2']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 2']);?>
 
     </div>
     <div class="column wide-m-4">
 
-      <?php echo $apsHelper->render('box', ['box_content' => 'Box 3']);?>
+      <?php echo $apsHelper->render('components/box', ['box_content' => 'Box 3']);?>
 
     </div>
   </div>

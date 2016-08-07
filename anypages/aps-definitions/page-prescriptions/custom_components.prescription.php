@@ -25,7 +25,7 @@ EOT;
 $component_args = [
   'title'               => 'Sample dummy component 1',
   'description'         => Markdown::defaultTransform($desc_raw),
-  'template_name'       => 'sample-dummy-component-1',
+  'template_name'       => 'components/sample-dummy-component-1',
   'component_variables' => [
     'top'    => 'Content in the top slot of this layout.',
     'bottom' => 'Content in the bottom slot of this layout.',
@@ -43,7 +43,7 @@ EOT;
 $component_args = [
   'title'               => 'Sample dummy component 2',
   'description'         => Markdown::defaultTransform($desc_raw),
-  'template_name'       => 'sample-dummy-component-2',
+  'template_name'       => 'components/sample-dummy-component-2',
   'component_variables' => [
     'left'  => 'Left content.',
     'right' => 'Right content.',
