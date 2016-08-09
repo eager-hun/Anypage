@@ -17,6 +17,7 @@ class ApsHelper {
     $this->filler_texts = $aps_filler_texts;
   }
 
+
   // ##########################################################################
   // TEMPLATING.
 
@@ -37,6 +38,24 @@ class ApsHelper {
     return str_replace('..', '', $src . '/' . $template_name . $extension);
   }
 
+  /**
+   * Renders Twig or php templates.
+   *
+   * @param string $template_name
+   *   Should be the template filename base, without the extension. If the
+   *   template file is organized into a subdirectory, then the directory name
+   *   should also be part of the string, e.g.:
+   *   'subdir_name/template_filename_without_extension'.
+   * @param array $variables
+   *   Array keys should match the variable names being printed in the
+   *   corresponding template.
+   * @param bool|TRUE $is_twig
+   *   The implied default template format and processing is Twig.
+   *   Setting this to false will activate the secondary templating procedure
+   *   that is using php templates.
+   * @return string
+   *   Rendered component.
+   */
   public function render($template_name, $variables, $is_twig = TRUE) {
     if (!empty($is_twig)) {
       try {
@@ -63,6 +82,18 @@ class ApsHelper {
     return $output;
   }
 
+  /**
+   * A convenient source of prepared, static, non-changing Lorem ipsum.
+   *
+   * The texts are coming from anypages/contents/reusable/filler-texts.php
+   *
+   * @param string $group
+   *   See arrays' keys in filler-texts.php.
+   * @param integer $instance
+   *   See arrays' keys in filler-texts.php.
+   * @return string
+   *   Markdown-processed lorem ipsum.
+   */
   public function add_filler_text($group, $instance) {
     $text = $this->filler_texts[$group][$instance];
     return Markdown::defaultTransform($text);
