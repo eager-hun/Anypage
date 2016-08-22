@@ -8,10 +8,31 @@ echo $apsHelper->render_page_title('Custom components');
 echo $apsHelper->container_end();
 echo $apsHelper->page_level_end();
 
+
 // ############################################################################
 // Demo item definitions.
 
 $demos = [];
+
+
+// ----------------------------------------------------------------------------
+// Component: "Hero mosaic".
+
+$component_args = [
+  'title'               => 'Hero mosaic',
+  'template_name'       => 'components/hero-mosaic',
+  'component_variables' => [
+    'wrapper_extra_classes' => '',
+    'major' => $apsHelper->render('components/box', ['box_content' => '<p>Major</p>' . $apsHelper->add_filler_text('xs', 1)]),
+    'minor' => [
+      $apsHelper->render('components/box', ['box_content' => '<p>Minor 1</p>' . $apsHelper->add_filler_text('xs', 1)]),
+      $apsHelper->render('components/box', ['box_content' => '<p>Minor 2</p>']),
+      $apsHelper->render('components/box', ['box_content' => '<p>Minor 3</p>' . $apsHelper->add_filler_text('xs', 3)]),
+      $apsHelper->render('components/box', ['box_content' => '<p>Minor 4</p>' . $apsHelper->add_filler_text('xs', 4)]),
+    ],
+  ],
+];
+$demos[] = $apsHelper->render_components_demo_item($component_args);
 
 // ----------------------------------------------------------------------------
 // Demonstrate a dummy component with a twig template.
