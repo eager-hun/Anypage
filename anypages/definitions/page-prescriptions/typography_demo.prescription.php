@@ -18,7 +18,8 @@ $demos = [];
 // Demonstrate typography on basic texts.
 
 $text = $apsHelper->import_file_content(
-  APS_CONTENTS . '/arbitrary/sample-texts.php'
+  APS_CONTENTS . '/arbitrary/sample-texts.php', 
+  'php'
 );
 $component_args = [
   'title'          => 'Texts for checking typography',
@@ -31,7 +32,8 @@ $demos[] = $apsHelper->render_components_demo_item($component_args);
 // Demonstrate typography on lists.
 
 $text = $apsHelper->import_file_content(
-  APS_CONTENTS . '/arbitrary/sample-lists.php'
+  APS_CONTENTS . '/arbitrary/sample-lists.php',
+  'php'
 );
 $component_args = [
   'title'          => 'Lists for checking typography',

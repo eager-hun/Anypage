@@ -269,23 +269,28 @@ class ApsHelper {
   // ##########################################################################
   // Utilities.
 
-  public function import_file_content($file, $process = 'php') {
+  public function import_file_content($file, $process) {
     if (!file_exists($file)) {
       // TODO: error handling.
-      return FALSE;
+      return 'ERROR in import_file_content(): specified file does not exist.';
     }
 
-    // Exposing the apsHelper's features inside the imported file.
-    $apsHelper = $this;
-
     if ($process == 'php') {
+      // Exposing the apsHelper's features inside the imported file.
+      $apsHelper = $this;
+
       ob_start();
       include($file);
       return ob_get_clean();
     }
+    elseif ($process == 'md') {
+      $text = file_get_contents($file);
+      return Markdown::defaultTransform($text);
+    }
     else {
-      // TODO: message about not understanding instructions.
-      return FALSE;
+      // TODO: error handling.
+      return 'ERROR in import_file_content(): did not understand'
+        . 'processing instructions.';
     }
   }
 }

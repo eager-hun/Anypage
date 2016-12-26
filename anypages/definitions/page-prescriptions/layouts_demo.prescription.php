@@ -18,7 +18,8 @@ $demos = [];
 // Layout 2 sidebars.
 
 $text = $apsHelper->import_file_content(
-  APS_CONTENTS . '/arbitrary/layout-2-sidebars.php'
+  APS_CONTENTS . '/arbitrary/layout-2-sidebars.php',
+  'php'
 );
 
 $component_args = [

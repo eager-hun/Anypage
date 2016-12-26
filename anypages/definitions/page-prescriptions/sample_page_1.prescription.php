@@ -36,7 +36,8 @@ $main_col .= $accordion;
 // Sidebar boxes.
 
 $sample_dropdowns = $apsHelper->import_file_content(
-  APS_CONTENTS . '/arbitrary/sample-dropdowns.php'
+  APS_CONTENTS . '/arbitrary/sample-dropdowns.php',
+  'php'
 );
 
 $box_1_args = [
