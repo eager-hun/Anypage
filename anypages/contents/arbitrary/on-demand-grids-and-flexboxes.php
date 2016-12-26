@@ -110,11 +110,11 @@ echo Markdown::defaultTransform($text);
 <?php
 $boxes_with_images = [];
 
-$boxes_with_images[1] = '<img src="' . apputils_path_to_theme() . 'static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel.">'
+$boxes_with_images[1] = '<img src="' . apputils_path_to_theme() . 'static-assets/images/for-demo/photo-1-700.jpg" alt="Train wheel.">'
                       . $apsHelper->add_filler_text('xs', 1);
 
 $boxes_with_images[2] = $apsHelper->add_filler_text('s', 2)
-                      . '<img src="' . apputils_path_to_theme() . 'static-assets/styleguide-images/photo-1-700.jpg" alt="Train wheel.">';
+                      . '<img src="' . apputils_path_to_theme() . 'static-assets/images/for-demo/photo-1-700.jpg" alt="Train wheel.">';
 ?>
 
   <div class="row row--wrap row--flexbox--wide row--wrap--4">
