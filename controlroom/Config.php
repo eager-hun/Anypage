@@ -45,7 +45,7 @@ class Config {
   private $env = [
     'working_dir'        => 'anypage',
     'path_to_app_assets' => 'engineroom',
-    'path_to_theme'      => 'frontend-setup',
+    'path_to_theme'      => 'themes/theme-seed',
     'html_export_dir'    => 'styleguide',
     'http_protocol'      => 'http',
   ];
@@ -72,10 +72,8 @@ class Config {
    */
   private $stylesheets = [
     'app1'   => 'app-assets/anypage-app.css',
-    'theme1' => 'build/css/style-bundle-foundation.css',
-    'theme2' => 'build/css/style-bundle-custom.css',
-    'theme3' => 'build/css/style-bundle-styleguide.css',
-    'theme4' => 'static-assets/css/static.css',
+    'theme1' => 'build/css/master.css',
+    'theme2' => 'static-assets/css/static.css',
   ];
 
   /**
@@ -104,10 +102,6 @@ class Config {
     'head' => [],
     'body' => [
       'app1'   => 'app-assets/anypage-app.js',
-      'theme1' => 'build/js/libs.js',
-      'theme2' => 'build/js/foundation.js',
-      'theme3' => 'build/js/styleguide.js',
-      'theme4' => 'build/js/custom.js',
     ],
   ];
 
@@ -121,7 +115,7 @@ class Config {
   /**
    * String to use in the '?v=' URL param for .css and .js files.
    */
-  private $cache_bust_str = '20160618-1';
+  private $cache_bust_str = '20161226-1';
 
   /**
    * Templating.
