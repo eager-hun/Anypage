@@ -2,15 +2,11 @@
 
 class ApsSetup {
 
-  public function get($property) {
-    if (property_exists('ApsSetup', $property)) {
-      return $this->$property;
-    }
-    else {
-      // TODO: error handling.
-      echo 'No such property to get in ApsSetup.';
-    }
-  }
+  private $document_properties = [
+    'html_lang'  => 'en',
+    'head_title' => 'Theme demo',
+    'head_desc'  => 'Pages that demonstrate the features of this theme.',
+  ];
 
   /**
    * Page definitions.
@@ -86,5 +82,20 @@ class ApsSetup {
       'has_own_layout' => TRUE,
     ],
   ];
+
+  /**
+   * App infra: a "getter".
+   *
+   * A method for the app to access values from the above defined setup.
+   */
+  public function get($property) {
+    if (property_exists('ApsSetup', $property)) {
+      return $this->$property;
+    }
+    else {
+      // TODO: error handling.
+      echo 'No such property to get in ApsSetup.';
+    }
+  }
 }
 

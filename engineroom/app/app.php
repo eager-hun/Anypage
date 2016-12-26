@@ -78,6 +78,7 @@ $ContentProvider = new ContentProvider(
   $ApsHelper
 );
 $PageProvider    = new PageProvider (
+  $Config,
   $ApsSetup,
   $ProcessInfo,
   $ContentProvider,

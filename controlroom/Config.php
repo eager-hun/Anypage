@@ -2,16 +2,6 @@
 
 class Config {
 
-  public function get($property) {
-    if (property_exists('Config', $property)) {
-      return $this->$property;
-    }
-    else {
-      // TODO: error handling.
-      echo 'No such property to get in Config.';
-    }
-  }
-
   /**
    * Vars describing app internals.
    *
@@ -140,4 +130,25 @@ class Config {
     'twig_template_extension' => '.html.twig',
     'php_template_extension'  => '.template.php',
   ];
+
+  /**
+   * Development.
+   */
+  private $enable_livereload = false;
+
+  /**
+   * App infra: a "getter".
+   *
+   * A method for the app to access values from the above defined config.
+   */
+  public function get($property) {
+    if (property_exists('Config', $property)) {
+      return $this->$property;
+    }
+    else {
+      // TODO: error handling.
+      echo 'No such property to get in Config.';
+    }
+  }
 }
+
