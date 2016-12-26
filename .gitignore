@@ -1,14 +1,18 @@
 
+# IDEs:
+nbproject
+.idea
 
-# Libraries and packages and stuff.
-
+# LIBRARIES AND PACKAGES:
 **/libraries-backend/*
 !**/libraries-backend/.htaccess
 **/node_modules/
 
-# Themes being worked on - other than the "frontend-setup" 'theme', which is
-# made a submodule of this repo (therefore that one doesn't seem to need to be
-# gitignored).
+# GENERATED CONTENT:
+styleguide/*
+!styleguide/.htaccess
 
-**/theme-being-worked-on/
+# THEMES BEING WORKED ON:
+# (Other than "theme-seed", which is made a submodule of this repo.)
+themes/additional-theme
 
