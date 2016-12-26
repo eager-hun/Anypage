@@ -24,7 +24,6 @@ Further key features:
 - Twig- and/or php-based templating,
 - processing Markdown,
 - gulp script complete with processing and bundling frontend assets,
-- basic-level setup of Zurb Foundation web UI framework.
 
 
 ## Warnings
@@ -109,7 +108,7 @@ concept of "anypages".
 The places to change application-related config are:
 
     controlroom/Config.php
-    frontend-setup/gulpfile.js
+    themes/theme-seed/gulpfile.js
 
 and regarding the output of the website:
 
@@ -169,13 +168,25 @@ definition.
 
 ### Using livereload
 
-Livereload can either reload a .css or .js file in the browser window, or can
-reload the complete page, when it detects specified changes in the filetree.
+Livereload can either reload .css or .js files in the browser window, or can
+reload the complete page, when it detects specified changes (defined in
+`themes/theme-seed/gulpfile.js`) in the filetree.
 
 To enable:
 
-- edit `themes/theme-seed/gulpfile.js` and:
+- edit `themes/theme-seed/gulpfile.js` and
   - update your site instance's domain name at the `reloadPage` entry in the
     `livereload` key in `options` object.
-- set `enable_livereload` to true in `engineroom/Config.php`, 
+- set `enable_livereload` to true in `engineroom/Config.php`
+
+Then in cli:
+
+    cd themes/theme-seed
+    gulp
+
+Then visit the site in a browser.
+
+(Note: you will not need a browser plugin for livereload: the
+`enable_livereload` config item triggers the addition of a special `<script>`
+tag on pages that makes things work.)
 
