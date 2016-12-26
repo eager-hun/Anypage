@@ -68,40 +68,23 @@ If you manage to achieve the following path:
 
 then a large part of the default config will work out of the box.
 
-If your path differs, you might need to update config in the following places:
+If your path differs, you might need to update config and options entries in
+the following places:
 
     controlroom/Config.php
-    frontend-setup/gulpfile.js
+    themes/theme-seed/gulpfile.js
 
-The recursive cloning will also pull in the "frontend-setup" git submodule,
-which is - speaking in CMS-terms - comparable to a "theme".
+The recursive cloning will also pull in the "theme-seed" git submodule, which
+is - speaking in CMS-terms - comparable to a "theme".
 
     git clone --recursive https://github.com/eager-hun/anypage.git anypage
     cd anypage
     composer install
-    cd frontend-setup
+    cd themes/theme-seed
     npm install
-    bower install
+    gulp compile
 
-At this point, edit `./gulpfile.js`, and provide your local environment's domain
-name at the `options` section for `browsersync` `proxy`.
-
-Then you can run gulp:
-
-    gulp
-
-After this point the site should be ready to be viewed in a browser. (The
-browsersync gulp task will attempt to bring up the project automatically in
-your default browser.)
-
-
-### Adding Modernizr build
-
-The modernizr build is not part of any of these packages: some functionality
-will not be available until it is added.
-
-The `frontend-setup/source/libs-custom/modernizr-readme.txt` offers help on how
-it can be added.
+After this point the site should be ready to be viewed in a browser.
 
 
 ## Usage instructions
@@ -183,4 +166,16 @@ Template filename extensions can be defined/changed in `controlroom/Config.php`.
 Templates can be rendered using `$apsHelper->render()`, whereever the
 `$apsHelper` object is available. See inline documentation by the method
 definition.
+
+### Using livereload
+
+Livereload can either reload a .css or .js file in the browser window, or can
+reload the complete page, when it detects specified changes in the filetree.
+
+To enable:
+
+- edit `themes/theme-seed/gulpfile.js` and:
+  - update your site instance's domain name at the `reloadPage` entry in the
+    `livereload` key in `options` object.
+- set `enable_livereload` to true in `engineroom/Config.php`, 
 
