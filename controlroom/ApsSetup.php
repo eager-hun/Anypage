@@ -57,6 +57,12 @@ class ApsSetup {
       'menu_link_text' => 'Typography demo',
       'has_own_layout' => TRUE,
     ],
+    'grid_test' => [
+      'path'           => 'grid-test',
+      'html_filename'  => 'grid-test',
+      'menu_link_text' => 'Grid test',
+      'has_own_layout' => TRUE,
+    ],
     'grids_demo' => [
       'path'           => 'grids-demo',
       'html_filename'  => 'grids-demo',

@@ -72,8 +72,9 @@ class Config {
    */
   private $stylesheets = [
     'app1'   => 'app-assets/anypage-app.css',
-    'theme1' => 'build/css/master.css',
-    'theme2' => 'static-assets/css/static.css',
+    'theme1' => 'build/css/bundle-main.css',
+    'theme2' => 'build/css/bundle-styleguide-infra.css',
+    'theme3' => 'static-assets/css/static.css',
   ];
 
   /**
@@ -115,7 +116,7 @@ class Config {
   /**
    * String to use in the '?v=' URL param for .css and .js files.
    */
-  private $cache_bust_str = '20161226-1';
+  private $cache_bust_str = '20170101-1';
 
   /**
    * Templating.
@@ -126,9 +127,11 @@ class Config {
   ];
 
   /**
-   * Development.
+   * Development: livereload.
+   *
+   * Boolean, any truthy or falsy values will suffice.
    */
-  private $enable_livereload = false;
+  private $enable_livereload = 0;
 
   /**
    * App infra: a "getter".

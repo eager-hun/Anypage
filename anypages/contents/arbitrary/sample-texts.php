@@ -116,3 +116,14 @@ amet neque pretium, elementum ligula eu, maximus nisi.</p>
 <p>Integer nec tortor in erat semper tincidunt nec at nibh. Curabitur fermentum
 tellus nec dui sagittis semper. Nullam tristique aliquet odio. Integer sagittis
 purus turpis, in sodales lectus ullamcorper vitae.</p>
+
+<pre><code>This preformatted text seems to show not much fancy formatting.
+
+We must remember though to sample long lines of text here, so that we can see how this behaves on narrower screens.
+</code></pre>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in malesuada leo.
+Aenean elementum dictum mauris nec venenatis. Sed vehicula nunc at augue
+lacinia, vel cursus ligula interdum. Vivamus ut augue viverra, luctus leo a,
+mattis orci.</p>
+

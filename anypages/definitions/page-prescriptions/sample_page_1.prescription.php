@@ -35,23 +35,17 @@ $main_col .= $accordion;
 // ############################################################################
 // Sidebar boxes.
 
-$sample_dropdowns = $apsHelper->import_file_content(
-  APS_CONTENTS . '/arbitrary/sample-dropdowns.php',
-  'php'
-);
-
 $box_1_args = [
   'wrapper_extra_classes' => 'box--simple',
   'box_title'             => 'Sample box',
-  'box_content'           => $apsHelper->add_filler_text('xs', 1)
-                          . $sample_dropdowns,
+  'box_content'           => $apsHelper->add_filler_text('s', 1)
 ];
 $box_1 = $apsHelper->render('components/box', $box_1_args);
 
 $box_2_args = [
   //'wrapper_extra_classes' => 'box--simple',
   'box_title'             => 'Sample box two with a bit longer title',
-  'box_content'           => $apsHelper->add_filler_text('xs', 2),
+  'box_content'           => $apsHelper->add_filler_text('s', 2),
 ];
 $box_2 = $apsHelper->render('components/box', $box_2_args);
 

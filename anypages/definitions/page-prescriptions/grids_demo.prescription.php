@@ -14,22 +14,6 @@ echo $apsHelper->page_level_end();
 
 $demos = [];
 
-// ----------------------------------------------------------------------------
-// Sample grids.
-
-$text = $apsHelper->import_file_content(
-  APS_CONTENTS . '/arbitrary/sample-grid-layouts.php',
-  'php'
-);
-$component_args = [
-  'title'          => 'Grids based on generated sets of HTML classes',
-  'direct_content' => $text,
-];
-$demos[] = $apsHelper->render_components_demo_item($component_args);
-
-// ----------------------------------------------------------------------------
-// On-demand grids.
-
 $text = $apsHelper->import_file_content(
   APS_CONTENTS . '/arbitrary/on-demand-grids-and-flexboxes.php',
   'php'
@@ -46,3 +30,4 @@ $demos[] = $apsHelper->render_components_demo_item($component_args);
 // Printing demo items.
 
 echo $apsHelper->render_component_demos($demos);
+

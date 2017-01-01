@@ -126,7 +126,8 @@
 .app-menu a:visited,
 .app-menu a:focus,
 .app-menu a:active,
-.app-menu a:hover {
+.app-menu a:hover,
+.app-menu a:visited:hover {
   color: white;
 }
 .app-menu a:focus,
