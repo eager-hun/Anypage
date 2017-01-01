@@ -73,8 +73,8 @@ the following places:
     controlroom/Config.php
     themes/theme-seed/gulpfile.js
 
-The recursive cloning will also pull in the "theme-seed" git submodule, which
-is - speaking in CMS-terms - comparable to a "theme".
+The recursive cloning will also pull in the "[theme-seed][theme-seed-github]"
+git submodule, which is - speaking in CMS-terms - comparable to a "theme".
 
     git clone --recursive https://github.com/eager-hun/anypage.git anypage
     cd anypage
@@ -174,9 +174,9 @@ reload the complete page, when it detects specified changes (defined in
 
 To enable:
 
-- edit `themes/theme-seed/gulpfile.js` and
-  - update your site instance's domain name at the `reloadPage` entry in the
-    `livereload` key in `options` object.
+- <s>edit `themes/theme-seed/gulpfile.js` and</s>
+  - <s>update your site instance's domain name at the `reloadPage` entry in the
+    `livereload` key in `options` object.</s> (?)
 - set `enable_livereload` to true in `engineroom/Config.php`
 
 Then in cli:
@@ -189,4 +189,6 @@ Then visit the site in a browser.
 (Note: you will not need a browser plugin for livereload: the
 `enable_livereload` config item triggers the addition of a special `<script>`
 tag on pages that makes things work.)
+
+[theme-seed-github]: https://github.com/eager-hun/theme-seed
 
