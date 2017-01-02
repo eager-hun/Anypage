@@ -47,9 +47,9 @@ class ContentProvider {
 
     if (empty($this->apsSetup->get('pages')[$page_id]['has_own_layout'])) {
       $output = $this->apsHelper->page_level_start()
-        . $this->apsHelper->container_start()
+        . $this->apsHelper->page_level_content_start()
         . $output
-        . $this->apsHelper->container_end()
+        . $this->apsHelper->page_level_content_end()
         . $this->apsHelper->page_level_end();
     }
 

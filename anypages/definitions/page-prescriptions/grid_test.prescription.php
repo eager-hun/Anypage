@@ -3,7 +3,7 @@
 use \Michelf\Markdown;
 
 echo $apsHelper->page_level_start();
-echo $apsHelper->container_start();
+echo $apsHelper->page_level_content_start();
 echo $apsHelper->render_page_title('Grid test page');
 
 $description = <<<EOT
@@ -14,7 +14,7 @@ EOT;
 
 echo Markdown::defaultTransform($description);
 
-echo $apsHelper->container_end();
+echo $apsHelper->page_level_content_end();
 echo $apsHelper->page_level_end();
 
 

@@ -156,9 +156,9 @@ class ApsHelper {
   // --------------------------------------------------------------------------
   // Shortcuts to print a .container.
 
-  public function container_start($additional_classes = []) {
+  public function page_level_content_start($additional_classes = []) {
     $orig_classes = [
-      'container'
+      'page__level__content'
     ];
     if (!empty($additional_classes)) {
       $classes = array_merge($orig_classes, $additional_classes);
@@ -170,7 +170,7 @@ class ApsHelper {
     return '<div class="' . $prepped_classes . '">';
   }
 
-  public function container_end() {
+  public function page_level_content_end() {
     return '</div>';
   }
 
@@ -224,7 +224,7 @@ class ApsHelper {
       ];
 
       $content = $this->render($template_name, $arguments['component_variables'], $is_twig);
-      $code    = $this->render('app-meta/components-demo-item-view-code', $variables_for_code_template);
+      $code    = $this->render('app-infra/components-demo-item-view-code', $variables_for_code_template);
     }
     // Elseif a content was directly provided, we present that.
     elseif (array_key_exists('direct_content', $arguments)) {
@@ -256,14 +256,14 @@ class ApsHelper {
       $variables_for_presentation['wrapper_extra_classes'] .= ' cd-item-content-extra-room';
     }
 
-    return $this->render('app-meta/components-demo-item', $variables_for_presentation);
+    return $this->render('app-infra/components-demo-item', $variables_for_presentation);
   }
 
   // --------------------------------------------------------------------------
   // Shortcut to print an array of component demo items.
 
   public function render_component_demos($demos) {
-    return $this->render('app-meta/component-demos', ['demos' => implode(PHP_EOL, $demos)]);
+    return $this->render('app-infra/component-demos', ['demos' => implode(PHP_EOL, $demos)]);
   }
 
   // ##########################################################################

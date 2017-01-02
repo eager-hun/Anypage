@@ -1,20 +1,20 @@
-<div class="appmeta__cd-item {{ wrapper_extra_classes }}">
-  <div class="container">
+<div class="page__level app-infra__cd-item {{ wrapper_extra_classes }}">
+  <div class="page__level__content">
 
     {% if title %}
-      <h2 class="appmeta__cd-item__title">
+      <h2 class="app-infra__cd-item__title">
         {{ title }}
       </h2>
     {% endif %}
 
     {% if content %}
-      <div class="appmeta__cd-item__content">
+      <div class="app-infra__cd-item__content">
         {{ content }}
       </div>
     {% endif %}
 
     {% if description %}
-      <div class="appmeta__cd-item__description">
+      <div class="app-infra__cd-item__description">
         <span class="element__label">Description:</span>
         <div class="element__content">
           {{ description }}
@@ -23,7 +23,7 @@
     {% endif %}
 
     {% if code %}
-      <div class="appmeta__cd-item__code">
+      <div class="app-infra__cd-item__code">
         <span class="element__label">Code:</span>
         <div class="element__content">
           {{ code }}

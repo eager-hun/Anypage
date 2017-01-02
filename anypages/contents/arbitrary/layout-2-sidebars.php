@@ -8,7 +8,7 @@ $demo_box_for_sidebar_2    = $apsHelper->render('components/box', ['box_content'
 ?>
 
 
-<div class="appmeta__grid-demos l-2sb-demo">
+<div class="app-infra__grid-demos l-2sb-demo">
 
 <?php
 $text = <<<EOT
@@ -31,7 +31,7 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h4>Variant: content in the middle</h4>
+  <h4 class="variant-title">Variant: content in the middle</h4>
   <p><code>.layout--2sb.content-in-mid</code></p>
 
 
@@ -129,7 +129,7 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h4>Variant: content on the left, both sidebars on the right</h4>
+  <h4 class="variant-title">Variant: content on the left, both sidebars on the right</h4>
   <p><code>.layout--2sb.content-on-left</code></p>
 
 
@@ -207,7 +207,7 @@ echo Markdown::defaultTransform($text);
 
 
 
-  <h4>Variant: content on the right, both sidebars on the left</h4>
+  <h4 class="variant-title">Variant: content on the right, both sidebars on the left</h4>
   <p><code>.layout--2sb.content-on-right</code></p>
 
 

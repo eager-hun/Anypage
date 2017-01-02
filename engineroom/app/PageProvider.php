@@ -40,7 +40,7 @@ class PageProvider {
       'page_main'   => $page_content,
       'page_footer' => $this->apsHelper->render_page_footer(),
       'app_menu'    => $this->apsHelper->render(
-        'app-meta/app-menu-wrapper',
+        'app-infra/app-menu-wrapper',
         $app_menu_template_vars
       ),
     ];

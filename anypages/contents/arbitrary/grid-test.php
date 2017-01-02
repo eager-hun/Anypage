@@ -1,5 +1,5 @@
 
-<div class="container grid-test">
+<div class="page__level__content grid-test">
 
   <h2>grid&#8209;column()</h2>
 
@@ -22,7 +22,7 @@
 
 
 
-<div class="container grid-test">
+<div class="page__level__content grid-test">
 
   <h2>breakpoint() + grid&#8209;column() + grid&#8209;column&#8209;end()</h2>
 
@@ -51,7 +51,7 @@
 
 
 
-<div class="container grid-test">
+<div class="page__level__content grid-test">
 
   <h2>grid-layout()</h2>
 
@@ -86,7 +86,7 @@
 
 
 
-<div class="container grid-test">
+<div class="page__level__content grid-test">
 
   <h2>grid&#8209;column&#8209;position()</h2>
 
@@ -109,7 +109,7 @@
 
 
 
-<div class="container grid-test">
+<div class="page__level__content grid-test">
 
   <h2>Nested grids</h2>
 
@@ -164,7 +164,7 @@
 
 
 
-<div class="container grid-test">
+<div class="page__level__content grid-test">
 
   <h2>Simple grid with only mixins.</h2>
 
@@ -193,7 +193,7 @@
 
 
 
-<div class="container grid-test">
+<div class="page__level__content grid-test">
 
   <h2>Nested grids with only mixins</h2>
 

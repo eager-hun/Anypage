@@ -3,7 +3,7 @@
 use \Michelf\Markdown;
 
 echo $apsHelper->page_level_start();
-echo $apsHelper->container_start();
+echo $apsHelper->page_level_content_start();
 
 
 // ############################################################################
@@ -60,6 +60,20 @@ $layout_2sb_args = [
 ];
 echo $apsHelper->render('layouts/layout-2sb', $layout_2sb_args);
 
-echo $apsHelper->container_end();
+echo $apsHelper->page_level_content_end();
+echo $apsHelper->page_level_end();
+
+
+// ############################################################################
+// Extra "stripe" at the bottom.
+
+echo $apsHelper->page_level_start(['has-bg', 'has-bg--color-accent-2']);
+echo $apsHelper->page_level_content_start();
+
+echo '<h2>A colorful stripe</h2>';
+echo $apsHelper->add_filler_text('m', 2);
+echo '<a href="#">Sample link here.</a>';
+
+echo $apsHelper->page_level_content_end();
 echo $apsHelper->page_level_end();
 
