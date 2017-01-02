@@ -85,7 +85,6 @@ Donec dolor magna, vestibulum non ipsum eget, ultricies lobortis orci. Donec sit
 amet neque pretium, elementum ligula eu, maximus nisi.</p>
 
 
-
 <h6>Heading type six</h6>
 
 <p>In hac habitasse platea dictumst. Nullam tincidunt adipiscing enim. Morbi
@@ -98,6 +97,25 @@ amet neque pretium, elementum ligula eu, maximus nisi.</p>
   Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu
   sollicitudin urna dolor sagittis lacus.</p>
 
+<h2 class="underlined">This is an underlined heading type 2</h2>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in malesuada leo.
+Aenean elementum dictum mauris nec venenatis. Sed vehicula nunc at augue
+lacinia, vel cursus ligula interdum. Vivamus ut augue viverra, luctus leo a,
+mattis orci.</p>
+
+<p>Sed a libero ut nunc fringilla gravida vel ut nibh. Ut et condimentum tellus.
+Donec dolor magna, vestibulum non ipsum eget, ultricies lobortis orci. Donec sit
+amet neque pretium, elementum ligula eu, maximus nisi.</p>
+
+<p class="pseudo-heading h2 underlined">This is an underlined heading type 2</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in malesuada
+leo.  Aenean elementum dictum mauris nec venenatis. Sed vehicula nunc at augue
+lacinia, vel cursus ligula interdum. Vivamus ut augue viverra, luctus leo a,
+mattis orci. Ut in malesuada leo. Aenean elementum dictum mauris nec
+venenatis. Sed vehicula nunc at augue lacinia, vel cursus ligula interdum.
+Vivamus ut augue viverra, luctus leo a, mattis orci.</p>
 
 <blockquote>
 
@@ -126,4 +144,16 @@ We must remember though to sample long lines of text here, so that we can see ho
 Aenean elementum dictum mauris nec venenatis. Sed vehicula nunc at augue
 lacinia, vel cursus ligula interdum. Vivamus ut augue viverra, luctus leo a,
 mattis orci.</p>
+
+<hr>
+
+<p>In hac habitasse platea dictumst. Nullam tincidunt adipiscing enim. Morbi
+  mollis tellus ac sapien. Suspendisse enim turpis, dictum sed, iaculis a,
+  condimentum nec, nisi. Nullam nulla eros, ultricies sit amet, nonummy id,
+  imperdiet feugiat, pede.</p>
+
+<p>In consectetuer turpis ut velit. Nullam quis
+  ante. Pellentesque auctor neque nec urna. Nunc interdum lacus sit amet orci.
+  Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu
+  sollicitudin urna dolor sagittis lacus.</p>
 
