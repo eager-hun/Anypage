@@ -48,8 +48,8 @@ $component_args = [
   'description'         => Markdown::defaultTransform($desc_raw),
   'template_name'       => 'components/sample-dummy-component-1',
   'component_variables' => [
-    'top'    => 'Content in the top slot of this layout.',
-    'bottom' => 'Content in the bottom slot of this layout.',
+    'top'    => 'Content in the top slot of this component.',
+    'bottom' => 'Content in the bottom slot of this component.',
   ],
 ];
 $demos[] = $apsHelper->render_components_demo_item($component_args);

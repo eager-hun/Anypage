@@ -119,7 +119,7 @@ class Config {
   /**
    * String to use in the '?v=' URL param for .css and .js files.
    */
-  private $cache_bust_str = '20170101-1';
+  private $cache_bust_str = '20170103-1';
 
   /**
    * Templating.

@@ -21,7 +21,7 @@ echo $apsHelper->page_level_end();
 echo $apsHelper->page_level_start();
 
 $text = $apsHelper->import_file_content(
-  APS_CONTENTS . '/arbitrary/grid-test.php',
+  APS_CONTENTS . '/arbitrary/grid-demos/grid-test.php',
   'php'
 );
 

@@ -237,17 +237,10 @@ class ApsHelper {
       echo 'Insufficient arguments for render_cd_item()';
     }
 
-    if (array_key_exists('description', $arguments)) {
-      $description = $arguments['description'];
-    }
-    else {
-      $description = FALSE;
-    }
-
     $variables_for_presentation = [
       'wrapper_extra_classes'  => '',
-      'title'                  => $arguments['title'],
-      'description'            => $description,
+      'title'                  => array_key_exists('title', $arguments) ? $arguments['title'] : FALSE,
+      'description'            => array_key_exists('description', $arguments) ? $arguments['description'] : FALSE,
       'code'                   => $code,
       'suppress_content_label' => !empty($arguments['direct_content']),
       'content'                => $content,

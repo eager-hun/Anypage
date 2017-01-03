@@ -1,10 +1,14 @@
 <div class="component--sample-dummy-2">
-  <div class="row row--wrap--2">
+  <div class="row grid--2-cols">
     <div class="slot slot--left column">
-      <?php print $left; ?>
+      <div class="box">
+        <?php print $left; ?>
+      </div>
     </div>
     <div class="slot slot--right column">
-      <?php print $right; ?>
+      <div class="box">
+        <?php print $right; ?>
+      </div>
     </div>
   </div>
 </div>
