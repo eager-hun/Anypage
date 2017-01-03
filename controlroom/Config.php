@@ -103,6 +103,9 @@ class Config {
     'head' => [],
     'body' => [
       'app1'   => 'app-assets/anypage-app.js',
+      'theme1' => 'build/js/libs.js',
+      'theme2' => 'build/js/custom.min.js',
+      'theme3' => 'build/js/styleguide.min.js',
     ],
   ];
 
