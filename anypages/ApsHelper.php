@@ -245,11 +245,12 @@ class ApsHelper {
     }
 
     $variables_for_presentation = [
-      'wrapper_extra_classes' => '',
-      'title'                 => $arguments['title'],
-      'description'           => $description,
-      'code'                  => $code,
-      'content'               => $content,
+      'wrapper_extra_classes'  => '',
+      'title'                  => $arguments['title'],
+      'description'            => $description,
+      'code'                   => $code,
+      'suppress_content_label' => !empty($arguments['direct_content']),
+      'content'                => $content,
     ];
 
     if (!empty($template_name)) {
