@@ -10,7 +10,7 @@
     Generate
 </button>
 
-<div>Responses:</div>
+<div class="label">Responses:</div>
 
 <div id="app-ajax-messages" class="app-ajax-messages"></div>
 
