@@ -44,14 +44,14 @@ $box_1 = $apsHelper->render('components/box', $box_1_args);
 $box_2_args = [
   'wrapper_extra_classes' => 'has-bg has-bg--color-accent-2',
   'box_title'             => 'Sample box two with a bit longer title',
-  'box_content'           => $apsHelper->add_filler_text('xs', 2),
+  'box_content'           => $apsHelper->add_filler_text('xs', 3),
 ];
 $box_2 = $apsHelper->render('components/box', $box_2_args);
 
 $box_3_args = [
   'wrapper_extra_classes' => 'has-bg has-bg--color-accent-1',
-  'box_title'             => 'Sample box two with a bit longer title',
-  'box_content'           => $apsHelper->add_filler_text('xs', 3),
+  'box_title'             => 'Sample box numero tre',
+  'box_content'           => $apsHelper->add_filler_text('s', 5),
 ];
 $box_3 = $apsHelper->render('components/box', $box_3_args);
 
