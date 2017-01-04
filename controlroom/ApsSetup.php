@@ -50,6 +50,7 @@ class ApsSetup {
       'path'           => '',
       'html_filename'  => 'index',
       'menu_link_text' => 'Home',
+      'has_own_layout' => TRUE,
     ],
     'typography_demo' => [
       'path'           => 'typography-demo',

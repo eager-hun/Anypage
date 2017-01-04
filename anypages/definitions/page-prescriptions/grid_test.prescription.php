@@ -4,7 +4,7 @@ use \Michelf\Markdown;
 
 echo $apsHelper->page_level_start();
 echo $apsHelper->page_level_content_start();
-echo $apsHelper->render_page_title('Grid test page');
+echo $apsHelper->render_page_title('SASS-grid-library testing page');
 
 $description = <<<EOT
 This page is here to help making sure that (some of) the features of the custom library, [Foundation Lean Grid][flg-github] are intact and are in good working shape.
@@ -18,7 +18,9 @@ echo $apsHelper->page_level_content_end();
 echo $apsHelper->page_level_end();
 
 
-echo $apsHelper->page_level_start();
+// #############################################################################
+// Grids instances from here on.
+
 
 $text = $apsHelper->import_file_content(
   APS_CONTENTS . '/arbitrary/grid-demos/grid-test.php',
@@ -26,6 +28,4 @@ $text = $apsHelper->import_file_content(
 );
 
 echo $text;
-
-echo $apsHelper->page_level_end();
 

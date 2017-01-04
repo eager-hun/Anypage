@@ -36,18 +36,24 @@ $main_col .= $accordion;
 // Sidebar boxes.
 
 $box_1_args = [
-  'wrapper_extra_classes' => 'box--simple',
   'box_title'             => 'Sample box',
   'box_content'           => $apsHelper->add_filler_text('s', 1)
 ];
 $box_1 = $apsHelper->render('components/box', $box_1_args);
 
 $box_2_args = [
-  //'wrapper_extra_classes' => 'box--simple',
+  'wrapper_extra_classes' => 'has-bg has-bg--color-accent-2',
   'box_title'             => 'Sample box two with a bit longer title',
-  'box_content'           => $apsHelper->add_filler_text('s', 2),
+  'box_content'           => $apsHelper->add_filler_text('xs', 2),
 ];
 $box_2 = $apsHelper->render('components/box', $box_2_args);
+
+$box_3_args = [
+  'wrapper_extra_classes' => 'has-bg has-bg--color-accent-1',
+  'box_title'             => 'Sample box two with a bit longer title',
+  'box_content'           => $apsHelper->add_filler_text('xs', 3),
+];
+$box_3 = $apsHelper->render('components/box', $box_3_args);
 
 
 // ############################################################################
@@ -56,7 +62,7 @@ $box_2 = $apsHelper->render('components/box', $box_2_args);
 $layout_2sb_args = [
   'wrapper_extra_classes' => 'layout--2sb content-in-mid has-1-sb sb-1',
   'main_content'          => $main_col,
-  'sidebar_1'             => $box_1 . $box_2,
+  'sidebar_1'             => $box_1 . PHP_EOL . $box_2 . PHP_EOL . $box_3,
 ];
 echo $apsHelper->render('layouts/layout-2sb', $layout_2sb_args);
 
@@ -67,10 +73,10 @@ echo $apsHelper->page_level_end();
 // ############################################################################
 // Extra "stripe" at the bottom.
 
-echo $apsHelper->page_level_start(['has-bg', 'has-bg--color-accent-2']);
+echo $apsHelper->page_level_start(['has-bg', 'has-bg--color-blockfill']);
 echo $apsHelper->page_level_content_start();
 
-echo '<h2>A colorful stripe</h2>';
+echo '<h2>A stripe with background</h2>';
 echo $apsHelper->add_filler_text('m', 2);
 echo '<a href="#">Sample link here.</a>';
 

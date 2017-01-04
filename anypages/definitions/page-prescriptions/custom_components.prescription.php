@@ -18,7 +18,7 @@ $demos = [];
 // ----------------------------------------------------------------------------
 // Component: "Hero mosaic".
 
-$component_args = [
+$cd_item_args = [
   'title'               => 'Hero mosaic',
   'template_name'       => 'components/hero-mosaic',
   'component_variables' => [
@@ -32,18 +32,16 @@ $component_args = [
     ],
   ],
 ];
-$demos[] = $apsHelper->render_components_demo_item($component_args);
+$demos[] = $apsHelper->render_components_demo_item($cd_item_args);
 
 // ----------------------------------------------------------------------------
 // Demonstrate a dummy component with a twig template.
 
 $desc_raw = <<<EOT
 Sample component with twig template.
-
-Also, this text is processed by Markdown.
 EOT;
 
-$component_args = [
+$cd_item_args = [
   'title'               => 'Sample dummy component 1',
   'description'         => Markdown::defaultTransform($desc_raw),
   'template_name'       => 'components/sample-dummy-component-1',
@@ -52,7 +50,7 @@ $component_args = [
     'bottom' => 'Content in the bottom slot of this component.',
   ],
 ];
-$demos[] = $apsHelper->render_components_demo_item($component_args);
+$demos[] = $apsHelper->render_components_demo_item($cd_item_args);
 
 // ----------------------------------------------------------------------------
 // Demonstrate another dummy component with a php template.
@@ -61,7 +59,7 @@ $desc_raw = <<<EOT
 Sample component with php template.
 EOT;
 
-$component_args = [
+$cd_item_args = [
   'title'               => 'Sample dummy component 2',
   'description'         => Markdown::defaultTransform($desc_raw),
   'template_name'       => 'components/sample-dummy-component-2',
@@ -70,7 +68,7 @@ $component_args = [
     'right' => 'Right content.',
   ],
 ];
-$demos[] = $apsHelper->render_components_demo_item($component_args, $is_twig = FALSE);
+$demos[] = $apsHelper->render_components_demo_item($cd_item_args, $is_twig = FALSE);
 
 
 

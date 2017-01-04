@@ -238,17 +238,13 @@ class ApsHelper {
     }
 
     $variables_for_presentation = [
-      'wrapper_extra_classes'  => '',
+      'wrapper_extra_classes'  => array_key_exists('wrapper_extra_classes', $arguments) ? $arguments['wrapper_extra_classes'] : FALSE,
       'title'                  => array_key_exists('title', $arguments) ? $arguments['title'] : FALSE,
       'description'            => array_key_exists('description', $arguments) ? $arguments['description'] : FALSE,
       'code'                   => $code,
       'suppress_content_label' => !empty($arguments['direct_content']),
       'content'                => $content,
     ];
-
-    if (!empty($template_name)) {
-      $variables_for_presentation['wrapper_extra_classes'] .= ' cd-item-content-extra-room';
-    }
 
     return $this->render('app-infra/components-demo-item', $variables_for_presentation);
   }

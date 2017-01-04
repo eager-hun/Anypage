@@ -14,9 +14,12 @@ $demo_box_for_sidebar_2    = $apsHelper->render('components/box', ['box_content'
 $text = <<<EOT
 "Layout 2 sidebars" is a custom, complex component, based on on-demand grids.
 
-It can be used to supply a variety of basic arrangements for page sections.
+It provides the option to have one big slot for main content and two narrower
+slots for the role of "sidebars".
 
-### Variants and states
+Back in the days this stuff used to be implemented on the global page level,
+but this layout makes it possible - and encourages - to have this structure
+repeating arbitrary times on pages.
 
 This layout is used (best) for the primary layout of a page.
 EOT;

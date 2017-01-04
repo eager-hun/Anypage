@@ -22,7 +22,6 @@ $text = $apsHelper->import_file_content(
   'php'
 );
 $component_args = [
-  'title'          => 'Texts for checking typography',
   'direct_content' => $text,
 ];
 $demos[] = $apsHelper->render_components_demo_item($component_args);

@@ -19,6 +19,12 @@ Aenean elementum dictum mauris nec venenatis. Sed vehicula nunc at augue
 lacinia, vel cursus ligula interdum. Vivamus ut augue viverra, luctus leo a,
 mattis orci.</p>
 
+
+<p>Ultricies sit amet, nonummy id, imperdiet feugiat, pede. In consectetuer
+turpis ut velit. Nullam quis ante. Pellentesque auctor neque nec urna. Nunc
+interdum lacus sit amet orci. Aenean posuere, tortor sed cursus feugiat, nunc
+augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.</p>
+
 <span class="pseudo-heading h1">Heading type one, whose extended volume ensures
 breaking to multiple lines</span>
 
@@ -53,7 +59,7 @@ lacinia, vel cursus ligula interdum. Vivamus ut augue viverra, luctus leo a,
 mattis orci.</p>
 
 <h1 class="h3">Heading type three Sed a libero ut nunc fringilla gravida vel ut
-nibh. Ut et condimentum tellus.</h1>
+nibh. Ut et condimentum tellus</h1>
 
 <p>Sed a libero ut nunc fringilla gravida vel ut nibh. Ut et condimentum tellus.
 Donec dolor magna, vestibulum non ipsum eget, ultricies lobortis orci. Donec sit
