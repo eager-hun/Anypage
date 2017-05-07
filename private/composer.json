@@ -1,6 +1,6 @@
 {
     "config": {
-      "vendor-dir": "engineroom/libraries-backend/"
+      "vendor-dir": "libraries-backend/"
     },
     "require": {
         "michelf/php-markdown": "1.4.1",

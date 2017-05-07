@@ -43,7 +43,7 @@ class Config {
    *   String used in creating URLs.
    */
   private $env = [
-    'working_dir'        => 'anypage',
+    'working_dir'        => 'anypage-develop',
     'path_to_app_assets' => 'engineroom',
     'path_to_theme'      => 'themes/theme-seed',
     'html_export_dir'    => 'styleguide',
@@ -119,7 +119,7 @@ class Config {
   /**
    * String to use in the '?v=' URL param for .css and .js files.
    */
-  private $cache_bust_str = '20170103-1';
+  private $cache_bust_str = '20170507-1';
 
   /**
    * Templating.
@@ -134,7 +134,7 @@ class Config {
    *
    * Boolean, any truthy or falsy values will suffice.
    */
-  private $enable_livereload = 0;
+  private $enable_livereload = 1;
 
   /**
    * App infra: a "getter".

@@ -9,10 +9,5 @@ nbproject
 **/node_modules/
 
 # GENERATED CONTENT:
-styleguide/*
-!styleguide/.htaccess
-
-# THEMES BEING WORKED ON:
-# (Other than "theme-seed", which is made a submodule of this repo.)
-themes/additional-theme
+generated/*
 
