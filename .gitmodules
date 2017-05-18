@@ -1,3 +1,3 @@
-[submodule "themes/theme-seed"]
-	path = themes/theme-seed
+[submodule "public/themes/theme-seed"]
+	path = public/themes/theme-seed
 	url = https://github.com/eager-hun/theme-seed.git

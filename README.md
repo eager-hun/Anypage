@@ -63,13 +63,16 @@ the following places:
 
     [TODO: documentation]
 
-The recursive cloning will also pull in the "[theme-seed][theme-seed-github]"
+The repository defines the "[theme-seed][theme-seed-github]"
 git submodule, which is - speaking in CMS-terms - comparable to a "theme".
 
-    git clone --recursive https://github.com/eager-hun/anypage.git anypage
+    git clone https://github.com/eager-hun/anypage.git anypage
     cd anypage
+    git submoule init
+    git submodule update
+    cd private
     composer install
-    cd themes/theme-seed
+    cd ../public/themes/theme-seed
     npm install
     gulp compile
 

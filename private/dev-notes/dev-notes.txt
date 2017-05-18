@@ -1,0 +1,12 @@
+git submodule deinit themes/theme-seed
+git rm themes/theme-seed
+
+git submodule add https://github.com/eager-hun/theme-seed.git public/themes/theme-seed
+
+
+git submodule sync
+git submodule init
+git submodule foreach --recursive 'git fetch --tags'
+git submodule update --recursive
+
+
