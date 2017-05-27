@@ -37,6 +37,13 @@ class DocumentProvider
             ->get('content-provider')
             ->getContent();
 
+        if (empty($resource_manifest['has-own-layout'])) {
+            $page_payload = $tools->render(
+                'page-level',
+                ['page_level_content' => $page_payload]
+            );
+        }
+
         $page_variables = [
             'page_header_content' => 'This is the page header content.',
             'page_payload' => $page_payload,
