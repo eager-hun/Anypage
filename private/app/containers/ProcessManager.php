@@ -164,7 +164,9 @@ class ProcessManager
      */
     public function dumpNotifications()
     {
-        // TODO;
-        var_dump($this->sys_notifications);
+        if (!empty($this->sys_notifications)) {
+            // TODO;
+            var_dump($this->sys_notifications);
+        }
     }
 }

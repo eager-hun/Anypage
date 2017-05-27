@@ -78,14 +78,13 @@ $capacities::bind('system-utils', new SystemUtils(
 
 if ($processManager->getConfig('config')['app']['templating']['enable-twig']) {
     $twig_loader = new Twig_Loader_Filesystem(APS_TEMPLATES);
+    $twig_options = $processManager
+        ->getConfig('config')['app']['templating']['twig-renderer-options'];
 
-    $capacities::bind('twig', new Twig_Environment($twig_loader, [
-        'debug'            => FALSE,
-        'cache'            => FALSE,
-        'strict_variables' => FALSE,
-        'autoescape'       => FALSE,
-        'optimizations'    => -1,
-    ]));
+    $capacities::bind(
+        'twig',
+        new Twig_Environment($twig_loader, $twig_options)
+    );
 }
 
 

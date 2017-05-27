@@ -1,3 +1,5 @@
 <?php
 
-echo 'Typography demo.';
+$page_content = 'Typography demo.';
+
+echo $page_content;

@@ -1,0 +1,17 @@
+
+<div id="page__wrap" class="page__wrap">
+
+    {% if suppress_page_header | default('') is empty %}
+        {% include 'default-page-header.html.twig' %}
+    {% endif %}
+
+    <div id="page__main" class="page__main">
+        {{ page_payload }}
+    </div>
+
+    <div class="footer__room-preserve"></div>
+</div><!-- /#page__wrap -->
+
+{% if suppress_page_footer | default('') is empty %}
+    {% include 'default-page-footer.html.twig' %}
+{% endif %}

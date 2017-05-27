@@ -1,11 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ html_language }}">
 <head>
 	<meta charset="UTF-8">
-	<title>Anypage</title>
+	<title>{{ head_title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% if head_desc | default('') is not empty %}
+        <meta name="description" content="{{ head_desc }}">
+    {% endif %}
+
 </head>
-<body>
-	<p>Is twig.</p>
-    {{ document_body }}
+<body class="{{ body_classes }}">
+    {{ body_content | raw }}
 </body>
 </html>

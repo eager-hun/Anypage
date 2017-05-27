@@ -26,23 +26,40 @@ class DocumentProvider
      */
     public function getDocument()
     {
-        $document_body_content = '';
+        $resource_manifest = $this
+            ->processManager->getInstruction('resource-manifest');
+        $apsSetup = $this->processManager->getConfig('apsSetup');
 
-        $document_body_content .= $this
+        $tools = $this->capacities->get('tools');
+
+        $page_payload = $this
             ->capacities
             ->get('content-provider')
             ->getContent();
 
-        $document_body_content .= $this->provideAppMenu();
-
-        $template_variables = [
-            'document_body' => $document_body_content,
+        $page_variables = [
+            'page_header_content' => 'This is the page header content.',
+            'page_payload' => $page_payload,
+            'page_footer_content' => 'This is the page footer content.',
         ];
 
-        return $this
-            ->capacities
-            ->get('tools')
-            ->render('document', $template_variables);
+        $body_content = '';
+        $body_content .= $tools->render('page', $page_variables);
+        $body_content .= $this->provideAppMenu();
+
+        $document_variables = [
+            'html_language' => $apsSetup['defaults']['document_properties']['html_lang'],
+            'head_title' => $apsSetup['defaults']['document_properties']['head_title'],
+            'body_classes' => $this->calculateBodyClasses(),
+            'body_content' => $body_content,
+        ];
+        return $tools->render('document', $document_variables);
+    }
+
+    protected function calculateBodyClasses()
+    {
+        // TODO.
+        return 'body-class';
     }
 
     protected function documentHeadAdditions(&$variables_for_document)

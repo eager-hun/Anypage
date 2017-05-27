@@ -1,3 +1,4 @@
+
 <nav class="app-menu">
     <ul>
         <?php foreach($app_menu_items as $item): ?>

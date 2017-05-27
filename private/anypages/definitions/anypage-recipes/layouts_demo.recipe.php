@@ -1,3 +1,5 @@
 <?php
 
-echo 'Layouts demo.';
+$page_content = 'Layouts demo.';
+
+echo $page_content;

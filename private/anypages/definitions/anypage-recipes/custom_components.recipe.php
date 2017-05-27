@@ -1,3 +1,5 @@
 <?php
 
-echo 'Custom components.';
+$page_content = 'Custom components.';
+
+echo $page_content;

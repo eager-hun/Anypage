@@ -1,3 +1,5 @@
 <?php
 
-echo 'Home.';
+$page_content = 'Home.';
+
+echo $page_content;

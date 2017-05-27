@@ -66,7 +66,7 @@ class Tools
      * @param string $renderer
      * @return string
      */
-    public function render($template_name, $variables, $renderer = '')
+    public function render($template_name, $variables = [], $renderer = '')
     {
         $output = '';
 

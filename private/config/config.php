@@ -51,6 +51,13 @@ return [
             'default-rendering-engine'      => 'twig',
             'php-template-file-extension'   => '.tpl.php',
             'twig-template-file-extension'  => '.html.twig',
+            'twig-renderer-options'         => [
+                'debug'            => true,
+                'cache'            => false,
+                'strict_variables' => true,
+                'autoescape'       => true,
+                'optimizations'    => -1,
+            ]
         ],
     ],
 

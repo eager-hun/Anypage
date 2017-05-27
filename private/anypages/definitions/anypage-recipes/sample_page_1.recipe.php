@@ -1,3 +1,5 @@
 <?php
 
-echo 'Sample page 1.';
+$page_content = 'Sample page 1.';
+
+echo $page_content;
