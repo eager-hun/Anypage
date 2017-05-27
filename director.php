@@ -76,7 +76,7 @@ $capacities::bind('system-utils', new SystemUtils(
 // TWIG.
 // See http://twig.sensiolabs.org/doc/api.html#environment-options .
 
-if ($processManager->getConfig('config')['app']['templating']['enable-twig']) {
+if (!empty($processManager->getConfig('config')['app']['templating']['enable-twig'])) {
     $twig_loader = new Twig_Loader_Filesystem(APS_TEMPLATES);
     $twig_options = $processManager
         ->getConfig('config')['app']['templating']['twig-renderer-options'];

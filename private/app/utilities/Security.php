@@ -49,6 +49,12 @@ class Security
     {
         switch ($use_as)
         {
+            case 'href':
+                // TODO
+                return $value;
+            case 'cache_bust_str':
+                // TODO
+                return $value;
             case 'uri_path':
                 // TODO
                 return $value;

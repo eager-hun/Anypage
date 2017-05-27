@@ -38,7 +38,7 @@ class ProcessManager
             require(PRIVATE_ASSETS . '/config/routes.php')
         );
 
-        // Methods in the app might update the response code.
+        // Methods in the app might update this response code.
         $this->setInstruction('http-response-code', '200');
 
         // Might get updated in the "orientation" stage.
@@ -51,6 +51,13 @@ class ProcessManager
         $this->setInstruction(
             'http-protocol-v',
             $this->getConfig('config')['env']['http-protocol-v']
+        );
+
+        $this->setInstruction('base-url', $this->baseUrl());
+
+        $this->setInstruction(
+            'url-path-to-theme-assets',
+            'public/themes/' . $this->getConfig('config')['env']['theme-dir-name']
         );
     }
 
@@ -168,5 +175,22 @@ class ProcessManager
             // TODO;
             var_dump($this->sys_notifications);
         }
+    }
+
+    /**
+     * Base url.
+     *
+     * NOTE: unsafe.
+     * TODO: safeify.
+     *
+     * @return string
+     */
+    private function baseUrl()
+    {
+        $protocol = $this->getConfig('config')['env']['http-protocol'];
+        $host = $this->request->server->get('HTTP_HOST');
+        $working_dir = $this->getConfig('config')['env']['working-dir'];
+
+        return $protocol . '://' . $host . '/' . $working_dir . '/';
     }
 }

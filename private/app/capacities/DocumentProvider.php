@@ -50,6 +50,7 @@ class DocumentProvider
         $document_variables = [
             'html_language' => $apsSetup['defaults']['document_properties']['html_lang'],
             'head_title' => $apsSetup['defaults']['document_properties']['head_title'],
+            'stylesheets' => $this->provideStylesheets(),
             'body_classes' => $this->calculateBodyClasses(),
             'body_content' => $body_content,
         ];
@@ -62,13 +63,23 @@ class DocumentProvider
         return 'body-class';
     }
 
-    protected function documentHeadAdditions(&$variables_for_document)
+    protected function documentHeadAdditions(&$document_variables)
     {
 
     }
 
-    public function renderStylesheetLink($href)
+    public function renderStylesheetLink($href, $cache_bust_str)
     {
+        $sec = $this->capacities->get('security');
+
+        return $this->capacities->get('tools')->render(
+            'app-infra/stylesheet-link',
+            [
+                'href' => $sec->escapeValue($href, 'href'),
+                'cache_bust_str' => $sec->escapeValue($cache_bust_str, 'cache_bust_str'),
+            ],
+            'php'
+        );
 
     }
 
@@ -77,9 +88,57 @@ class DocumentProvider
 
     }
 
-    private function frontendAssetsHelper($assets, $kind, &$output)
+    /**
+     * Renders stylesheet links or script tags.
+     *
+     * @param $assets
+     * @param $kind
+     * @param $output
+     */
+    private function frontendAssetsRenderer($assets, $kind, &$output)
     {
+        $assets_config = $this
+            ->processManager
+            ->getConfig('config')['frontend-assets'];
+        $base_url = $this->processManager->getInstruction('base-url');
+        $path_to_theme_assets = $this
+            ->processManager
+            ->getInstruction('url-path-to-theme-assets');
+        // $path_to_app_assets = ''; // TODO.
+        $cache_bust_str = $assets_config['cache-bust-str'];
 
+        foreach ($assets as $key => $val) {
+
+            if (strpos($key, 'theme') !== false) {
+
+                // If the file is located in the theme:
+
+                $val = $base_url
+                    . $path_to_theme_assets
+                    . '/'
+                    . $val;
+
+            } elseif (strpos($key, 'app') !== false) {
+
+                // If the file is located in the app assets location:
+
+                // TODO.
+
+            }
+
+            if (!empty($val)) {
+
+                if ($kind == 'styles') {
+                    $output .= $this->renderStylesheetLink($val, $cache_bust_str);
+                }
+                elseif ($kind == 'scripts') {
+                    // TODO.
+                    // $output .= $this->renderScriptTag($val, $cache_bust_str);
+                }
+
+            }
+        }
+        unset($key, $val);
     }
 
     private function provideJsSettingsObjects()
@@ -87,9 +146,23 @@ class DocumentProvider
 
     }
 
+    /**
+     * Provides a series of stylesheet links for the app as one rendered string.
+     *
+     * @return string
+     */
     public function provideStylesheets()
     {
 
+        $stylesheets = $this
+            ->processManager
+            ->getConfig('config')['frontend-assets']['stylesheets'];
+
+        $output = '';
+        if (!empty($stylesheets)) {
+            $this->frontendAssetsRenderer($stylesheets, 'styles', $output);
+        }
+        return $output;
     }
 
     public function provideScripts($location)
@@ -112,10 +185,12 @@ class DocumentProvider
 
             // We were called during a dynamic php page response.
             if (! defined('BUILDING_STATIC_FILE') || empty(BUILDING_STATIC_FILE)) {
+
                 $url = $this
-                    ->capacities
-                    ->get('system-utils')
-                    ->base_url() . $sec->escapeValue($path, 'uri_path');
+                    ->processManager
+                    ->getInstruction('base-url')
+                    . $sec->escapeValue($path, 'uri_path');
+
             } else {
                 // We were called while generating a static site.
 

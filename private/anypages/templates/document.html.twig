@@ -9,6 +9,7 @@
         <meta name="description" content="{{ head_desc }}">
     {% endif %}
 
+    {{ stylesheets | raw }}
 </head>
 <body class="{{ body_classes }}">
     {{ body_content | raw }}
