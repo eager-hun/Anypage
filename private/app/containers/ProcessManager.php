@@ -62,12 +62,9 @@ class ProcessManager
      */
     public function addConfig($key, $value)
     {
-        if (! array_key_exists($key, $this->config))
-        {
+        if (! array_key_exists($key, $this->config)) {
             $this->config[$key] = $value;
-        }
-        else
-        {
+        } else {
             $msg = 'Trying to override config record in ProcessManager. Not good.';
             $this->sysNotify($msg, 'warning');
         }
@@ -82,8 +79,7 @@ class ProcessManager
      */
     public function getConfig($key)
     {
-        if (! array_key_exists($key, $this->config))
-        {
+        if (! array_key_exists($key, $this->config)) {
             $msg = 'Could not find requested item in config.';
             $this->sysNotify($msg, 'warning');
 
@@ -102,12 +98,9 @@ class ProcessManager
      */
     public function setInstruction($key, $val, $override = false)
     {
-        if (!array_key_exists($key, $this->instructions) || $override)
-        {
+        if (!array_key_exists($key, $this->instructions) || $override) {
             $this->instructions[$key] = $val;
-        }
-        elseif (array_key_exists($key, $this->instructions) && !$override)
-        {
+        } elseif (array_key_exists($key, $this->instructions) && !$override) {
             $msg = 'Trying to override ProcessManager instruction while did not ask permission to.';
             $this->sysNotify($msg, 'warning');
         }
@@ -121,12 +114,9 @@ class ProcessManager
      */
     public function getInstruction($key)
     {
-        if (array_key_exists($key, $this->instructions))
-        {
+        if (array_key_exists($key, $this->instructions)) {
             return $this->instructions[$key];
-        }
-        else
-        {
+        } else {
             $msg = "No such key as $key found in ProcessManager's instructions.";
             $this->sysNotify($msg, 'warning');
 
@@ -159,12 +149,9 @@ class ProcessManager
             'alert'
         ];
 
-        if (in_array($severity, $valid_severity_levels))
-        {
+        if (in_array($severity, $valid_severity_levels)) {
             $this->sys_notifications[$severity][] = $message;
-        }
-        else
-        {
+        } else {
             $msg = "Please use one of the valid severity levels ('";
             $msg .= implode("', '", $valid_severity_levels);
             $msg .= "') to sys notify.";

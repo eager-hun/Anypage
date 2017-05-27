@@ -12,8 +12,8 @@ class ContentProvider
     protected $capacities;
 
     public function __construct(
-        $processManager,
-        $capacities
+        ProcessManager $processManager,
+        Capacities $capacities
     )
     {
         $this->processManager = $processManager;
@@ -44,24 +44,20 @@ class ContentProvider
                 ob_start();
                 include($recipe_file);
                 $output = ob_get_clean();
-            }
-            else {
+            } else {
                 // TODO: error handling?
                 $output = 'Error: content recipe was not found.';
             }
-        }
-        elseif ($manifest['resource-type'] == 'system_page') {
+        } elseif ($manifest['resource-type'] == 'system_page') {
 
             if ($manifest['resource-id'] == '404') {
                 $output = $this->message404();
                 $this
                     ->processManager
                     ->setInstruction('http-response-code', '404', true);
-            }
-            elseif ($manifest['resource-id'] == 'generator') {
+            } elseif ($manifest['resource-id'] == 'generator') {
 
-            }
-            elseif ($manifest['resource-id'] == 'list_generated') {
+            } elseif ($manifest['resource-id'] == 'list_generated') {
 
             }
         }

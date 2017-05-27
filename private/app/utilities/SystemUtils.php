@@ -12,8 +12,8 @@ class SystemUtils
     protected $capacities;
 
     public function __construct(
-        $processManager,
-        $capacities
+        ProcessManager $processManager,
+        Capacities $capacities
     )
     {
         $this->processManager = $processManager;

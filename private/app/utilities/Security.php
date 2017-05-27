@@ -6,12 +6,13 @@
  * Responsible for providing methods for filtering incoming data and escaping
  * outbound data.
  */
-class Security {
+class Security
+{
 
     protected $processManager;
 
     public function __construct(
-        $processManager
+        ProcessManager $processManager
     )
     {
         $this->processManager = $processManager;
@@ -26,20 +27,44 @@ class Security {
      */
     public function distrustInput($input, $from)
     {
-        // TODO.
-        return $input;
+        switch ($from)
+        {
+            case 'foo':
+                // TODO
+                return $input;
+            default:
+                // TODO
+                return $input;
+        }
     }
 
     /**
      * NOTE: unimplemented yet therefore unsafe!
      *
-     * @param $string
-     * @param $use_as
+     * @param mixed $value
+     * @param string $use_as
      * @return mixed
      */
-    public function escapeValue($string, $use_as)
+    public function escapeValue($value, $use_as = 'display')
     {
-        // TODO.
-        return $string;
+        switch ($use_as)
+        {
+            case 'uri_path':
+                // TODO
+                return $value;
+            case 'file_name':
+                // TODO
+                return $value;
+            default:
+                // Warning about typos or wrong usage.
+                if (!empty($use_as) && $use_as !== 'display') {
+                    $this->processManager->sysNotify(
+                        'Alert: unrecognized escapeValue() argument!',
+                        'alert'
+                    );
+                }
+                // If no argument was supplied, or it was 'display'.
+                return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        }
     }
 }

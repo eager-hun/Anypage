@@ -18,9 +18,10 @@ class Capacities
 
     public static function get($key)
     {
-        if (! array_key_exists($key, static::$items))
-        {
-            throw new Exception("Could not find requested item among Capacities.");
+        if (! array_key_exists($key, static::$items)) {
+            throw new Exception(
+                "Could not find requested item among Capacities."
+            );
         }
 
         return static::$items[$key];

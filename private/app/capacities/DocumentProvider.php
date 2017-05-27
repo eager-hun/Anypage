@@ -13,8 +13,8 @@ class DocumentProvider
     protected $capacities;
 
     public function __construct(
-        $processManager,
-        $capacities
+        ProcessManager $processManager,
+        Capacities $capacities
     )
     {
         $this->processManager = $processManager;
@@ -83,53 +83,44 @@ class DocumentProvider
     /**
      * Provide rendered app menu.
      *
-     * NOTE: unsafe.
-     * TODO: safeify.
-     *
      * @return string
      */
     public function provideAppMenu() {
         $pagelist = $this->processManager->getConfig('routes');
-        // var_dump($pagelist);
+        $sec = $this->capacities->get('security');
 
-        $menu_items = '';
+        $app_menu_items = [];
 
         foreach ($pagelist as $path => $page_data) {
+
             // We were called during a dynamic php page response.
             if (! defined('BUILDING_STATIC_FILE') || empty(BUILDING_STATIC_FILE)) {
                 $url = $this
                     ->capacities
                     ->get('system-utils')
-                    ->base_url() . $path;
-            }
-            // We were called while generating a static site.
-            else {
+                    ->base_url() . $sec->escapeValue($path, 'uri_path');
+            } else {
+                // We were called while generating a static site.
+
                 // For the static site, include only the anypages in the menu.
                 if ($page_data['resource-type'] != 'anypage') {
                     continue;
                 }
 
-                $url = $page_data['html-filename'] . '.html';
+                $url = $sec
+                    ->escapeValue($page_data['html-file_name'], 'filename')
+                    . '.html';
             }
 
-            $menu_items .= '<li>'
-                . '<a href="'
-                . $url
-                . '" class="app-menu__link">'
-                . '<span class="link__text">'
-                . $page_data['menu-link-text']
-                . '</span>'
-                . '</a>'
-                . '</li>'
-                . PHP_EOL;
+            $app_menu_items[] = [
+                'url' => $url,
+                'text' => $sec->escapeValue($page_data['menu-link-text']),
+            ];
         }
 
-        $menu = PHP_EOL
-            . '<nav class="app-menu"><ul>'
-            . PHP_EOL
-            . $menu_items
-            . '</ul></nav>';
-
-        return $menu;
+        return $this
+            ->capacities
+            ->get('tools')
+            ->render('app-infra/app-menu', compact('app_menu_items'), 'php');
     }
 }

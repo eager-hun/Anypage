@@ -13,8 +13,8 @@ class Tools
     protected $templating_config;
 
     public function __construct(
-        $processManager,
-        $capacities
+        ProcessManager $processManager,
+        Capacities $capacities
     )
     {
         $this->processManager = $processManager;
@@ -31,10 +31,12 @@ class Tools
     protected function determine_template_file_extension($renderer)
     {
         if ($renderer == 'php') {
-            $extension = $this->templating_config['php-template-file-extension'];
+            $extension = $this
+                ->templating_config['php-template-file-extension'];
         }
         elseif ($renderer == 'twig') {
-            $extension = $this->templating_config['twig-template-file-extension'];
+            $extension = $this
+                ->templating_config['twig-template-file-extension'];
         }
 
         return $extension;
@@ -81,8 +83,7 @@ class Tools
                 ob_start();
                 include($template_file);
                 $output = ob_get_clean();
-            }
-            else {
+            } else {
                 // TODO: error handling.
                 $output = '[ Missing php template ]';
             }
@@ -101,16 +102,15 @@ class Tools
                 catch (Exception $e) {
                     $output = 'Caught exception: ' . $e->getMessage();
                 }
-            }
-            else {
+            } else {
                 // TODO: error handling.
                 echo 'To use the twig rendering engine, enable it in config.';
             }
-        }
-        else {
+        } else {
             // TODO: error handling.
             echo 'Invalid templating engine from config.';
         }
+
         return $output;
     }
 }
