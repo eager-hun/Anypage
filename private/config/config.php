@@ -59,6 +59,9 @@ return [
                 'optimizations'    => -1,
             ]
         ],
+        'app-menu' => [
+            'is-enabled' => true,
+        ],
     ],
 
     'frontend-assets' => [
@@ -105,7 +108,7 @@ return [
          * of the declaration here (I assume, as long as the array key is a string).
          */
         'stylesheets' => [
-            // 'app1'   => 'anypage-app.css',
+            'app1'   => 'anypage-app.css',
             'theme1' => 'build/css/bundle-main.css',
             'theme2' => 'build/css/bundle-styleguide-infra.css',
             'theme3' => 'static-assets/css/static.css',

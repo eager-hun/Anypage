@@ -56,6 +56,11 @@ class ProcessManager
         $this->setInstruction('base-url', $this->baseUrl());
 
         $this->setInstruction(
+            'url-path-to-app-assets',
+            'public/app-assets'
+        );
+
+        $this->setInstruction(
             'url-path-to-theme-assets',
             'public/themes/' . $this->getConfig('config')['env']['theme-dir-name']
         );

@@ -64,10 +64,19 @@ class DocumentProvider
         return $tools->render('document', $document_variables);
     }
 
+    /**
+     * @return string
+     */
     protected function calculateBodyClasses()
     {
-        // TODO.
-        return 'body-class';
+        $body_classes = [];
+
+        $app_menu_config = $this->processManager->getConfig('config')['app']['app-menu'];
+        if ($app_menu_config['is-enabled']) {
+            $body_classes[] = 'app-menu-is-enabled';
+        }
+
+        return implode(' ', $body_classes);
     }
 
     protected function documentHeadAdditions(&$document_variables)
@@ -108,15 +117,28 @@ class DocumentProvider
             ->processManager
             ->getConfig('config')['frontend-assets'];
         $base_url = $this->processManager->getInstruction('base-url');
+        $path_to_app_assets = $this
+            ->processManager
+            ->getInstruction('url-path-to-app-assets');
         $path_to_theme_assets = $this
             ->processManager
             ->getInstruction('url-path-to-theme-assets');
-        // $path_to_app_assets = ''; // TODO.
         $cache_bust_str = $assets_config['cache-bust-str'];
 
         foreach ($assets as $key => $val) {
 
-            if (strpos($key, 'theme') !== false) {
+            // Finalize asset URL.
+
+            if (strpos($key, 'app') !== false) {
+
+                // If the file is located in the app assets location:
+
+                $val = $base_url
+                    . $path_to_app_assets
+                    . '/'
+                    . $val;
+
+            } elseif (strpos($key, 'theme') !== false) {
 
                 // If the file is located in the theme:
 
@@ -125,13 +147,9 @@ class DocumentProvider
                     . '/'
                     . $val;
 
-            } elseif (strpos($key, 'app') !== false) {
-
-                // If the file is located in the app assets location:
-
-                // TODO.
-
             }
+
+            // Render HTML tag.
 
             if (!empty($val)) {
 

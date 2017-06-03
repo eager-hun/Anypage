@@ -1,0 +1,55 @@
+
+body.app-menu-is-enabled {
+    padding-left: 260px;
+}
+
+.app-menu {
+    display: none;
+    position: fixed;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 260px;
+
+    background: #333;
+    color: #fff;
+
+    box-shadow: #0a0c0f -50px 0 50px -50px inset;
+}
+
+.app-menu-is-enabled .app-menu {
+    display: block;
+}
+
+.app-menu ul {
+    margin: 1em;
+    padding: 0;
+
+    max-height: calc(100vh - 2em);
+    overflow: auto;
+
+    list-style-type: none;
+}
+
+.app-menu a,
+.app-menu a:visited,
+.app-menu a:hover,
+.app-menu a:visited:hover,
+.app-menu a:focus,
+.app-menu a:active {
+    display: block;
+    padding: 0.25em 0.5em;
+
+    color: whitesmoke;
+    line-height: 1.1;
+    text-decoration: none;
+}
+.app-menu a:hover,
+.app-menu a:focus,
+.app-menu a:active {
+    background: rgba(0,0,0,0.25);
+
+    outline: none;
+}
