@@ -45,9 +45,9 @@ class DocumentProvider
         }
 
         $page_variables = [
-            'page_header_content' => 'This is the page header content.',
-            'page_payload' => $page_payload,
-            'page_footer_content' => 'This is the page footer content.',
+            'page_header_content'   => 'This is the page header content.',
+            'page_payload'          => $page_payload,
+            'page_footer_content'   => 'This is the page footer content.',
         ];
 
         $body_content = '';
@@ -56,12 +56,31 @@ class DocumentProvider
 
         $document_variables = [
             'html_language' => $apsSetup['defaults']['document_properties']['html_lang'],
-            'head_title' => $apsSetup['defaults']['document_properties']['head_title'],
-            'stylesheets' => $this->provideStylesheets(),
-            'body_classes' => $this->calculateBodyClasses(),
-            'body_content' => $body_content,
+            'head_title'    => $apsSetup['defaults']['document_properties']['head_title'],
+            'head_misc'     => '',
+            'stylesheets'   => $this->provideStylesheets(),
+            'body_classes'  => $this->calculateBodyClasses(),
+            'body_content'  => $body_content,
         ];
+
+        $this->documentHeadAdditions($document_variables);
+
         return $tools->render('document', $document_variables);
+    }
+
+    /**
+     * @param $document_variables
+     */
+    protected function documentHeadAdditions(&$document_variables)
+    {
+        if (!empty($this->processManager->getConfig('config')['enable-livereload'])) {
+            // && empty(BUILDING_STATIC_FILE)) {
+
+            // See http://stackoverflow.com/questions/26069796/gulp-how-to-implement-livereload-without-chromes-livereload-plugin
+            $livereload_script =
+                '<script src="http://localhost:35729/livereload.js?snipver=1"></script>';
+            $document_variables['head_misc'] .= PHP_EOL . $livereload_script;
+        }
     }
 
     /**
@@ -77,11 +96,6 @@ class DocumentProvider
         }
 
         return implode(' ', $body_classes);
-    }
-
-    protected function documentHeadAdditions(&$document_variables)
-    {
-
     }
 
     public function renderStylesheetLink($href, $cache_bust_str)

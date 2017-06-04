@@ -79,13 +79,6 @@ return [
         'cache-bust-str' => '20170507-1',
 
         /**
-         * Development: livereload.
-         *
-         * Boolean, any truthy or falsy values will suffice.
-         */
-        'enable-livereload' => 1,
-
-        /**
          * TODO: update docblock!!!
          *
          * Stylesheets to be included with the document.
@@ -148,4 +141,11 @@ return [
             ],
         ],
     ],
+
+    /**
+     * Development: livereload.
+     *
+     * Boolean, any truthy or falsy values will suffice.
+     */
+    'enable-livereload' => 1,
 ];
