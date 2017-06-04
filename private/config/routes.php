@@ -1,16 +1,6 @@
 <?php
 
 return [
-    'generator' => [
-        'resource-id'       => 'generator',
-        'resource-type'     => 'system_page',
-        'menu-link-text'    => 'Static site generator',
-    ],
-    'generated' => [
-        'resource-id'       => 'list_generated',
-        'resource-type'     => 'system_page',
-        'menu-link-text'    => 'List static sites',
-    ],
     '' => [
         'resource-id'       => 'home',
         'resource-type'     => 'anypage',
@@ -18,12 +8,19 @@ return [
         'menu-link-text'    => 'Home',
         'has-own-layout'    => false,
     ],
-    'demo/typography' => [
-        'resource-id'       => 'typography_demo',
+    'demo/typography/texts' => [
+        'resource-id'       => 'typography-demo-texts',
+        'resource-type'     => 'anypage',
+        'html-filename'     => 'typography-demo-texts',
+        'menu-link-text'    => 'Typography: texts',
+        'has-own-layout'    => true,
+    ],
+    'demo/typography/lists' => [
+        'resource-id'       => 'typography-demo-lists',
         'resource-type'     => 'anypage',
         'html-filename'     => 'typography-demo',
-        'menu-link-text'    => 'Typography demo',
-        'has-own-layout'    => false,
+        'menu-link-text'    => 'Typography: lists',
+        'has-own-layout'    => true,
     ],
     'demo/grid' => [
         'resource-id'       => 'grid_demo',
@@ -59,5 +56,15 @@ return [
         'html-filename'     => 'grid-test',
         'menu-link-text'    => 'Grid test',
         'has-own-layout'    => false,
+    ],
+    'generator' => [
+        'resource-id'       => 'generator',
+        'resource-type'     => 'system_page',
+        'menu-link-text'    => 'Static site generator',
+    ],
+    'generated' => [
+        'resource-id'       => 'list_generated',
+        'resource-type'     => 'system_page',
+        'menu-link-text'    => 'List static sites',
     ],
 ];
