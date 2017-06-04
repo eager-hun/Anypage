@@ -1,5 +1,7 @@
 <?php
 
+use \Michelf\Markdown;
+
 /**
  * Class Tools
  *
@@ -10,7 +12,8 @@ class Tools
 
     protected $processManager;
     protected $capacities;
-    protected $templating_config;
+    protected $templatingConfig;
+    private   $fillerTexts;
 
     public function __construct(
         ProcessManager $processManager,
@@ -20,10 +23,16 @@ class Tools
         $this->processManager = $processManager;
         $this->capacities = $capacities;
 
-        $this->templating_config = $this
+        $this->templatingConfig = $this
             ->processManager
             ->getConfig('config')['app']['templating'];
+
+        $this->fillerTexts = include(APS_CONTENTS . '/reusable/filler-texts.php');
     }
+
+
+    // #########################################################################
+    // Templating.
 
     /**
      * Determine template filename extension.
@@ -32,11 +41,11 @@ class Tools
     {
         if ($renderer == 'php') {
             $extension = $this
-                ->templating_config['php-template-file-extension'];
+                ->templatingConfig['php-template-file-extension'];
         }
         elseif ($renderer == 'twig') {
             $extension = $this
-                ->templating_config['twig-template-file-extension'];
+                ->templatingConfig['twig-template-file-extension'];
         }
 
         return $extension;
@@ -71,7 +80,7 @@ class Tools
         $output = '';
 
         if (empty($renderer)) {
-            $renderer = $this->templating_config['default-rendering-engine'];
+            $renderer = $this->templatingConfig['default-rendering-engine'];
         }
 
         if ($renderer == 'php') {
@@ -89,7 +98,7 @@ class Tools
             }
         }
         elseif ($renderer == 'twig') {
-            if (!empty($this->templating_config['enable-twig'])) {
+            if (!empty($this->templatingConfig['enable-twig'])) {
                 try {
                     $extension = $this
                         ->determine_template_file_extension($renderer);
@@ -112,5 +121,84 @@ class Tools
         }
 
         return $output;
+    }
+
+
+    // #########################################################################
+    // Retrieving and processing content.
+
+    /**
+     * Process string as markdown.
+     *
+     * @param $text
+     *     markdown.
+     * @return string
+     *     HTML.
+     */
+    public function markdown($text)
+    {
+        return Markdown::defaultTransform($text);
+    }
+
+    /**
+     * Access and process a file's content.
+     *
+     * @param $file
+     * @param $process
+     * @return string
+     */
+    public function importFileContent($file, $process)
+    {
+
+        if (!file_exists($file)) {
+            // TODO: error handling.
+            return 'ERROR in importFileContent(): specified file does not exist.';
+        }
+
+        if ($process == 'php') {
+
+            // Exposing the tools' features inside the imported file.
+            $tools = $this;
+            ob_start();
+            include($file);
+            return ob_get_clean();
+
+        } elseif ($process == 'md') {
+
+            $text = file_get_contents($file);
+            return $this->markdown($text);
+
+        } elseif ($process == 'display-text') {
+
+            $text = file_get_contents($file);
+            return $text;
+
+        } else {
+
+            // TODO: error handling.
+            return 'ERROR in importFileContent(): did not understand'
+                . 'processing instructions.';
+
+        }
+    }
+
+    /**
+     * A convenient source of prepared, static, non-changing Lorem ipsum.
+     *
+     * The texts are coming from anypages/contents/reusable/filler-texts.php
+     *
+     * @param string $group
+     *   See arrays' keys in filler-texts.php.
+     * @param integer $instance
+     *   See arrays' keys in filler-texts.php.
+     * @return string
+     *   Markdown-processed lorem ipsum.
+     */
+    public function addFillerText($group, $instance)
+    {
+
+        $text = $this->fillerTexts[$group][$instance];
+        return $this->markdown($text);
+
     }
 }
