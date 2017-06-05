@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ html_language }}">
 <head>
+
 	<meta charset="UTF-8">
 	<title>{{ head_title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,9 +11,15 @@
     {% endif %}
 
     {{ head_misc | raw }}
+
     {{ stylesheets | raw }}
+    {{ scripts_in_head | raw }}
+
 </head>
 <body class="{{ body_classes }}">
+
     {{ body_content | raw }}
+    {{ scripts_in_body | raw }}
+
 </body>
 </html>

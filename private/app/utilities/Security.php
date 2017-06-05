@@ -61,6 +61,9 @@ class Security
             case 'file_name':
                 // TODO
                 return $value;
+            case 'path_with_file':
+                // TODO
+                return $value;
             default:
                 // Warning about typos or wrong usage.
                 if (!empty($use_as) && $use_as !== 'display') {

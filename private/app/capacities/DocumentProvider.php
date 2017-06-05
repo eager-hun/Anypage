@@ -55,12 +55,16 @@ class DocumentProvider
         $body_content .= $this->provideAppMenu();
 
         $document_variables = [
-            'html_language' => $apsSetup['defaults']['document_properties']['html_lang'],
-            'head_title'    => $apsSetup['defaults']['document_properties']['head_title'],
-            'head_misc'     => '',
-            'stylesheets'   => $this->provideStylesheets(),
-            'body_classes'  => $this->calculateBodyClasses(),
-            'body_content'  => $body_content,
+            'html_language'     =>
+                $apsSetup['defaults']['document_properties']['html_lang'],
+            'head_title'        =>
+                $apsSetup['defaults']['document_properties']['head_title'],
+            'head_misc'         => '',
+            'stylesheets'       => $this->provideStylesheets(),
+            'scripts_in_head'   => $this->provideScripts('head'),
+            'body_classes'      => $this->calculateBodyClasses(),
+            'body_content'      => $body_content,
+            'scripts_in_body'   => $this->provideScripts('body'),
         ];
 
         $this->documentHeadAdditions($document_variables);
@@ -91,98 +95,11 @@ class DocumentProvider
         $body_classes = [];
 
         $app_menu_config = $this->processManager->getConfig('config')['app']['app-menu'];
-        if ($app_menu_config['is-enabled']) {
+        if (!empty($app_menu_config['is-enabled'])) {
             $body_classes[] = 'app-menu-is-enabled';
         }
 
         return implode(' ', $body_classes);
-    }
-
-    public function renderStylesheetLink($href, $cache_bust_str)
-    {
-        $sec = $this->capacities->get('security');
-
-        return $this->capacities->get('tools')->render(
-            'app-infra/stylesheet-link',
-            [
-                'href' => $sec->escapeValue($href, 'href'),
-                'cache_bust_str' => $sec->escapeValue($cache_bust_str, 'cache_bust_str'),
-            ],
-            'php'
-        );
-
-    }
-
-    public function renderScriptTag($src, $opts = [])
-    {
-
-    }
-
-    /**
-     * Renders stylesheet links or script tags.
-     *
-     * @param $assets
-     * @param $kind
-     * @param $output
-     */
-    private function frontendAssetsRenderer($assets, $kind, &$output)
-    {
-        $assets_config = $this
-            ->processManager
-            ->getConfig('config')['frontend-assets'];
-        $base_url = $this->processManager->getInstruction('base-url');
-        $path_to_app_assets = $this
-            ->processManager
-            ->getInstruction('url-path-to-app-assets');
-        $path_to_theme_assets = $this
-            ->processManager
-            ->getInstruction('url-path-to-theme-assets');
-        $cache_bust_str = $assets_config['cache-bust-str'];
-
-        foreach ($assets as $key => $val) {
-
-            // Finalize asset URL.
-
-            if (strpos($key, 'app') !== false) {
-
-                // If the file is located in the app assets location:
-
-                $val = $base_url
-                    . $path_to_app_assets
-                    . '/'
-                    . $val;
-
-            } elseif (strpos($key, 'theme') !== false) {
-
-                // If the file is located in the theme:
-
-                $val = $base_url
-                    . $path_to_theme_assets
-                    . '/'
-                    . $val;
-
-            }
-
-            // Render HTML tag.
-
-            if (!empty($val)) {
-
-                if ($kind == 'styles') {
-                    $output .= $this->renderStylesheetLink($val, $cache_bust_str);
-                }
-                elseif ($kind == 'scripts') {
-                    // TODO.
-                    // $output .= $this->renderScriptTag($val, $cache_bust_str);
-                }
-
-            }
-        }
-        unset($key, $val);
-    }
-
-    private function provideJsSettingsObjects()
-    {
-
     }
 
     /**
@@ -192,21 +109,270 @@ class DocumentProvider
      */
     public function provideStylesheets()
     {
-
         $stylesheets = $this
             ->processManager
             ->getConfig('config')['frontend-assets']['stylesheets'];
 
         $output = '';
+
         if (!empty($stylesheets)) {
-            $this->frontendAssetsRenderer($stylesheets, 'styles', $output);
+            $output = $this->renderStylesheets($stylesheets);
         }
+
         return $output;
     }
 
+    /**
+     * Render stylesheets.
+     *
+     * @param $assets
+     * @return string
+     */
+    public function renderStylesheets($assets)
+    {
+        $output = '';
+
+        foreach ($assets as $key => $val) {
+
+            if (strpos($key, 'app') !== false) {
+                $href = $this->finalizeFrontendAssetUrl($val, 'app');
+            } elseif (strpos($key, 'theme') !== false) {
+                $href = $this->finalizeFrontendAssetUrl($val, 'theme');
+            }
+
+            $output .= $this->capacities->get('tools')->render(
+                'app-infra/stylesheet-link',
+                ['href' => $href],
+                'php'
+            );
+        }
+        unset($key, $val);
+
+        return $output;
+    }
+
+    /**
+     * Provides a series of script tags for the app as one rendered string.
+     *
+     * @param $location
+     * @return string
+     */
     public function provideScripts($location)
     {
+        $assets_config = $this
+            ->processManager
+            ->getConfig('config')['frontend-assets'];
 
+        $scripts = $assets_config['scripts'];
+
+        $output = '';
+
+        if ($assets_config['add-js-settings-object-to'] == $location) {
+            $output .= $this->provideJsSettingsObject();
+        }
+
+        if (!empty($scripts[$location])) {
+            $output .= $this->renderScripts($scripts[$location]);
+        }
+
+        return $output;
+    }
+
+    /**
+     * @param array $scripts
+     * @return string
+     */
+    protected function renderScripts($scripts) {
+        $output = '';
+
+        foreach ($scripts as $key => $script_props) {
+
+            $use_as = 'reference'; // Default.
+
+            if (!empty($script_props['use_as'])) {
+                $use_as = $script_props['use_as'];
+            }
+
+            if ($use_as == 'reference') {
+
+                // We will use an 'src' attribute and the script tag will have
+                // no content.
+
+                if (!empty($script_props['script'])) {
+                    unset($script_props['script']);
+                }
+
+                if (!empty($script_props['file'])) {
+
+                    // If the 'file' key exists, it implies a file in our
+                    // filesystem.
+
+                    if (strpos($key, 'app') !== false) {
+                        $script_props['src_value'] =
+                            $this->finalizeFrontendAssetUrl(
+                                $script_props['file'],
+                                'app'
+                            );
+                    } elseif (strpos($key, 'theme') !== false) {
+                        $script_props['src_value'] =
+                            $this->finalizeFrontendAssetUrl(
+                                $script_props['file'],
+                                'theme'
+                            );
+                    }
+
+                } elseif (!empty($script_props['src_value'])) {
+
+                    // If the src_value had been directly set.
+                    // TODO.
+
+                    $msg = 'Inlining scripts is TODO.';
+                    $this->processManager->sysNotify($msg, 'warning');
+
+                }
+
+            } elseif ($use_as == 'inline') {
+
+                // TODO: file_get_contents().
+
+                $msg = 'Inlining scripts is TODO.';
+                $this->processManager->sysNotify($msg, 'warning');
+
+                if (!empty($script_props['file'])) {
+
+                }
+            }
+            else {
+                $msg = 'renderScripts() did not understand the intended script usage suggestion.';
+                $this->processManager->sysNotify($msg, 'warning');
+                continue;
+            }
+
+            $output .= $this->renderScriptTag($script_props);
+        }
+        unset($key, $script_props);
+
+        return $output;
+    }
+
+    /**
+     * Render a script tag.
+     *
+     * @param array $script_props
+     *   keys:
+     *     'variant': 'reference' || 'inline'
+     *     'src_value': src attrib value
+     *     'script': script to be inlined
+     * @return string
+     */
+    protected function renderScriptTag($script_props)
+    {
+        // Defaults.
+        $src_attrib = '';
+        $script     = '';
+
+        if (!empty($script_props['src_value'])) {
+            $src_attrib = ' src="' . $script_props['src_value'] . '"';
+        }
+        elseif (!empty($script_props['script'])) {
+            $script = $script_props['script'];
+        }
+
+        return $this->capacities->get('tools')->render(
+            'app-infra/script-tag',
+            [
+                'src_attrib' => $src_attrib,
+                'script'     => $script,
+            ],
+            'php'
+        );
+    }
+
+    /**
+     * Provide JS settings object.
+     *
+     * @return string
+     */
+    protected function provideJsSettingsObject()
+    {
+        $settings_items = array();
+
+        // TODO:
+        // if ('this is the generator page' && empty(BUILDING_STATIC_FILE)) {}
+
+        $base_url = $this->processManager->getInstruction('base-url');
+        $pagelist = $this->processManager->getConfig('routes');
+
+        $page_urls = [];
+
+        foreach ($pagelist as $path => $page_manifest) {
+            if ($page_manifest['resource-type'] == 'anypage') {
+                $page_urls[] = $base_url . $path;
+            }
+        }
+        unset($path, $page_manifest);
+
+        $settings_items['anypageUrlList'] = $page_urls;
+
+        $settings = json_encode($settings_items, JSON_FORCE_OBJECT);
+
+        $script = "window.apSettings = $settings;";
+        $script .= PHP_EOL;
+        $script .= 'window.apAssets = {};';
+
+        $scriptTag = $this->renderScriptTag([
+            'script'  => $script
+        ]);
+
+        return $scriptTag;
+    }
+
+    /**
+     * Finalize a frontend asset url.
+     *
+     * TODO: make processManager->getInstruction() return pre-escaped values.
+     *
+     * @param $url
+     * @param $location
+     * @return string
+     */
+    protected function finalizeFrontendAssetUrl($path, $location) {
+        $sec = $this->capacities->get('security');
+
+        $assets_config = $this
+            ->processManager
+            ->getConfig('config')['frontend-assets'];
+
+        $base_url = $this->processManager->getInstruction('base-url');
+
+        $path_to_app_assets = $this
+            ->processManager
+            ->getInstruction('url-path-to-app-assets');
+
+        $path_to_theme_assets = $this
+            ->processManager
+            ->getInstruction('url-path-to-theme-assets');
+
+        $cache_bust_str = $assets_config['cache-bust-str'];
+
+        // Finalize asset URL.
+
+        if ($location == 'app') {
+            $url = $base_url
+                . $path_to_app_assets
+                . '/'
+                . $sec->escapeValue($path, 'path_with_file');
+
+        } elseif ($location == 'theme') {
+            $url = $base_url
+                . $path_to_theme_assets
+                . '/'
+                . $sec->escapeValue($path, 'path_with_file');
+        }
+
+        $url .= '?v=' . $sec->escapeValue($cache_bust_str, 'cache_bust_str');
+
+        return $url;
     }
 
     /**

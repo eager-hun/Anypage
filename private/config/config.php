@@ -134,10 +134,22 @@ return [
         'scripts' => [
             'head' => [],
             'body' => [
-                'app1'   => 'anypage-app.js',
-                'theme1' => 'build/js/libs.js',
-                'theme2' => 'build/js/custom.min.js',
-                'theme3' => 'build/js/styleguide.min.js',
+                'app1' => [
+                    'file'   => 'anypage-app.js',
+                    'use_as' => 'reference',
+                ],
+                'theme1' => [
+                    'file'   => 'build/js/libs.js',
+                    'use_as' => 'reference',
+                ],
+                'theme2' => [
+                    'file'   => 'build/js/custom.min.js',
+                    'use_as' => 'reference',
+                ],
+                'theme3' => [
+                    'file'   => 'build/js/styleguide.min.js',
+                    'use_as' => 'reference',
+                ],
             ],
         ],
     ],
