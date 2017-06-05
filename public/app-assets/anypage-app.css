@@ -33,6 +33,19 @@ body.app-menu-is-enabled {
     list-style-type: none;
 }
 
+.app-menu__item {
+    line-height: 1.1;
+}
+
+.app-menu__topic-title {
+    padding: 1em 0.5em 0.5em 0;
+    font-style: italic;
+    opacity: 0.55;
+}
+.app-menu__topic-title .item__text {
+    font-size: 0.85em;
+}
+
 .app-menu a,
 .app-menu a:visited,
 .app-menu a:hover,
@@ -43,7 +56,6 @@ body.app-menu-is-enabled {
     padding: 0.25em 0.5em;
 
     color: whitesmoke;
-    line-height: 1.1;
     text-decoration: none;
 }
 .app-menu a:hover,

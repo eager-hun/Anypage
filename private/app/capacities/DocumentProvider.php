@@ -391,6 +391,10 @@ class DocumentProvider
 
         foreach ($pagelist as $path => $page_data) {
 
+            if (empty($page_data['menu'])) {
+                continue;
+            }
+
             // We were called during a dynamic php page response.
             if (! defined('BUILDING_STATIC_FILE') || empty(BUILDING_STATIC_FILE)) {
 
@@ -412,9 +416,17 @@ class DocumentProvider
                     . '.html';
             }
 
+            if (!empty($page_data['menu']['starts-topic'])) {
+                $app_menu_items[] = [
+                    'item_type' => 'topic-title',
+                    'text'      => $sec->escapeValue($page_data['menu']['starts-topic']),
+                ];
+            }
+
             $app_menu_items[] = [
-                'url' => $url,
-                'text' => $sec->escapeValue($page_data['menu-link-text']),
+                'item_type' => 'link',
+                'url'       => $url,
+                'text'      => $sec->escapeValue($page_data['menu']['link-text']),
             ];
         }
 
