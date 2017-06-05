@@ -40,7 +40,10 @@ class DocumentProvider
         if (empty($resource_manifest['has-own-layout'])) {
             $page_payload = $tools->render(
                 'page-level',
-                ['page_level_content' => $page_payload]
+                [
+                    'wrapper_extra_classes' => 'fallback-page-level',
+                    'page_level_content'    => $page_payload
+                ]
             );
         }
 

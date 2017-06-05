@@ -28,10 +28,17 @@ class ContentProvider
 
         $manifest = $this->processManager->getInstruction('resource-manifest');
 
-        if ($manifest['resource-type'] == 'anypage') {
+        if ($manifest['resource-type'] == 'anypage'
+            || $manifest['resource-type'] == 'metapage') {
+
+            $recipe_subdir = 'anypage-recipes'; // Assume anypage by default.
+
+            if ($manifest['resource-type'] == 'metapage') {
+                $recipe_subdir = 'metapage-recipes';
+            }
 
             $recipe_file = APS_DEFINITIONS
-                . '/anypage-recipes/'
+                . '/' . $recipe_subdir . '/'
                 . $manifest['resource-id']
                 . '.recipe.php';
 
