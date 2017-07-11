@@ -58,6 +58,9 @@ class Security
             case 'uri_path':
                 // TODO
                 return $value;
+            case 'dir_name':
+                // TODO
+                return $value;
             case 'file_name':
                 // TODO
                 return $value;

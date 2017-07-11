@@ -55,6 +55,7 @@ class ContentProvider
                 // TODO: error handling?
                 $output = 'Error: content recipe was not found.';
             }
+
         } elseif ($manifest['resource-type'] == 'system_page') {
 
             if ($manifest['resource-id'] == '404') {
@@ -65,7 +66,21 @@ class ContentProvider
             } elseif ($manifest['resource-id'] == 'generator') {
 
             } elseif ($manifest['resource-id'] == 'list_generated') {
+                $page_title_text = 'Generated static snapshots';
 
+                $output = $this
+                    ->capacities
+                    ->get('tools')
+                    ->render(
+                        'app-infra/page-title',
+                        compact('page_title_text'),
+                        'php'
+                    );
+
+                $output .= $this
+                    ->capacities
+                    ->get('site-generator')
+                    ->listGeneratedStaticSites();
             }
         }
         else {

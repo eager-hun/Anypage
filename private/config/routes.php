@@ -82,7 +82,7 @@ return [
         'resource-id'       => 'list_generated',
         'resource-type'     => 'system_page',
         'menu'              => [
-            'link-text' => 'List static sites',
+            'link-text' => 'List static snapshots',
         ],
     ],
     'meta/goals-and-priorities' => [
