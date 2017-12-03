@@ -9,22 +9,31 @@ return [
             'link-text' => 'Home',
         ],
     ],
-    'demo/typography/texts' => [
-        'resource-id'       => 'typography-demo-texts',
+    'demo/texts/headings' => [
+        'resource-id'       => 'styles-demo-texts-headings',
         'resource-type'     => 'anypage',
-        'html-filename'     => 'typography-demo-texts',
+        'html-filename'     => 'styles-demo-texts-headings',
         'menu'              => [
-            'starts-topic'  => 'Typography',
-            'link-text' => 'Texts',
+            'starts-topic'  => 'Texts',
+            'link-text' => 'Headings',
         ],
         'has-own-layout'    => true,
     ],
-    'demo/typography/lists' => [
-        'resource-id'       => 'typography-demo-lists',
+    'demo/texts/lists' => [
+        'resource-id'       => 'styles-demo-lists',
         'resource-type'     => 'anypage',
-        'html-filename'     => 'typography-demo',
+        'html-filename'     => 'styles-demo-lists',
         'menu'              => [
             'link-text' => 'Lists',
+        ],
+        'has-own-layout'    => true,
+    ],
+    'demo/texts/misc' => [
+        'resource-id'       => 'styles-demo-texts-misc',
+        'resource-type'     => 'anypage',
+        'html-filename'     => 'styles-demo-texts-misc',
+        'menu'              => [
+            'link-text' => 'Misc texts',
         ],
         'has-own-layout'    => true,
     ],
@@ -35,14 +44,6 @@ return [
         'menu'              => [
             'starts-topic'  => 'Grid and layouts',
             'link-text' => 'Grid demo',
-        ],
-    ],
-    'test/grid-test' => [
-        'resource-id'       => 'grid_test',
-        'resource-type'     => 'anypage',
-        'html-filename'     => 'grid-test',
-        'menu'              => [
-            'link-text' => 'Grid test',
         ],
     ],
     'demo/layouts' => [

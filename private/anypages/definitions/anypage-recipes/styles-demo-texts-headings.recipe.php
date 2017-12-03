@@ -3,14 +3,14 @@
 $page_content = '';
 
 $page_title = $tools->render('page-title', [
-    'page_title_text' => 'Typography demo: lists'
+    'page_title_text' => 'Text styles: headings'
 ]);
 
 // ----------------------------------------------------------------------------
-// Demonstrate typography on sample lists.
+// Demonstrate typography on sample texts.
 
-$sample_lists = $tools->importFileContent(
-    APS_CONTENTS . '/arbitrary/typography-sample-lists.php',
+$sample_text = $tools->importFileContent(
+    APS_CONTENTS . '/arbitrary/styles-demo-texts-headings.php',
     'php'
 );
 
@@ -18,8 +18,7 @@ $sample_lists = $tools->importFileContent(
 // Output.
 
 $page_content .= $tools->render('page-level', [
-    'page_level_content' => $page_title . $sample_lists,
+   'page_level_content' => $page_title . $sample_text,
 ]);
 
 echo $page_content;
-
