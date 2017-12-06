@@ -55,12 +55,21 @@ return [
             'link-text' => 'Layouts demo',
         ],
     ],
+    'demo/color-zones' => [
+        'resource-id'       => 'styles-demo-color-zones',
+        'resource-type'     => 'anypage',
+        'html-filename'     => 'styles-demo-color-zones',
+        'menu'              => [
+            'starts-topic'  => 'Patterns and pages',
+            'link-text'     => 'Color zones',
+        ],
+        'has-own-layout'    => true,
+    ],
     'components/custom-components' => [
         'resource-id'       => 'custom_components',
         'resource-type'     => 'anypage',
         'html-filename'     => 'custom-components',
         'menu'              => [
-            'starts-topic'  => 'Patterns and pages',
             'link-text' => 'Custom components',
         ],
     ],
