@@ -1,0 +1,16 @@
+
+<div class="box {{ wrapper_extra_classes | default('') }}">
+
+    {% if box_title %}
+        <div class="box__title">
+            {{ box_title }}
+        </div>
+    {% endif %}
+
+    {% if box_content %}
+        <div class="box__content">
+            {{ box_content | raw }}
+        </div>
+    {% endif %}
+
+</div>
