@@ -38,13 +38,14 @@ return [
         'has-own-layout'    => true,
     ],
     'demo/grid' => [
-        'resource-id'       => 'grid_demo',
+        'resource-id'       => 'styles-demo-grid',
         'resource-type'     => 'anypage',
-        'html-filename'     => 'grid-demo',
+        'html-filename'     => 'styles-demo-grid',
         'menu'              => [
             'starts-topic'  => 'Grid and layouts',
-            'link-text' => 'Grid demo',
+            'link-text' => 'Cheap grid',
         ],
+        'has-own-layout'    => true,
     ],
     'demo/layouts' => [
         'resource-id'       => 'layouts_demo',
