@@ -9,13 +9,26 @@ return [
             'link-text' => 'Home',
         ],
     ],
+
+    // -------------------------------------------------------------------------
+    // Demos: global styles.
+
     'demo/texts/headings' => [
         'resource-id'       => 'styles-demo-texts-headings',
         'resource-type'     => 'anypage',
         'html-filename'     => 'styles-demo-texts-headings',
         'menu'              => [
-            'starts-topic'  => 'Texts',
-            'link-text' => 'Headings',
+            'starts-topic'  => 'Global styles',
+            'link-text'     => 'Headings',
+        ],
+        'has-own-layout'    => true,
+    ],
+    'demo/texts/essentials' => [
+        'resource-id'       => 'styles-demo-texts-essentials',
+        'resource-type'     => 'anypage',
+        'html-filename'     => 'styles-demo-texts-essentials',
+        'menu'              => [
+            'link-text' => 'Essential texts',
         ],
         'has-own-layout'    => true,
     ],
@@ -28,31 +41,12 @@ return [
         ],
         'has-own-layout'    => true,
     ],
-    'demo/texts/misc' => [
-        'resource-id'       => 'styles-demo-texts-misc',
+    'demo/forms' => [
+        'resource-id'       => 'styles-demo-forms',
         'resource-type'     => 'anypage',
-        'html-filename'     => 'styles-demo-texts-misc',
+        'html-filename'     => 'styles-demo-forms',
         'menu'              => [
-            'link-text' => 'Misc texts',
-        ],
-        'has-own-layout'    => true,
-    ],
-    'demo/grid' => [
-        'resource-id'       => 'styles-demo-grid',
-        'resource-type'     => 'anypage',
-        'html-filename'     => 'styles-demo-grid',
-        'menu'              => [
-            'starts-topic'  => 'Grid and layouts',
-            'link-text' => 'Cheap grid',
-        ],
-        'has-own-layout'    => true,
-    ],
-    'demo/layouts' => [
-        'resource-id'       => 'layouts_demo',
-        'resource-type'     => 'anypage',
-        'html-filename'     => 'layouts-demo',
-        'menu'              => [
-            'link-text' => 'Layouts demo',
+            'link-text' => 'Forms',
         ],
     ],
     'demo/color-zones' => [
@@ -60,27 +54,102 @@ return [
         'resource-type'     => 'anypage',
         'html-filename'     => 'styles-demo-color-zones',
         'menu'              => [
-            'starts-topic'  => 'Patterns and pages',
-            'link-text'     => 'Color zones',
+            'link-text' => 'Color zones',
         ],
         'has-own-layout'    => true,
     ],
-    'components/custom-components' => [
-        'resource-id'       => 'custom_components',
+    'demo/misc-global' => [
+        'resource-id'       => 'styles-demo-misc-global',
         'resource-type'     => 'anypage',
-        'html-filename'     => 'custom-components',
+        'html-filename'     => 'styles-demo-misc-global',
         'menu'              => [
-            'link-text' => 'Custom components',
+            'link-text' => 'Misc.',
         ],
     ],
+
+    // -------------------------------------------------------------------------
+    // Demos: grids and layouts.
+
+    'demo/grid' => [
+        'resource-id'       => 'styles-demo-grid',
+        'resource-type'     => 'anypage',
+        'html-filename'     => 'styles-demo-grid',
+        'menu'              => [
+            'starts-topic'  => 'Grids and layouts',
+            'link-text'     => 'Cheap grid',
+        ],
+        'has-own-layout'    => true,
+    ],
+    'demo/layouts' => [
+        'resource-id'       => 'styles-demo-layouts',
+        'resource-type'     => 'anypage',
+        'html-filename'     => 'styles-demo-layouts',
+        'menu'              => [
+            'link-text' => 'Layouts demo',
+        ],
+    ],
+
+    // -------------------------------------------------------------------------
+    // Demos: Custom UI Patterns.
+
+    'demo/custom-ui-patterns/titles' => [
+        'resource-id'       => 'patterns-titles',
+        'resource-type'     => 'anypage',
+        'html-filename'     => 'patterns-titles',
+        'menu'              => [
+            'starts-topic'  => 'Custom UI patterns',
+            'link-text'     => 'Titles',
+        ],
+    ],
+    'demo/custom-ui-patterns/lists' => [
+        'resource-id'       => 'patterns-lists',
+        'resource-type'     => 'anypage',
+        'html-filename'     => 'patterns-lists',
+        'menu'              => [
+            'link-text'     => 'Lists',
+        ],
+    ],
+    'demo/custom-ui-patterns/highlights-and-notifications' => [
+        'resource-id'       => 'patterns-highlights',
+        'resource-type'     => 'anypage',
+        'html-filename'     => 'patterns-highlights',
+        'menu'              => [
+            'link-text'     => 'Highlights',
+        ],
+    ],
+    'demo/custom-ui-patterns/hero-mosaic' => [
+        'resource-id'       => 'patterns-hero-mosaic',
+        'resource-type'     => 'anypage',
+        'html-filename'     => 'patterns-hero-mosaic',
+        'menu'              => [
+            'link-text'     => 'Hero mosaic',
+        ],
+    ],
+
+    // -------------------------------------------------------------------------
+    // Demos: Pages.
+
     'demo/sample-page-1' => [
-        'resource-id'       => 'sample_page_1',
+        'resource-id'       => 'sample-page-1',
         'resource-type'     => 'anypage',
         'html-filename'     => 'sample-page-1',
         'menu'              => [
+            'starts-topic'  => 'Pages',
             'link-text' => 'Sample page 1',
         ],
     ],
+    'demo/sample-page-2' => [
+        'resource-id'       => 'sample-page-2',
+        'resource-type'     => 'anypage',
+        'html-filename'     => 'sample-page-2',
+        'menu'              => [
+            'link-text' => 'Sample page 2',
+        ],
+    ],
+
+    // -------------------------------------------------------------------------
+    // Static sites.
+
     'generator' => [
         'resource-id'       => 'generator',
         'resource-type'     => 'system_page',
@@ -96,12 +165,16 @@ return [
             'link-text' => 'List static snapshots',
         ],
     ],
+
+    // -------------------------------------------------------------------------
+    // Meta.
+
     'meta/goals-and-priorities' => [
         'resource-id'       => 'goals-and-priorities',
         'resource-type'     => 'metapage',
         'menu'              => [
             'starts-topic'  => 'Meta pages',
-            'link-text' => 'Project goals and priorities',
+            'link-text'     => 'Project goals and priorities',
         ],
     ],
 ];
