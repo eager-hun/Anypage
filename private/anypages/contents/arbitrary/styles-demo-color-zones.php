@@ -72,7 +72,7 @@ $rendered_boxes = [];
 
 foreach($boxes_data as $key => $box_data) {
 
-    $wrapper_extra_classes = 'fill-flex color-zone '
+    $wrapper_extra_classes = 'fill-flex box--major color-zone '
         . $box_data['wrapper_extra_classes'];
 
     $rendered_boxes[$key] = $tools->render('patterns/box', [
