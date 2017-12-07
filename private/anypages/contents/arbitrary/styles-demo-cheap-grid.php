@@ -67,14 +67,11 @@
 
 </div>
 
-<h3>4-column grid with grid nesting</h3>
+<h3>Nesting grids</h3>
 
 <div class="styles-demo-grid-palette">
 
-    <div class="cheap-grid cheap-grid--preset-4-cols">
-        <div class="cheap-grid__item">
-            <div class="box fill-flex">Top level</div>
-        </div>
+    <div class="cheap-grid cheap-grid--preset-3-cols">
         <div class="cheap-grid__item">
             <div class="box fill-flex">Top level</div>
         </div>
@@ -88,10 +85,10 @@
 
             <div class="cheap-grid cheap-grid--fixed">
                 <div class="cheap-grid__item half">
-                    <div class="box fill-flex">Nested 1 deep</div>
+                    <div class="box fill-flex color-zone color-zone--brand">Nested 1 deep</div>
                 </div>
                 <div class="cheap-grid__item half">
-                    <div class="box fill-flex">Nested 1 deep</div>
+                    <div class="box fill-flex color-zone color-zone--brand">Nested 1 deep</div>
                 </div>
             </div>
 
@@ -100,16 +97,16 @@
 
             <div class="cheap-grid cheap-grid--fixed">
                 <div class="cheap-grid__item third">
-                    <div class="box fill-flex">Nested 1 deep</div>
+                    <div class="box fill-flex color-zone color-zone--accent-1">Nested 1 deep</div>
                 </div>
                 <div class="cheap-grid__item two-thirds">
 
                     <div class="cheap-grid cheap-grid--fixed">
                         <div class="cheap-grid__item half">
-                            <div class="box fill-flex">Nested 2 deep</div>
+                            <div class="box fill-flex color-zone color-zone--accent-2">Nested 2 deep</div>
                         </div>
                         <div class="cheap-grid__item half">
-                            <div class="box fill-flex">Nested 2 deep</div>
+                            <div class="box fill-flex color-zone color-zone--accent-2">Nested 2 deep</div>
                         </div>
                     </div>
 
