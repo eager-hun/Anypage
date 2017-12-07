@@ -14,7 +14,7 @@
     <li>it is doing a horrendous job with media queries in the generated CSS</li>
 </ul>
 
-<h2>Preset, responsive grids, using mixins</h2>
+<h2 class="underlined">Preset, responsive grids, using mixins</h2>
 
 <h3>3-column grid</h3>
 
@@ -118,9 +118,87 @@
 
 </div>
 
+<h3>Collapsed grid</h3>
+
+<div class="styles-demo-grid-palette">
+
+    <div class="cheap-grid cheap-grid--preset-3-cols cheap-grid--collapsed">
+        <div class="cheap-grid__item">
+            <div class="box fill-flex color-zone color-zone--brand">
+                Grid item
+            </div>
+        </div>
+        <div class="cheap-grid__item">
+            <div class="box fill-flex color-zone color-zone--accent-1">
+                Grid item
+            </div>
+        </div>
+        <div class="cheap-grid__item">
+            <div class="box fill-flex color-zone color-zone--accent-2">
+                Grid item
+            </div>
+        </div>
+        <div class="cheap-grid__item">
+            <div class="box fill-flex color-zone color-zone--dark">
+                Grid item
+            </div>
+        </div>
+        <div class="cheap-grid__item">
+            <div class="box fill-flex color-zone color-zone--blockfill">
+                Grid item
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<h3>Collapsed grid with non-collapsed nested grid</h3>
+
+<p>Likely there is not much point in doing this, but checking anyways.</p>
+
+<div class="styles-demo-grid-palette">
+
+    <div class="cheap-grid cheap-grid--preset-3-cols cheap-grid--collapsed">
+        <div class="cheap-grid__item">
+            <div class="box fill-flex color-zone color-zone--brand">
+                Top level
+            </div>
+        </div>
+        <div class="cheap-grid__item">
+            <div class="box fill-flex color-zone color-zone--accent-1">
+                Top level
+            </div>
+        </div>
+        <div class="cheap-grid__item">
+            <div class="box fill-flex color-zone color-zone--accent-2">
+                Top level
+            </div>
+        </div>
+        <div class="cheap-grid__item">
+            <div class="box fill-flex color-zone color-zone--blockfill">
+                Top level
+            </div>
+        </div>
+        <div class="cheap-grid__item">
+
+            <div class="cheap-grid cheap-grid--fixed">
+                <div class="cheap-grid__item half">
+                    <div class="box fill-flex color-zone color-zone--brand">Nested 1 deep</div>
+                </div>
+                <div class="cheap-grid__item half">
+                    <div class="box fill-flex color-zone color-zone--brand">Nested 1 deep</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 
-<h2>Fixed grids using the option to "steer" grid items with classes on them.</h2>
+
+
+<h2 class="underlined">Fixed grids using the option to "steer" grid items with classes on them.</h2>
 
 <p>NOTE: this is a limited-use option, as it has several shortcomings:</p>
 
@@ -195,6 +273,21 @@ suitable.</p>
         </div>
         <div class="cheap-grid__item quarter">
             <div class="box fill-flex">Grid item</div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="cheap-grid cheap-grid--fixed cheap-grid--collapsed">
+        <div class="cheap-grid__item half">
+            <div class="box fill-flex color-zone color-zone--brand">
+                Grid item
+            </div>
+        </div>
+        <div class="cheap-grid__item half">
+            <div class="box fill-flex color-zone color-zone--accent-1">
+                Grid item
+            </div>
         </div>
     </div>
 
