@@ -152,51 +152,6 @@
 
 </div>
 
-<h3>Collapsed grid with non-collapsed nested grid</h3>
-
-<p>Likely there is not much point in doing this, but checking anyways.</p>
-
-<div class="styles-demo-grid-palette">
-
-    <div class="cheap-grid cheap-grid--preset-3-cols cheap-grid--collapsed">
-        <div class="cheap-grid__item">
-            <div class="box fill-flex color-zone color-zone--brand">
-                Top level
-            </div>
-        </div>
-        <div class="cheap-grid__item">
-            <div class="box fill-flex color-zone color-zone--accent-1">
-                Top level
-            </div>
-        </div>
-        <div class="cheap-grid__item">
-            <div class="box fill-flex color-zone color-zone--accent-2">
-                Top level
-            </div>
-        </div>
-        <div class="cheap-grid__item">
-            <div class="box fill-flex color-zone color-zone--blockfill">
-                Top level
-            </div>
-        </div>
-        <div class="cheap-grid__item">
-
-            <div class="cheap-grid cheap-grid--fixed">
-                <div class="cheap-grid__item half">
-                    <div class="box fill-flex color-zone color-zone--brand">Nested 1 deep</div>
-                </div>
-                <div class="cheap-grid__item half">
-                    <div class="box fill-flex color-zone color-zone--brand">Nested 1 deep</div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</div>
-
-
-
 
 <h2 class="underlined">Fixed grids using the option to "steer" grid items with classes on them.</h2>
 

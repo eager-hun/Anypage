@@ -37,7 +37,12 @@ $boxes_data = [
 
 array_walk($boxes_data, function(&$item) {
 
-    $box_content = $this->addFillerText('s', 1);
+
+    $box_content = '<p>';
+    $box_content .= $this->addFillerText('xs', 1, false);
+    $box_content .= ' <a href="foobar://foo">This is an inline link within this text</a> ';
+    $box_content .= $this->addFillerText('xs', 2, false);
+    $box_content .= '</p>';
 
     $box_content .= <<<EOT
         <ul class="bare-list">
@@ -50,8 +55,9 @@ array_walk($boxes_data, function(&$item) {
         </ul>
 EOT;
 
-    $box_content .= $this->addFillerText('xs', 2);
+    $box_content .= $this->addFillerText('xs', 2, true);
 
+    /*
     $box_content .= '<input type="text" value="Sample textfield">';
 
     $button_class = $item['button_class'];
@@ -61,6 +67,7 @@ EOT;
             Sample button
         </button>
 EOL;
+    */
 
     $item['box_content'] = $box_content;
 });
