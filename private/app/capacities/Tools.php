@@ -194,11 +194,15 @@ class Tools
      * @return string
      *   Markdown-processed lorem ipsum.
      */
-    public function addFillerText($group, $instance)
+    public function addFillerText($group, $instance, $markdown = false)
     {
-
         $text = $this->fillerTexts[$group][$instance];
-        return $this->markdown($text);
 
+        if ($markdown === true) {
+            return $this->markdown($text);
+        }
+        else {
+            return $text;
+        }
     }
 }

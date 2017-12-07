@@ -7,6 +7,21 @@ $filler_texts = [
   'l'  => [],
 ];
 
+
+// ############################################################################
+// XXS.
+
+$filler_texts['xxs'][1] = 'Vestibulum ullamcorper mauris';
+
+$filler_texts['xxs'][2] = 'Tincidunt praesent nonummy mi in odio';
+
+$filler_texts['xxs'][3] = 'Enim turpis, dictum sed';
+
+$filler_texts['xxs'][4] = 'Quisque ut nisi etiam rhoncus';
+
+$filler_texts['xxs'][5] = 'Faucibus orci luctus';
+
+
 // ############################################################################
 // XS.
 
@@ -16,7 +31,7 @@ $filler_texts['xs'][2] = 'Cras sagittis. Integer tincidunt. Praesent nonummy mi 
 
 $filler_texts['xs'][3] = 'Nunc nulla. Suspendisse enim turpis, dictum sed, iaculis a, condimentum ipsum primis.';
 
-$filler_texts['xs'][4] = 'Quisque ut nisi. Etiam rhoncus. Vestibulum ante.';
+$filler_texts['xs'][4] = 'Quisque ut nisi. Etiam rhoncus. Vestibulum ante et ultrices posuere.';
 
 $filler_texts['xs'][5] = 'Faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia.';
 
