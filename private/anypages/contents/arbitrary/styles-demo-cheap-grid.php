@@ -122,7 +122,7 @@
 
 <div class="styles-demo-grid-palette">
 
-    <div class="cheap-grid cheap-grid--preset-3-cols cheap-grid--collapsed">
+    <div class="cheap-grid cheap-grid--preset-3-cols grid-collapsing">
         <div class="cheap-grid__item">
             <div class="box fill-flex color-zone color-zone--brand">
                 Grid item
@@ -233,7 +233,7 @@ suitable.</p>
 
     <hr>
 
-    <div class="cheap-grid cheap-grid--fixed cheap-grid--collapsed">
+    <div class="cheap-grid cheap-grid--fixed grid-collapsing">
         <div class="cheap-grid__item half">
             <div class="box fill-flex color-zone color-zone--brand">
                 Grid item

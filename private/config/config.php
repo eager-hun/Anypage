@@ -60,7 +60,7 @@ return [
             ]
         ],
         'app-menu' => [
-            'is-enabled' => true,
+            'is-enabled' => 1, // Bool.
         ],
     ],
 

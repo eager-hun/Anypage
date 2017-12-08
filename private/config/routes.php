@@ -81,12 +81,13 @@ return [
         'has-own-layout'    => true,
     ],
     'demo/layouts' => [
-        'resource-id'       => 'styles-demo-layouts',
+        'resource-id'       => 'styles-demo-layout-1-sidebar',
         'resource-type'     => 'anypage',
-        'html-filename'     => 'styles-demo-layouts',
+        'html-filename'     => 'styles-demo-layout-1-sidebar',
         'menu'              => [
-            'link-text' => 'Layouts demo',
+            'link-text' => 'Layout 1 sidebar',
         ],
+        'has-own-layout'    => true,
     ],
 
     // -------------------------------------------------------------------------
