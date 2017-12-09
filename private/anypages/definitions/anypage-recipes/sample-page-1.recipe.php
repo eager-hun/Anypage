@@ -42,12 +42,12 @@ $boxes = [
     ],
     [
         'wrapper_extra_classes' => 'fill-flex color-zone color-zone--dark',
-        'box_title'             => 'Super box 2',
+        'box_title'             => 'Super box 4',
         'box_content'           => $tools->addFillerText('xs', 5, true)
     ],
     [
         'wrapper_extra_classes' => 'fill-flex color-zone color-zone--blockfill',
-        'box_title'             => 'Super box 1',
+        'box_title'             => 'Super box 5',
         'box_content'           => $tools->addFillerText('xs', 4, true)
     ],
 ];
