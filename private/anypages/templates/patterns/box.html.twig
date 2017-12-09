@@ -1,13 +1,13 @@
 
 <div class="box {{ wrapper_extra_classes | default('') }}">
 
-    {% if box_title %}
+    {% if box_title is defined %}
         <div class="box__title">
             {{ box_title }}
         </div>
     {% endif %}
 
-    {% if box_content %}
+    {% if box_content is defined %}
         <div class="box__content">
             {{ box_content | raw }}
         </div>
