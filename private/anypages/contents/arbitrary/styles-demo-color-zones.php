@@ -37,7 +37,6 @@ $boxes_data = [
 
 array_walk($boxes_data, function(&$item) {
 
-
     $box_content = '<p>';
     $box_content .= $this->addFillerText('xs', 1, false);
     $box_content .= ' <a href="foobar://foo">This is an inline link within this text</a> ';

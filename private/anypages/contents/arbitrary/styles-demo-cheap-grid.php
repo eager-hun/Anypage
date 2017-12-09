@@ -71,7 +71,7 @@
 
 <div class="styles-demo-grid-palette">
 
-    <div class="cheap-grid cheap-grid--preset-3-cols">
+    <div class="cheap-grid cheap-grid--preset-3-cols flexboxify-items">
         <div class="cheap-grid__item">
             <div class="box fill-flex">Top level</div>
         </div>
@@ -83,7 +83,7 @@
         </div>
         <div class="cheap-grid__item">
 
-            <div class="cheap-grid cheap-grid--fixed">
+            <div class="cheap-grid cheap-grid--fixed flexboxify-items">
                 <div class="cheap-grid__item half">
                     <div class="box fill-flex color-zone color-zone--brand">Nested 1 deep</div>
                 </div>
@@ -95,13 +95,13 @@
         </div>
         <div class="cheap-grid__item">
 
-            <div class="cheap-grid cheap-grid--fixed">
+            <div class="cheap-grid cheap-grid--fixed flexboxify-items">
                 <div class="cheap-grid__item third">
                     <div class="box fill-flex color-zone color-zone--accent-1">Nested 1 deep</div>
                 </div>
                 <div class="cheap-grid__item two-thirds">
 
-                    <div class="cheap-grid cheap-grid--fixed">
+                    <div class="cheap-grid cheap-grid--fixed flexboxify-items">
                         <div class="cheap-grid__item half">
                             <div class="box fill-flex color-zone color-zone--accent-2">Nested 2 deep</div>
                         </div>
@@ -170,7 +170,7 @@ $box_with_image = $tools->render('patterns/box', [
 
 <div class="styles-demo-grid-palette">
 
-    <div class="cheap-grid cheap-grid--preset-4-cols">
+    <div class="cheap-grid cheap-grid--preset-4-cols flexboxify-items">
         <div class="cheap-grid__item">
             <img src="<?php echo $img_src; ?>" alt="Train wheel">
             <p><code>&lt;img&gt;</code> as direct child of a grid-item</p>

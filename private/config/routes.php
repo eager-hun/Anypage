@@ -138,6 +138,7 @@ return [
             'starts-topic'  => 'Pages',
             'link-text' => 'Sample page 1',
         ],
+        'has-own-layout'    => true,
     ],
     'demo/sample-page-2' => [
         'resource-id'       => 'sample-page-2',

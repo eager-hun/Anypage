@@ -1,0 +1,15 @@
+<div class="layout-1-sidebar {{ wrapper_extra_classes | default('') }}">
+
+    {% if main_content is defined %}
+        <div class="layout__element layout__main">
+            {{ main_content | raw}}
+        </div>
+    {% endif %}
+
+    {% if sidebar_content is defined %}
+        <div class="layout__element layout__sidebar">
+            {{ sidebar_content | raw }}
+        </div>
+    {% endif %}
+
+</div>
