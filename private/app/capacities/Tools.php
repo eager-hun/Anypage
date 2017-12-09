@@ -205,4 +205,18 @@ class Tools
             return $text;
         }
     }
+
+
+    // #########################################################################
+    // Misc.
+
+    public function pathToThemeStaticFiles()
+    {
+        $base_url = $this->processManager
+            ->getInstruction('base-url');
+        $path_to_theme = $this->processManager
+            ->getInstruction('url-path-to-theme');
+
+        return $base_url . '/' . $path_to_theme . '/' . '/static-assets';
+    }
 }

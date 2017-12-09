@@ -352,9 +352,9 @@ class DocumentProvider
             ->processManager
             ->getInstruction('url-path-to-app-assets');
 
-        $path_to_theme_assets = $this
+        $path_to_theme = $this
             ->processManager
-            ->getInstruction('url-path-to-theme-assets');
+            ->getInstruction('url-path-to-theme');
 
         $cache_bust_str = $assets_config['cache-bust-str'];
 
@@ -368,7 +368,7 @@ class DocumentProvider
 
         } elseif ($location == 'theme') {
             $url = $base_url
-                . $path_to_theme_assets
+                . $path_to_theme
                 . '/'
                 . $sec->escapeValue($path, 'path_with_file');
         }
