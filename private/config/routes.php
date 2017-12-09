@@ -76,11 +76,11 @@ return [
         'html-filename'     => 'styles-demo-grid',
         'menu'              => [
             'starts-topic'  => 'Grids and layouts',
-            'link-text'     => 'Cheap grid',
+            'link-text'     => 'Cheap flex grid',
         ],
         'has-own-layout'    => true,
     ],
-    'demo/layouts' => [
+    'demo/layouts/layout-1-sidebar' => [
         'resource-id'       => 'styles-demo-layout-1-sidebar',
         'resource-type'     => 'anypage',
         'html-filename'     => 'styles-demo-layout-1-sidebar',

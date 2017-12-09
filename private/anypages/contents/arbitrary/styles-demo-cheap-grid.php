@@ -1,5 +1,5 @@
 
-<p>The "cheap grid" solution is called cheap for these reasons:</p>
+<p>This solution is referred to as "cheap" for these reasons:</p>
 
 <ul>
     <li>I couldn't yet spend the amount of time on it that it would deserve</li>
