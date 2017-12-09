@@ -55,21 +55,42 @@ $filler_texts['s'][5] = 'In hac habitasse platea dictumst. Morbi ac felis. Mauri
 // M.
 
 $filler_texts['m'][1] = <<<EOT
-Phasellus a est. Vivamus aliquet elit ac nisl. Nunc nulla. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede. Aenean massa.
+Lorem ipsum dolor sit amet, sit ipsum, enim lacus, neque iaculis augue, vehicula
+suscipit a, sem pellentesque nibh ut donec. Scelerisque iaculis etiam vulputate
+aliquam eu mattis, amet sagittis, sed orci at nec duis pede, diam arcu molestie,
+cras elementum a tristique sed odio massa.
 
-Morbi ac felis. Curabitur at lacus ac velit ornare lobortis. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo. Fusce risus nisl, viverra et, tempor et, pretium in, sapien.
+Sit wisi pellentesque luctus mattis nec, dictum cras eget et ligula in est,
+voluptatem et libero nunc. Ac amet eget adipiscing varius tortor tellus, quam
+rutrum dolor, tortor scelerisque at placerat ante velit euismod. Eu euismod amet
+nisl vestibulum sed enim, amet dolor porttitor, a nec potenti arcu vehicula
+nullam eleifend.
 EOT;
 
 $filler_texts['m'][2] = <<<EOT
-In ac felis quis tortor malesuada pretium. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Proin faucibus arcu quis ante. Curabitur ullamcorper ultricies nisi.
+Magna
+scelerisque, laoreet arcu magna a leo eleifend, eros varius nunc. Vulputate
+lorem, dui mauris lectus arcu. Sagittis turpis aut adipiscing pulvinar tempus,
+consectetuer odio turpis, tellus vestibulum wisi, lobortis potenti.
 
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nunc sed turpis. Maecenas egestas arcu quis ligula mattis placerat. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros.
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+hymenaeos. Nunc sed turpis. Maecenas egestas arcu quis ligula mattis placerat.
+Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a
+accumsan nisi mauris ac eros.
 EOT;
 
 $filler_texts['m'][3] = <<<EOT
-Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Nam pretium turpis et arcu. Nunc nulla.
-
-Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Nunc egestas.
+Nunc pharetra vulputate ullamco arcu vestibulum adipiscing, nullam amet eget
+donec. Nec elit platea etiam nunc turpis. Et ac cubilia penatibus nulla.
+Parturient vehicula mattis nulla id duis, integer malesuada fermentum, blandit
+dui phasellus nulla, tellus tristique fusce. Ridiculus tellus nunc dictum
+curabitur nobis. Dolor lacus sit fringilla hac diam porta.
+ 
+Vulputate interdum tellus nec nisl curabitur molestie. Non mi varius donec
+mauris, pharetra fermentum velit semper, est posuere quisque, tortor duis mauris
+imperdiet suscipit neque ornare. Vestibulum nulla mauris, justo adipiscing,
+massa ornare sed est. Leo leo tellus vitae elit facilisi auctor, turpis turpis
+curabitur pellentesque sapien elit urna.
 EOT;
 
 
@@ -77,33 +98,73 @@ EOT;
 // L.
 
 $filler_texts['l'][1] = <<<EOT
-Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Praesent ac massa at ligula laoreet iaculis. Ut non enim eleifend felis pretium feugiat. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Praesent egestas neque eu enim.
+Lorem ipsum dolor sit amet, sit ipsum, enim lacus, neque iaculis augue, vehicula
+suscipit a, sem pellentesque nibh ut donec. Scelerisque iaculis etiam vulputate
+aliquam eu mattis, amet sagittis, sed orci at nec duis pede, diam arcu molestie,
+cras elementum a tristique sed odio massa. Sit wisi pellentesque luctus mattis
+nec, dictum cras eget et ligula in est, voluptatem et libero nunc. Ac amet eget
+adipiscing varius tortor tellus, quam rutrum dolor, tortor scelerisque at
+placerat ante velit euismod.
 
-Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Phasellus nec sem in justo pellentesque facilisis. Pellentesque ut neque. Pellentesque dapibus hendrerit tortor. Pellentesque auctor neque nec urna.
+Eu euismod amet nisl vestibulum sed enim, amet dolor porttitor, a nec potenti
+arcu vehicula nullam eleifend, id vitae id, in aenean. Praesent odio. Amet
+nulla, vitae pellentesque, sit posuere, id fuga risus quam ut sem, dolor ac.
+Convallis in urna, accumsan nunc consequat cras pellentesque id et, in commodo
+et enim est et donec. Cursus vel nulla mattis consectetuer, at dolor eget purus
+non ullamcorper, quis egestas in tellus, interdum neque leo consequatur,
+proident maecenas odio neque. In nunc pulvinar sit mauris, praesent nulla, fusce
+nascetur sed lectus.
 
-Aenean viverra rhoncus pede. Praesent ut ligula non mi varius sagittis. Vivamus aliquet elit ac nisl.. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi.
-
-Fusce pharetra convallis urna. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. Phasellus accumsan cursus velit. Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor.
+Ac nec mi, aliquam tellus orci bibendum quisquam, ante turpis felis justo purus
+metus, felis nisl, ut purus. Velit cras non, curabitur iaculis nec a fringilla
+illum eget, potenti malesuada tellus, dignissim cursus duis metus. Convallis in
+urna, accumsan nunc consequat cras pellentesque id et, in commodo et enim est et
+donec. Cursus vel nulla mattis consectetuer, at dolor eget purus non
+ullamcorper, quis egestas in tellus, interdum neque leo consequatur, proident
+maecenas odio neque. In nunc pulvinar sit mauris, praesent nulla, fusce nascetur
+sed lectus.
 EOT;
 
 $filler_texts['l'][2] = <<<EOT
-Praesent congue erat at massa. Phasellus viverra nulla ut metus varius laoreet. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Praesent egestas neque eu enim.
+Velit dolor maecenas, donec quis nulla, eget amet fermentum vulputate lectus,
+nulla facilisis aliquam. Et id vel massa porta mauris diam, magna interdum nec
+et sit, tellus neque elit venenatis enim maecenas nunc, eleifend sem ornare
+ornare pede eu. Facilisis commodo vivamus quam porta scelerisque ante, ut nam
+turpis diam, proin libero, semper nulla nulla sapien. Blandit scelerisque ut
+elementum lorem ac, blandit amet, convallis dictum nulla laborum vehicula. In
+diam sit, quam velit vel eros sit tortor, duis nec amet in ipsum, nulla faucibus
+adipiscing ut aliquam autem, et tincidunt blandit dictum massa nibh.
 
-Donec vitae orci sed dolor rutrum auctor. Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Nullam accumsan lorem in dui.
-
-Vivamus quis mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum eu odio. Fusce fermentum odio nec arcu.
-
-Nullam cursus lacinia erat. Aenean vulputate eleifend tellus. Maecenas vestibulum mollis diam. Quisque id odio.
+Magna scelerisque, laoreet arcu magna a leo eleifend, eros varius nunc.
+Vulputate lorem, dui mauris lectus arcu. Sagittis turpis aut adipiscing pulvinar
+tempus, consectetuer odio turpis, tellus vestibulum wisi, lobortis potenti.
+Praesent vel wisi ac donec, felis eros senectus etiam mauris, dolor non, lorem
+massa rutrum vulputate nam ligula. Interdum nec tempus posuere nonummy commodo,
+vestibulum sapien odio. Dignissim mauris placerat sociosqu sed consectetuer,
+vestibulum etiam potenti faucibus quam interdum donec, integer commodo fusce,
+ipsum hymenaeos pharetra egestas wisi montes nulla, ac pede nec tellus velit
+pharetra.
 EOT;
 
 $filler_texts['l'][3] = <<<EOT
-Vivamus euismod mauris. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla.
+Id justo tempus tortor lectus non, habitasse massa nibh, rhoncus lorem et sem,
+lorem dui pretium. Pellentesque penatibus in sit id ligula, metus facilisis in
+dapibus consequat id aenean, blandit nec ut libero aliquet vitae, libero viverra
+eget justo ultricies. Libero nibh mauris luctus in, ultrices sed pede mauris.
+Eget tempor pellentesque volutpat integer dictum. Mauris tellus sem feugiat
+velit elit donec, eu ligula lectus ut eu mauris feugiat.
 
-Nullam accumsan lorem in dui. Nunc nonummy metus. In turpis. Donec posuere vulputate arcu.
+Eu euismod amet nisl vestibulum sed enim, amet dolor porttitor, a nec potenti
+arcu vehicula nullam eleifend, id vitae id, in aenean. Praesent odio. Amet
+nulla, vitae pellentesque, sit posuere, id fuga risus quam ut sem, dolor ac.
+Eget tempor pellentesque volutpat integer dictum. Mauris tellus sem feugiat
+velit elit donec, eu ligula lectus ut eu mauris feugiat. Ut ac mollis nulla
+hendrerit donec vulputate, mus eros dignissim est nonummy.
 
-Proin magna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus. Phasellus consectetuer vestibulum elit. In hac habitasse platea dictumst.
-
-Etiam ultricies nisi vel augue. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Aliquam lobortis. Nam pretium turpis et arcu.
+Ut ac mollis nulla hendrerit donec vulputate, mus eros dignissim est nonummy.
+Ipsum libero. Aliquam sed, enim erat mi justo donec rutrum, magna urna, maecenas
+libero. Per felis donec quis et sociosqu sociis, lacinia justo non ante at,
+mauris venenatis a sodales, aenean ut facilisi reprehenderit dictum.
 EOT;
 
 return $filler_texts;
