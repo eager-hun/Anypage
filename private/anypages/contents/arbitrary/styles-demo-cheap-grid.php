@@ -1,9 +1,9 @@
 
-<p>This solution is referred to as "cheap" for these reasons:</p>
+<p>This solution is referred to as "cheap" for the following reasons:</p>
 
 <ul>
     <li>I couldn't yet spend the amount of time on it that it would deserve</li>
-    <li>it is based on flexbox with no fallback/alternative, so it works well only where flexbox works well — and under some conditions may have the same wobblyness to it as flexbox may have.</li>
+    <li>it is based on flexbox with no fallback/alternative, so it works well only where flexbox works well — and under some conditions may have the same wobbliness to it as flexbox may have.</li>
     <li>some advanced features, like column offsetting, may require some "creative thinking"</li>
     <li>it is doing a horrendous job with media queries in the generated CSS</li>
 </ul>
@@ -162,7 +162,7 @@ $img = "<img src='$img_src' alt='Train wheel'>";
 
 $box_with_image = $tools->render('patterns/box', [
     'wrapper_extra_classes' => 'fill-flex',
-    'box_content' => $img . '<p><code>&lt;img&gt;</code> inside a "box" in a grid-item:</p>'
+    'box_content' => $img . '<p><code>&lt;img&gt;</code> inside a "box" in a grid-item</p>'
 ]);
 ?>
 
