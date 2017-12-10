@@ -79,6 +79,20 @@ $page_levels[] = [
     'page_level_content' => $level_title . $box_grid
 ];
 
+// ----------------------------------------------------------------------------
+// Another level.
+
+$level_title = '<h2 class="page-level__title">Some colourful content</h2>';
+
+$squeeze = $tools->render('layouts/squeeze', [
+    'squeeze_content' => $level_title . $tools->addFillerText('m', 1, true)
+]);
+
+$page_levels[] = [
+    'wrapper_extra_classes' => 'has-bg color-zone color-zone--accent-2',
+    'page_level_content' => $squeeze
+];
+
 
 // ----------------------------------------------------------------------------
 // Output.
