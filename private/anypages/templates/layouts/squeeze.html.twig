@@ -1,0 +1,7 @@
+<div class="squeeze {{ wrapper_extra_classes | default('') }}">
+
+    {% if squeeze_content is defined %}
+        {{ squeeze_content | raw }}
+    {% endif %}
+
+</div>

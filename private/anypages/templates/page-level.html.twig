@@ -1,6 +1,10 @@
 
 <div class="page__level {{ wrapper_extra_classes | default('') }}">
-    <div class="page__level__content">
-        {{ page_level_content | raw }}
-    </div>
+
+    {% if page_level_content is defined %}
+        <div class="page__level__content">
+            {{ page_level_content | raw }}
+        </div>
+    {% endif %}
+
 </div>
