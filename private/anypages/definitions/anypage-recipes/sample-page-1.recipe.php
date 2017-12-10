@@ -56,12 +56,10 @@ array_walk($boxes, function(&$item) {
     $item = $this->capacities->get('tools')->render('patterns/box', $item);
 });
 
-$sidebar_content = '<div class="sidebar-box-arrangement flexboxify-items">';
-$sidebar_content .= '<div class="box-guide">';
-$sidebar_content .= implode($boxes, '</div><div class="box-guide">');
-$sidebar_content .= '</div>';
-$sidebar_content .= '</div>';
-
+$sidebar_content = $tools->render('layouts/sidebar-box-arrangement', [
+    'wrapper_extra_classes' => 'flexboxify-items',
+    'items' => $boxes
+]);
 
 // ----------------------------------------------------------------------------
 // Layout with sidebar.
