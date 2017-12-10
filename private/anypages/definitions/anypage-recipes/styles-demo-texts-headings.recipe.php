@@ -17,7 +17,7 @@ $sample_text = $tools->importFileContent(
 // ----------------------------------------------------------------------------
 // Output.
 
-$page_content .= $tools->render('page-level', [
+$page_content .= $tools->render('layouts/page-level', [
    'page_level_content' => $page_title . $sample_text,
 ]);
 

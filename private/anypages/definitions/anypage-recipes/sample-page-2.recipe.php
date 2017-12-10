@@ -36,7 +36,7 @@ $page_levels[] = [
 // Another level.
 
 $level_title = $tools->render('layouts/squeeze', [
-    'squeeze_content' => '<h2 class="page__level__title">A cluster of boxes</h2>'
+    'squeeze_content' => '<h2 class="page-level__title">A cluster of boxes</h2>'
 ]);
 
 $boxes_manifest = [
@@ -84,5 +84,5 @@ $page_levels[] = [
 // Output.
 
 foreach ($page_levels as $manifest) {
-    echo $tools->render('page-level', $manifest);
+    echo $tools->render('layouts/page-level', $manifest);
 }

@@ -76,6 +76,6 @@ $layout = $tools->render('layouts/layout-1-sidebar', [
 // ----------------------------------------------------------------------------
 // Output.
 
-echo $tools->render('page-level', [
+echo $tools->render('layouts/page-level', [
     'page_level_content' => $layout
 ]);
