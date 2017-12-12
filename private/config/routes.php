@@ -109,6 +109,7 @@ return [
         'menu'              => [
             'link-text'     => 'Lists',
         ],
+        'has-own-layout'    => true,
     ],
     'demo/custom-ui-patterns/highlights-and-notifications' => [
         'resource-id'       => 'patterns-highlights',

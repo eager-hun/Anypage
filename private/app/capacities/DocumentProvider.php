@@ -298,13 +298,17 @@ class DocumentProvider
      */
     protected function provideJsSettingsObject()
     {
-        $settings_items = array();
+        $settings_items = [];
 
         // TODO:
         // if ('this is the generator page' && empty(BUILDING_STATIC_FILE)) {}
 
         $base_url = $this->processManager->getInstruction('base-url');
+        $path_to_theme = $this->processManager->getInstruction('url-path-to-theme');
         $pagelist = $this->processManager->getConfig('routes');
+
+        $settings_items['baseUrl'] = $base_url;
+        $settings_items['themeUrl'] = $base_url . $path_to_theme;
 
         $page_urls = [];
 
