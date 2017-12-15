@@ -102,8 +102,8 @@ return [
          */
         'stylesheets' => [
             'app1'   => 'anypage-app.css',
-            'theme1' => 'build/css/bundle-main.css',
-            'theme2' => 'build/css/bundle-styleguide-infra.css',
+            'theme1' => 'built/gulp-out/css/bundle-main.css',
+            'theme2' => 'built/gulp-out/css/bundle-styleguide-infra.css',
             'theme3' => 'static-assets/css/static.css',
         ],
 
@@ -139,15 +139,19 @@ return [
                     'use_as' => 'reference',
                 ],
                 'theme1' => [
-                    'file'   => 'build/js/libs.js',
+                    'file'   => 'built/gulp-out/js/libs.js',
                     'use_as' => 'reference',
                 ],
                 'theme2' => [
-                    'file'   => 'build/js/custom.min.js',
+                    'file'   => 'built/gulp-out/js/custom.min.js',
                     'use_as' => 'reference',
                 ],
                 'theme3' => [
-                    'file'   => 'build/js/styleguide.min.js',
+                    'file'   => 'built/gulp-out/js/styleguide.min.js',
+                    'use_as' => 'reference',
+                ],
+                'theme4' => [
+                    'file'   => 'built/webpack-out/index.built.js',
                     'use_as' => 'reference',
                 ],
             ],

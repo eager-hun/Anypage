@@ -173,11 +173,19 @@ return [
     // -------------------------------------------------------------------------
     // Meta.
 
+    'meta/check-systems-wiring' => [
+        'resource-id'       => 'check-systems-wiring',
+        'resource-type'     => 'metapage',
+        'menu'              => [
+            'starts-topic'  => 'Meta pages',
+            'link-text'     => 'Check systems\' wiring',
+        ],
+        'has-own-layout'    => true,
+    ],
     'meta/goals-and-priorities' => [
         'resource-id'       => 'goals-and-priorities',
         'resource-type'     => 'metapage',
         'menu'              => [
-            'starts-topic'  => 'Meta pages',
             'link-text'     => 'Project goals and priorities',
         ],
     ],
