@@ -159,7 +159,7 @@ return [
         'resource-type'     => 'system_page',
         'menu'              => [
             'starts-topic'  => 'Generator',
-            'link-text'     => 'Static site generator',
+            'link-text'     => 'Generate static snapshot',
         ],
     ],
     'generated' => [
