@@ -28,7 +28,8 @@ class DocumentProvider
     {
         $resource_manifest = $this
             ->processManager->getInstruction('resource-manifest');
-        $apsSetup = $this->processManager->getConfig('apsSetup');
+        $apsSetup = $this
+            ->processManager->getConfig('apsSetup');
 
         $tools = $this->capacities->get('tools');
 
@@ -300,26 +301,18 @@ class DocumentProvider
     {
         $settings_items = [];
 
-        // TODO:
-        // if ('this is the generator page' && empty(BUILDING_STATIC_FILE)) {}
-
         $base_url = $this->processManager->getInstruction('base-url');
-        $path_to_theme = $this->processManager->getInstruction('url-path-to-theme');
-        $pagelist = $this->processManager->getConfig('routes');
+        $path_to_theme = $this->processManager->getInstruction('path-fragment-to-theme');
 
         $settings_items['baseUrl'] = $base_url;
         $settings_items['themeUrl'] = $base_url . $path_to_theme;
 
-        $page_urls = [];
+        $resource_id = $this->processManager->getInstruction('resource-id');
 
-        foreach ($pagelist as $path => $page_manifest) {
-            if ($page_manifest['resource-type'] == 'anypage') {
-                $page_urls[] = $base_url . $path;
-            }
+        if ($resource_id == "generator") {
+            $generator = $this->capacities->get('site-generator');
+            $settings_items['staticSitePageUrlList'] = $generator->staticSitePageUrlList();
         }
-        unset($path, $page_manifest);
-
-        $settings_items['anypageUrlList'] = $page_urls;
 
         $settings = json_encode($settings_items, JSON_FORCE_OBJECT);
 
@@ -339,7 +332,7 @@ class DocumentProvider
      *
      * TODO: make processManager->getInstruction() return pre-escaped values.
      *
-     * @param $url
+     * @param $path
      * @param $location
      * @return string
      */
@@ -354,11 +347,11 @@ class DocumentProvider
 
         $path_to_app_assets = $this
             ->processManager
-            ->getInstruction('url-path-to-app-assets');
+            ->getInstruction('path-fragment-to-app-assets');
 
         $path_to_theme = $this
             ->processManager
-            ->getInstruction('url-path-to-theme');
+            ->getInstruction('path-fragment-to-theme');
 
         $cache_bust_str = $assets_config['cache-bust-str'];
 

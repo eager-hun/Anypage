@@ -20,6 +20,11 @@ class ContentProvider
         $this->capacities = $capacities;
     }
 
+    /**
+     * Provides page content.
+     *
+     * @return string
+     */
     public function getContent()
     {
         // This is the default content. If we cover something, we will overwrite
@@ -28,14 +33,9 @@ class ContentProvider
 
         $manifest = $this->processManager->getInstruction('resource-manifest');
 
-        if ($manifest['resource-type'] == 'anypage'
-            || $manifest['resource-type'] == 'metapage') {
+        if ($manifest['resource-type'] == 'anypage') {
 
-            $recipe_subdir = 'anypage-recipes'; // Assume anypage by default.
-
-            if ($manifest['resource-type'] == 'metapage') {
-                $recipe_subdir = 'metapage-recipes';
-            }
+            $recipe_subdir = 'anypage-recipes';
 
             $recipe_file = APS_DEFINITIONS
                 . '/' . $recipe_subdir . '/'
@@ -51,6 +51,7 @@ class ContentProvider
                 ob_start();
                 include($recipe_file);
                 $output = ob_get_clean();
+
             } else {
                 // TODO: error handling?
                 $output = 'Error: content recipe was not found.';
@@ -60,27 +61,12 @@ class ContentProvider
 
             if ($manifest['resource-id'] == '404') {
                 $output = $this->message404();
-                $this
-                    ->processManager
-                    ->setInstruction('http-response-code', '404', true);
+                $this->processManager
+                    ->setInstruction('http-response-code-suggestion', '404', true);
             } elseif ($manifest['resource-id'] == 'generator') {
-
+                $output = $this->generatorPageContent();
             } elseif ($manifest['resource-id'] == 'list_generated') {
-                $page_title_text = 'Generated static snapshots';
-
-                $output = $this
-                    ->capacities
-                    ->get('tools')
-                    ->render(
-                        'app-infra/page-title',
-                        compact('page_title_text'),
-                        'php'
-                    );
-
-                $output .= $this
-                    ->capacities
-                    ->get('site-generator')
-                    ->listGeneratedStaticSites();
+                $output = $this->staticSiteListingPageContent();
             }
         }
         else {
@@ -91,8 +77,60 @@ class ContentProvider
         return $output;
     }
 
+    /**
+     * Page content for the 404 page.
+     *
+     * @return string
+     */
     protected function message404()
     {
         return 'The requested resource was not found on this website.';
+    }
+
+    /**
+     * Provides UI for the site generator feature.
+     *
+     * @return string
+     */
+    protected function generatorPageContent()
+    {
+        $page_title_text = 'Generate static site';
+
+        $output = $this
+            ->capacities
+            ->get('tools')
+            ->render(
+                'app-infra/page-title',
+                compact('page_title_text'),
+                'php'
+            );
+
+        $output .= $this->capacities->get('site-generator')->generatorUI();
+
+        return $output;
+    }
+
+    /**
+     * Provides UI for the site listing page.
+     *
+     * @return string
+     */
+    protected function staticSiteListingPageContent()
+    {
+        $page_title_text = 'Generated static snapshots';
+
+        $output = $this->capacities
+            ->get('tools')
+            ->render(
+                'app-infra/page-title',
+                compact('page_title_text'),
+                'php'
+            );
+
+        $output .= $this->capacities
+            ->get('site-generator')
+            ->listGeneratedStaticSites();
+
+        return $output;
     }
 }

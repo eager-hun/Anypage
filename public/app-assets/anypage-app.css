@@ -1,4 +1,7 @@
 
+/* ########################################################################## */
+/* APP-MENU. */
+
 body.app-menu-is-enabled {
     padding-left: 260px;
 }
@@ -67,4 +70,12 @@ body.app-menu-is-enabled {
     background: rgba(0,0,0,0.25);
 
     outline: none;
+}
+
+
+/* ########################################################################## */
+/* GENERATOR PAGE. */
+
+.generator__feedback-area {
+    margin-top: 2rem;
 }

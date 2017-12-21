@@ -1,5 +1,9 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 /**
  * Class ProcessManager
  *
@@ -11,19 +15,23 @@
  */
 class ProcessManager
 {
-
     public $request;
     public $response;
+    public $session;
 
     protected $config = [];
     protected $instructions = [];
-
     protected $sys_notifications = [];
 
-    public function __construct($request, $response)
+    public function __construct(
+        Request $request,
+        Response $response,
+        Session $session
+    )
     {
-        $this->request = $request;
+        $this->request  = $request;
         $this->response = $response;
+        $this->session  = $session;
 
         $this->addConfig(
             'config',
@@ -39,10 +47,7 @@ class ProcessManager
         );
 
         // Methods in the app might update this response code.
-        $this->setInstruction('http-response-code', '200');
-
-        // Might get updated in the "orientation" stage.
-        $this->setInstruction('building-static-page', false);
+        $this->setInstruction('http-response-code-suggestion', 200);
 
         $this->setInstruction(
             'http-protocol',
@@ -56,14 +61,16 @@ class ProcessManager
         $this->setInstruction('base-url', $this->baseUrl());
 
         $this->setInstruction(
-            'url-path-to-app-assets',
+            'path-fragment-to-app-assets',
             'public/app-assets'
         );
 
         $this->setInstruction(
-            'url-path-to-theme',
+            'path-fragment-to-theme',
             'public/themes/' . $this->getConfig('config')['env']['theme-dir-name']
         );
+
+        $this->session->start();
     }
 
     /**

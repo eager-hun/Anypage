@@ -215,7 +215,7 @@ class Tools
         $base_url = $this->processManager
             ->getInstruction('base-url');
         $path_to_theme = $this->processManager
-            ->getInstruction('url-path-to-theme');
+            ->getInstruction('path-fragment-to-theme');
 
         return $base_url . '/' . $path_to_theme . '/' . '/static-assets';
     }

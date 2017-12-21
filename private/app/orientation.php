@@ -3,6 +3,7 @@
 // See http://symfony.com/doc/current/components/http_foundation/introduction.html
 // See http://symfony.com/doc/current/book/http_fundamentals.html
 
+//var_dump($processManager->request);
 //var_dump($processManager->request->getPathInfo());
 //var_dump($processManager->request->getContent());
 //var_dump($processManager->request->attributes);
@@ -30,6 +31,13 @@ $defined_paths = array_keys($processManager->getConfig('routes'));
 if (in_array($request_path, $defined_paths)) {
     $manifest_of_requested_resource = $processManager
         ->getConfig('routes')[$request_path];
+
+    if (!empty($processManager->request->query->get('savePage'))) {
+        define('BUILDING_STATIC_PAGE', TRUE);
+    }
+    else {
+        define('BUILDING_STATIC_PAGE', FALSE);
+    }
 }
 else {
     $manifest_of_requested_resource = $processManager
@@ -38,4 +46,19 @@ else {
 
 // Allow access to the findings for everybody downstream in the app.
 $processManager
-    ->setInstruction('resource-manifest', $manifest_of_requested_resource);
+    ->setInstruction(
+        'resource-manifest',
+        $manifest_of_requested_resource
+    );
+
+if (array_key_exists('resource-id', $manifest_of_requested_resource)) {
+    $processManager
+        ->setInstruction(
+            'resource-id',
+            $manifest_of_requested_resource['resource-id']
+        );
+}
+else {
+    $msg = "Page manifest did not contain 'resource-id', which is an issue.";
+    $processManager->sysNotify($msg, 'alert');
+}

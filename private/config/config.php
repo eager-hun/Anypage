@@ -31,7 +31,7 @@ return [
     'env' => [
         'working-dir'       => 'anypage-develop',
         'theme-dir-name'    => 'theme-seed',
-        'html-export-dir'   => 'styleguide',
+        'html-export-dir'   => 'generated',
         'http-protocol'     => 'http',
         'http-protocol-v'   => '1.1',
     ],
@@ -135,7 +135,11 @@ return [
             'head' => [],
             'body' => [
                 'app1' => [
-                    'file'   => 'anypage-app.js',
+                    'file'   => 'anypage-app-ajax-suite.js',
+                    'use_as' => 'reference',
+                ],
+                'app2' => [
+                    'file'   => 'anypage-app-site-generator.js',
                     'use_as' => 'reference',
                 ],
                 'theme1' => [

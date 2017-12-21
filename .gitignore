@@ -9,5 +9,5 @@ nbproject
 **/node_modules/
 
 # GENERATED CONTENT:
-generated/*
-
+public/generated/*
+!public/generated/.gitkeep

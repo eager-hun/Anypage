@@ -58,7 +58,7 @@ class Security
             case 'uri_path':
                 // TODO
                 return $value;
-            case 'dir_name':
+            case 'dir-name':
                 // TODO
                 return $value;
             case 'file_name':
@@ -77,6 +77,29 @@ class Security
                 }
                 // If no argument was supplied, or it was 'display'.
                 return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        }
+    }
+
+    /**
+     * Validates a string.
+     *
+     * @param string $string
+     * @param string $as
+     * @return bool
+     */
+    public function stringValidAs($string, $as)
+    {
+        if ($as == 'new-dir-name') {
+            $allowed_chars = '#[-_a-z0-9]#';
+            $non_valid_parts = preg_replace($allowed_chars, '', $string);
+            return empty(strlen($non_valid_parts));
+        }
+        else {
+            $this->processManager->sysNotify(
+                'Alert: unrecognized argument for stringValidAs()!',
+                'alert'
+            );
+            return FALSE;
         }
     }
 }
