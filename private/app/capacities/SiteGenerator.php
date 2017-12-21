@@ -2,6 +2,7 @@
 
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Finder\Finder;
 
 
 /**
@@ -23,6 +24,7 @@ class SiteGenerator
 
     protected $pathToTheme;
     protected $pathToAppAssets;
+    protected $staticExportsDirName;
     protected $newSiteInstanceFsPath;
 
     public function __construct(
@@ -30,16 +32,19 @@ class SiteGenerator
         Capacities $capacities
     )
     {
-        $this->processManager = $processManager;
-        $this->capacities = $capacities;
-        $this->sec = $capacities->get('security');
-        $this->env_config = $processManager->getConfig('config')['env'];
-        $this->filesystem = new Filesystem;
+        $this->processManager   = $processManager;
+        $this->capacities       = $capacities;
+        $this->sec              = $capacities->get('security');
+        $this->env_config       = $processManager->getConfig('config')['env'];
+        $this->filesystem       = new Filesystem;
 
         $this->pathToTheme = $this
             ->processManager->getInstruction('path-fragment-to-theme');
         $this->pathToAppAssets = $this
             ->processManager->getInstruction('path-fragment-to-app-assets');
+        $this->staticExportsDirName = $this
+            ->sec
+            ->escapeValue($this->env_config['html-export-dir'], 'dir-name');
     }
 
 
@@ -69,13 +74,11 @@ class SiteGenerator
             throw new HttpException($message, 400);
         }
 
-        $static_sites_dir_name = $this->env_config['html-export-dir'];
-
         $this->newSiteInstanceFsPath = SCRIPT_ROOT
             . DIRECTORY_SEPARATOR
             . 'public'
             . DIRECTORY_SEPARATOR
-            . $static_sites_dir_name
+            . $this->staticExportsDirName
             . DIRECTORY_SEPARATOR
             . $this->sec->escapeValue($destination_subdir, 'dir-name');
 
@@ -84,7 +87,7 @@ class SiteGenerator
 
 
     /**
-     * List the URLs of the pages that need to make it into the static site.
+     * Lists the URLs of the pages that need to make it into the static site.
      *
      * @return array
      */
@@ -111,55 +114,46 @@ class SiteGenerator
      * @return string
      */
     public function listGeneratedStaticSites() {
-        $exports_dir_name = $this
-            ->sec
-            ->escapeValue(
-                $this->env_config['html-export-dir'],
-                'dir-name'
-            );
 
-        $exports_dir_for_server = PUBLIC_ASSETS . '/' . $exports_dir_name;
+        $exports_dir_for_server = PUBLIC_ASSETS
+            . DIRECTORY_SEPARATOR
+            . $this->staticExportsDirName;
 
-        // FIXME: Make it possible that the 'public/' subpath doesn't need to be
-        // hardcoded like this. Create a config var or a ProcessManager
-        // instruction, from where it could be read.
-        $exports_dir_for_client = $this
+        $exports_dir_for_browser = $this
             ->processManager
             ->getInstruction('base-url')
             . 'public/'
-            . $exports_dir_name;
+            . $this->staticExportsDirName;
 
-        $ls_result = [];
-        $directory_manifest = [];
+        $finder = new Finder;
+        $finder->directories()->in($exports_dir_for_server)->depth('== 0');
+        $finder->sortByName();
 
-        // FIXME: replace direct shell accesses with php filesystem functions.
-        exec(
-            'ls ' . escapeshellarg($exports_dir_for_server),
-            $ls_result
-        );
+        foreach($finder->getIterator() as $iterator) {
+            $site_dir_name = $iterator->getBasename();
 
-        foreach($ls_result as $value) {
-            if (is_dir($exports_dir_for_server . '/' . $value)) {
+            $link_href =
+                $exports_dir_for_browser
+                . '/'
+                . $this->sec->escapeValue($site_dir_name, 'dir-name');
 
-                $link_href =
-                    $exports_dir_for_client
-                    . '/'
-                    . $this->sec->escapeValue($value, 'dir-name');
+            $link_text = $this->sec->escapeValue($site_dir_name, 'dir-name');
 
-                $link_text = $this->sec->escapeValue($value, 'dir-name');
-
-                $directory_manifest[] = [
-                    'link_href' => $link_href,
-                    'link_text' => $link_text
-                ];
-            }
+            $directory_manifest[] = [
+                'link_href' => $link_href,
+                'link_text' => $link_text
+            ];
         }
-        unset($value);
+        unset($iterator);
 
         $output = $this
             ->capacities
             ->get('tools')
-            ->render('app-infra/listing-generated', compact('directory_manifest'), 'php');
+            ->render(
+                'app-infra/listing-generated',
+                compact('directory_manifest'),
+                'php'
+            );
 
         return $output;
     }
