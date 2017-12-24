@@ -129,6 +129,8 @@ class SiteGenerator
         $finder->directories()->in($exports_dir_for_server)->depth('== 0');
         $finder->sortByName();
 
+        $directory_manifest = [];
+
         foreach($finder->getIterator() as $iterator) {
             $site_dir_name = $iterator->getBasename();
 

@@ -6,6 +6,4 @@
     </button>
 </div>
 
-<div class="generator__feedback-area">
-    <div id="app-ajax-messages" class="app-ajax-messages"></div>
-</div>
+<div id="generator-feedback-area" class="generator-feedback-area"></div>

@@ -17,6 +17,9 @@
             return false;
         }
 
+        // Reset contents of the response-message drop-zone.
+        document.getElementById('generator-feedback-area').innerHTML = "";
+
         var urlList = window.apSettings.staticSitePageUrlList;
         var now = new Date();
 
@@ -48,7 +51,7 @@
         window.setTimeout(function() {
             window.apAssets.ajaxSuite.ajaxRequest({
                 "url":                preppedUrl,
-                "insertResponseInto": 'app-ajax-messages',
+                "insertResponseInto": 'generator-feedback-area',
                 "action":             'append'
             });
         }, timeOut);
