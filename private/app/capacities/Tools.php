@@ -212,11 +212,18 @@ class Tools
 
     public function pathToThemeStaticFiles()
     {
-        $base_url = $this->processManager
-            ->getInstruction('base-url');
-        $path_to_theme = $this->processManager
-            ->getInstruction('path-fragment-to-theme');
+        if (empty(BUILDING_STATIC_PAGE)) {
+            $base_url = $this->processManager
+                ->getInstruction('base-url');
+            $path_to_theme = $this->processManager
+                ->getInstruction('path-fragment-to-theme');
 
-        return $base_url . '/' . $path_to_theme . '/' . '/static-assets';
+            $output = $base_url . $path_to_theme . '/static-assets';
+        }
+        else {
+            $output = 'static-assets';
+        }
+
+        return $output;
     }
 }

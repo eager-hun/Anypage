@@ -33,16 +33,18 @@ if (in_array($request_path, $defined_paths)) {
         ->getConfig('routes')[$request_path];
 
     if (!empty($processManager->request->query->get('savePage'))) {
-        define('BUILDING_STATIC_PAGE', TRUE);
+        define('BUILDING_STATIC_PAGE', true);
     }
     else {
-        define('BUILDING_STATIC_PAGE', FALSE);
+        define('BUILDING_STATIC_PAGE', false);
     }
 }
 else {
     $manifest_of_requested_resource = $processManager
         ->systemPageManifests['404'];
 }
+
+$processManager->setBaseUrl();
 
 // Allow access to the findings for everybody downstream in the app.
 $processManager

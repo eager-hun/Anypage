@@ -81,9 +81,9 @@ class DocumentProvider
      */
     protected function documentHeadAdditions(&$document_variables)
     {
-        if (!empty($this->processManager->getConfig('config')['enable-livereload'])) {
-            // && empty(BUILDING_STATIC_FILE)) {
+        $livereload = $this->processManager->getConfig('config')['enable-livereload'];
 
+        if (!empty($livereload) && empty(BUILDING_STATIC_PAGE)) {
             // See http://stackoverflow.com/questions/26069796/gulp-how-to-implement-livereload-without-chromes-livereload-plugin
             $livereload_script =
                 '<script src="http://localhost:35729/livereload.js?snipver=1"></script>';
@@ -305,7 +305,13 @@ class DocumentProvider
         $path_to_theme = $this->processManager->getInstruction('path-fragment-to-theme');
 
         $settings_items['baseUrl'] = $base_url;
-        $settings_items['themeUrl'] = $base_url . $path_to_theme;
+
+        if (empty(BUILDING_STATIC_PAGE)) {
+            $settings_items['themeUrl'] = $base_url . $path_to_theme;
+        }
+        else {
+            $settings_items['themeUrl'] = '.';
+        }
 
         $resource_id = $this->processManager->getInstruction('resource-id');
 
@@ -358,16 +364,25 @@ class DocumentProvider
         // Finalize asset URL.
 
         if ($location == 'app') {
-            $url = $base_url
-                . $path_to_app_assets
-                . '/'
-                . $sec->escapeValue($path, 'path_with_file');
-
+            if (empty(BUILDING_STATIC_PAGE)) {
+                $url = $base_url
+                    . $path_to_app_assets
+                    . '/'
+                    . $sec->escapeValue($path, 'path_with_file');
+            }
+            else {
+                $url = 'app-assets/' . $sec->escapeValue($path, 'path_with_file');
+            }
         } elseif ($location == 'theme') {
-            $url = $base_url
-                . $path_to_theme
-                . '/'
-                . $sec->escapeValue($path, 'path_with_file');
+            if (empty(BUILDING_STATIC_PAGE)) {
+                $url = $base_url
+                    . $path_to_theme
+                    . '/'
+                    . $sec->escapeValue($path, 'path_with_file');
+            }
+            else {
+                $url = $sec->escapeValue($path, 'path_with_file');
+            }
         }
 
         $url .= '?v=' . $sec->escapeValue($cache_bust_str, 'cache_bust_str');
@@ -393,38 +408,42 @@ class DocumentProvider
             }
 
             // We were called during a dynamic php page response.
-            if (! defined('BUILDING_STATIC_FILE') || empty(BUILDING_STATIC_FILE)) {
-
+            if (empty(BUILDING_STATIC_PAGE)) {
                 $url = $this
                     ->processManager
                     ->getInstruction('base-url')
                     . $sec->escapeValue($path, 'uri_path');
-
-            } else {
-                // We were called while generating a static site.
-
-                // For the static site, include only the anypages in the menu.
-                if ($page_data['resource-type'] != 'anypage') {
+            }
+            // We were called while generating a static snapshot.
+            else {
+                // Omitting the `html-filename` key from the manifest entry is
+                // an implicit instruction about not to put the page into the
+                // static snapshot.
+                if (!empty($page_data['html-filename'])) {
+                    $url = $sec
+                        ->escapeValue($page_data['html-filename'], 'file-name')
+                        . '.html';
+                }
+                else {
+                    // Skip this page then; move on to the next entry.
                     continue;
                 }
-
-                $url = $sec
-                    ->escapeValue($page_data['html-file_name'], 'filename')
-                    . '.html';
             }
 
-            if (!empty($page_data['menu']['starts-topic'])) {
+            if (empty($skip_page)) {
+                if (!empty($page_data['menu']['starts-topic'])) {
+                    $app_menu_items[] = [
+                        'item_type' => 'topic-title',
+                        'text'      => $sec->escapeValue($page_data['menu']['starts-topic']),
+                    ];
+                }
+
                 $app_menu_items[] = [
-                    'item_type' => 'topic-title',
-                    'text'      => $sec->escapeValue($page_data['menu']['starts-topic']),
+                    'item_type' => 'link',
+                    'url'       => $url,
+                    'text'      => $sec->escapeValue($page_data['menu']['link-text']),
                 ];
             }
-
-            $app_menu_items[] = [
-                'item_type' => 'link',
-                'url'       => $url,
-                'text'      => $sec->escapeValue($page_data['menu']['link-text']),
-            ];
         }
 
         return $this

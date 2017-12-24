@@ -61,7 +61,7 @@ class Security
             case 'dir-name':
                 // TODO
                 return $value;
-            case 'file_name':
+            case 'file-name':
                 // TODO
                 return $value;
             case 'path_with_file':

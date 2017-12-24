@@ -23,6 +23,8 @@ class ProcessManager
     protected $instructions = [];
     protected $sys_notifications = [];
 
+    protected $baseUrlHasBeenSet = false;
+
     public function __construct(
         Request $request,
         Response $response,
@@ -57,8 +59,6 @@ class ProcessManager
             'http-protocol-v',
             $this->getConfig('config')['env']['http-protocol-v']
         );
-
-        $this->setInstruction('base-url', $this->baseUrl());
 
         $this->setInstruction(
             'path-fragment-to-app-assets',
@@ -197,12 +197,35 @@ class ProcessManager
      *
      * @return string
      */
-    private function baseUrl()
+    protected function baseUrl()
     {
-        $protocol = $this->getConfig('config')['env']['http-protocol'];
-        $host = $this->request->server->get('HTTP_HOST');
         $working_dir = $this->getConfig('config')['env']['working-dir'];
 
-        return $protocol . '://' . $host . '/' . $working_dir . '/';
+        if (empty(BUILDING_STATIC_PAGE)) {
+            $protocol = $this->getConfig('config')['env']['http-protocol'];
+            $host = $this->request->server->get('HTTP_HOST');
+            $output = $protocol . '://' . $host . '/' . $working_dir . '/';
+        }
+        else {
+            $output = '/' . $working_dir . '/';
+        }
+
+        return $output;
+    }
+
+    /**
+     * Set application-wide base-url, after necessary info had been obtained.
+     */
+    public function setBaseUrl() {
+        if (!$this->baseUrlHasBeenSet) {
+            $this->setInstruction('base-url', $this->baseUrl());
+            $this->baseUrlHasBeenSet = true;
+        }
+        else {
+            $this->sysNotify(
+                'baseUrl has already been set!',
+                'warning'
+            );
+        }
     }
 }
