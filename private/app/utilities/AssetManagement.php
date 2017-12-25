@@ -5,6 +5,7 @@ class AssetManagement
 
     protected $processManager;
     protected $capacities;
+    protected $assetsConfig;
 
     public function __construct(
         ProcessManager $processManager,
@@ -13,6 +14,8 @@ class AssetManagement
     {
         $this->processManager = $processManager;
         $this->capacities = $capacities;
+        $this->assetsConfig = $this
+            ->processManager->getConfig('config')['frontend-assets'];
     }
 
 
@@ -288,6 +291,10 @@ class AssetManagement
 
         $resource_id = $this->processManager->getInstruction('resource-id');
 
+        if ($this->svgSpritesAreDeliveredViaAjax()) {
+            $settings_items['svgSprites'] = $this->assetsConfig['svgSprites'];
+        }
+
         if ($resource_id == "generator") {
             $generator = $this->capacities->get('site-generator');
             $settings_items['staticSitePageUrlList'] = $generator->staticSitePageUrlList();
@@ -304,5 +311,63 @@ class AssetManagement
         ]);
 
         return $scriptTag;
+    }
+
+    
+    /**
+     * Are SVG sprites delivered via ajax?
+     *
+     * Static pages don't use ajax delivery.
+     *
+     * @return bool
+     */
+    protected function svgSpritesAreDeliveredViaAjax()
+    {
+        return empty(BUILDING_STATIC_PAGE);
+    }
+
+    
+    /**
+     * SVG sprite delivery.
+     *
+     * @return string
+     */
+    public function inlineSvgSprites()
+    {
+        $sprite_refs = $this->assetsConfig['svgSprites'];
+
+        if (empty($sprite_refs)) {
+            return '';
+        }
+
+        $via_ajax = '';
+        $svg = '';
+
+        if (!empty($this->svgSpritesAreDeliveredViaAjax())) {
+            $via_ajax = 'data-svg-via-ajax';
+        }
+        else {
+            $tools = $this->capacities->get('tools');
+
+            $access_to_theme = DIRECTOR_DIR
+                . DIRECTORY_SEPARATOR
+                . $this
+                    ->processManager
+                    ->getInstruction('path-fragment-to-theme');
+
+            foreach ($sprite_refs as $file_ref) {
+                $svg .= $tools->importFileContent(
+                    $access_to_theme . DIRECTORY_SEPARATOR . $file_ref,
+                    'plain'
+                );
+            }
+            unset($file_ref);
+        }
+
+        $output = <<<EOT
+            <div id="svg-sprite-housing" $via_ajax>$svg</div>
+EOT;
+
+        return $output;
     }
 };

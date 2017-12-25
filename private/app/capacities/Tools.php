@@ -168,7 +168,7 @@ class Tools
             $text = file_get_contents($file);
             return $this->markdown($text);
 
-        } elseif ($process == 'display-text') {
+        } elseif ($process == 'plain') {
 
             $text = file_get_contents($file);
             return $text;

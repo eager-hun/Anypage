@@ -18,6 +18,7 @@
 </head>
 <body class="{{ body_classes }}">
 
+    {{ svg_sprites | default('') | raw }}
     {{ body_content | raw }}
     {{ scripts_in_body | raw }}
 

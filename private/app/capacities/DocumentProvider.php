@@ -69,6 +69,7 @@ class DocumentProvider
             'stylesheets'       => $asset_management->provideStylesheets(),
             'scripts_in_head'   => $asset_management->provideScripts('head'),
             'body_classes'      => $this->calculateBodyClasses(),
+            'svg_sprites'       => $asset_management->inlineSvgSprites(),
             'body_content'      => $body_content,
             'scripts_in_body'   => $asset_management->provideScripts('body'),
         ];

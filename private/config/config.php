@@ -163,6 +163,13 @@ return [
                 ],
             ],
         ],
+
+        /**
+         * NOTE: for SVG sprites, the assumed location is in the "theme".
+         */
+        'svgSprites' => [
+            'built/gulp-out/graphics/svg-sprite/svg-sprite.symbol-mode.svg',
+        ],
     ],
 
     /**
