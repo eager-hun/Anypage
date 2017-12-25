@@ -28,24 +28,24 @@ if (!empty($working_dir)) {
 
 $defined_paths = array_keys($processManager->getConfig('routes'));
 
+// -----------------------------------------------------------------------------
+// Allow access to the findings for everybody downstream in the app.
+
 if (in_array($request_path, $defined_paths)) {
     $manifest_of_requested_resource = $processManager
         ->getConfig('routes')[$request_path];
-
-    if (!empty($processManager->request->query->get('savePage'))) {
-        define('BUILDING_STATIC_PAGE', true);
-    }
-    else {
-        define('BUILDING_STATIC_PAGE', false);
-    }
 }
 else {
     $manifest_of_requested_resource = $processManager
         ->systemPageManifests['404'];
 }
 
-// -----------------------------------------------------------------------------
-// Allow access to the findings for everybody downstream in the app.
+if (!empty($processManager->request->query->get('savePage'))) {
+    define('BUILDING_STATIC_PAGE', true);
+}
+else {
+    define('BUILDING_STATIC_PAGE', false);
+}
 
 $processManager->setBaseUrl();
 
