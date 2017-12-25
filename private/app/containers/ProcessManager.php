@@ -35,47 +35,9 @@ class ProcessManager
         $this->response = $response;
         $this->session  = $session;
 
-        $this->addConfig(
-            'config',
-            require(PRIVATE_ASSETS . '/config/config.php')
-        );
-        $this->addConfig(
-            'apsSetup',
-            require(PRIVATE_ASSETS . '/config/apsSetup.php')
-        );
-
-        $routes_config = require(PRIVATE_ASSETS . '/config/routes.php');
-        $routes_updated = array_merge(
-            $routes_config,
-            $this->systemPageManifests['everpresent']
-        );
-
-        $this->addConfig(
-            'routes',
-            $routes_updated
-        );
-
-        // Methods in the app might update this response code.
-        $this->setInstruction('http-response-code-suggestion', 200);
-
-        $this->setInstruction(
-            'http-protocol',
-            $this->getConfig('config')['env']['http-protocol']
-        );
-        $this->setInstruction(
-            'http-protocol-v',
-            $this->getConfig('config')['env']['http-protocol-v']
-        );
-
-        $this->setInstruction(
-            'path-fragment-to-app-assets',
-            'public/app-assets'
-        );
-
-        $this->setInstruction(
-            'path-fragment-to-theme',
-            'public/themes/' . $this->getConfig('config')['env']['theme-dir-name']
-        );
+        $this->setUpConfigs();
+        $this->setUpResourceLocators();
+        $this->setUpHttpStuff();
 
         $this->session->start();
     }
@@ -148,6 +110,73 @@ class ProcessManager
 
             return null;
         }
+    }
+
+    /**
+     * Helper for the constructor: configs.
+     */
+    private function setUpConfigs()
+    {
+        $this->addConfig(
+            'config',
+            require(PRIVATE_RESOURCES . '/config/config.php')
+        );
+        $this->addConfig(
+            'apsSetup',
+            require(PRIVATE_RESOURCES . '/config/apsSetup.php')
+        );
+
+        $routes_config = require(PRIVATE_RESOURCES . '/config/routes.php');
+        $routes_updated = array_merge(
+            $routes_config,
+            $this->systemPageManifests['everpresent']
+        );
+
+        $this->addConfig(
+            'routes',
+            $routes_updated
+        );
+    }
+
+    /**
+     * Helper for the constructor: resource locators.
+     */
+    private function setUpResourceLocators()
+    {
+        $env_config = $this->getConfig('config')['env'];
+
+        $fragment_app_assets = $env_config['path-fragment-to-app-assets'];
+        $this->setInstruction(
+            'path-fragment-to-app-assets',
+            $fragment_app_assets
+        );
+
+        $fragment_theme = $env_config['path-fragment-to-themes']
+            . '/'
+            . $env_config['theme-dir-name'];
+
+        $this->setInstruction(
+            'path-fragment-to-theme',
+            $fragment_theme
+        );
+    }
+
+    /**
+     * Helper for the constructor: HTTP stuff.
+     */
+    private function setUpHttpStuff()
+    {
+        // Methods in the app might update this response code.
+        $this->setInstruction('http-response-code-suggestion', 200);
+
+        $this->setInstruction(
+            'http-protocol',
+            $this->getConfig('config')['env']['http-protocol']
+        );
+        $this->setInstruction(
+            'http-protocol-v',
+            $this->getConfig('config')['env']['http-protocol-v']
+        );
     }
 
     /**
@@ -225,7 +254,7 @@ class ProcessManager
      */
     protected function baseUrl()
     {
-        $working_dir = $this->getConfig('config')['env']['working-dir'];
+        $working_dir = $this->getConfig('config')['env']['web-working-dir'];
 
         if (empty(BUILDING_STATIC_PAGE)) {
             $protocol = $this->getConfig('config')['env']['http-protocol'];

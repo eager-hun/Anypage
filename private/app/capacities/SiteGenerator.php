@@ -40,11 +40,13 @@ class SiteGenerator
 
         $this->pathToTheme = $this
             ->processManager->getInstruction('path-fragment-to-theme');
+
         $this->pathToAppAssets = $this
             ->processManager->getInstruction('path-fragment-to-app-assets');
+
         $this->staticExportsDirName = $this
             ->sec
-            ->escapeValue($this->env_config['html-export-dir'], 'dir-name');
+            ->escapeValue($this->env_config['html-export-dir-name'], 'dir-name');
     }
 
 
@@ -74,9 +76,7 @@ class SiteGenerator
             throw new HttpException($message, 400);
         }
 
-        $this->newSiteInstanceFsPath = SCRIPT_ROOT
-            . DIRECTORY_SEPARATOR
-            . 'public'
+        $this->newSiteInstanceFsPath = PUBLIC_RESOURCES
             . DIRECTORY_SEPARATOR
             . $this->staticExportsDirName
             . DIRECTORY_SEPARATOR
@@ -115,14 +115,16 @@ class SiteGenerator
      */
     public function listGeneratedStaticSites() {
 
-        $exports_dir_for_server = PUBLIC_ASSETS
+        $base_url = $this->processManager->getInstruction('base-url');
+        $fragment_to_exports = $this->env_config['path-fragment-to-html-export-dir'];
+
+        $exports_dir_for_server = PUBLIC_RESOURCES
             . DIRECTORY_SEPARATOR
             . $this->staticExportsDirName;
 
-        $exports_dir_for_browser = $this
-            ->processManager
-            ->getInstruction('base-url')
-            . 'public/'
+        $exports_dir_for_browser = $base_url
+            . $fragment_to_exports
+            . '/'
             . $this->staticExportsDirName;
 
         $finder = new Finder;
@@ -242,7 +244,7 @@ class SiteGenerator
      */
     protected function _copySiteFrontendAssets(&$status, &$error)
     {
-        $built_assets_dir = SCRIPT_ROOT
+        $built_assets_dir = DIRECTOR_DIR
             . DIRECTORY_SEPARATOR
             . $this->pathToTheme
             . DIRECTORY_SEPARATOR
@@ -263,7 +265,7 @@ class SiteGenerator
             return;
         }
 
-        $static_assets_dir = SCRIPT_ROOT
+        $static_assets_dir = DIRECTOR_DIR
             . DIRECTORY_SEPARATOR
             . $this->pathToTheme
             . DIRECTORY_SEPARATOR
@@ -284,7 +286,7 @@ class SiteGenerator
             return;
         }
 
-        $app_assets_dir = SCRIPT_ROOT
+        $app_assets_dir = DIRECTOR_DIR
             . DIRECTORY_SEPARATOR
             . $this->pathToAppAssets;
 

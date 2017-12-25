@@ -19,7 +19,7 @@ $request_uri = $processManager->request->server->get('REQUEST_URI');
 
 $request_path = ltrim(strtok($request_uri, '?'), '/');
 
-$working_dir = $processManager->getConfig('config')['env']['working-dir'];
+$working_dir = $processManager->getConfig('config')['env']['web-working-dir'];
 
 if (!empty($working_dir)) {
     $trim_off = $working_dir . '/';

@@ -8,21 +8,21 @@ use Symfony\Component\HttpFoundation\Session\Session;
 // #############################################################################
 // ESTABLISHING RESOURCE INFO.
 
-define('DIRECTOR_DIR',    dirname(__FILE__));
-define('PRIVATE_ASSETS',  DIRECTOR_DIR . '/private');
-define('PUBLIC_ASSETS',   DIRECTOR_DIR . '/public');
+define('DIRECTOR_DIR',      dirname(__FILE__));
+define('PRIVATE_RESOURCES', DIRECTOR_DIR . '/private');
+define('PUBLIC_RESOURCES',  DIRECTOR_DIR . '/public');
 
-define('ANYPAGES',        PRIVATE_ASSETS . '/anypages');
-define('APS_TEMPLATES',   ANYPAGES . '/templates');
-define('APS_CONTENTS',    ANYPAGES . '/contents');
-define('APS_DEFINITIONS', ANYPAGES . '/definitions');
-
-// composer dump-autoload
-require_once(PRIVATE_ASSETS . '/libraries-backend/autoload.php');
+define('ANYPAGES',          PRIVATE_RESOURCES . '/anypages');
+define('APS_DEFINITIONS',   ANYPAGES . '/definitions');
+define('APS_CONTENTS',      ANYPAGES . '/contents');
+define('APS_TEMPLATES',     ANYPAGES . '/templates');
 
 
 // #############################################################################
 // Initializing ProcessManger.
+
+// `composer dump-autoload`
+require_once(PRIVATE_RESOURCES . '/libraries-backend/autoload.php');
 
 // See http://symfony.com/doc/current/components/http_foundation/introduction.html
 // See http://symfony.com/doc/current/book/http_fundamentals.html
@@ -44,7 +44,7 @@ $processManager = new ProcessManager(
 // #############################################################################
 // Orientation (as early as possible).
 
-require_once(SCRIPT_ROOT . '/private/app/orientation.php');
+require_once(PRIVATE_RESOURCES . '/app/orientation.php');
 
 
 // #############################################################################
@@ -97,4 +97,4 @@ if (!empty($processManager->getConfig('config')['app']['templating']['enable-twi
 // ############################################################################
 // Inviting the app to do the job.
 
-require_once(SCRIPT_ROOT . '/private/app/app.php');
+require_once(PRIVATE_RESOURCES . '/app/app.php');

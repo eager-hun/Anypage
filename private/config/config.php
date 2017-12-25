@@ -22,18 +22,21 @@ return [
      *
      * key 'html_export_dir':
      *   Used both internally in php script and to create URLs. Provide the
-     *   location relative to SCRIPT_ROOT.
+     *   location relative to DIRECTOR_DIR.
      *   No leading or trailing slashes.
      *
      * key 'http_protocol':
      *   String used in creating URLs.
      */
     'env' => [
-        'working-dir'       => 'anypage-develop',
-        'theme-dir-name'    => 'theme-seed',
-        'html-export-dir'   => 'generated',
-        'http-protocol'     => 'http',
-        'http-protocol-v'   => '1.1',
+        'web-working-dir'                   => 'anypage-develop',
+        'path-fragment-to-app-assets'       => 'public/app-assets',
+        'path-fragment-to-themes'           => 'public/themes',
+        'theme-dir-name'                    => 'theme-seed',
+        'path-fragment-to-html-export-dir'  => 'public',
+        'html-export-dir-name'              => 'generated',
+        'http-protocol'                     => 'http',
+        'http-protocol-v'                   => '1.1',
     ],
 
     'app' => [
