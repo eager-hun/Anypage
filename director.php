@@ -66,6 +66,10 @@ $capacities::bind('document-provider', new DocumentProvider(
     $processManager,
     $capacities
 ));
+$capacities::bind('asset-management', new AssetManagement(
+    $processManager,
+    $capacities
+));
 $capacities::bind('tools', new Tools(
     $processManager,
     $capacities
