@@ -17,17 +17,13 @@ define('APS_TEMPLATES',   ANYPAGES . '/templates');
 define('APS_CONTENTS',    ANYPAGES . '/contents');
 define('APS_DEFINITIONS', ANYPAGES . '/definitions');
 
-
-// #############################################################################
-// INITIALIZING RESOURCES.
-
 // composer dump-autoload
 require_once(PRIVATE_ASSETS . '/libraries-backend/autoload.php');
 
-// -----------------------------------------------------------------------------
+
+// #############################################################################
 // Initializing ProcessManger.
 
-// HTTP FOUNDATION.
 // See http://symfony.com/doc/current/components/http_foundation/introduction.html
 // See http://symfony.com/doc/current/book/http_fundamentals.html
 
@@ -44,8 +40,16 @@ $processManager = new ProcessManager(
     new Session
 );
 
-// -----------------------------------------------------------------------------
-// Initializing capacities.
+
+// #############################################################################
+// Orientation (as early as possible).
+
+require_once(SCRIPT_ROOT . '/private/app/orientation.php');
+
+
+// #############################################################################
+// Initializing the app's capacities.
+
 // NOTE: is this recursive referencing?
 // Do I need to look at anything like this? https://bugs.php.net/bug.php?id=33595
 
@@ -91,6 +95,6 @@ if (!empty($processManager->getConfig('config')['app']['templating']['enable-twi
 
 
 // ############################################################################
-// INVITING THE APP TO DO THE JOB.
+// Inviting the app to do the job.
 
 require_once(SCRIPT_ROOT . '/private/app/app.php');

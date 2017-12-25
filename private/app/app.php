@@ -1,13 +1,5 @@
 <?php
 
-use Symfony\Component\HttpFoundation\Response;
-
-
-// #############################################################################
-// Orientation.
-
-require_once(SCRIPT_ROOT . '/private/app/orientation.php');
-
 
 // #############################################################################
 // Building page.

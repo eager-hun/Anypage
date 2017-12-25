@@ -44,9 +44,11 @@ else {
         ->systemPageManifests['404'];
 }
 
+// -----------------------------------------------------------------------------
+// Allow access to the findings for everybody downstream in the app.
+
 $processManager->setBaseUrl();
 
-// Allow access to the findings for everybody downstream in the app.
 $processManager
     ->setInstruction(
         'resource-manifest',
