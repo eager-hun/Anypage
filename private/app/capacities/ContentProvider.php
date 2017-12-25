@@ -33,7 +33,8 @@ class ContentProvider
 
         $manifest = $this->processManager->getInstruction('resource-manifest');
 
-        if ($manifest['resource-type'] == 'anypage') {
+        if (!array_key_exists('resource-type', $manifest)
+            || $manifest['resource-type'] == 'anypage') {
 
             $recipe_subdir = 'anypage-recipes';
 

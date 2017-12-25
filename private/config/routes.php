@@ -3,7 +3,6 @@
 return [
     '' => [
         'resource-id'       => 'home',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'index',
         'menu'              => [
             'link-text' => 'Home',
@@ -15,7 +14,6 @@ return [
 
     'demo/texts/headings' => [
         'resource-id'       => 'styles-demo-texts-headings',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'styles-demo-texts-headings',
         'menu'              => [
             'starts-topic'  => 'Global styles',
@@ -25,7 +23,6 @@ return [
     ],
     'demo/texts/essentials' => [
         'resource-id'       => 'styles-demo-texts-essentials',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'styles-demo-texts-essentials',
         'menu'              => [
             'link-text' => 'Essential texts',
@@ -34,7 +31,6 @@ return [
     ],
     'demo/texts/lists' => [
         'resource-id'       => 'styles-demo-lists',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'styles-demo-lists',
         'menu'              => [
             'link-text' => 'Lists',
@@ -43,7 +39,6 @@ return [
     ],
     'demo/forms' => [
         'resource-id'       => 'styles-demo-forms',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'styles-demo-forms',
         'menu'              => [
             'link-text' => 'Forms',
@@ -51,7 +46,6 @@ return [
     ],
     'demo/color-zones' => [
         'resource-id'       => 'styles-demo-color-zones',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'styles-demo-color-zones',
         'menu'              => [
             'link-text' => 'Color zones',
@@ -60,7 +54,6 @@ return [
     ],
     'demo/misc-global' => [
         'resource-id'       => 'styles-demo-misc-global',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'styles-demo-misc-global',
         'menu'              => [
             'link-text' => 'Misc.',
@@ -72,7 +65,6 @@ return [
 
     'demo/grid' => [
         'resource-id'       => 'styles-demo-grid',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'styles-demo-grid',
         'menu'              => [
             'starts-topic'  => 'Grids and layouts',
@@ -82,7 +74,6 @@ return [
     ],
     'demo/layouts/layout-1-sidebar' => [
         'resource-id'       => 'styles-demo-layout-1-sidebar',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'styles-demo-layout-1-sidebar',
         'menu'              => [
             'link-text' => 'Layout 1 sidebar',
@@ -95,7 +86,6 @@ return [
 
     'demo/custom-ui-patterns/titles' => [
         'resource-id'       => 'patterns-titles',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'patterns-titles',
         'menu'              => [
             'starts-topic'  => 'Custom UI patterns',
@@ -104,7 +94,6 @@ return [
     ],
     'demo/custom-ui-patterns/lists' => [
         'resource-id'       => 'patterns-lists',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'patterns-lists',
         'menu'              => [
             'link-text'     => 'Lists',
@@ -113,7 +102,6 @@ return [
     ],
     'demo/custom-ui-patterns/highlights-and-notifications' => [
         'resource-id'       => 'patterns-highlights',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'patterns-highlights',
         'menu'              => [
             'link-text'     => 'Highlights',
@@ -121,7 +109,6 @@ return [
     ],
     'demo/custom-ui-patterns/hero-mosaic' => [
         'resource-id'       => 'patterns-hero-mosaic',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'patterns-hero-mosaic',
         'menu'              => [
             'link-text'     => 'Hero mosaic',
@@ -133,7 +120,6 @@ return [
 
     'demo/sample-page-1' => [
         'resource-id'       => 'sample-page-1',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'sample-page-1',
         'menu'              => [
             'starts-topic'  => 'Pages',
@@ -143,7 +129,6 @@ return [
     ],
     'demo/sample-page-2' => [
         'resource-id'       => 'sample-page-2',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'sample-page-2',
         'menu'              => [
             'link-text' => 'Sample page 2',
@@ -175,7 +160,6 @@ return [
 
     'meta/check-systems-wiring' => [
         'resource-id'       => 'meta-check-systems-wiring',
-        'resource-type'     => 'anypage',
         'html-filename'     => 'meta-check-systems-wiring',
         'menu'              => [
             'starts-topic'  => 'Meta pages',
@@ -185,7 +169,6 @@ return [
     ],
     'meta/goals-and-priorities' => [
         'resource-id'       => 'meta-goals-and-priorities',
-        'resource-type'     => 'anypage',
         'menu'              => [
             'link-text'     => 'Project goals and priorities',
         ],
