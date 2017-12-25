@@ -37,7 +37,7 @@ if (in_array($request_path, $defined_paths)) {
 }
 else {
     $manifest_of_requested_resource = $processManager
-        ->systemPageManifests['404'];
+        ->systemPageManifests['on_demand']['404'];
 }
 
 if (!empty($processManager->request->query->get('savePage'))) {

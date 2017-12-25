@@ -43,9 +43,16 @@ class ProcessManager
             'apsSetup',
             require(PRIVATE_ASSETS . '/config/apsSetup.php')
         );
+
+        $routes_config = require(PRIVATE_ASSETS . '/config/routes.php');
+        $routes_updated = array_merge(
+            $routes_config,
+            $this->systemPageManifests['everpresent']
+        );
+
         $this->addConfig(
             'routes',
-            require(PRIVATE_ASSETS . '/config/routes.php')
+            $routes_updated
         );
 
         // Methods in the app might update this response code.
@@ -147,10 +154,29 @@ class ProcessManager
      * System page manifests.
      */
     public $systemPageManifests = [
-        '404' => [
-            'resource-id'       => '404',
-            'resource-type'     => 'system_page'
+        'everpresent' => [
+            'generator' => [
+                'resource-id'       => 'generator',
+                'resource-type'     => 'system_page',
+                'menu'              => [
+                    'starts-topic'  => 'Generator',
+                    'link-text'     => 'Generate static snapshot',
+                ],
+            ],
+            'generated' => [
+                'resource-id'       => 'list_generated',
+                'resource-type'     => 'system_page',
+                'menu'              => [
+                    'link-text' => 'List static snapshots',
+                ],
+            ],
         ],
+        'on_demand' => [
+            '404' => [
+                'resource-id'       => '404',
+                'resource-type'     => 'system_page'
+            ],
+        ]
     ];
 
     /**
