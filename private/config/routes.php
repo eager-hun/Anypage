@@ -176,6 +176,7 @@ return [
     'meta/check-systems-wiring' => [
         'resource-id'       => 'meta-check-systems-wiring',
         'resource-type'     => 'anypage',
+        'html-filename'     => 'meta-check-systems-wiring',
         'menu'              => [
             'starts-topic'  => 'Meta pages',
             'link-text'     => 'Check systems\' wiring',

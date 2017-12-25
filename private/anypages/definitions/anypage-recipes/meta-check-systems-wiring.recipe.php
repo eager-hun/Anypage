@@ -14,15 +14,33 @@ $page_levels[] = [
     'page_level_content' => $page_title
 ];
 
+// -----------------------------------------------------------------------------
+// Check static assets' wiring.
+
+$sa_title = '<h2 class="underlined">Static assets</h2>';
+
+$sa_desc_raw = "Verify intact static asset wiring by seeing an image here:";
+$sa_desc = $tools->markdown($sa_desc_raw);
+
+$sa_img_src = $tools
+        ->pathToThemeStaticFiles() . '/images/for-demo/photo-1-700.jpg';
+
+$sa_check = <<<EOT
+    <img src="${sa_img_src}" aria-hidden="true">
+EOT;
+
+$page_levels[] = [
+    'page_level_content' => $sa_title . $sa_desc . $sa_check
+];
+
 
 // -----------------------------------------------------------------------------
 // Check Vue wiring.
 
 $vue_title = '<h2 class="underlined">Vue.js single-file-component</h2>';
 
-$vue_desc = "Verify an intact Vue.js build setup by seeing a healthy-enough Vue component here:";
-
-$vue_desc = $tools->markdown($vue_desc);
+$vue_desc_raw = "Verify an intact Vue.js build setup by seeing a healthy-enough Vue component here:";
+$vue_desc = $tools->markdown($vue_desc_raw);
 
 $vue_check = <<<EOT
     <div id="example-vue__mount">
