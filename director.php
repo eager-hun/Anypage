@@ -74,10 +74,6 @@ $capacities::bind('site-generator', new SiteGenerator(
     $processManager,
     $capacities
 ));
-$capacities::bind('system-utils', new SystemUtils(
-    $processManager,
-    $capacities
-));
 
 // TWIG.
 // See http://twig.sensiolabs.org/doc/api.html#environment-options .
