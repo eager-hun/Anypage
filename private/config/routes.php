@@ -106,6 +106,7 @@ return [
         'menu'              => [
             'link-text'     => 'Highlights',
         ],
+        'has-own-layout'    => true,
     ],
     'demo/custom-ui-patterns/hero-mosaic' => [
         'resource-id'       => 'patterns-hero-mosaic',

@@ -1,21 +1,16 @@
 <?php
 
-$page_levels = [];
-
+$demos = '';
 
 $page_title = $tools->render('page-title', [
     'page_title_text' => 'Custom lists'
 ]);
 
-$page_levels[] = [
-    'page_level_content' => $page_title
-];
-
 
 // ----------------------------------------------------------------------------
-// Demo content.
+// List 1.
 
-$level_title = '<h2 class="page-level__title">Unordered list with icon prefix</h2>';
+$list_title = '<h2 class="page-level__title">Unordered list with icon prefix</h2>';
 
 $list_items = [
     'surprisingly enough, one of the most difficult tasks',
@@ -30,15 +25,12 @@ $ul_with_arrows = $tools->render('patterns/lists/ul-icon-prefix', [
    'items'                  => $list_items
 ]);
 
-
-$page_levels[] = [
-    'page_level_content' => $level_title . $ul_with_arrows
-];
+$demos .= "<div class='stackable'>$list_title $ul_with_arrows</div>";
 
 
 // ----------------------------------------------------------------------------
 // Output.
 
-foreach ($page_levels as $manifest) {
-    echo $tools->render('layouts/page-level', $manifest);
-}
+echo $tools->render('layouts/page-level', [
+    'page_level_content' => "<div class='squeeze'>$page_title $demos</div>"
+]);

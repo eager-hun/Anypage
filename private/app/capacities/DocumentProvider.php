@@ -45,7 +45,7 @@ class DocumentProvider
                 'layouts/page-level',
                 [
                     'wrapper_extra_classes' => 'fallback-page-level',
-                    'page_level_content'    => $page_payload
+                    'page_level_content' => "<div class=squeeze>$page_payload</div>"
                 ]
             );
         }

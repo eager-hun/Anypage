@@ -11,7 +11,7 @@ $page_title = $tools->render('page-title', [
 ]);
 
 $page_levels[] = [
-    'page_level_content' => $page_title
+    'page_level_content' => "<div class='squeeze'>$page_title</div>"
 ];
 
 // -----------------------------------------------------------------------------
@@ -30,7 +30,7 @@ $sa_check = <<<EOT
 EOT;
 
 $page_levels[] = [
-    'page_level_content' => $sa_title . $sa_desc . $sa_check
+    'page_level_content' => "<div class='squeeze'>$sa_title $sa_desc $sa_check</div>"
 ];
 
 
@@ -50,7 +50,7 @@ $vue_check = <<<EOT
 EOT;
 
 $page_levels[] = [
-    'page_level_content' => $vue_title . $vue_desc . $vue_check
+    'page_level_content' => "<div class='squeeze'>$vue_title $vue_desc $vue_check</div>"
 ];
 
 // ----------------------------------------------------------------------------
