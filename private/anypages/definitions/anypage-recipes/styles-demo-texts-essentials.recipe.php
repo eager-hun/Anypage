@@ -16,7 +16,9 @@ $demo_content = $tools->importFileContent(
 // Output.
 
 $page_content = $tools->render('layouts/page-level', [
-   'page_level_content' => $page_title . $demo_content,
+    'page_level_content' => $tools->render('layouts/squeeze', [
+        'squeeze_content' => $page_title . $demo_content,
+    ]),
 ]);
 
 echo $page_content;
