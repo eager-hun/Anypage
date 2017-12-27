@@ -35,7 +35,8 @@ $page_levels[] = [
 // ----------------------------------------------------------------------------
 // Another level.
 
-$level_title = $tools->render('layouts/squeeze', [
+$prefix = $tools->render('layouts/squeeze', [
+    'wrapper_extra_classes' => 'stackable',
     'squeeze_content' => '<h2 class="page-level__title">A cluster of boxes</h2>'
 ]);
 
@@ -74,9 +75,19 @@ $box_grid = $tools->render('layouts/preset-flex-grid', [
     ],
 ]);
 
+$suffix = $tools->render('layouts/squeeze', [
+    'wrapper_extra_classes' => 'stackable',
+    'squeeze_content' => $tools->render('patterns/lists/ul-icon-prefix', [
+        'icon_id' => 'arrow-right',
+        'items' => [
+            'What happens next, you will never belive'
+        ]
+    ])
+]);
+
 $page_levels[] = [
     'wrapper_extra_classes' => 'has-bg has-bg--blockfill',
-    'page_level_content' => $level_title . $box_grid
+    'page_level_content' => $prefix . $box_grid . $suffix
 ];
 
 // ----------------------------------------------------------------------------
