@@ -42,6 +42,7 @@ array_walk($boxes_data, function(&$item) {
     $box_content .= ' <a href="foobar://foo">This is an inline link within this text</a> ';
     $box_content .= $this->addFillerText('xs', 2, false);
     $box_content .= '</p>';
+    $box_content .= '<p>Okay, I needed <strong>one more paragraph</strong> just to check some more stuff.</p>';
 
     $box_content .= <<<EOT
         <ul class="bare-list">

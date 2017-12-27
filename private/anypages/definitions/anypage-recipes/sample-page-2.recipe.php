@@ -22,8 +22,12 @@ $page_levels[] = [
 // ----------------------------------------------------------------------------
 // Another level.
 
+$hero = '<div class="hero-block">'
+    . $tools->addFillerText('s', 1, true)
+    . '</div>';
+
 $squeeze = $tools->render('layouts/squeeze', [
-    'squeeze_content' => $tools->addFillerText('m', 1, true)
+    'squeeze_content' => $hero . $tools->addFillerText('m', 2, true)
 ]);
 
 $page_levels[] = [

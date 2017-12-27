@@ -16,6 +16,9 @@ $page_title = $tools->render('page-title', [
 
 $main_content = '';
 $main_content .= $page_title;
+$main_content .= '<div class="hero-block">'
+    . $tools->addFillerText('s', 1, true)
+    . '</div>';
 $main_content .= $tools->addFillerText('m', 1, true);
 $main_content .= '<h2 class="underlined">An interesting title</h2>';
 $main_content .= $tools->addFillerText('l', 2, true);
