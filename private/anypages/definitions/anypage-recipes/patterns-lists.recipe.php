@@ -21,7 +21,7 @@ $list_items = [
 
 $ul_with_arrows = $tools->render('patterns/lists/ul-icon-prefix', [
    'wrapper_extra_classes'  => '',
-   'icon_id'                => 'arrow-right',
+   'icon_id'                => 'icon-sprite__arrow-right',
    'items'                  => $list_items
 ]);
 

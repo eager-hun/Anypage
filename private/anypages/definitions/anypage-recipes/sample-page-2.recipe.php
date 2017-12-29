@@ -82,7 +82,6 @@ $box_grid = $tools->render('layouts/preset-flex-grid', [
 $suffix = $tools->render('layouts/squeeze', [
     'wrapper_extra_classes' => 'stackable',
     'squeeze_content' => $tools->render('patterns/lists/ul-icon-prefix', [
-        'icon_id' => 'arrow-right',
         'items' => [
             'What happens next, you will never belive'
         ]

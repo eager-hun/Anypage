@@ -1,5 +1,7 @@
 <?php
 
+$demo_content = '';
+
 $page_title = $tools->render('page-title', [
     'page_title_text' => 'Highlights and notifications'
 ]);
@@ -7,7 +9,8 @@ $page_title = $tools->render('page-title', [
 // ----------------------------------------------------------------------------
 // Demo.
 
-$demo_content = '<h2>Hero</h2>';
+
+$demo_content .= '<h2>Hero</h2>';
 
 $demo_content .= '<div class="hero-block">'
     . $tools->addFillerText('s', 1, true)
@@ -15,7 +18,7 @@ $demo_content .= '<div class="hero-block">'
 
 $demo_content .= '<h2>Highlight</h2>';
 
-$demo_content .= '<div class="common-text-block highlight-block">'
+$demo_content .= '<div class="highlight-block">'
 . $tools->addFillerText('s', 2, true)
 . '</div>';
 

@@ -1,12 +1,11 @@
 <ul class="ul--icon-prefix {{ wrapper_extra_classes | default('') }}">
 
     {% for item in items %}
-        <li class="ul--icon-prefix__li">
-
-            <svg class="ul--icon-prefix__li__icon">
-                <use xlink:href="#{{ icon_id }}"/>
-            </svg>{{ item | raw }} <!-- <=== No newline between them! -->
-
+        <li>
+            <svg class="svg-icon ul--icon-prefix__icon" aria-hidden="true">
+                <use xlink:href="#{{ icon_id | default('icon-sprite__arrow-right') }}"/>
+            </svg>
+            {{ item | raw }}
         </li>
     {% endfor %}
 
