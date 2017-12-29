@@ -61,6 +61,7 @@ body.app-menu-is-enabled {
     display: block;
     padding: 0.25em 0.5em;
 
+    border: none;
     color: whitesmoke;
     text-decoration: none;
 }

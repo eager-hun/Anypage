@@ -35,10 +35,10 @@ $boxes_data = [
 // -----------------------------------------------------------------------------
 // Prepare box contents.
 
-array_walk($boxes_data, function(&$item) {
 
+array_walk($boxes_data, function(&$item) {
     $box_content = '<p>';
-    $box_content .= $this->addFillerText('xs', 1, false);
+    $box_content .= $this->addFillerText('xs', 2, false);
     $box_content .= ' <a href="foobar://foo">This is an inline link within this text</a> ';
     $box_content .= $this->addFillerText('xs', 2, false);
     $box_content .= '</p>';

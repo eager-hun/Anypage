@@ -1,28 +1,35 @@
 
 <p>
-Lorem ipsum dolor sit amet, sit ipsum, enim lacus, neque iaculis augue, vehicula
-suscipit a, sem pellentesque nibh ut donec. Scelerisque iaculis etiam vulputate
-aliquam eu mattis, amet sagittis, sed orci at nec duis pede, diam arcu molestie,
-cras elementum a tristique sed odio massa. Sit wisi pellentesque luctus mattis
-nec, dictum cras eget et ligula in est, voluptatem et libero nunc. Ac amet eget
-adipiscing varius tortor tellus, quam rutrum dolor, tortor scelerisque at
-placerat ante velit euismod. Eu euismod amet nisl vestibulum sed enim, amet
-dolor porttitor, a nec potenti arcu vehicula nullam eleifend, id vitae id, in
-aenean. Praesent odio. Amet nulla, vitae pellentesque, sit posuere, id fuga
-risus quam ut sem, dolor ac.
+Sit wisi pellentesque luctus mattis nec, dictum cras eget et ligula in est,
+voluptatem et libero nunc. Ac amet eget adipiscing varius tortor tellus,
+<strong>quam rutrum dolor</strong>, tortor scelerisque <em>at placerat ante
+velit euismod</em>. Eu euismod amet nisl <strong>vestibulum sed enim</strong>,
+amet dolor porttitor, a nec potenti arcu vehicula nullam eleifend, id vitae id,
+in aenean. Praesent odio. Amet nulla, vitae pellentesque, sit posuere, <em>id
+fuga risus quam ut sem</em>, dolor ac.
 </p>
 
-<blockquote>
+<p>
+Lorem ipsum dolor sit amet, sit ipsum, enim lacus, neque iaculis augue, vehicula
+suscipit a, sem pellentesque nibh ut donec. <a href="#">Scelerisque iaculis etiam vulputate
+aliquam</a> eu mattis, amet sagittis, sed orci at nec duis pede, diam arcu molestie,
+cras elementum a tristique sed odio massa.
+</p>
 
-    <p>This is a standard blockquote.</p>
+<blockquote cite="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote">
 
-    <p>Sed a libero ut nunc fringilla gravida vel ut nibh. Ut et condimentum
-        tellus. Donec dolor magna, vestibulum non ipsum eget, ultricies lobortis orci.
-        Donec sit amet neque pretium, elementum ligula eu, maximus nisi.</p>
+    <p>
+        The HTML &lt;blockquote&gt; Element (or HTML Block Quotation Element)
+        indicates that the enclosed text is an extended quotation. Usually, this
+        is rendered visually by indentation [ ... ]. A
+        URL for the source of the quotation may be given using the cite
+        attribute, while a text representation of the source can be given using
+        the &lt;cite&gt; element.
+    </p>
 
-    <p>Nunc eget commodo sem.
-        Quisque sit amet convallis tortor, nec tempus neque. Vivamus quis nibh a urna
-        auctor dictum id in sapien. Lorem ipsum dolor sit amet.</p>
+    <cite>
+        The ever-confusing &lt;blockquote&gt; specification
+    </cite>
 
 </blockquote>
 
