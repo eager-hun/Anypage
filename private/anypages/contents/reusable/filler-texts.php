@@ -50,6 +50,7 @@ $filler_texts['s'][4] = 'Proin sapien ipsum, porta a, auctor quis, euismod ut, m
 
 $filler_texts['s'][5] = 'In hac habitasse platea dictumst. Morbi ac felis. Mauris sollicitudin fermentum libero. Donec id justo. Fusce vulputate eleifend sapien.';
 
+$filler_texts['s'][6] = 'Etiam ut purus mattis <strong>mauris sodales</strong> aliquam. Fusce vulputate eleifend sapien. Aenean <a href="#">vulputate eleifend tellus</a>. Curabitur vestibulum aliquam leo.';
 
 // ############################################################################
 // M.

@@ -1,0 +1,12 @@
+
+<div class="{{ wrapper_extra_classes | default('') }}">
+
+    <svg class="svg-icon" aria-hidden="true">
+        <use xlink:href="#{{ icon_id }}"/>
+    </svg>
+
+    <div class="fit-content">
+        {{ textblock_content | raw }}
+    </div>
+
+</div>
