@@ -82,9 +82,7 @@ class DocumentProvider
 
         if (!empty($sys_notifications)) {
             $prepared_sys_notifications = $tools->render('layouts/page-level', [
-                'page_level_content' => $tools->render('layouts/squeeze', [
-                    'squeeze_content' => $sys_notifications
-                ])
+                'page_level_content' => $sys_notifications
             ]);
             $document = preg_replace('/<!--n10n-->/', $prepared_sys_notifications, $document, 1);
         }
@@ -164,7 +162,7 @@ class DocumentProvider
             }
         }
 
-        return $output;
+        return '<div class="system-notifications">' . $output . '</div>';
     }
 
 
