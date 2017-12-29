@@ -39,8 +39,6 @@ $processManager->response->setContent($document);
 $processManager->response->setStatusCode($status_code);
 $processManager->response->prepare($processManager->request);
 
-$processManager->dumpNotifications();
-
 if (function_exists('script_diagnostics')) {
     echo script_diagnostics();
 }

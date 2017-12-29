@@ -21,7 +21,7 @@ class ProcessManager
 
     protected $config = [];
     protected $instructions = [];
-    protected $sys_notifications = [];
+    protected $systemNotifications = [];
 
     protected $baseUrlHasBeenSet = false;
 
@@ -208,6 +208,13 @@ class ProcessManager
         ]
     ];
 
+    protected $systemNotificationSeverityLevels = [
+        'info'      => 'icon-sprite__info-i-in-filled-circle',
+        'success'   => 'icon-sprite__checkmark-in-filled-circle',
+        'warning'   => 'icon-sprite__exclamation-in-filled-triangle',
+        'alert'     => 'icon-sprite__exclamation-in-filled-triangle',
+    ];
+
     /**
      * Add notification to the notification pool.
      *
@@ -216,32 +223,30 @@ class ProcessManager
      */
     public function sysNotify($message, $severity = 'info')
     {
-        $valid_severity_levels = [
-            'info',
-            'success',
-            'warning',
-            'alert'
-        ];
+        $severity_levels = array_keys($this->systemNotificationSeverityLevels);
 
-        if (in_array($severity, $valid_severity_levels)) {
-            $this->sys_notifications[$severity][] = $message;
+        if (in_array($severity, $severity_levels)) {
+            $this->systemNotifications[$severity][] = $message;
         } else {
             $msg = "Please use one of the valid severity levels ('";
-            $msg .= implode("', '", $valid_severity_levels);
+            $msg .= implode("', '", $severity_levels);
             $msg .= "') to sys notify.";
             $this->sysNotify($msg, 'warning');
         }
     }
 
     /**
-     * Print the accumulated notifications.
+     * Expose the notifications metadata.
      */
-    public function dumpNotifications()
-    {
-        if (!empty($this->sys_notifications)) {
-            // TODO;
-            var_dump($this->sys_notifications);
-        }
+    public function getSystemNotificationSeverityLevels() {
+        return $this->systemNotificationSeverityLevels;
+    }
+
+    /**
+     * Expose the notifications to someone else who can access a renderer.
+     */
+    public function getSystemNotifications() {
+        return $this->systemNotifications;
     }
 
     /**

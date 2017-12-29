@@ -109,7 +109,11 @@ class Tools
                     );
                 }
                 catch (Exception $e) {
-                    $output = 'Caught exception: ' . $e->getMessage();
+                    // So, when the renderer experiences a problem, it might be
+                    // wiser not to make it try using itself recursively to
+                    // render the error message...
+                    $output = '<div class="notification notification--alert">'
+                        . 'Caught exception: ' . $e->getMessage() . '</div>';
                 }
             } else {
                 // TODO: error handling.

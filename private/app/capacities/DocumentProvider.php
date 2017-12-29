@@ -76,7 +76,20 @@ class DocumentProvider
 
         $this->documentHeadAdditions($document_variables);
 
-        return $tools->render('document', $document_variables);
+        $document = $tools->render('document', $document_variables);
+
+        $sys_notifications = $this->dumpSystemNotifications();
+
+        if (!empty($sys_notifications)) {
+            $prepared_sys_notifications = $tools->render('layouts/page-level', [
+                'page_level_content' => $tools->render('layouts/squeeze', [
+                    'squeeze_content' => $sys_notifications
+                ])
+            ]);
+            $document = preg_replace('/<!--n10n-->/', $prepared_sys_notifications, $document, 1);
+        }
+
+        return $document;
     }
 
 
@@ -109,6 +122,49 @@ class DocumentProvider
         }
 
         return implode(' ', $body_classes);
+    }
+
+
+    /**
+     * Print the accumulated system notifications.
+     *
+     * NOTE: care was taken to print the highest severity first, then to print
+     * the rest in reverse severity order.
+     */
+    public function dumpSystemNotifications()
+    {
+        $notifications = $this->processManager->getSystemNotifications();
+
+        if (empty($notifications)) {
+            return '';
+        }
+
+        $icon_map = $this->processManager->getSystemNotificationSeverityLevels();
+        $severity_levels = array_reverse(array_keys($icon_map));
+
+        $output = '';
+
+        foreach ($severity_levels as $level) {
+            if (array_key_exists($level, $notifications)) {
+                if (count($notifications[$level]) > 1) {
+                    $cluster = '<ul>';
+                    foreach ($notifications[$level] as $message) {
+                        $cluster .= "<li>$message</li>";
+                    }
+                    $cluster .= '</ul>';
+                }
+                else {
+                    $cluster = '<div>' . $notifications[$level][0] . '</div>';
+                }
+                $output .= $this->capacities->get('tools')->render('patterns/texts/textblock-common', [
+                    'wrapper_extra_classes' => "notification notification--$level",
+                    'icon_id'               => $icon_map[$level],
+                    'textblock_content'     => $cluster
+                ]);
+            }
+        }
+
+        return $output;
     }
 
 
