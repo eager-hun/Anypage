@@ -11,6 +11,7 @@ class DocumentProvider
 
     protected $processManager;
     protected $capacities;
+    protected $config;
 
     public function __construct(
         ProcessManager $processManager,
@@ -19,6 +20,8 @@ class DocumentProvider
     {
         $this->processManager = $processManager;
         $this->capacities = $capacities;
+
+        $this->config = $this->processManager->getConfig('config');
     }
 
 
@@ -58,7 +61,10 @@ class DocumentProvider
 
         $body_content = '';
         $body_content .= $tools->render('page', $page_variables);
-        $body_content .= $this->provideAppMenu();
+
+        if ($this->config['app']['app-menu']['is-enabled']) {
+            $body_content .= $this->provideAppMenu();
+        }
 
         $document_variables = [
             'html_language'     =>
@@ -96,7 +102,7 @@ class DocumentProvider
      */
     protected function documentHeadAdditions(&$document_variables)
     {
-        $livereload = $this->processManager->getConfig('config')['enable-livereload'];
+        $livereload = $this->config['enable-livereload'];
 
         if (!empty($livereload) && empty(BUILDING_STATIC_PAGE)) {
             // See http://stackoverflow.com/questions/26069796/gulp-how-to-implement-livereload-without-chromes-livereload-plugin
@@ -114,7 +120,7 @@ class DocumentProvider
     {
         $body_classes = [];
 
-        $app_menu_config = $this->processManager->getConfig('config')['app']['app-menu'];
+        $app_menu_config = $this->config['app']['app-menu'];
         if (!empty($app_menu_config['is-enabled'])) {
             $body_classes[] = 'app-menu-is-enabled';
         }

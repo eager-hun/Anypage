@@ -138,11 +138,15 @@ return [
             'head' => [],
             'body' => [
                 'app1' => [
-                    'file'   => 'anypage-app-ajax-suite.js',
+                    'file'   => 'anypage-app-library.js',
                     'use_as' => 'reference',
                 ],
                 'app2' => [
                     'file'   => 'anypage-app-site-generator.js',
+                    'use_as' => 'reference',
+                ],
+                'app3' => [
+                    'file'   => 'anypage-app-interactions.js',
                     'use_as' => 'reference',
                 ],
                 'theme1' => [

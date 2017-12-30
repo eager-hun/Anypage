@@ -2,15 +2,6 @@
 (function() {
     "use strict";
 
-    var callbackRouter = function(event) {
-        var event = event || window.event;
-        var target = event.target || event.srcElement;
-
-        if (target.id === 'html-generator-button') {
-            generatePages();
-        }
-    };
-
     var generatePages = function() {
         if (!("staticSitePageUrlList" in window.apSettings)) {
             console.error("Url manifest not found.");
@@ -41,13 +32,13 @@
         for (var key in urlList) {
             if (urlList.hasOwnProperty(key)) {
                 var preppedUrl = urlList[key] + urlParams;
-                generatePagesCallback(preppedUrl, timeOut);
+                issueRequest(preppedUrl, timeOut);
                 timeOut = timeOut + timeGap;
             }
         }
     };
 
-    var generatePagesCallback = function(preppedUrl, timeOut) {
+    var issueRequest = function(preppedUrl, timeOut) {
         window.setTimeout(function() {
             window.apAssets.ajaxSuite.ajaxRequest({
                 "url":                preppedUrl,
@@ -61,6 +52,10 @@
         return ("0" + val).slice(-2);
     };
 
-    document.body.addEventListener('click', callbackRouter, false);
+    var generatorButton = document.getElementById("html-generator-button");
+
+    if (generatorButton) {
+        generatorButton.addEventListener("click", generatePages, false);
+    }
 
 })();

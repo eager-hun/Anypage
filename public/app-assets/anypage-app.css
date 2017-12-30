@@ -3,30 +3,112 @@
 /* APP-MENU. */
 
 body.app-menu-is-enabled {
-    padding-left: 260px;
+    transition: padding 0.5s ease-in-out;
 }
 
 .app-menu {
-    display: none;
     position: fixed;
-
     top: 0;
     bottom: 0;
-    left: 0;
+    left: -260px;
+    z-index: 10000;
 
     width: 260px;
 
+    transition: left 0.5s ease-in-out;
+}
+
+.app-menu-toggle {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 10001;
+
+    font-size: 12px;
+    line-height: 2;
+    text-align: center;
+
+    background: #333;
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.75);
+    border-radius: 3px;
+    box-shadow: rgba(40,30,40,0.75) 0 2px 7px;
+
+    overflow: hidden;
+    transition: right 0.5s ease-in-out;
+}
+
+.app-menu-toggle .texts-footprint,
+.app-menu-toggle .text {
+    display: inline-block;
+}
+
+.app-menu-toggle .texts-footprint {
+    position: relative;
+    min-width: 1em;
+    min-height: 1em;
+}
+
+.app-menu-toggle .initial {
+    width: 3.5em;
+
+    transition: opacity 0.35s ease-in-out, width 0.5s ease-in-out;
+}
+
+.app-menu-toggle .when-open {
+    position: absolute;
+    right: 50%;
+
+    width: 1em;
+    margin-right: -0.5em;
+
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, margin 0.5s ease-in-out;
+}
+
+/* -------------------------------------------------------------------------- */
+/* App menu slided in. */
+
+.app-menu.slide-in {
+    left: 0;
+}
+
+.app-menu.slide-in + .app-menu-toggle .initial {
+    opacity: 0;
+    width: 0;
+}
+
+.app-menu.slide-in + .app-menu-toggle .when-open {
+    opacity: 1;
+}
+
+/* -------------------------------------------------------------------------- */
+/* On large enough screens, we may force app-menu presence. */
+
+@media (min-width: 1000px) {
+    body.app-menu-is-enabled {
+        padding-left: 260px;
+    }
+    body.app-menu-is-enabled .app-menu {
+        left: 0;
+
+        box-shadow: #0a0c0f -50px 0 50px -50px inset;
+    }
+    .app-menu-toggle {
+        right: -200px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* APP-MENU INTERNALS. */
+
+.app-menu {
     font-size: 16px;
     line-height: 1.5;
 
     background: #333;
     color: #fff;
-
-    box-shadow: #0a0c0f -50px 0 50px -50px inset;
-}
-
-.app-menu-is-enabled .app-menu {
-    display: block;
 }
 
 .app-menu ul {

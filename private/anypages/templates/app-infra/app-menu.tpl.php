@@ -1,5 +1,5 @@
 
-<nav class="app-menu">
+<nav id="app-menu" class="app-menu">
     <ul>
         <?php foreach($app_menu_items as $item): ?>
             <?php if ($item['item_type'] == 'topic-title'): ?>
@@ -20,3 +20,10 @@
         <?php endforeach; ?>
     </ul>
 </nav>
+
+<button type="button" id="app-menu-toggle" class="app-menu-toggle" title="Operate app menu">
+    <span class="texts-footprint">
+        <span class="text initial">menu</span>
+        <span class="text when-open">&times;</span>
+    </span>
+</button>
