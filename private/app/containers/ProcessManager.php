@@ -255,19 +255,22 @@ class ProcessManager
      * NOTE: unsafe.
      * TODO: safeify.
      *
+     * NOTE: Static pages are not expected to use baseUrl() for anything.
+     *
      * @return string
      */
     protected function baseUrl()
     {
         $working_dir = $this->getConfig('config')['env']['web-working-dir'];
 
-        if (empty(BUILDING_STATIC_PAGE)) {
-            $protocol = $this->getConfig('config')['env']['http-protocol'];
-            $host = $this->request->server->get('HTTP_HOST');
-            $output = $protocol . '://' . $host . '/' . $working_dir . '/';
+        $protocol = $this->getConfig('config')['env']['http-protocol'];
+        $host = $this->request->server->get('HTTP_HOST');
+
+        if (empty($working_dir)) {
+            $output = $protocol . '://' . $host . '/';
         }
         else {
-            $output = '/' . $working_dir . '/';
+            $output = $protocol . '://' . $host . '/' . $working_dir . '/';
         }
 
         return $output;
