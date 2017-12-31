@@ -225,6 +225,11 @@ class SiteGenerator
      */
     protected function _mirrorDirectory($from, $to, &$status, &$error)
     {
+        if (!$this->filesystem->exists($from)) {
+            echo "ERROR in _mirrorDirectory(): the provided source dir doesn't exist! Exiting.";
+            exit();
+        }
+
         // Copy only if it's not there yet.
         if (!$this->filesystem->exists($to)) {
             try {
