@@ -178,8 +178,9 @@ class DocumentProvider
      * @return string
      */
     public function provideAppMenu() {
-        $pagelist = $this->processManager->getConfig('routes');
         $sec = $this->capacities->get('security');
+        $base_url = $this->processManager->getInstruction('base-url');
+        $pagelist = $this->processManager->getConfig('routes');
 
         $app_menu_items = [];
 
@@ -191,10 +192,7 @@ class DocumentProvider
 
             // We were called during a dynamic php page response.
             if (empty(BUILDING_STATIC_PAGE)) {
-                $url = $this
-                    ->processManager
-                    ->getInstruction('base-url')
-                    . $sec->escapeValue($path, 'uri_path');
+                $url = $base_url . $sec->escapeValue($path, 'uri_path');
             }
             // We were called while generating a static snapshot.
             else {
