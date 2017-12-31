@@ -31,7 +31,7 @@ return [
      *   String used in creating URLs.
      */
     'env' => [
-        'web-working-dir'                   => 'anypage-develop',
+        'web-working-dir'                   => 'anypage',
         'path-fragment-to-app-assets'       => 'public/app-assets',
         'path-fragment-to-themes'           => 'public/themes',
         'theme-dir-name'                    => 'theme-seed',
