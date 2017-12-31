@@ -7,9 +7,6 @@
     // Toggling the app-menu.
 
     var appMenuToggle = function(event) {
-
-        console.log(event);
-
         var appMenu = document.getElementById("app-menu");
         appMenu.classList.toggle("slide-in");
     };
