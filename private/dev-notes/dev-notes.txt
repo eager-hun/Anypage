@@ -10,3 +10,13 @@ git submodule foreach --recursive 'git fetch --tags'
 git submodule update --recursive
 
 
+var_dump($processManager->request);
+var_dump($processManager->request->getPathInfo());
+var_dump($processManager->request->getContent());
+var_dump($processManager->request->attributes);
+var_dump($processManager->request->request);
+var_dump($processManager->request->query);
+var_dump($processManager->request->server);
+var_dump($processManager->request->files);
+var_dump($processManager->request->cookies);
+var_dump($processManager->request->headers);

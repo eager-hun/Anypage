@@ -3,17 +3,6 @@
 // See http://symfony.com/doc/current/components/http_foundation/introduction.html
 // See http://symfony.com/doc/current/book/http_fundamentals.html
 
-//var_dump($processManager->request);
-//var_dump($processManager->request->getPathInfo());
-//var_dump($processManager->request->getContent());
-//var_dump($processManager->request->attributes);
-//var_dump($processManager->request->request);
-//var_dump($processManager->request->query);
-//var_dump($processManager->request->server);
-//var_dump($processManager->request->files);
-//var_dump($processManager->request->cookies);
-//var_dump($processManager->request->headers);
-
 
 $request_uri = $processManager->request->server->get('REQUEST_URI');
 
@@ -24,21 +13,30 @@ $working_dir = $processManager->getConfig('config')['env']['web-working-dir'];
 if (!empty($working_dir)) {
     $trim_off = $working_dir . '/';
     $request_path = substr($request_path, strlen($trim_off));
+
+    if ($request_path === false) {
+        echo 'NOTICE: the "web_working_directory" entry in config might be wrong.';
+        exit;
+    }
 }
 
-$defined_paths = array_keys($processManager->getConfig('routes'));
+$routes_config = $processManager->getConfig('routes');
+$defined_paths = array_keys($routes_config);
 
-// -----------------------------------------------------------------------------
-// Allow access to the findings for everybody downstream in the app.
+$identified_route_index = array_search($request_path, $defined_paths);
 
-if (in_array($request_path, $defined_paths)) {
-    $manifest_of_requested_resource = $processManager
-        ->getConfig('routes')[$request_path];
+if ($identified_route_index !== false) {
+    $manifest_of_requested_resource =
+        $routes_config[$defined_paths[$identified_route_index]];
 }
 else {
     $manifest_of_requested_resource = $processManager
         ->systemPageManifests['on_demand']['404'];
 }
+
+
+// -----------------------------------------------------------------------------
+// Allow access to the findings for everybody downstream in the app.
 
 if (!empty($processManager->request->query->get('savePage'))) {
     define('BUILDING_STATIC_PAGE', true);

@@ -3,6 +3,8 @@
 return [
 
     /**
+     * TODO: UPDATE THIS DOCBLOCK.
+     *
      * Describing the app's environment and locations.
      * key 'working_dir':
      *   The subdirectory path in which the application's index.php sits inside
