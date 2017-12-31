@@ -151,10 +151,10 @@ return [
                     'file'   => 'anypage-app-interactions.js',
                     'use_as' => 'reference',
                 ],
-                'theme1' => [
+                /*'theme1' => [
                     'file'   => 'built/gulp-out/js/libs.js',
                     'use_as' => 'reference',
-                ],
+                ],*/
                 'theme2' => [
                     'file'   => 'built/gulp-out/js/custom.min.js',
                     'use_as' => 'reference',
