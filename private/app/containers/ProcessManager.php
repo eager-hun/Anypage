@@ -145,7 +145,8 @@ class ProcessManager
     {
         $env_config = $this->getConfig('config')['env'];
 
-        $fragment_app_assets = $env_config['path-fragment-to-app-assets'];
+        $fragment_app_assets = $env_config['path-fragment-to-app-assets']
+            . '/app-assets';
         $this->setInstruction(
             'path-fragment-to-app-assets',
             $fragment_app_assets
