@@ -3,31 +3,39 @@
 return [
 
     /**
-     * TODO: UPDATE THIS DOCBLOCK.
-     *
      * Describing the app's environment and locations.
-     * key 'working_dir':
+     *
+     * key 'web-working-dir':
      *   The subdirectory path in which the application's index.php sits inside
      *   the server document root.
      *   Provide an empty string if the index.php is located in the public root.
      *   No leading or trailing slashes.
      *
-     * key 'path_to_app_assets':
+     * key 'path-fragment-to-app-assets':
      *   Used internally by the php script and also for creating URLs.
      *   Don't include "app-assets" itself.
      *   No leading or trailing slashes.
      *
-     * key 'path_to_theme':
-     *   Path leading to the "build" dir (containing .css & .js for the
+     * key 'path-fragment-to-themes':
+     *   Path leading to the "built" dir (containing .css & .js for the
      *   frontend). Used internally by the php script and also for creating
      *   URLs. Don't include "build" itself. No leading or trailing slashes.
      *
-     * key 'html_export_dir':
-     *   Used both internally in php script and to create URLs. Provide the
-     *   location relative to DIRECTOR_DIR.
+     * key 'theme-dir-name':
+     *   The active theme's directory name.
+     *
+     * key 'path-fragment-to-html-export-dir':
+     *   The subdirectory path leading to the the generated instances' directory.
+     *   Provide the location relative to DIRECTOR_DIR.
      *   No leading or trailing slashes.
      *
-     * key 'http_protocol':
+     * key 'html-export-dir-name':
+     *   The name of the directory into which static site snapshots are copied.
+     *
+     * key 'http-protocol':
+     *   String used in creating URLs.
+     *
+     * key 'http-protocol-v':
      *   String used in creating URLs.
      */
     'env' => [
@@ -45,9 +53,9 @@ return [
         /**
          * Templating.
          *
-         * key 'enable-twig'
-         *   If you disable twig, your only rendering engine option can be
-         *   'php'.
+         * key 'enable-twig':
+         *   If you disable twig, your only 'default-rendering-engine' option
+         *   can be 'php'.
          * key 'default-rendering-engine':
          *   Valid values are 'php' or 'twig'.
          */
@@ -65,14 +73,14 @@ return [
             ]
         ],
         'app-menu' => [
-            'is-enabled' => 1, // Bool.
+            // Boolean, any truthy or falsy values will suffice.
+            'is-enabled' => 1,
         ],
     ],
 
     'frontend-assets' => [
         /**
-         * Where window.apSettings and window.apAssets js objects should be
-         * printed.
+         * Where window.apSettings and window.apAssets js objects get printed.
          *
          * Valid values are 'head' or 'body'.
          */
@@ -81,29 +89,31 @@ return [
         /**
          * String to use in the '?v=' URL param for .css and .js files.
          */
-        'cache-bust-str' => '20170507-1',
+        'cache-bust-str' => '20180101-1',
 
         /**
-         * TODO: update docblock!!!
-         *
          * Stylesheets to be included with the document.
          *
          * The array keys should contain either 'theme', 'app', or 'external'
-         * substrings.
+         * substrings! (That hints the app to produce corresponding URLs.)
          *
-         * Use 'external' for assets whose url should be left alone, and inserted
-         * into the documents as is. Ideal for such things as e.g.
-         * "https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"
+         * Use 'external' for assets whose URL should be left alone, and
+         * inserted into the documents as is. Ideal for such things as e.g.
+         * `https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js`
          *
-         * Use 'theme' for such files that are inside the theme directory; these
-         * strings will have the base_url and $this->env['path_to_theme'] prepended
-         * to them automatically when needed.
+         * Use 'theme' for such files that are inside the theme directory.
          *
-         * Use 'app' for such files are sitting in /engineroom/app-assets.
+         * Use 'app' for the assets provided by the app itself (not the theme);
+         * such files are likely to be sitting in `public/app-assets`.
          *
          * The numbers in the array keys provide just uniqueness (to prevent
-         * overwriting). The order of the asset inclusion on the page is the order
-         * of the declaration here (I assume, as long as the array key is a string).
+         * overwriting). The order of the asset inclusion on the page is the
+         * order of the declaration here (I assume, as long as the array key is
+         * a string).
+         *
+         * Values:
+         *   Path fragment from the app-assets' and the active theme's default
+         *   locations, including the filename.
          */
         'stylesheets' => [
             'app1'   => 'anypage-app.css',
@@ -113,28 +123,39 @@ return [
         ],
 
         /**
-         * TODO: update docblock!!!
-         *
          * Javascript files to be included with the document.
          *
          * Group the file locations into 'head' and 'body' arrays.
          *
-         * The file-describing array keys should contain either 'theme', 'app', or
-         * 'external' substrings.
+         * The file-describing array keys should contain either 'theme', 'app',
+         * or 'external' substrings. (That hints the app to produce
+         * corresponding URLs.)
          *
-         * Use 'external' for assets whose url should be left alone, and inserted
-         * into the documents as is. Ideal for such things as e.g.
-         * "https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"
+         * Use 'external' for assets whose URL should be left alone, and
+         * inserted into the documents as is. Ideal for such things as e.g.
+         * `https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js`
          *
-         * Use 'theme' for such files that are inside the theme directory; these
-         * strings will have the base_url and $this->env['path_to_theme'] prepended
-         * to them automatically when needed.
+         * Use 'theme' for such files that are inside the theme directory.
          *
-         * Use 'app' for such files are sitting in /engineroom/app-assets.
+         * Use 'app' for the assets provided by the app itself (not the theme);
+         * such files are likely to be sitting in `public/app-assets`.
          *
          * The numbers in the array keys provide just uniqueness (to prevent
-         * overwriting). The order of the asset inclusion on the page is the order
-         * of the declaration here (I assume, as long as the array key is a string).
+         * overwriting). The order of the asset inclusion on the page is the
+         * order of the declaration here (I assume, as long as the array key is
+         * a string).
+         *
+         * key 'file':
+         *   Path fragment from the app-assets' and the active theme's default
+         *   locations, including the filename.
+         *
+         * key 'use_as':
+         *   value 'reference':
+         *      The script tag's `src` attribute will contain an URL pointing
+         *      to the file.
+         *   value 'inline':
+         *      This does not work yet (un-implemented). Would include the
+         *      script in the document.
          */
         'scripts' => [
             'head' => [],
@@ -183,5 +204,5 @@ return [
      *
      * Boolean, any truthy or falsy values will suffice.
      */
-    'enable-livereload' => 1,
+    'enable-livereload' => 0,
 ];
