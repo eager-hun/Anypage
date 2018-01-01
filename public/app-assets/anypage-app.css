@@ -2,10 +2,6 @@
 /* ########################################################################## */
 /* APP-MENU. */
 
-body.app-menu-is-enabled {
-    transition: padding 0.5s ease-in-out;
-}
-
 .app-menu {
     position: fixed;
     top: 0;
@@ -36,7 +32,6 @@ body.app-menu-is-enabled {
     box-shadow: rgba(40,30,40,0.75) 0 2px 7px;
 
     overflow: hidden;
-    transition: right 0.5s ease-in-out;
 }
 
 .app-menu-toggle .texts-footprint,
@@ -50,21 +45,20 @@ body.app-menu-is-enabled {
     min-height: 1em;
 }
 
-.app-menu-toggle .initial {
-    width: 3.5em;
-
-    transition: opacity 0.35s ease-in-out, width 0.5s ease-in-out;
+.app-menu-toggle .text--initial {
+    transition: opacity 0.5s ease-in-out;
 }
 
-.app-menu-toggle .when-open {
+.app-menu-toggle .text--when-open {
     position: absolute;
     right: 50%;
+    top: 0;
 
     width: 1em;
     margin-right: -0.5em;
 
     opacity: 0;
-    transition: opacity 0.5s ease-in-out, margin 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -74,12 +68,11 @@ body.app-menu-is-enabled {
     left: 0;
 }
 
-.app-menu.slide-in + .app-menu-toggle .initial {
+.app-menu.slide-in + .app-menu-toggle .text--initial {
     opacity: 0;
-    width: 0;
 }
 
-.app-menu.slide-in + .app-menu-toggle .when-open {
+.app-menu.slide-in + .app-menu-toggle .text--when-open {
     opacity: 1;
 }
 
@@ -90,13 +83,15 @@ body.app-menu-is-enabled {
     body.app-menu-is-enabled {
         padding-left: 260px;
     }
-    body.app-menu-is-enabled .app-menu {
+    .app-menu {
         left: 0;
 
         box-shadow: #0a0c0f -50px 0 50px -50px inset;
+
+        transition: none;
     }
     .app-menu-toggle {
-        right: -200px;
+        display: none;
     }
 }
 

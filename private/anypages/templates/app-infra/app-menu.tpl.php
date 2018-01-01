@@ -23,7 +23,7 @@
 
 <button type="button" id="app-menu-toggle" class="app-menu-toggle" title="Operate app menu">
     <span class="texts-footprint">
-        <span class="text initial">menu</span>
-        <span class="text when-open">&times;</span>
+        <span class="text text--initial">menu</span>
+        <span class="text text--when-open">&times;</span>
     </span>
 </button>
