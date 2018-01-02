@@ -42,7 +42,7 @@ return [
         'web-working-dir'                   => 'anypage',
         'path-fragment-to-app-assets'       => 'public',
         'path-fragment-to-themes'           => 'public/themes',
-        'theme-dir-name'                    => 'theme-seed',
+        'theme-dir-name'                    => 'frontend-seed',
         'path-fragment-to-html-export-dir'  => 'public',
         'html-export-dir-name'              => 'generated',
         'http-protocol'                     => 'http',

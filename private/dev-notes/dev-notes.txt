@@ -1,7 +1,12 @@
 git submodule deinit themes/theme-seed
 git rm themes/theme-seed
 
-git submodule add https://github.com/eager-hun/theme-seed.git public/themes/theme-seed
+
+git submodule add https://github.com/eager-hun/frontend-seed.git public/themes/frontend-seed
+
+
+git submodule sync --recursive
+git submodule update --init --recursive
 
 
 git submodule sync

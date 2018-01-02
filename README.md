@@ -19,11 +19,11 @@ Further key features:
 
 - Twig- and/or php-based templating,
 - processing Markdown,
-- when used together with the [theme-seed][theme-seed-github] project:
+- simple static site generator for portable, standalone project snapshots,
+- when used together with the [frontend-seed][frontend-seed-github] project:
     - Gulp / Webpack hybrid frontend build tooling with:
         - livereload (for a customizable range of files),
-        - Vue.js pre-installed / configured,
-- simple static site generator for portable, standalone project snapshots.
+        - Vue.js pre-installed / configured.
         
 
 ## Project state
@@ -90,21 +90,21 @@ virtual machine.)
 
 #### Installing
 
-The repository defines the "[theme-seed][theme-seed-github]"
+The repository defines the "[frontend-seed][frontend-seed-github]"
 git submodule, which is — speaking in CMS-terms — comparable to a "theme".
 
     git clone --recursive https://github.com/eager-hun/anypage.git anypage
 
     anypage/private$ composer install
     
-    anypage/public/themes/theme-seed$ npm install
-    anypage/public/themes/theme-seed$ gulp compile
+    anypage/public/themes/frontend-seed$ npm install
+    anypage/public/themes/frontend-seed$ gulp compile
     
 Review configs:
     
     anypage/director.php
     anypage/private/config/config.php
-    anypage/public/themes/theme-seed/build-setup/gulp-webpack-hybrid/gulp-setup.js
+    anypage/public/themes/frontend-seed/build-setup/gulp-webpack-hybrid/gulp-setup.js
     
 After this point the site should be ready to be viewed in a browser.
 
@@ -114,7 +114,7 @@ After this point the site should be ready to be viewed in a browser.
 Documentation TODO.
 
 
-[theme-seed-github]: https://github.com/eager-hun/theme-seed
+[frontend-seed-github]: https://github.com/eager-hun/frontend-seed
 [git]: https://git-scm.com/downloads
 [php]: http://php.net/manual/en/install.php
 [composer]: https://getcomposer.org/
