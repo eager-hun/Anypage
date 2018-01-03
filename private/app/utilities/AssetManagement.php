@@ -43,28 +43,48 @@ class AssetManagement
     /**
      * Render stylesheets.
      *
-     * @param $assets
+     * @param $stylesheets
      * @return string
      */
-    public function renderStylesheets($assets)
+    public function renderStylesheets($stylesheets)
     {
         $output = '';
 
-        foreach ($assets as $key => $val) {
-
-            if (strpos($key, 'app') !== false) {
-                $href = $this->finalizeFrontendAssetUrl($val, 'app');
-            } elseif (strpos($key, 'theme') !== false) {
-                $href = $this->finalizeFrontendAssetUrl($val, 'theme');
+        foreach ($stylesheets as $entry) {
+            if (!empty($entry['ignore'])) {
+                continue;
             }
 
-            $output .= $this->capacities->get('tools')->render(
-                'app-infra/stylesheet-link',
-                ['href' => $href],
-                'php'
-            );
+            if (empty($entry['source']) || empty($entry['file'])
+                || empty($entry['use_as'])) {
+                $msg = 'Missing config values in stylesheet entry definition.';
+                $this->processManager->sysNotify($msg, 'warning');
+                continue;
+            }
+
+            if ( ! in_array($entry['source'], ['app', 'theme'])) {
+                $msg = 'renderStylesheets() encountered an invalid source designation.';
+                $this->processManager->sysNotify($msg, 'warning');
+                continue;
+            }
+
+            if ($entry['use_as'] == 'reference') {
+                $href = $this->finalizeFrontendAssetUrl($entry['file'], $entry['source']);
+
+                $output .= $this->capacities->get('tools')->render(
+                    'app-infra/stylesheet-link',
+                    ['href' => $href],
+                    'php'
+                );
+            }
+            elseif ($entry['use_as'] == 'inline') {
+                // TODO.
+                $msg = "Inlining stylesheets is not implemented yet.";
+                $this->processManager->sysNotify($msg, 'warning');
+                continue;
+            }
         }
-        unset($key, $val);
+        unset($entry);
 
         return $output;
     }
@@ -105,72 +125,44 @@ class AssetManagement
     protected function renderScripts($scripts) {
         $output = '';
 
-        foreach ($scripts as $key => $script_props) {
-
-            $use_as = 'reference'; // Default.
-
-            if (!empty($script_props['use_as'])) {
-                $use_as = $script_props['use_as'];
+        foreach ($scripts as $entry) {
+            if (!empty($entry['ignore'])) {
+                continue;
             }
 
-            if ($use_as == 'reference') {
-
-                // We will use an 'src' attribute and the script tag will have
-                // no content.
-
-                if (!empty($script_props['script'])) {
-                    unset($script_props['script']);
-                }
-
-                if (!empty($script_props['file'])) {
-
-                    // If the 'file' key exists, it implies a file in our
-                    // filesystem.
-
-                    if (strpos($key, 'app') !== false) {
-                        $script_props['src_value'] =
-                            $this->finalizeFrontendAssetUrl(
-                                $script_props['file'],
-                                'app'
-                            );
-                    } elseif (strpos($key, 'theme') !== false) {
-                        $script_props['src_value'] =
-                            $this->finalizeFrontendAssetUrl(
-                                $script_props['file'],
-                                'theme'
-                            );
-                    }
-
-                } elseif (!empty($script_props['src_value'])) {
-
-                    // If the src_value had been directly set.
-                    // TODO.
-
-                    $msg = 'Inlining scripts is TODO.';
-                    $this->processManager->sysNotify($msg, 'warning');
-
-                }
-
-            } elseif ($use_as == 'inline') {
-
-                // TODO: file_get_contents().
-
-                $msg = 'Inlining scripts is TODO.';
-                $this->processManager->sysNotify($msg, 'warning');
-
-                if (!empty($script_props['file'])) {
-
-                }
-            }
-            else {
-                $msg = 'renderScripts() did not understand the intended script usage suggestion.';
+            if (empty($entry['source']) || empty($entry['file'])) {
+                $msg = 'Missing config values in script entry definition.';
                 $this->processManager->sysNotify($msg, 'warning');
                 continue;
             }
 
-            $output .= $this->renderScriptTag($script_props);
+            if ($entry['source'] == 'external') {
+                // TODO.
+                $msg = "Using scripts from external resources is not implemented yet.";
+                $this->processManager->sysNotify($msg, 'warning');
+                continue;
+            }
+
+            if ($entry['use_as'] == 'reference') {
+                // No content for the <script> tag.
+                unset($entry['code']);
+
+                $entry['src_value'] =
+                    $this->finalizeFrontendAssetUrl(
+                        $entry['file'],
+                        $entry['source']
+                    );
+
+                $output .= $this->renderScriptTag($entry);
+            }
+            elseif ($entry['use_as'] == 'inline') {
+                // TODO.
+                $msg = "Inlining scripts is not implemented yet.";
+                $this->processManager->sysNotify($msg, 'warning');
+                continue;
+            }
         }
-        unset($key, $script_props);
+        unset($entry);
 
         return $output;
     }
@@ -190,20 +182,20 @@ class AssetManagement
     {
         // Defaults.
         $src_attrib = '';
-        $script     = '';
+        $code       = '';
 
         if (!empty($script_props['src_value'])) {
             $src_attrib = ' src="' . $script_props['src_value'] . '"';
         }
-        elseif (!empty($script_props['script'])) {
-            $script = $script_props['script'];
+        elseif (!empty($script_props['code'])) {
+            $code = $script_props['code'];
         }
 
         return $this->capacities->get('tools')->render(
             'app-infra/script-tag',
             [
-                'src_attrib' => $src_attrib,
-                'script'     => $script,
+                'src_attrib'    => $src_attrib,
+                'code'          => $code,
             ],
             'php'
         );
@@ -307,7 +299,7 @@ class AssetManagement
         $script .= 'window.apAssets = {};';
 
         $scriptTag = $this->renderScriptTag([
-            'script'  => $script
+            'code'  => $script
         ]);
 
         return $scriptTag;
