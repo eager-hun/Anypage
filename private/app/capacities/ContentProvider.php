@@ -55,7 +55,10 @@ class ContentProvider
 
             } else {
                 // TODO: error handling?
-                $output = 'Error: content recipe was not found.';
+                $msg = 'Error: the content recipe was not found.';
+                $this->processManager->sysNotify($msg, 'alert');
+                $output = '';
+
             }
 
         } elseif ($manifest['resource-type'] == 'system_page') {

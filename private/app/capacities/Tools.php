@@ -154,9 +154,10 @@ class Tools
     public function importFileContent($file, $process)
     {
 
-        if (!file_exists($file)) {
-            // TODO: error handling.
-            return 'ERROR in importFileContent(): specified file does not exist.';
+        if ( ! file_exists($file)) {
+            $msg = 'Error in importFileContent(): specified file does not exist.';
+            $this->processManager->sysNotify($msg, 'alert');
+            return false;
         }
 
         if ($process == 'php') {
@@ -178,11 +179,10 @@ class Tools
             return $text;
 
         } else {
-
-            // TODO: error handling.
-            return 'ERROR in importFileContent(): did not understand'
+            $msg = 'ERROR in importFileContent(): did not understand'
                 . 'processing instructions.';
-
+            $this->processManager->sysNotify($msg, 'warning');
+            return false;
         }
     }
 
