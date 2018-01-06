@@ -29,27 +29,27 @@ $main_content .= $tools->addFillerText('l', 2, true);
 
 $boxes = [
     [
-        'wrapper_extra_classes' => 'fill-flex color-zone color-zone--brand',
+        'wrapper_extra_classes' => 'tile color-zone color-zone--brand',
         'box_title'             => 'Super box 1',
         'box_content'           => $tools->addFillerText('xs', 1, true)
     ],
     [
-        'wrapper_extra_classes' => 'fill-flex color-zone color-zone--accent-1',
+        'wrapper_extra_classes' => 'tile color-zone color-zone--accent-1',
         'box_title'             => 'Super box 2',
         'box_content'           => $tools->addFillerText('xs', 2, true)
     ],
     [
-        'wrapper_extra_classes' => 'fill-flex color-zone color-zone--accent-2',
+        'wrapper_extra_classes' => 'tile color-zone color-zone--accent-2',
         'box_title'             => 'Super box 3',
         'box_content'           => $tools->addFillerText('xs', 3, true)
     ],
     [
-        'wrapper_extra_classes' => 'fill-flex color-zone color-zone--dark',
+        'wrapper_extra_classes' => 'tile color-zone color-zone--dark',
         'box_title'             => 'Super box 4',
         'box_content'           => $tools->addFillerText('xs', 5, true)
     ],
     [
-        'wrapper_extra_classes' => 'fill-flex color-zone color-zone--blockfill',
+        'wrapper_extra_classes' => 'tile color-zone color-zone--blockfill',
         'box_title'             => 'Super box 5',
         'box_content'           => $tools->addFillerText('xs', 4, true)
     ],
@@ -60,7 +60,7 @@ array_walk($boxes, function(&$item) {
 });
 
 $sidebar_content = $tools->render('layouts/sidebar-box-arrangement', [
-    'wrapper_extra_classes' => 'flexboxify-items',
+    'wrapper_extra_classes' => 'payload-as-tiles',
     'items' => $boxes
 ]);
 

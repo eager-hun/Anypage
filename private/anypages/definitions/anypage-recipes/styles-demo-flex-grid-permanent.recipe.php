@@ -3,14 +3,14 @@
 $page_content = '';
 
 $page_title = $tools->render('page-title', [
-    'page_title_text' => 'Cheap flex grid'
+    'page_title_text' => 'Permanent flex grid'
 ]);
 
 // ----------------------------------------------------------------------------
 // Demo content.
 
 $demo_content = $tools->importFileContent(
-    APS_CONTENTS . '/arbitrary/styles-demo-cheap-grid.php',
+    APS_CONTENTS . '/arbitrary/styles-demo-flex-grid-permanent.php',
     'php'
 );
 

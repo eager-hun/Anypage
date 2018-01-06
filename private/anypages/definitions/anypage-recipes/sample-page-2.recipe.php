@@ -46,24 +46,24 @@ $prefix = $tools->render('layouts/squeeze', [
 
 $boxes_manifest = [
     [
-        'wrapper_extra_classes' => 'fill-flex color-zone color-zone--brand',
+        'wrapper_extra_classes' => 'tile color-zone color-zone--brand',
         'box_title'             => 'Super box 1',
         'box_content'           => $tools->addFillerText('xs', 1, true)
     ],
     [
-        'wrapper_extra_classes' => 'fill-flex color-zone color-zone--accent-1',
+        'wrapper_extra_classes' => 'tile color-zone color-zone--accent-1',
         'box_title'             => 'Super box 2',
         'box_content'           => $tools->addFillerText('xs', 2, true)
     ],
     [
-        'wrapper_extra_classes' => 'fill-flex color-zone color-zone--accent-2',
+        'wrapper_extra_classes' => 'tile color-zone color-zone--accent-2',
         'box_title'             => 'Super box 3',
         'box_content'           => $tools->addFillerText('xs', 3, true)
     ],
 ];
 
-$box_grid = $tools->render('layouts/preset-flex-grid', [
-    'wrapper_extra_classes' => 'cheap-grid--preset-3-cols flexboxify-items',
+$box_grid = $tools->render('layouts/flex-grid', [
+    'wrapper_extra_classes' => 'flex-grid--preset-3-cols payload-as-tiles',
     'items_extra_classes' => 'collectively-added-class',
     'items' => [
         [

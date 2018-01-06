@@ -21,7 +21,7 @@ $page_levels[] = [
 $main_content = $tools->addFillerText('s', 1, true);
 
 $box_for_sidebar = $tools->render('patterns/box', [
-    'wrapper_extra_classes' => 'fill-flex color-zone color-zone--brand',
+    'wrapper_extra_classes' => 'tile color-zone color-zone--brand',
     'box_title' => 'Sidebar content',
     'box_content' => '<p>' . $tools->addFillerText('xxs', 1, false) . ' . </p>'
 ]);

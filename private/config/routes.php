@@ -63,12 +63,20 @@ return [
     // -------------------------------------------------------------------------
     // Demos: grids and layouts.
 
-    'demo/grid' => [
-        'resource-id'       => 'styles-demo-grid',
-        'html-filename'     => 'styles-demo-grid',
+    'demo/flex-grid-presets' => [
+        'resource-id'       => 'styles-demo-flex-grid-presets',
+        'html-filename'     => 'styles-demo-flex-grid-presets',
         'menu'              => [
             'starts-topic'  => 'Grids and layouts',
-            'link-text'     => 'Cheap flex grid',
+            'link-text'     => 'Flex grid: responsive presets',
+        ],
+        'has-own-layout'    => true,
+    ],
+    'demo/flex-grid-permanent' => [
+        'resource-id'       => 'styles-demo-flex-grid-permanent',
+        'html-filename'     => 'styles-demo-flex-grid-permanent',
+        'menu'              => [
+            'link-text'     => 'Flex grid: permanent',
         ],
         'has-own-layout'    => true,
     ],

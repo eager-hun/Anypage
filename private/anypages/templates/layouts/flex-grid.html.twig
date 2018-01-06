@@ -1,0 +1,9 @@
+<div class="flex-grid {{ wrapper_extra_classes | default('') }}">
+
+    {% for item in items %}
+        <div class="flex-grid__item {{ items_extra_classes | default('') }} {{ item.extra_classes | default('') }}">
+            {{ item.item_content | raw }}
+        </div>
+    {% endfor %}
+
+</div>

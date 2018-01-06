@@ -1,6 +1,9 @@
 
 <?php
 
+// #############################################################################
+// Prepare boxes to demo color-zones.
+
 // -----------------------------------------------------------------------------
 // Raw data for boxes.
 
@@ -34,7 +37,6 @@ $boxes_data = [
 
 // -----------------------------------------------------------------------------
 // Prepare box contents.
-
 
 array_walk($boxes_data, function(&$item) {
     $box_content = '<p>';
@@ -72,6 +74,10 @@ EOL;
     $item['box_content'] = $box_content;
 });
 
+
+// #############################################################################
+// Output boxes.
+
 // -----------------------------------------------------------------------------
 // Render boxes.
 
@@ -79,8 +85,8 @@ $rendered_boxes = [];
 
 foreach($boxes_data as $key => $box_data) {
 
-    $wrapper_extra_classes = 'fill-flex box--major color-zone '
-        . $box_data['wrapper_extra_classes'];
+    $wrapper_extra_classes = 'box--major tile color-zone'
+        . ' ' . $box_data['wrapper_extra_classes'];
 
     $rendered_boxes[$key] = $tools->render('patterns/box', [
         'wrapper_extra_classes' => $wrapper_extra_classes,
@@ -90,16 +96,17 @@ foreach($boxes_data as $key => $box_data) {
 }
 unset($key, $box_data);
 
-?>
+// -----------------------------------------------------------------------------
+// Prepare rendered boxes array as payload for grid template.
 
-<!-- Print boxes into a grid. -->
+array_walk($rendered_boxes, function(&$value, $key) {
+    $value = [ 'item_content' => $value ];
+});
 
-<div class="styles-demo-color-zones-palette">
-    <div class="cheap-grid cheap-grid--preset-3-cols">
-        <?php foreach(array_keys($rendered_boxes) as $box_id): ?>
-            <div class="cheap-grid__item">
-                <?php echo $rendered_boxes[$box_id]; ?>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</div>
+// -----------------------------------------------------------------------------
+// Render grid.
+
+echo $tools->render('layouts/flex-grid', [
+    'wrapper_extra_classes' => 'flex-grid--preset-3-cols payload-as-tiles',
+    'items' => $rendered_boxes
+]);
