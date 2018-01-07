@@ -40,8 +40,7 @@ class ContentProvider
 
             $recipe_file = APS_DEFINITIONS
                 . '/' . $recipe_subdir . '/'
-                . $manifest['resource-id']
-                . '.recipe.php';
+                . $manifest['resource-id'] . '.recipe.php';
 
             if (file_exists($recipe_file)) {
 
@@ -54,6 +53,7 @@ class ContentProvider
                 $output = ob_get_clean();
 
             } else {
+
                 // TODO: error handling?
                 $msg = 'Error: the content recipe was not found.';
                 $this->processManager->sysNotify($msg, 'alert');
@@ -64,13 +64,22 @@ class ContentProvider
         } elseif ($manifest['resource-type'] == 'system_page') {
 
             if ($manifest['resource-id'] == '404') {
+
                 $output = $this->message404();
-                $this->processManager
-                    ->setInstruction('http-response-code-suggestion', '404', true);
+                $this->processManager->setInstruction(
+                    'http-response-code-suggestion',
+                    '404',
+                    true
+                );
+
             } elseif ($manifest['resource-id'] == 'generator') {
+
                 $output = $this->generatorPageContent();
+
             } elseif ($manifest['resource-id'] == 'list_generated') {
+
                 $output = $this->staticSiteListingPageContent();
+
             }
         }
         else {

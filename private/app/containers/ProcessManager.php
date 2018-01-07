@@ -292,4 +292,40 @@ class ProcessManager
             );
         }
     }
+
+
+    /**
+     * Info about page templates.
+     *
+     * @var array
+     */
+    protected $templateInfo = [
+        'templates' => [
+            'page-template'         => 'page/page--default',
+            'page-header-template'  => 'page/page-header--default',
+            'page-footer-template'  => 'page/page-footer--default'
+        ],
+        'document-classes' => [],
+        'body-classes' => [],
+    ];
+
+    public function updateTemplateAssignment($key, $val)
+    {
+        $this->templateInfo['templates'][$key] = $val;
+    }
+
+    public function addBodyClass($classname)
+    {
+        $this->templateInfo['body-classes'][] = $classname;
+    }
+
+    public function addDocumentClass($classname)
+    {
+        $this->templateInfo['document-classes'][] = $classname;
+    }
+
+    public function getTemplateInfo()
+    {
+        return $this->templateInfo;
+    }
 }

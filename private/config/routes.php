@@ -19,7 +19,6 @@ return [
             'starts-topic'  => 'Global styles',
             'link-text'     => 'Headings',
         ],
-        'has-own-layout'    => true,
     ],
     'demo/texts/essentials' => [
         'resource-id'       => 'styles-demo-texts-essentials',
@@ -27,7 +26,6 @@ return [
         'menu'              => [
             'link-text' => 'Essential texts',
         ],
-        'has-own-layout'    => true,
     ],
     'demo/texts/lists' => [
         'resource-id'       => 'styles-demo-lists',
@@ -35,7 +33,6 @@ return [
         'menu'              => [
             'link-text' => 'Lists',
         ],
-        'has-own-layout'    => true,
     ],
     'demo/forms' => [
         'resource-id'       => 'styles-demo-forms',
@@ -50,7 +47,6 @@ return [
         'menu'              => [
             'link-text' => 'Color zones',
         ],
-        'has-own-layout'    => true,
     ],
     'demo/misc-global' => [
         'resource-id'       => 'styles-demo-misc-global',
@@ -70,7 +66,6 @@ return [
             'starts-topic'  => 'Grids and layouts',
             'link-text'     => 'Flex grid: responsive presets',
         ],
-        'has-own-layout'    => true,
     ],
     'demo/flex-grid-permanent' => [
         'resource-id'       => 'styles-demo-flex-grid-permanent',
@@ -78,7 +73,6 @@ return [
         'menu'              => [
             'link-text'     => 'Flex grid: permanent',
         ],
-        'has-own-layout'    => true,
     ],
     'demo/layouts/layout-1-sidebar' => [
         'resource-id'       => 'styles-demo-layout-1-sidebar',
@@ -86,7 +80,6 @@ return [
         'menu'              => [
             'link-text' => 'Layout 1 sidebar',
         ],
-        'has-own-layout'    => true,
     ],
 
     // -------------------------------------------------------------------------
@@ -106,7 +99,6 @@ return [
         'menu'              => [
             'link-text'     => 'Lists',
         ],
-        'has-own-layout'    => true,
     ],
     'demo/custom-ui-patterns/highlights-and-notifications' => [
         'resource-id'       => 'patterns-highlights',
@@ -114,7 +106,6 @@ return [
         'menu'              => [
             'link-text'     => 'Highlights',
         ],
-        'has-own-layout'    => true,
     ],
     'demo/custom-ui-patterns/hero-mosaic' => [
         'resource-id'       => 'patterns-hero-mosaic',
@@ -134,7 +125,6 @@ return [
             'starts-topic'  => 'Pages',
             'link-text' => 'Sample page 1',
         ],
-        'has-own-layout'    => true,
     ],
     'demo/sample-page-2' => [
         'resource-id'       => 'sample-page-2',
@@ -142,7 +132,6 @@ return [
         'menu'              => [
             'link-text' => 'Sample page 2',
         ],
-        'has-own-layout'    => true,
     ],
 
     // -------------------------------------------------------------------------
@@ -155,7 +144,6 @@ return [
             'starts-topic'  => 'Meta pages',
             'link-text'     => 'Check systems\' wiring',
         ],
-        'has-own-layout'    => true,
     ],
     'meta/goals-and-priorities' => [
         'resource-id'       => 'meta-goals-and-priorities',

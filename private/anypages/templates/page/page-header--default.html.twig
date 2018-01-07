@@ -1,0 +1,14 @@
+
+<header class="page__header color-zone--brand">
+    {% if document_properties.site_name is defined %}
+        <div class="page-header__site-name">
+            {{ document_properties.site_name }}
+        </div>
+    {% endif %}
+
+    {% if document_properties.site_tagline_1 is defined %}
+        <div class="page-header__site-tagline">
+            {{ document_properties.site_tagline_1 }}
+        </div>
+    {% endif %}
+</header>

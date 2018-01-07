@@ -82,15 +82,19 @@ $capacities::bind('site-generator', new SiteGenerator(
 // TWIG.
 // See http://twig.sensiolabs.org/doc/api.html#environment-options .
 
-if (!empty($processManager->getConfig('config')['app']['templating']['enable-twig'])) {
-    $twig_loader = new Twig_Loader_Filesystem(APS_TEMPLATES);
-    $twig_options = $processManager
-        ->getConfig('config')['app']['templating']['twig-renderer-options'];
+$templating_config = $processManager->getConfig('config')['app']['templating'];
 
-    $capacities::bind(
-        'twig',
-        new Twig_Environment($twig_loader, $twig_options)
-    );
+if ( ! empty($templating_config['enable-twig'])) {
+    $twig_loader = new Twig_Loader_Filesystem(APS_TEMPLATES);
+    $twig_options = $templating_config['twig-renderer-options'];
+
+    $twig = new Twig_Environment($twig_loader, $twig_options);
+
+    if ( ! empty($twig_options['debug'])) {
+        $twig->addExtension(new Twig_Extension_Debug());
+    }
+
+    $capacities::bind('twig', $twig);
 }
 
 

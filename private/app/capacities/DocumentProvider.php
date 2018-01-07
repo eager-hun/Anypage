@@ -30,59 +30,69 @@ class DocumentProvider
      */
     public function getDocument()
     {
-        $resource_manifest = $this
-            ->processManager->getInstruction('resource-manifest');
-        $apsSetup = $this
-            ->processManager->getConfig('apsSetup');
-
-        $tools = $this->capacities->get('tools');
-        $asset_management = $this->capacities->get('asset-management');
+        // Fetching the page's payload. Make sure it's the first thing, as it
+        // needs a chance to update some of the intel that we will use later.
 
         $page_payload = $this
             ->capacities
             ->get('content-provider')
             ->getContent();
 
-        if (empty($resource_manifest['has-own-layout'])) {
-            $page_payload = $tools->render(
-                'layouts/page-level',
-                [
-                    'wrapper_extra_classes' => 'fallback-page-level',
-                    'page_level_content' => "<div class=squeeze>$page_payload</div>"
-                ]
-            );
-        }
+        // Preparing tooling and intel.
+
+        $asset_management   = $this->capacities->get('asset-management');
+        $tools              = $this->capacities->get('tools');
+        $apsSetup           = $this->processManager->getConfig('apsSetup');
+        $template_info      = $this->processManager->getTemplateInfo();
+        $page_template      = $template_info['templates']['page-template'];
+
+        $this->processManager->addBodyClass(
+            'page-template--' . str_replace('/', '__', $page_template)
+        );
+
+        // Rendering the <body> tag's content.
 
         $page_variables = [
-            'page_header_content'   => 'This is the page header content.',
+            'page_header_template'  => $template_info['templates']['page-header-template'],
+            'page_footer_template'  => $template_info['templates']['page-footer-template'],
+            'document_properties'   => $apsSetup['document_properties'],
             'page_payload'          => $page_payload,
-            'page_footer_content'   => 'This is the page footer content.',
         ];
 
         $body_content = '';
-        $body_content .= $tools->render('page', $page_variables);
+        $body_content .= $tools->render(
+            $page_template,
+            $page_variables
+        );
 
         if ($this->config['app']['app-menu']['is-enabled']) {
             $body_content .= $this->provideAppMenu();
         }
 
+        // Rendering the <html> tag.
+
         $document_variables = [
-            'html_language'     =>
-                $apsSetup['defaults']['document_properties']['html_lang'],
-            'head_title'        =>
-                $apsSetup['defaults']['document_properties']['head_title'],
-            'head_misc'         => '',
-            'stylesheets'       => $asset_management->provideStylesheets(),
-            'scripts_in_head'   => $asset_management->provideScripts('head'),
-            'body_classes'      => $this->calculateBodyClasses(),
-            'svg_sprites'       => $asset_management->inlineSvgSprites(),
-            'body_content'      => $body_content,
-            'scripts_in_body'   => $asset_management->provideScripts('body'),
+            'document_attributes'   => $this->documentAttributes(),
+            'head_title'            => $apsSetup['document_properties']['head_title'],
+            'head_misc'             => '',
+            'stylesheets'           => $asset_management->provideStylesheets(),
+            'scripts_in_head'       => $asset_management->provideScripts('head'),
+            'body_classes'          => $this->bodyClasses(),
+            'svg_sprites'           => $asset_management->inlineSvgSprites(),
+            'body_content'          => $body_content,
+            'scripts_in_body'       => $asset_management->provideScripts('body'),
         ];
 
         $this->documentHeadAdditions($document_variables);
 
-        $document = $tools->render('document', $document_variables);
+        $document = $tools->render('page/document', $document_variables);
+
+        // Injecting system notifications into the rendered document.
+
+        // We had to postpone it until now, so that all the above code had run
+        // and had their opportunity to register any system messages; this was
+        // the way to catch the latest possible messages before sending the
+        // response.
 
         $sys_notifications = $this->dumpSystemNotifications();
 
@@ -90,7 +100,12 @@ class DocumentProvider
             $prepared_sys_notifications = $tools->render('layouts/page-level', [
                 'page_level_content' => $sys_notifications
             ]);
-            $document = preg_replace('/<!--n10n-->/', $prepared_sys_notifications, $document, 1);
+            $document = preg_replace(
+                '/<!--n10ns-->/',
+                $prepared_sys_notifications,
+                $document,
+                1
+            );
         }
 
         return $document;
@@ -104,10 +119,11 @@ class DocumentProvider
     {
         $livereload = $this->config['enable-livereload'];
 
-        if (!empty($livereload) && empty(BUILDING_STATIC_PAGE)) {
+        if ( ! empty($livereload) && empty(BUILDING_STATIC_PAGE)) {
             // See http://stackoverflow.com/questions/26069796/gulp-how-to-implement-livereload-without-chromes-livereload-plugin
             $livereload_script =
                 '<script src="http://localhost:35729/livereload.js?snipver=1"></script>';
+
             $document_variables['head_misc'] .= PHP_EOL . $livereload_script;
         }
     }
@@ -116,16 +132,41 @@ class DocumentProvider
     /**
      * @return string
      */
-    protected function calculateBodyClasses()
+    protected function bodyClasses()
     {
-        $body_classes = [];
+        $body_classes = $this->processManager
+            ->getTemplateInfo()['body-classes'];
 
         $app_menu_config = $this->config['app']['app-menu'];
-        if (!empty($app_menu_config['is-enabled'])) {
+        if ( ! empty($app_menu_config['is-enabled'])) {
             $body_classes[] = 'app-menu-is-enabled';
         }
 
         return implode(' ', $body_classes);
+    }
+
+    /**
+     * @return string
+     */
+    protected function documentAttributes()
+    {
+        $apsSetup = $this->processManager->getConfig('apsSetup');
+        $document_classes = $this->processManager
+            ->getTemplateInfo()['document-classes'];
+
+        $attribs = [
+            'lang' => $apsSetup['document_properties']['html_lang'],
+        ];
+
+        if ( ! empty($document_classes)) {
+            $attribs['class'] = implode(' ', $document_classes);
+        }
+
+        array_walk($attribs, function(&$val, $key) {
+            $val = $key . '="' . $val . '"';
+        });
+
+        return implode(' ', $attribs);
     }
 
 

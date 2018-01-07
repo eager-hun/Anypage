@@ -2,6 +2,7 @@
 
 use \Michelf\Markdown;
 
+
 /**
  * Class Tools
  *
@@ -94,7 +95,13 @@ class Tools
                 $output = ob_get_clean();
             } else {
                 // TODO: error handling.
-                $output = '[ Missing php template ]';
+                $message = 'ERROR: missing php template: '
+                    . htmlspecialchars(
+                        $template_name,
+                        ENT_QUOTES,
+                        "utf-8"
+                    );
+                $output = $message;
             }
         }
         elseif ($renderer == 'twig') {
@@ -125,6 +132,43 @@ class Tools
         }
 
         return $output;
+    }
+
+
+    // #########################################################################
+    // Instructions about templating.
+
+    /**
+     * @param $template_name
+     */
+    public function usePageTemplate($template_name)
+    {
+        $this->processManager->updateTemplateAssignment(
+            'page-template',
+            $template_name
+        );
+    }
+
+    /**
+     * @param $template_name
+     */
+    public function usePageHeaderTemplate($template_name)
+    {
+        $this->processManager->updateTemplateAssignment(
+            'page-header-template',
+            $template_name
+        );
+    }
+
+    /**
+     * @param $template_name
+     */
+    public function usePageFooterTemplate($template_name)
+    {
+        $this->processManager->updateTemplateAssignment(
+            'page-footer-template',
+            $template_name
+        );
     }
 
 

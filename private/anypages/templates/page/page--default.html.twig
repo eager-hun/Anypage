@@ -1,0 +1,26 @@
+
+<div id="page__wrap" class="page__wrap">
+
+    {% if page_header_template | default('') is not empty %}
+        {% include page_header_template ~ '.html.twig' %}
+    {% endif %}
+
+    <!--n10ns--> <!-- <=== This may get replaced by system notifications! -->
+
+    <div id="page__main" class="page__main">
+
+        {%
+            include 'layouts/page-level.html.twig' with {
+                'wrapper_extra_classes': 'fallback-page-level',
+                'page_level_content': '<div class="squeeze">' ~ page_payload ~ '</div>'
+            }
+        %}
+
+    </div>
+
+    <div class="footer__room-preserve"></div>
+</div><!-- /#page__wrap -->
+
+{% if page_footer_template | default('') is not empty %}
+    {% include page_footer_template ~ '.html.twig' %}
+{% endif %}
