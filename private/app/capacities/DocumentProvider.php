@@ -181,6 +181,8 @@ class DocumentProvider
         $sec = $this->capacities->get('security');
         $base_url = $this->processManager->getInstruction('base-url');
         $pagelist = $this->processManager->getConfig('routes');
+        $current_page_id = $this->processManager
+            ->getInstruction('resource-id');
 
         $app_menu_items = [];
 
@@ -219,7 +221,7 @@ class DocumentProvider
 
             $link_extra_classes = '';
             if (array_key_exists('resource-id', $page_manifest)
-                && $page_manifest['resource-id'] === $this->processManager->getInstruction('resource-id')) {
+                && $page_manifest['resource-id'] === $current_page_id) {
                  $link_extra_classes .= ' is-active';
             }
 
