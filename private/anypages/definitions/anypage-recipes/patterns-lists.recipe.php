@@ -2,7 +2,7 @@
 
 $demos = '';
 
-$page_title = $tools->render('page-title', [
+$page_title = $tools->render('page/page-title', [
     'page_title_text' => 'Custom lists'
 ]);
 
@@ -31,6 +31,6 @@ $demos .= "<div class='stackable'>$list_title $ul_with_arrows</div>";
 // ----------------------------------------------------------------------------
 // Output.
 
-echo $tools->render('layouts/page-level', [
-    'page_level_content' => "<div class='squeeze'>$page_title $demos</div>"
+echo $tools->render('layouts/squeeze', [
+    'squeeze_content' => $page_title . $demos,
 ]);

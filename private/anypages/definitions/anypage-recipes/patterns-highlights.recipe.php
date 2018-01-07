@@ -2,7 +2,7 @@
 
 $demo_content = '';
 
-$page_title = $tools->render('page-title', [
+$page_title = $tools->render('page/page-title', [
     'page_title_text' => 'Highlights and notifications'
 ]);
 
@@ -66,10 +66,8 @@ $demo_content .= $tools->render('patterns/texts/textblock-common', [
 // ----------------------------------------------------------------------------
 // Output.
 
-$page_content = $tools->render('layouts/page-level', [
-    'page_level_content' => $tools->render('layouts/squeeze', [
-        'squeeze_content' => $page_title . $demo_content,
-    ]),
+$page_content = $tools->render('layouts/squeeze', [
+    'squeeze_content' => $page_title . $demo_content,
 ]);
 
 echo $page_content;

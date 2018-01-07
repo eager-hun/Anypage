@@ -1,12 +1,14 @@
 <?php
 
+$tools->usePageTemplate('page/page--fullwidth');
+
 $page_levels = [];
 
 
 // ----------------------------------------------------------------------------
 // Page title.
 
-$page_title = $tools->render('page-title', [
+$page_title = $tools->render('page/page-title', [
     'page_title_text' => 'Sample page numero due'
 ]);
 

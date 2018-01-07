@@ -1,8 +1,10 @@
 <?php
 
+$tools->usePageTemplate('page/page--fullwidth');
+
 $page_content = '';
 
-$page_title = $tools->render('page-title', [
+$page_title = $tools->render('page/page-title', [
     'page_title_text' => 'Permanent flex grid'
 ]);
 

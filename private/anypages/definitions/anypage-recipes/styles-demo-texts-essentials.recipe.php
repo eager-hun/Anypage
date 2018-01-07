@@ -1,6 +1,6 @@
 <?php
 
-$page_title = $tools->render('page-title', [
+$page_title = $tools->render('page/page-title', [
     'page_title_text' => 'Text styles: essentials'
 ]);
 
@@ -15,10 +15,6 @@ $demo_content = $tools->importFileContent(
 // ----------------------------------------------------------------------------
 // Output.
 
-$page_content = $tools->render('layouts/page-level', [
-    'page_level_content' => $tools->render('layouts/squeeze', [
-        'squeeze_content' => $page_title . $demo_content,
-    ]),
+echo $tools->render('layouts/squeeze', [
+    'squeeze_content' => $page_title . $demo_content,
 ]);
-
-echo $page_content;

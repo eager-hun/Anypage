@@ -2,7 +2,7 @@
 
 $page_content = '';
 
-$page_content .= $tools->render('page-title', [
+$page_content .= $tools->render('page/page-title', [
     'page_title_text' => 'Project goals and priorities'
 ]);
 

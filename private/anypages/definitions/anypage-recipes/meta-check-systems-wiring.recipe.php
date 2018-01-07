@@ -1,12 +1,15 @@
 <?php
 
+$tools->usePageTemplate('page/page--fullwidth');
+$tools->usePageHeaderTemplate('page/page-header--alt-1');
+
 $page_levels = [];
 
 
 // -----------------------------------------------------------------------------
 // Page title.
 
-$page_title = $tools->render('page-title', [
+$page_title = $tools->render('page/page-title', [
     'page_title_text' => "Check systems' wiring"
 ]);
 

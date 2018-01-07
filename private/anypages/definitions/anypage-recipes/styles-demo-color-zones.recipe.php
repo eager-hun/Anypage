@@ -1,7 +1,9 @@
 <?php
 
+$tools->usePageTemplate('page/page--fullwidth');
 
-$page_title = $tools->render('page-title', [
+
+$page_title = $tools->render('page/page-title', [
     'page_title_text' => 'Color zones'
 ]);
 
