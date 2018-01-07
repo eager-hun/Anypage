@@ -184,9 +184,9 @@ class DocumentProvider
 
         $app_menu_items = [];
 
-        foreach ($pagelist as $path => $page_data) {
+        foreach ($pagelist as $path => $page_manifest) {
 
-            if (empty($page_data['menu'])) {
+            if (empty($page_manifest['menu'])) {
                 continue;
             }
 
@@ -199,9 +199,9 @@ class DocumentProvider
                 // Omitting the `html-filename` key from the manifest entry is
                 // an implicit instruction about not to put the page into the
                 // static snapshot.
-                if (!empty($page_data['html-filename'])) {
+                if (!empty($page_manifest['html-filename'])) {
                     $url = $sec
-                        ->escapeValue($page_data['html-filename'], 'file-name')
+                        ->escapeValue($page_manifest['html-filename'], 'file-name')
                         . '.html';
                 }
                 else {
@@ -210,22 +210,27 @@ class DocumentProvider
                 }
             }
 
-            if (empty($skip_page)) {
-                if (!empty($page_data['menu']['starts-topic'])) {
-                    $app_menu_items[] = [
-                        'item_type' => 'topic-title',
-                        'text'      => $sec->escapeValue($page_data['menu']['starts-topic']),
-                    ];
-                }
-
+            if (!empty($page_manifest['menu']['starts-topic'])) {
                 $app_menu_items[] = [
-                    'item_type' => 'link',
-                    'url'       => $url,
-                    'text'      => $sec->escapeValue($page_data['menu']['link-text']),
+                    'item_type' => 'topic-title',
+                    'text'      => $sec->escapeValue($page_manifest['menu']['starts-topic']),
                 ];
             }
+
+            $link_extra_classes = '';
+            if (array_key_exists('resource-id', $page_manifest)
+                && $page_manifest['resource-id'] === $this->processManager->getInstruction('resource-id')) {
+                 $link_extra_classes .= ' is-active';
+            }
+
+            $app_menu_items[] = [
+                'item_type'             => 'link',
+                'url'                   => $url,
+                'text'                  => $sec->escapeValue($page_manifest['menu']['link-text']),
+                'link_extra_classes'    => $link_extra_classes
+            ];
         }
-        unset($path, $page_data);
+        unset($path, $page_manifest);
 
         return $this
             ->capacities

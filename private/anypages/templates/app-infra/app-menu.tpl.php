@@ -10,7 +10,7 @@
                 </li>
             <?php elseif ($item['item_type'] == 'link'): ?>
                 <li class="app-menu__item">
-                    <a href="<?php echo $item['url']; ?>" class="app-menu__link">
+                    <a href="<?php echo $item['url']; ?>" class="app-menu__link <?php echo $item['link_extra_classes']; ?>">
                         <span class="link__text">
                             <?php echo $item['text']; ?>
                         </span>

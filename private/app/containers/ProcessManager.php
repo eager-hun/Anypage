@@ -185,19 +185,19 @@ class ProcessManager
      */
     public $systemPageManifests = [
         'everpresent' => [
-            'generator' => [
-                'resource-id'       => 'generator',
-                'resource-type'     => 'system_page',
-                'menu'              => [
-                    'starts-topic'  => 'Generator',
-                    'link-text'     => 'Generate static snapshot',
-                ],
-            ],
             'generated' => [
                 'resource-id'       => 'list_generated',
                 'resource-type'     => 'system_page',
                 'menu'              => [
+                    'starts-topic'  => 'Generator',
                     'link-text' => 'List static snapshots',
+                ],
+            ],
+            'generator' => [
+                'resource-id'       => 'generator',
+                'resource-type'     => 'system_page',
+                'menu'              => [
+                    'link-text'     => 'Generate static snapshot',
                 ],
             ],
         ],

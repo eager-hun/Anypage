@@ -61,6 +61,7 @@ if (array_key_exists('resource-id', $manifest_of_requested_resource)) {
         );
 }
 else {
-    $msg = "Page manifest did not contain 'resource-id', which is an issue.";
+    $msg = "Page manifest did not contain 'resource-id' for this page, which is"
+        . "an issue.";
     $processManager->sysNotify($msg, 'alert');
 }
