@@ -14,7 +14,7 @@ $page_title = $tools->render('page/page-title', [
 ]);
 
 $page_levels[] = [
-    'page_level_content' => "<div class='squeeze'>$page_title</div>"
+    'page_level_content' => "$page_title"
 ];
 
 // -----------------------------------------------------------------------------
@@ -32,8 +32,17 @@ $sa_check = <<<EOT
     <img src="${sa_img_src}" aria-hidden="true">
 EOT;
 
+$check_sa_layout = $tools->render('layouts/flex-grid', [
+    'wrapper_extra_classes' => 'flex-grid--preset-2-cols',
+    'items_extra_classes'   => 'fit-content',
+    'items' => [
+        [ 'item_content' => $sa_title . $sa_desc, ],
+        [ 'item_content' => $sa_check, ],
+    ],
+]);
+
 $page_levels[] = [
-    'page_level_content' => "<div class='squeeze'>$sa_title $sa_desc $sa_check</div>"
+    'page_level_content' => $check_sa_layout
 ];
 
 
@@ -52,8 +61,17 @@ $vue_check = <<<EOT
     </div>
 EOT;
 
+$check_vue_layout = $tools->render('layouts/flex-grid', [
+    'wrapper_extra_classes' => 'flex-grid--preset-2-cols',
+    'items_extra_classes'   => 'fit-content',
+    'items' => [
+        [ 'item_content' => $vue_title . $vue_desc, ],
+        [ 'item_content' => $vue_check, ],
+    ],
+]);
+
 $page_levels[] = [
-    'page_level_content' => "<div class='squeeze'>$vue_title $vue_desc $vue_check</div>"
+    'page_level_content' => $check_vue_layout
 ];
 
 // ----------------------------------------------------------------------------
