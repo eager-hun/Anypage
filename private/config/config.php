@@ -197,12 +197,12 @@ return [
                 ],
                 [
                     'source'    => 'theme',
-                    'file'      => 'built/gulp-out/js/custom.min.js',
+                    'file'      => 'built/gulp-out/js/custom.js',
                     'use_as'    => 'reference',
                 ],
                 [
                     'source'    => 'theme',
-                    'file'      => 'built/gulp-out/js/styleguide.min.js',
+                    'file'      => 'built/gulp-out/js/styleguide.js',
                     'use_as'    => 'reference',
                 ],
                 [
