@@ -17,6 +17,7 @@ $page_levels[] = [
     'page_level_content' => "$page_title"
 ];
 
+
 // -----------------------------------------------------------------------------
 // Check static assets' wiring.
 
@@ -73,6 +74,40 @@ $check_vue_layout = $tools->render('layouts/flex-grid', [
 $page_levels[] = [
     'page_level_content' => $check_vue_layout
 ];
+
+
+// -----------------------------------------------------------------------------
+// Check Styleguide's assets' wiring.
+
+$sg_assets_title = '<h2 class="underlined">Styleguide assets</h2>';
+
+$sg_assets_desc_raw = "Verify intact styleguide asset wiring by seeing nicely colourful markup here:";
+$sg_assets_desc = $tools->markdown($sg_assets_desc_raw);
+
+$sample_markup = <<<EOT
+<div>
+    <span class="foo bar">All the colours!</span>
+</div>
+EOT;
+
+$code_demo = $tools->render('patterns/texts/code', [
+    'code_classes' => 'language-markup',
+    'code' => $sample_markup
+]);
+
+$check_sg_assets_layout = $tools->render('layouts/flex-grid', [
+    'wrapper_extra_classes' => 'flex-grid--preset-2-cols',
+    'items_extra_classes'   => 'fit-content',
+    'items' => [
+        [ 'item_content' => $sg_assets_title . $sg_assets_desc, ],
+        [ 'item_content' => $code_demo, ],
+    ],
+]);
+
+$page_levels[] = [
+    'page_level_content' => $check_sg_assets_layout
+];
+
 
 // ----------------------------------------------------------------------------
 // Output.
