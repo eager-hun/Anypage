@@ -31,7 +31,7 @@ $processManager = new ProcessManager(
     new Request(
         $_GET,
         $_POST,
-        array(),
+        [],
         $_COOKIE,
         $_FILES,
         $_SERVER

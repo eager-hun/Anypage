@@ -56,8 +56,14 @@ return [
          * key 'enable-twig':
          *   If you disable twig, your only 'default-rendering-engine' option
          *   can be 'php'.
+         *
          * key 'default-rendering-engine':
          *   Valid values are 'php' or 'twig'.
+         *
+         * key 'twig-render-options => cache':
+         *   Use `false` or e.g. `PRIVATE_RESOURCES . '/twig-cache'`.
+         *
+         * @see https://twig.symfony.com/doc/2.x/api.html
          */
         'templating' => [
             'enable-twig'                   => true,
@@ -68,7 +74,7 @@ return [
                 'debug'            => true,
                 'cache'            => false,
                 'strict_variables' => true,
-                'autoescape'       => true,
+                'autoescape'       => 'name',
                 'optimizations'    => -1,
             ]
         ],
