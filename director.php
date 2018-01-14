@@ -58,11 +58,7 @@ $capacities = new Capacities;
 $capacities::bind('security', new Security(
     $processManager
 ));
-$capacities::bind('content-provider', new ContentProvider(
-    $processManager,
-    $capacities
-));
-$capacities::bind('document-provider', new DocumentProvider(
+$capacities::bind('templating', new Templating(
     $processManager,
     $capacities
 ));
@@ -71,6 +67,14 @@ $capacities::bind('asset-management', new AssetManagement(
     $capacities
 ));
 $capacities::bind('tools', new Tools(
+    $processManager,
+    $capacities
+));
+$capacities::bind('content-provider', new ContentProvider(
+    $processManager,
+    $capacities
+));
+$capacities::bind('document-provider', new DocumentProvider(
     $processManager,
     $capacities
 ));
