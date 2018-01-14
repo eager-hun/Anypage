@@ -61,7 +61,7 @@ class Tools
      */
     public function locate_template($template_name, $renderer)
     {
-        $src = APS_TEMPLATES;
+        $src = TEMPLATES;
 
         $extension = $this->determine_template_file_extension($renderer);
 

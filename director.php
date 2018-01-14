@@ -12,10 +12,10 @@ define('DIRECTOR_DIR',      dirname(__FILE__));
 define('PRIVATE_RESOURCES', DIRECTOR_DIR . '/private');
 define('PUBLIC_RESOURCES',  DIRECTOR_DIR . '/public');
 
+define('TEMPLATES',         PRIVATE_RESOURCES . '/templates');
 define('ANYPAGES',          PRIVATE_RESOURCES . '/anypages');
 define('APS_DEFINITIONS',   ANYPAGES . '/definitions');
 define('APS_CONTENTS',      ANYPAGES . '/contents');
-define('APS_TEMPLATES',     ANYPAGES . '/templates');
 
 
 // #############################################################################
@@ -85,7 +85,7 @@ $capacities::bind('site-generator', new SiteGenerator(
 $templating_config = $processManager->getConfig('config')['app']['templating'];
 
 if ( ! empty($templating_config['enable-twig'])) {
-    $twig_loader = new Twig_Loader_Filesystem(APS_TEMPLATES);
+    $twig_loader = new Twig_Loader_Filesystem(TEMPLATES);
     $twig_options = $templating_config['twig-renderer-options'];
 
     $twig = new Twig_Environment($twig_loader, $twig_options);
