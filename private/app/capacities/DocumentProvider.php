@@ -162,11 +162,7 @@ class DocumentProvider
             $attribs['class'] = implode(' ', $document_classes);
         }
 
-        array_walk($attribs, function(&$val, $key) {
-            $val = $key . '="' . $val . '"';
-        });
-
-        return implode(' ', $attribs);
+        return $this->capacities->get('tools')->renderAttributes($attribs);
     }
 
 

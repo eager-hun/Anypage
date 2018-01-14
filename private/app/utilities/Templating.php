@@ -120,4 +120,30 @@ class Templating
 
         return $output;
     }
+
+
+    /**
+     * Render attributes of HTML tags.
+     *
+     * NOTE: this is quite limited, as it cannot update such attributes that are
+     * hardcoded in templates, like usually classes get hardcoded (for reasons).
+     *
+     * I hope it can be done better with some twig extension, one day.
+     *
+     * NOTE: also, NOT SAFE. Needs being made secure.
+     *
+     * @param array $attributes
+     * @return string
+     */
+    public function renderAttributes($attributes = [])
+    {
+        $output = [];
+
+        foreach ($attributes as $name => $value)
+        {
+            $output[] = $name . '="' . $value . '"';
+        }
+
+        return implode(' ', $output);
+    }
 };

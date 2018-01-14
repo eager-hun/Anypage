@@ -37,7 +37,7 @@ class Tools
 
 
     /**
-     * "Proxying" `Templating`'s render method in `Tools`.
+     * "Proxying" `Templating`'s `render` method in `Tools`.
      *
      * I can imagine there would be better ways to achieve this thing.
      *
@@ -52,6 +52,23 @@ class Tools
             ->capacities->get('templating')
             ->render($template_name, $variables, $renderer);
     }
+
+
+    /**
+     * "Proxying" `Templating`'s `renderAttributes` method in `Tools`.
+     *
+     * I can imagine there would be better ways to achieve this thing.
+     *
+     * @param $attributes
+     * @return string
+     */
+    public function renderAttributes($attributes = [])
+    {
+        return $this
+            ->capacities->get('templating')
+            ->renderAttributes($attributes);
+    }
+
 
     // -------------------------------------------------------------------------
     // Instructions about templating.
