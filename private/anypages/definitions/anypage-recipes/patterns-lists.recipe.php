@@ -1,36 +1,51 @@
 <?php
 
-$demos = '';
 
 $page_title = $tools->render('page/page-title', [
     'page_title_text' => 'Custom lists'
 ]);
 
-
-// ----------------------------------------------------------------------------
-// List 1.
-
-$list_title = '<h2 class="page-level__title">Unordered list with icon prefix</h2>';
-
-$list_items = [
-    'surprisingly enough, one of the most difficult tasks',
-    'is to be able to come up with random strings',
-    'on the sudden demand of feeding the page',
-    'with sufficient amount of dummy text'
+$ul_generic_items = [
+    'keep still at red light',
+    'prepare at the combo of red and yellow',
+    'do move forward when it switches to green',
+    "but of course let's not forget to add a significantly longer line of text here, so that we can see how it looks in this case"
 ];
 
-$ul_with_arrows = $tools->render('patterns/lists/ul-icon-prefix', [
-   'wrapper_extra_classes'  => '',
-   'icon_id'                => 'icon-sprite__arrow-right',
-   'items'                  => $list_items
+
+// ----------------------------------------------------------------------------
+// List with checkmarks.
+
+$ul_with_checkmarks_title = '<h2>With checkmark icon prefix</h2>';
+
+$ul_with_checkmarks = $tools->render('patterns/lists/ul-icon-prefix', [
+    'wrapper_extra_classes'  => 'icons--green',
+    'icon_id'                => 'icon-sprite__checkmark',
+    'items'                  => $ul_generic_items
 ]);
 
-$demos .= "<div class='stackable'>$list_title $ul_with_arrows</div>";
+
+// ----------------------------------------------------------------------------
+// List with arrows.
+
+$ul_with_arrows_title = '<h2>With arrow icon prefix</h2>';
+
+$ul_with_arrows = $tools->render('patterns/lists/ul-icon-prefix', [
+   'icon_id'                => 'icon-sprite__arrow-right',
+   'items'                  => $ul_generic_items
+]);
 
 
 // ----------------------------------------------------------------------------
 // Output.
 
-echo $tools->render('layouts/squeeze', [
-    'squeeze_content' => $page_title . $demos,
+$lists_layout = $tools->render('layouts/flex-grid', [
+    'wrapper_extra_classes' => 'flex-grid--preset-2-cols',
+    'items_extra_classes'   => 'fit-content',
+    'items' => [
+        [ 'item_content' => $ul_with_checkmarks_title . $ul_with_checkmarks ],
+        [ 'item_content' => $ul_with_arrows_title . $ul_with_arrows ],
+    ],
 ]);
+
+echo $page_title . $lists_layout;
