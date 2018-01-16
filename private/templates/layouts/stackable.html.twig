@@ -1,0 +1,7 @@
+<div class="stackable {{ wrapper_extra_classes | default('') }}">
+
+    {% if stackable_content is defined %}
+        {{ stackable_content | raw }}
+    {% endif %}
+
+</div>
