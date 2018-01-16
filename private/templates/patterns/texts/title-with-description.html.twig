@@ -1,0 +1,10 @@
+
+<div class="title-w-desc">
+    {{ title | raw }}
+
+    {% if description is defined %}
+        <div class="twd__description">
+            {{ description | raw }}
+        </div>
+    {% endif %}
+</div>
