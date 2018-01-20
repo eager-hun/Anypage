@@ -333,9 +333,15 @@ class SiteGenerator
             . $filename;
 
         if (file_put_contents($file, $document) !== FALSE) {
+            $title_attrib_newline = '&#013;';
             $short_message = "Saved page of id: $resource_id";
-            $full_message  = $short_message
-                . ' to ' . $this->getNewSiteInstanceFsPath() . '/' . $filename;
+            $full_message  = 'Saved page of id:'
+                . $title_attrib_newline
+                . $resource_id
+                . $title_attrib_newline
+                . ' to '
+                . $title_attrib_newline
+                . $this->getNewSiteInstanceFsPath() . '/' . $filename;
 
             $status['status-text'] =
                 "<span title='$full_message'>$short_message</span>";
