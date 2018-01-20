@@ -8,7 +8,7 @@ Tool in the making, that aims to provide a friendly platform for:
 
 ## Description
 
-It is a php-based, simplified website engine that:
+Anypage is a php-based, simplified website engine that:
 
 - offers a fast and simple environment for creating web pages and user interface
   components,
@@ -39,21 +39,20 @@ Rewrites still seem to be a regular occurrence.
 
 ### Application security
 
-The php script does hardly have any security measures: it is meant to run only
-on isolated developer machines.
+The php script hardly has any security measures: it is meant to run only on
+isolated developer machines.
 
 **The php app should never be placed on any publicly accessible server.**
 
-The shareable deliverables are the generated, static .html-file-based copies of
-the site.
+_The shareable deliverables are the generated, static .html-file-based copies
+of the site._
 
 ### If you are new to node.js and npm:
 
-Learn how npm's procedures may affect your life, depending on your operating
-system. E.g.:
+Learn their specific procedures on your operating system. E.g.:
 
-- you will not want to get stuck with your `node_modules` folders on Windows
-  machines; see: http://stackoverflow.com/q/28175200
+- you will [not want to get stuck with your `node_modules` folders][rimraf] on
+  Windows machines.
 
 
 ## Getting started
@@ -82,7 +81,7 @@ discussed later.
     - [Gulp][gulp] (installed globally).
 - To use the installed site, you need a php-equipped server solution — e.g.
 [Apache][apache], or [Nginx][nginx], or possibly a [Vagrant][vagrant] box with
-Nginx already set up, like [Laravel Homestead][homestead].
+the necessities already set up, like [Laravel Homestead][homestead].
   
 (Laravel Homestead has php and Composer set up in it, so — if need be — it is
 possible to install the site's Composer dependencies inside the Homestead
@@ -92,19 +91,20 @@ virtual machine.)
 
 The repository defines the "[frontend-seed][frontend-seed-github]"
 git submodule, which is — speaking in CMS-terms — comparable to a "theme".
+Recursive cloning will set up the submodule in a single command.
 
-    git clone --recursive https://github.com/eager-hun/anypage.git
+    git clone --recursive https://github.com/eager-hun/anypage.git anypage
 
-    private$ composer install
+    anypage/private$ composer install
     
-    public/themes/frontend-seed$ npm install
-    public/themes/frontend-seed$ gulp compile
+    anypage/public/themes/frontend-seed$ npm install
+    anypage/public/themes/frontend-seed$ gulp compile
     
 Review configs:
     
-    director.php
-    private/config/config.php
-    public/themes/frontend-seed/build-setup/gulp-webpack-hybrid/gulp-setup.js
+    anypage/director.php
+    anypage/private/config/config.php
+    anypage/public/themes/frontend-seed/build-setup/gulp-webpack-hybrid/gulp-setup.js
     
 After this point the site should be ready to be viewed in a browser.
 
@@ -115,6 +115,7 @@ Documentation TODO.
 
 
 [frontend-seed-github]: https://github.com/eager-hun/frontend-seed
+[rimraf]: https://stackoverflow.com/questions/28175200/unable-to-delete-node-modules-folder-windows-7
 [git]: https://git-scm.com/downloads
 [php]: http://php.net/manual/en/install.php
 [composer]: https://getcomposer.org/
