@@ -145,6 +145,18 @@ return [
             'link-text'     => 'Check systems\' wiring',
         ],
     ],
+    'meta/anypage-readme' => [
+        'resource-id'       => 'meta-anypage-readme',
+        'menu'              => [
+            'link-text'     => 'Anypage readme',
+        ],
+    ],
+    'meta/frontend-seed-readme' => [
+        'resource-id'       => 'meta-frontend-seed-readme',
+        'menu'              => [
+            'link-text'     => 'Frontend-seed readme',
+        ],
+    ],
     'meta/goals-and-priorities' => [
         'resource-id'       => 'meta-goals-and-priorities',
         'menu'              => [
