@@ -26,9 +26,7 @@ class AssetManagement
      */
     public function provideStylesheets()
     {
-        $stylesheets = $this
-            ->processManager
-            ->getConfig('config')['frontend-assets']['stylesheets'];
+        $stylesheets = $this->assetsConfig['stylesheets'];
 
         $output = '';
 
@@ -98,15 +96,11 @@ class AssetManagement
      */
     public function provideScripts($location)
     {
-        $assets_config = $this
-            ->processManager
-            ->getConfig('config')['frontend-assets'];
-
-        $scripts = $assets_config['scripts'];
+        $scripts = $this->assetsConfig['scripts'];
 
         $output = '';
 
-        if ($assets_config['add-js-settings-object-to'] == $location) {
+        if ($this->assetsConfig['add-js-settings-object-to'] == $location) {
             $output .= $this->provideJsSettingsObject();
         }
 
