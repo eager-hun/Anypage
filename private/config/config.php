@@ -39,7 +39,7 @@ return [
      *   String used in creating URLs.
      */
     'env' => [
-        'web-working-dir'                   => 'anypage',
+        'web-working-dir'                   => '',
         'path-fragment-to-app-assets'       => 'public',
         'path-fragment-to-themes'           => 'public/themes',
         'theme-dir-name'                    => 'frontend-seed',

@@ -59,12 +59,11 @@ system. E.g.:
 ## Getting started
 
 The easiest way to try out what this project does is cloning it into
-a php-equipped server's virtual host, with its directory name kept at the
-original: "anypage".
+a php-equipped server's virtual host.
 
 If you manage to achieve the following path:
 
-    <web-document-root>/anypage/index.php
+    <web-document-root>/index.php
 
 then the default config might work out of the box.
 
@@ -82,7 +81,8 @@ discussed later.
     - [Node.js / NPM][node],
     - [Gulp][gulp] (installed globally).
 - To use the installed site, you need a php-equipped server solution — e.g.
-  [Laravel Homestead][homestead].
+[Apache][apache], or [Nginx][nginx], or possibly a [Vagrant][vagrant] box with
+Nginx already set up, like [Laravel Homestead][homestead].
   
 (Laravel Homestead has php and Composer set up in it, so — if need be — it is
 possible to install the site's Composer dependencies inside the Homestead
@@ -93,18 +93,18 @@ virtual machine.)
 The repository defines the "[frontend-seed][frontend-seed-github]"
 git submodule, which is — speaking in CMS-terms — comparable to a "theme".
 
-    git clone --recursive https://github.com/eager-hun/anypage.git anypage
+    git clone --recursive https://github.com/eager-hun/anypage.git
 
-    anypage/private$ composer install
+    private$ composer install
     
-    anypage/public/themes/frontend-seed$ npm install
-    anypage/public/themes/frontend-seed$ gulp compile
+    public/themes/frontend-seed$ npm install
+    public/themes/frontend-seed$ gulp compile
     
 Review configs:
     
-    anypage/director.php
-    anypage/private/config/config.php
-    anypage/public/themes/frontend-seed/build-setup/gulp-webpack-hybrid/gulp-setup.js
+    director.php
+    private/config/config.php
+    public/themes/frontend-seed/build-setup/gulp-webpack-hybrid/gulp-setup.js
     
 After this point the site should be ready to be viewed in a browser.
 
@@ -119,5 +119,8 @@ Documentation TODO.
 [php]: http://php.net/manual/en/install.php
 [composer]: https://getcomposer.org/
 [node]: https://nodejs.org/en/ 
-[gulp]: https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md 
+[gulp]: https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
+[apache]: https://httpd.apache.org/
+[nginx]: https://www.nginx.com/resources/wiki/
+[vagrant]: https://www.vagrantup.com/
 [homestead]: https://laravel.com/docs/master/homestead 
