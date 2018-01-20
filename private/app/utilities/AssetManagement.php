@@ -257,6 +257,8 @@ class AssetManagement
     /**
      * Provide JS settings object.
      *
+     * TODO: SECURE!
+     *
      * @return string
      */
     protected function provideJsSettingsObject()
@@ -284,6 +286,10 @@ class AssetManagement
         if ($resource_id == "generator") {
             $generator = $this->capacities->get('site-generator');
             $settings_items['staticSitePageUrlList'] = $generator->staticSitePageUrlList();
+
+            $snapshot_dirname_prefix = $this->processManager
+                ->getConfig('config')['app']['generator']['snapshot-directory-name-prefix'];
+            $settings_items['snapshotDirNamePrefix'] = $snapshot_dirname_prefix;
         }
 
         $settings = json_encode($settings_items, JSON_FORCE_OBJECT);

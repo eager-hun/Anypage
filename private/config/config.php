@@ -82,6 +82,9 @@ return [
             // Boolean, any truthy or falsy values will suffice.
             'is-enabled' => 1,
         ],
+        'generator' => [
+            'snapshot-directory-name-prefix' => 'anypage-v',
+        ],
     ],
 
     'frontend-assets' => [

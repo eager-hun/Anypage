@@ -3,9 +3,15 @@
     "use strict";
 
     var generatePages = function() {
-        if (!("staticSitePageUrlList" in window.apSettings)) {
+        if ( ! ("staticSitePageUrlList" in window.apSettings)) {
             console.error("Url manifest not found.");
             return false;
+        }
+
+        // Default snapshot dirname prefix.
+        let dirNamePrefix = 'version';
+        if ("snapshotDirNamePrefix" in window.apSettings) {
+          dirNamePrefix = window.apSettings.snapshotDirNamePrefix;
         }
 
         // Reset contents of the response-message drop-zone.
@@ -15,14 +21,14 @@
         var now = new Date();
 
         var dirname = [
-            'version',
-            now.getFullYear(),
-            padTimeWithZero((now.getMonth() + 1)),
-            padTimeWithZero(now.getDate()),
-            padTimeWithZero(now.getHours()),
-            padTimeWithZero(now.getMinutes()),
-            padTimeWithZero(now.getSeconds())
-        ].join('-');
+          dirNamePrefix,
+          now.getFullYear() +
+          padTimeWithZero((now.getMonth() + 1)) +
+          padTimeWithZero(now.getDate()),
+          padTimeWithZero(now.getHours()) +
+          padTimeWithZero(now.getMinutes()) +
+          padTimeWithZero(now.getSeconds())
+        ].join('--');
 
         var urlParams = '?savePage=true&dir=' + dirname;
 

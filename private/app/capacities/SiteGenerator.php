@@ -333,8 +333,11 @@ class SiteGenerator
             . $filename;
 
         if (file_put_contents($file, $document) !== FALSE) {
-            $title_attrib_newline = '&#013;';
+            // See https://stackoverflow.com/questions/246438/newline-in-td-title
+            $title_attrib_newline = '&#xA;';
+
             $short_message = "Saved page of id: $resource_id";
+
             $full_message  = 'Saved page of id:'
                 . $title_attrib_newline
                 . $resource_id
@@ -345,7 +348,6 @@ class SiteGenerator
 
             $status['status-text'] =
                 "<span title='$full_message'>$short_message</span>";
-
         }
         else {
             $error = 'Failed to save page of id: ' . $resource_id;
