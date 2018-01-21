@@ -20,6 +20,7 @@ class SiteGenerator
     protected $capacities;
     protected $sec;
     protected $env_config;
+    protected $appConfig;
     protected $filesystem;
 
     protected $pathToTheme;
@@ -36,6 +37,7 @@ class SiteGenerator
         $this->capacities       = $capacities;
         $this->sec              = $capacities->get('security');
         $this->env_config       = $processManager->getConfig('config')['env'];
+        $this->appConfig        = $processManager->getConfig('config')['app'];
         $this->filesystem       = new Filesystem;
 
         $this->pathToTheme = $this
@@ -105,6 +107,24 @@ class SiteGenerator
         unset($path, $page_manifest);
 
         return $page_urls;
+    }
+
+
+    /**
+     * Prepares info to the generator JS on the frontend.
+     *
+     * @return array
+     */
+    public function generatorFrontendInstructions() {
+        $settings = [];
+
+        $settings['staticSitePageUrlList'] = $this->staticSitePageUrlList();
+
+        $snapshot_dirname_prefix = $this
+            ->appConfig['generator']['snapshot-directory-name-prefix'];
+        $settings['snapshotDirNamePrefix'] = $snapshot_dirname_prefix;
+
+        return $settings;
     }
 
 

@@ -283,13 +283,12 @@ class AssetManagement
             $settings_items['svgSprites'] = $this->assetsConfig['svgSprites'];
         }
 
+        // It would be nice to have events / pub/sub in this app, so that the
+        // generator could subscribe to the opportunity to inject its array.
         if ($resource_id == "generator") {
             $generator = $this->capacities->get('site-generator');
-            $settings_items['staticSitePageUrlList'] = $generator->staticSitePageUrlList();
-
-            $snapshot_dirname_prefix = $this->processManager
-                ->getConfig('config')['app']['generator']['snapshot-directory-name-prefix'];
-            $settings_items['snapshotDirNamePrefix'] = $snapshot_dirname_prefix;
+            $generator_settings = $generator->generatorFrontendInstructions();
+            $settings_items = array_merge($settings_items, $generator_settings);
         }
 
         $settings = json_encode($settings_items, JSON_FORCE_OBJECT);
