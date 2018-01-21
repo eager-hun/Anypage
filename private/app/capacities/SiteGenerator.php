@@ -19,7 +19,7 @@ class SiteGenerator
     protected $processManager;
     protected $capacities;
     protected $sec;
-    protected $env_config;
+    protected $envConfig;
     protected $appConfig;
     protected $filesystem;
 
@@ -36,7 +36,7 @@ class SiteGenerator
         $this->processManager   = $processManager;
         $this->capacities       = $capacities;
         $this->sec              = $capacities->get('security');
-        $this->env_config       = $processManager->getConfig('config')['env'];
+        $this->envConfig       = $processManager->getConfig('config')['env'];
         $this->appConfig        = $processManager->getConfig('config')['app'];
         $this->filesystem       = new Filesystem;
 
@@ -48,7 +48,7 @@ class SiteGenerator
 
         $this->staticExportsDirName = $this
             ->sec
-            ->escapeValue($this->env_config['html-export-dir-name'], 'dir-name');
+            ->escapeValue($this->envConfig['html-export-dir-name'], 'dir-name');
     }
 
 
@@ -136,7 +136,7 @@ class SiteGenerator
     public function listGeneratedStaticSites() {
 
         $base_url = $this->processManager->getInstruction('base-url');
-        $fragment_to_exports = $this->env_config['path-fragment-to-html-export-dir'];
+        $fragment_to_exports = $this->envConfig['path-fragment-to-html-export-dir'];
 
         $exports_dir_for_server = PUBLIC_RESOURCES
             . DIRECTORY_SEPARATOR
