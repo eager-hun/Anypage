@@ -4,21 +4,35 @@
 // See http://symfony.com/doc/current/book/http_fundamentals.html
 
 
-$request_uri = $processManager->request->server->get('REQUEST_URI');
+// #############################################################################
+// Determining the requested path.
 
-$request_path = ltrim(strtok($request_uri, '?'), '/');
+$nice_urls = $processManager->getConfig('config')['app']['nice-urls'];
 
-$working_dir = $processManager->getConfig('config')['env']['web-working-dir'];
+if ($nice_urls) {
+    $request_uri = $processManager->request->server->get('REQUEST_URI');
 
-if (!empty($working_dir)) {
-    $trim_off = $working_dir . '/';
-    $request_path = substr($request_path, strlen($trim_off));
+    $request_path = ltrim(strtok($request_uri, '?'), '/');
 
-    if ($request_path === false) {
-        echo 'NOTICE: the "web_working_directory" entry in config might be wrong.';
-        exit;
+    $working_dir = $processManager->getConfig('config')['env']['web-working-dir'];
+
+    if (!empty($working_dir)) {
+        $trim_off = $working_dir . '/';
+        $request_path = substr($request_path, strlen($trim_off));
+
+        if ($request_path === false) {
+            echo 'NOTICE: the "web_working_directory" entry in config might be wrong.';
+            exit;
+        }
     }
 }
+else {
+    $request_path = $processManager->request->query->get('path');
+}
+
+
+// #############################################################################
+// Match the path for a page in the config.
 
 $routes_config = $processManager->getConfig('routes');
 $defined_paths = array_keys($routes_config);
@@ -35,7 +49,7 @@ else {
 }
 
 
-// -----------------------------------------------------------------------------
+// #############################################################################
 // Allow access to the findings for everybody downstream in the app.
 
 if (!empty($processManager->request->query->get('savePage'))) {

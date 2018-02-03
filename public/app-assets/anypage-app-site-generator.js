@@ -30,14 +30,19 @@
           padTimeWithZero(now.getSeconds())
         ].join('--');
 
-        var urlParams = '?savePage=true&dir=' + dirname;
+        var urlParams = 'savePage=true&dir=' + dirname;
+        var paramJoiner;
+        var preppedUrl;
 
         var timeOut = 100; // Initial timeOut.
         var timeGap = 500; // Further time gap between requests.
 
         for (var key in urlList) {
             if (urlList.hasOwnProperty(key)) {
-                var preppedUrl = urlList[key] + urlParams;
+                paramJoiner = window.apAssets
+                  .helpers.urlParamJoiner(urlList[key]);
+
+                preppedUrl = urlList[key] + paramJoiner + urlParams;
                 issueRequest(preppedUrl, timeOut);
                 timeOut = timeOut + timeGap;
             }

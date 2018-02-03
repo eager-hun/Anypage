@@ -36,7 +36,7 @@ class SiteGenerator
         $this->processManager   = $processManager;
         $this->capacities       = $capacities;
         $this->sec              = $capacities->get('security');
-        $this->envConfig       = $processManager->getConfig('config')['env'];
+        $this->envConfig        = $processManager->getConfig('config')['env'];
         $this->appConfig        = $processManager->getConfig('config')['app'];
         $this->filesystem       = new Filesystem;
 
@@ -100,8 +100,17 @@ class SiteGenerator
         $page_urls = [];
 
         foreach ($pagelist as $path => $page_manifest) {
-            if (!empty($page_manifest['html-filename'])) {
-                $page_urls[] = $base_url . $path;
+
+            // This page doesn't want to be present in the static site.
+            if (empty($page_manifest['html-filename'])) {
+                continue;
+            }
+
+            if ($this->appConfig['nice-urls']) {
+                $page_urls[] = $base_url . $this->sec->escapeValue($path, 'uri_path');
+            }
+            else {
+                $page_urls[] = $base_url . 'index.php?path=' . $this->sec->escapeValue($path, 'uri_path');
             }
         }
         unset($path, $page_manifest);
@@ -159,7 +168,8 @@ class SiteGenerator
             $link_href =
                 $exports_dir_for_browser
                 . '/'
-                . $this->sec->escapeValue($site_dir_name, 'dir-name');
+                . $this->sec->escapeValue($site_dir_name, 'dir-name')
+                . '/';
 
             $link_text = $this->sec->escapeValue($site_dir_name, 'dir-name');
 

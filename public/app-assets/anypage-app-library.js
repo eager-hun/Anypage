@@ -1,10 +1,12 @@
 
 
-// #############################################################################
-// AJAX SUITE.
 
 (function() {
     "use strict";
+
+
+    // #########################################################################
+    // AJAX SUITE.
 
     var ajaxSuite = {};
 
@@ -54,5 +56,20 @@
     };
 
     window.apAssets.ajaxSuite = ajaxSuite;
+
+    // #########################################################################
+    // HELPERS.
+
+    var helpers = {};
+
+    helpers.urlParamJoiner = function(url) {
+      if (url.indexOf('?') === -1) {
+        return '?';
+      }
+
+      return '&';
+    }
+
+    window.apAssets.helpers = helpers;
 
 })();

@@ -15,6 +15,16 @@ git submodule foreach --recursive 'git fetch --tags'
 git submodule update --recursive
 
 
+
+
+
+http://php.net/manual/en/features.commandline.webserver.php
+php -S 127.0.0.1:8000
+
+
+
+
+
 var_dump($processManager->request);
 var_dump($processManager->request->getPathInfo());
 var_dump($processManager->request->getContent());

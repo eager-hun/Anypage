@@ -51,6 +51,23 @@ return [
 
     'app' => [
         /**
+         * Nice URLs.
+         *
+         * Without:
+         * 'hostname.local/index.php?path=foo/bar'
+         *
+         * With:
+         * 'hostname.local/foo/bar'
+         *
+         * The nice URLs setting impacts the app only when served as dynamic,
+         * interpreted php, and doesn't have any effect on the generated static
+         * instances.
+         *
+         * Boolean, any truthy or falsy values will suffice.
+         */
+        'nice-urls' => 0,
+
+        /**
          * Templating.
          *
          * key 'enable-twig':

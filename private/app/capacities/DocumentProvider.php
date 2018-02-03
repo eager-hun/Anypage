@@ -220,18 +220,29 @@ class DocumentProvider
         $pagelist = $this->processManager->getConfig('routes');
         $current_page_id = $this->processManager
             ->getInstruction('resource-id');
+        $nice_urls = $this->config['app']['nice-urls'];
+
+        // ---------------------------------------------------------------------
+        // Generate app menu items.
 
         $app_menu_items = [];
 
         foreach ($pagelist as $path => $page_manifest) {
 
+            // The page definition array did not contain a 'menu' key, meaning
+            // that this page does not want to be in the menu.
             if (empty($page_manifest['menu'])) {
                 continue;
             }
 
             // We were called during a dynamic php page response.
             if (empty(BUILDING_STATIC_PAGE)) {
-                $url = $base_url . $sec->escapeValue($path, 'uri_path');
+                if ($nice_urls) {
+                    $url = $base_url . $sec->escapeValue($path, 'uri_path');
+                }
+                else {
+                    $url = $base_url . 'index.php?path=' . $sec->escapeValue($path, 'uri_path');
+                }
             }
             // We were called while generating a static snapshot.
             else {
