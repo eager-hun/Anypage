@@ -5,28 +5,44 @@
 
 
 // #############################################################################
-// Determining the requested path.
+// Determining the actually requested path.
 
-$nice_urls = $processManager->getConfig('config')['app']['nice-urls'];
+$request_uri = $processManager->request->server->get('REQUEST_URI');
+$request_path_actual = ltrim(
+    $processManager->request->getPathInfo(),
+    '/'
+);
 
-if ($nice_urls) {
-    $request_uri = $processManager->request->server->get('REQUEST_URI');
+$nice_url_mode = $processManager->getConfig('config')['app']['nice-urls'];
 
-    $request_path = ltrim(strtok($request_uri, '?'), '/');
-
+if ($nice_url_mode) {
     $working_dir = $processManager->getConfig('config')['env']['web-working-dir'];
 
-    if (!empty($working_dir)) {
+    if ( ! empty($working_dir)) {
         $trim_off = $working_dir . '/';
-        $request_path = substr($request_path, strlen($trim_off));
+        $request_path = substr($request_path_actual, strlen($trim_off));
 
+        // Possible indication of an error.
         if ($request_path === false) {
-            echo 'NOTICE: the "web_working_directory" entry in config might be wrong.';
+            echo 'NOTE: the "web-working-dir" entry in config might be wrong.';
             exit;
         }
     }
+    else {
+        $request_path = $request_path_actual;
+    }
 }
 else {
+
+    // Bad request.
+    if ( ! empty($request_path_actual)) {
+        echo 'NOTE: while "Nice URLs" are off, requesting an actual URL path is meaningless.';
+        $processManager->response->setStatusCode(400);
+        $processManager->response->send();
+        exit;
+    }
+
+    // NOTE: that's the "path" GET param's value.
     $request_path = $processManager->request->query->get('path');
 }
 
