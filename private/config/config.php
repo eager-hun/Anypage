@@ -164,6 +164,7 @@ return [
                 'source'    => 'theme',
                 'file'      => 'static-assets/css/static.css',
                 'use_as'    => 'reference',
+                'ignore'    => 1,
             ],
         ],
 
