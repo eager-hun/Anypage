@@ -24,9 +24,9 @@ Further key features:
     - Gulp / Webpack hybrid frontend build tooling with:
         - livereload (for a customizable range of files),
         - Vue.js pre-installed / configured.
-        
 
-## Project state
+
+### Project state
 
 This project is still not beyond the stage of being a hasty proof of concept.
 There are plenty of missing-, unfinished, and to-be-improved features.
@@ -35,9 +35,7 @@ Also, this is the first time I build a working app in object-oriented php.
 Rewrites still seem to be a regular occurrence.
 
 
-## Warnings
-
-### Application security
+### Application security (non-existent!)
 
 The php script hardly has any security measures: it is meant to run only on
 isolated developer machines.
@@ -47,47 +45,28 @@ isolated developer machines.
 _The shareable deliverables are the generated, static .html-file-based copies
 of the site._
 
-### If you are new to node.js and npm:
 
-Learn their specific procedures on your operating system. E.g.:
+### Platform compatibility
 
-- you will [not want to get stuck with your `node_modules` folders][rimraf] on
-  Windows machines.
+I've seen this project work well on Ubuntu and MacOS platforms.
+
+I however don't test on, and don't maintain any Windows compatibility.
 
 
 ## Getting started
 
-The easiest way to try out what this project does is cloning it into
-a php-equipped server's virtual host.
+### Prerequisites
 
-If you manage to achieve the following path:
+For installing and using the project, you need on your machine:
 
-    <web-document-root>/index.php
+- [php][php],
+- [Composer][composer],
+- [Node.js / NPM][node],
+- [Gulp][gulp] (installed globally)
+    
+Having [git][git] installed also helps.
 
-then the default config might work out of the box.
-
-If your path differs, you might need to update config and options entries, as
-discussed later.
-
-### Installation
-
-#### Prerequisites
-
-- For the installation, you need on your machine:
-    - [git][git],
-    - [php][php],
-    - [Composer][composer],
-    - [Node.js / NPM][node],
-    - [Gulp][gulp] (installed globally).
-- To use the installed site, you need a php-equipped server solution — e.g.
-[Apache][apache], or [Nginx][nginx], or possibly a [Vagrant][vagrant] box with
-the necessities already set up, like [Laravel Homestead][homestead].
-  
-(Laravel Homestead has php and Composer set up in it, so — if need be — it is
-possible to install the site's Composer dependencies inside the Homestead
-virtual machine.)
-
-#### Installing
+### Installing
 
 The repository defines the "[frontend-seed][frontend-seed-github]"
 git submodule, which is — speaking in CMS-terms — comparable to a "theme".
@@ -96,18 +75,40 @@ Recursive cloning will set up the submodule in a single command.
     git clone --recursive https://github.com/eager-hun/anypage.git anypage
 
     anypage/private$ composer install
-    
+
     anypage/public/themes/frontend-seed$ npm install
     anypage/public/themes/frontend-seed$ gulp compile
-    
-Review configs:
-    
+
+
+### Accessing the site
+
+The quickest way is using [php's built-in web-server][php-server] on the command
+line, from the project's root directory (where `index.php` resides).
+
+    anypage$ php -S 127.0.0.1:8001
+
+Then the site should be available on the `http://127.0.0.1:8001` URL in the
+browser.
+
+#### Configuration
+
+The out of the box configuration is expected to work for a new installation.
+
+In case of any errors showing up, configuration in the following places might
+need adjusting:
+
     anypage/director.php
     anypage/private/config/config.php
     anypage/public/themes/frontend-seed/build-setup/gulp-webpack-hybrid/gulp-setup.js
-    
-After this point the site should be ready to be viewed in a browser.
 
+#### More options for serving
+
+A full-fledged web-server with php integration — e.g. [Apache][apache], or
+[Nginx][nginx] — can also be a good fit to run the project with.
+
+If you don't want to set up the server yourself, you can possibly opt for a
+prepared [Vagrant][vagrant] [box][vagrant-boxes] with the necessities already
+set up, such as [Laravel Homestead][homestead].
 
 ## How to use
 
@@ -115,13 +116,14 @@ Documentation TODO.
 
 
 [frontend-seed-github]: https://github.com/eager-hun/frontend-seed
-[rimraf]: https://stackoverflow.com/questions/28175200/unable-to-delete-node-modules-folder-windows-7
 [git]: https://git-scm.com/downloads
 [php]: http://php.net/manual/en/install.php
 [composer]: https://getcomposer.org/
-[node]: https://nodejs.org/en/ 
+[node]: https://nodejs.org/en/
 [gulp]: https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
+[php-server]: http://php.net/manual/en/features.commandline.webserver.php
 [apache]: https://httpd.apache.org/
 [nginx]: https://www.nginx.com/resources/wiki/
 [vagrant]: https://www.vagrantup.com/
-[homestead]: https://laravel.com/docs/master/homestead 
+[vagrant-boxes]: https://app.vagrantup.com/boxes/search
+[homestead]: https://laravel.com/docs/master/homestead
