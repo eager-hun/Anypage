@@ -79,7 +79,7 @@
 /* -------------------------------------------------------------------------- */
 /* On large enough screens, we force app-menu presence. */
 
-@media (min-width: 1000px) {
+@media (min-width: 900px) {
     body.app-menu-is-enabled {
         padding-left: 260px;
     }
