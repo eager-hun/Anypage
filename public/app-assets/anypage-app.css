@@ -1,131 +1,133 @@
-
 /* ########################################################################## */
 /* APP-MENU. */
 
 .app-menu {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: -260px;
-    z-index: 10000;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -260px;
+  z-index: 10000;
 
-    width: 260px;
+  width: 260px;
 
-    transition: left 0.5s ease-in-out;
+  transition: left 0.5s ease-in-out;
 }
 
 .app-menu-toggle {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    z-index: 10001;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 10001;
 
-    font-size: 12px;
-    line-height: 2;
-    text-align: center;
+  font-size: 12px;
+  line-height: 2;
+  text-align: center;
 
-    background: #333;
-    color: white;
+  background: #333;
+  color: white;
 
-    border: 1px solid rgba(255,255,255,0.75);
-    border-radius: 3px;
-    box-shadow: rgba(40,30,40,0.75) 0 2px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 3px;
+  box-shadow: rgba(40, 30, 40, 0.75) 0 2px 7px;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .app-menu-toggle .texts-footprint,
 .app-menu-toggle .text {
-    display: inline-block;
+  display: inline-block;
 }
 
 .app-menu-toggle .texts-footprint {
-    position: relative;
-    min-width: 1em;
-    min-height: 1em;
+  position: relative;
+  min-width: 1em;
+  min-height: 1em;
 }
 
 .app-menu-toggle .text--initial {
-    transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .app-menu-toggle .text--when-open {
-    position: absolute;
-    right: 50%;
-    top: 0;
+  position: absolute;
+  right: 50%;
+  top: 0;
 
-    width: 1em;
-    margin-right: -0.5em;
+  width: 1em;
+  margin-right: -0.5em;
 
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 /* -------------------------------------------------------------------------- */
 /* App menu slided in. */
 
 .app-menu.slide-in {
-    left: 0;
+  left: 0;
 }
 
 .app-menu.slide-in + .app-menu-toggle .text--initial {
-    opacity: 0;
+  opacity: 0;
 }
 
 .app-menu.slide-in + .app-menu-toggle .text--when-open {
-    opacity: 1;
+  opacity: 1;
 }
 
 /* -------------------------------------------------------------------------- */
 /* On large enough screens, we force app-menu presence. */
 
 @media (min-width: 900px) {
-    body.app-menu-is-enabled {
-        padding-left: 260px;
-    }
-    .app-menu {
-        left: 0;
+  body.app-menu-is-enabled {
+    padding-left: 260px;
+  }
 
-        box-shadow: #0a0c0f -50px 0 50px -50px inset;
+  .app-menu {
+    left: 0;
 
-        transition: none;
-    }
-    .app-menu-toggle {
-        display: none;
-    }
+    box-shadow: #0a0c0f -50px 0 50px -50px inset;
+
+    transition: none;
+  }
+
+  .app-menu-toggle {
+    display: none;
+  }
 }
 
 /* -------------------------------------------------------------------------- */
 /* APP-MENU INTERNALS. */
 
 .app-menu {
-    font-size: 16px;
+  font-size: 16px;
 
-    background: #333;
-    color: #fff;
+  background: #333;
+  color: #fff;
 }
 
 .app-menu ul {
-    margin: 1em;
-    padding: 0;
+  margin: 1em;
+  padding: 0;
 
-    max-height: calc(100vh - 2em);
-    overflow: auto;
+  max-height: calc(100vh - 2em);
+  overflow: auto;
 
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .app-menu__item {
-    line-height: 1.1;
+  line-height: 1.1;
 }
 
 .app-menu__topic-title {
-    padding: 1em 0.5em 0.5em 0;
-    font-style: italic;
-    opacity: 0.55;
+  padding: 1em 0.5em 0.5em 0;
+  font-style: italic;
+  opacity: 0.55;
 }
+
 .app-menu__topic-title .item__text {
-    font-size: 0.85em;
+  font-size: 0.85em;
 }
 
 .app-menu__link,
@@ -134,33 +136,32 @@
 .app-menu__link:visited:hover,
 .app-menu__link:focus,
 .app-menu__link:active {
-    display: block;
-    padding: 0.25em 0.5em;
+  display: block;
+  padding: 0.25em 0.5em;
 
-    border: none;
-    color: #e8e8e8;
-    text-decoration: none;
+  border: none;
+  color: #e8e8e8;
+  text-decoration: none;
 }
 
 .app-menu__link:hover,
 .app-menu__link:focus,
 .app-menu__link:active {
-    background: rgba(0,0,0,0.25);
-    outline: none;
+  background: rgba(0, 0, 0, 0.25);
+  outline: none;
 }
 
 .app-menu__link.is-active,
 .app-menu__link.is-active:hover,
 .app-menu__link.is-active:focus {
-    background: rgba(0,0,0,0.25);
-    color: white;
-    font-weight: 700;
+  background: rgba(0, 0, 0, 0.25);
+  color: white;
+  font-weight: 700;
 }
-
 
 /* ########################################################################## */
 /* GENERATOR PAGE. */
 
 .generator-feedback-area {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
