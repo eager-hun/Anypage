@@ -1,0 +1,10 @@
+
+<fieldset>
+    {% if legend is defined %}
+        <legend>
+            {{ legend }}
+        </legend>
+    {% endif %}
+
+    {{ fieldset_content | default('') | raw }}
+</fieldset>

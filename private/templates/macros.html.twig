@@ -1,0 +1,20 @@
+{# See https://stackoverflow.com/questions/22968427/check-if-string-variable-is-null-or-empty-or-full-of-white-spaces #}
+
+{% macro form_widget_attributes(attributes_array) %}
+    {% set attribute_whitelist = [
+        'type',
+        'id',
+        'class',
+        'placeholder',
+        'value',
+        'required',
+        'disabled',
+        'readonly',
+    ] %}
+
+    {% for attribute_name, attribute_value in attributes_array %}
+        {% if attribute_name in attribute_whitelist and attribute_value | length %}
+            {{ attribute_name }}="{{ attribute_value }}"
+        {% endif %}
+    {% endfor %}
+{% endmacro %}

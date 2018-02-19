@@ -1,0 +1,9 @@
+
+{% import "macros.html.twig" as macros %}
+
+{#
+Keep the opening and closing tags on the same line!
+See https://stackoverflow.com/a/14048003
+#}
+
+<textarea {{ macros.form_widget_attributes(attributes) }}>{{ value }}</textarea>

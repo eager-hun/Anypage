@@ -1,0 +1,14 @@
+<div class="widget-container {{ wrapper_extra_classes | default('') }}">
+
+    {% if label is defined %}
+        {{ label | raw }}
+    {% endif %}
+
+    {{ widget | raw }}
+
+    {% if helptext is defined %}
+        <div class="widget-container__helptext">
+            {{ helptext | raw }}
+        </div>
+    {% endif %}
+</div>
