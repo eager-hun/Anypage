@@ -6,6 +6,12 @@
 
     {{ widget | raw }}
 
+    {% if errortext is defined %}
+        <div class="widget-container__errortext">
+            {{ errortext | raw }}
+        </div>
+    {% endif %}
+
     {% if helptext is defined %}
         <div class="widget-container__helptext">
             {{ helptext | raw }}

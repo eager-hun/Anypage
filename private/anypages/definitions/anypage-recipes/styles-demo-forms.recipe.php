@@ -29,12 +29,27 @@ $page_levels[] = [
 
 
 // -----------------------------------------------------------------------------
-// Freetext tinkering.
+// Inventory of widget states.
 
-$freetext_tinkering_title = '<h2 class="underlined">Freetext tinkering</h2>';
+$widgets_states_title = '<h2 class="underlined">Widget states</h2>';
+
+$widgets_states = $tools->importFileContent(
+    APS_CONTENTS . '/arbitrary/styles-demo-form-widget-states.php',
+    'php'
+);
+
+$page_levels[] = [
+    'page_level_content' => $widgets_states_title . $widgets_states
+];
+
+
+// -----------------------------------------------------------------------------
+// Form arrangement.
+
+$freetext_tinkering_title = '<h2 class="underlined">Form arrangement</h2>';
 
 $freetext_tinkering = $tools->importFileContent(
-    APS_CONTENTS . '/arbitrary/tinkering-forms-freetext.php',
+    APS_CONTENTS . '/arbitrary/styles-demo-form-arrangement.php',
     'php'
 );
 
