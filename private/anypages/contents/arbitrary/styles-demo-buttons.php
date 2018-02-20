@@ -17,7 +17,7 @@ foreach ($button_color_variants as $color_variant) {
         'value' => "Button $color_variant",
         'attributes' => [
             'type' => 'button',
-            'class' => "button button--$color_variant button--oneliner",
+            'class' => "button button--$color_variant",
         ]
     ];
 
