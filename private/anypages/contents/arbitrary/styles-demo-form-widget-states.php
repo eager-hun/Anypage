@@ -109,4 +109,4 @@ foreach ($widget_states as $state) {
 unset($state);
 
 
-echo "<form action='#' class='stackable--major'>$rendered_widgets_sequence</form>";
+echo '<form action="#">' . $rendered_widgets_sequence . '</form>';

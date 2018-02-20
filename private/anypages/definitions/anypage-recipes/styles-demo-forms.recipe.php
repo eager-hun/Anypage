@@ -44,6 +44,21 @@ $page_levels[] = [
 
 
 // -----------------------------------------------------------------------------
+// Inventory of buttons and states.
+
+$buttons_title = '<h2 class="underlined">Buttons</h2>';
+
+$buttons = $tools->importFileContent(
+    APS_CONTENTS . '/arbitrary/styles-demo-buttons.php',
+    'php'
+);
+
+$page_levels[] = [
+    'page_level_content' => $buttons_title . $buttons
+];
+
+
+// -----------------------------------------------------------------------------
 // Form arrangement.
 
 $freetext_tinkering_title = '<h2 class="underlined">Form arrangement</h2>';

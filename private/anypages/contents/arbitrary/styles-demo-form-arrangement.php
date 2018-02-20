@@ -1,5 +1,5 @@
 
-<form action="#" class="stackable--major">
+<form action="#">
 
   <div class="form-arrangement">
 
@@ -50,13 +50,13 @@
     </div>
 
     <div class="widget-container with-blank-label width--half">
-      <button type="button" class="button button--oneliner">
+      <button type="button" class="button button--primary button--oneliner">
         <span class="button__text">
           Button
         </span>
       </button>
 
-      <a class="button button--oneliner" href="#">
+      <a class="button button--primary button--oneliner" href="#">
         <span class="button__text">
           Button as link
         </span>
@@ -65,4 +65,3 @@
   </div>
 
 </form>
-
