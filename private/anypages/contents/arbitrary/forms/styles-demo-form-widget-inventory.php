@@ -51,25 +51,25 @@ $buttonish_widgets_manifest = [
         'widget_data' => [
             'template' => 'forms/button',
             'attributes' => [
-                'type' => 'submit',
-                'id' => 'widget-inventory__button-as-button',
-                'class' => 'button button--primary button--oneliner',
+                'type' => 'button',
+                'id' => 'widget-inventory__button',
+                'class' => 'button button--primary',
             ],
             'value' => 'Button'
         ],
     ],
     [
         'label_data' => [
-            'text' => 'Button as link',
+            'text' => 'Link button',
         ],
         'widget_data' => [
-            'template' => 'forms/button--as-link',
+            'template' => 'forms/link-button',
             'attributes' => [
-                'id' => 'widget-inventory__button-as-link',
-                'class' => 'button button--primary button--oneliner',
+                'id' => 'widget-inventory__link-button',
+                'class' => 'button button--primary',
                 'href' => '#',
             ],
-            'value' => 'Button as link'
+            'value' => 'Link button'
         ],
     ]
 ];

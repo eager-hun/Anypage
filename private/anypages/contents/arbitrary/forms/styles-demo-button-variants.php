@@ -46,7 +46,7 @@ foreach ($button_color_variants as $color_variant) {
     $template_vars_updated = array_replace_recursive(
         $template_vars_base,
         [
-            'value' => "Button $color_variant as link",
+            'value' => "Link button $color_variant",
             'attributes' => [
                 'href' => '#'
             ]
@@ -55,7 +55,7 @@ foreach ($button_color_variants as $color_variant) {
     unset($template_vars_updated['attributes']['type']);
 
     $rendered_button_variant_collection .=
-        $tools->render('forms/button--as-link', $template_vars_updated);
+        $tools->render('forms/link-button', $template_vars_updated);
 
     $rendered_button_demo_sequence .= $tools->render('forms/widget-container', [
         'widget' => $rendered_button_variant_collection
