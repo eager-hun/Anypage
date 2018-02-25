@@ -103,11 +103,11 @@ $form_size_variants_title = '<h2 class="underlined">Form size variants</h2>';
 $form_size_demos = <<<EOT
 <h3>Small form</h3>
 <form action="#" class="form--small">$form_arrangement_html</form>
-<form action="#" class="form--small stackable--major">$button_shapes_html</form>
+<form action="#" class="form--small stackable">$button_shapes_html</form>
 
 <h3>Big form</h3>
 <form action="#" class="form--big">$form_arrangement_html</form>
-<form action="#" class="form--big stackable--major">$button_shapes_html</form>
+<form action="#" class="form--big stackable">$button_shapes_html</form>
 EOT;
 
 $page_levels[] = $form_size_variants_title . $form_size_demos;

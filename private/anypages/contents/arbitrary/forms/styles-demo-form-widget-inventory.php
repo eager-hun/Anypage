@@ -46,7 +46,7 @@ foreach ($textish_input_types as $input_type) {
 $buttonish_widgets_manifest = [
     [
         'label_data' => [
-            'text' => 'Button as <button>',
+            'text' => 'Button',
         ],
         'widget_data' => [
             'template' => 'forms/button',
@@ -71,7 +71,37 @@ $buttonish_widgets_manifest = [
             ],
             'value' => 'Link button'
         ],
-    ]
+    ],
+    [
+        'label_data' => [
+            'text' => 'Button with icon',
+        ],
+        'widget_data' => [
+            'template' => 'forms/button',
+            'attributes' => [
+                'type' => 'button',
+                'id' => 'widget-inventory__button_w_icon',
+                'class' => 'button button--primary button--icon-prefix',
+            ],
+            'value' => 'Button with icon',
+            'icon_href' => '#icon-sprite__checkmark',
+        ],
+    ],
+    [
+        'label_data' => [
+            'text' => 'Link button with icon',
+        ],
+        'widget_data' => [
+            'template' => 'forms/link-button',
+            'attributes' => [
+                'id' => 'widget-inventory__link-button_w_icon',
+                'class' => 'button button--primary button--icon-prefix',
+                'href' => '#',
+            ],
+            'value' => 'Link button with icon',
+            'icon_href' => '#icon-sprite__checkmark',
+        ],
+    ],
 ];
 
 
