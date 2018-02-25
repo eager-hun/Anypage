@@ -1,5 +1,7 @@
 <label
-    for="{{ widget_id }}"
+    {% if widget_id | default('') is not empty %}
+        for="{{ widget_id }}"
+    {% endif %}
     class="label--as-sibling {{ extra_classes | default('') }}"
 >
     {{ text }}

@@ -11,27 +11,27 @@ $boxes_data = [
     [
         'wrapper_extra_classes' => 'color-zone--brand',
         'box_title'             => 'Color zone "Brand"',
-        'button_class'          => 'some-button-color-variant-todo',
+        'button_class'          => 'button--gray',
     ],
     [
         'wrapper_extra_classes' => 'color-zone--accent-1',
         'box_title'             => 'Color zone "Accent 1"',
-        'button_class'          => 'some-button-color-variant-todo',
+        'button_class'          => 'button--gray',
     ],
     [
         'wrapper_extra_classes' => 'color-zone--accent-2',
         'box_title'             => 'Color zone "Accent 2"',
-        'button_class'          => 'some-button-color-variant-todo',
+        'button_class'          => 'button--gray',
     ],
     [
         'wrapper_extra_classes' => 'color-zone--dark',
         'box_title'             => 'Color zone "Dark"',
-        'button_class'          => 'some-button-color-variant-todo',
+        'button_class'          => 'button--accent-2',
     ],
     [
         'wrapper_extra_classes' => 'color-zone--blockfill',
         'box_title'             => 'Color zone "Blockfill"',
-        'button_class'          => 'some-button-color-variant-todo',
+        'button_class'          => 'button--primary',
     ],
 ];
 
@@ -39,37 +39,40 @@ $boxes_data = [
 // Prepare box contents.
 
 array_walk($boxes_data, function(&$item) {
-    $box_content = '<p>';
-    $box_content .= $this->addFillerText('xs', 2, false);
-    $box_content .= ' <a href="foobar://foo">This is an inline link within this text</a> ';
-    $box_content .= $this->addFillerText('xs', 2, false);
-    $box_content .= '</p>';
-    $box_content .= '<p>Okay, I needed <strong>one more paragraph</strong> just to check some more stuff.</p>';
-
-    $box_content .= <<<EOT
-        <ul class="bare-list">
-            <li>
-                <a href="foobar://foo">This is a link</a>
-            </li>
-            <li>
-                <a href="/">This might be a visited link</a>
-            </li>
-        </ul>
+    $box_content = <<<EOT
+<p>
+    Vulputate interdum tellus nec nisl curabitur <a href="foobar://foo">This is
+    an inline link within this text</a>. Non mi varius donec mauris, est posuere
+    quisque, <strong>tortor duis</strong> mauris imperdiet suscipit neque
+    ornare.
+</p>
 EOT;
 
-    $box_content .= $this->addFillerText('xs', 2, true);
-
-    /*
-    $box_content .= '<input type="text" value="Sample textfield">';
+    $box_content .= <<<EOT
+<ul class="bare-list">
+    <li>
+        <a href="foobar://foo">This is a link</a>
+    </li>
+    <li>
+        <a href="/">This might be a visited link</a>
+    </li>
+</ul>
+EOT;
 
     $button_class = $item['button_class'];
 
-    $box_content .= <<<EOL
-        <button type="button" class="button $button_class">
-            Sample button
-        </button>
-EOL;
-    */
+    $box_content .= <<<EOT
+<div class="stackable--grid-match">
+    <button type="button" class="button $button_class">
+        <span class="button__text">Button</span>
+    </button>
+</div>
+<div class="stackable--grid-match">
+    <a href="#" class="button $button_class">
+        <span class="button__text">Link button</span>
+    </a>
+</div>
+EOT;
 
     $item['box_content'] = $box_content;
 });

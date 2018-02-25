@@ -4,11 +4,11 @@
 // Preparing text-ish input types' manifest.
 
 $widget_states = [
+    'initial',
     'has-error',
     'disabled',
     'readonly',
 ];
-
 
 $widget_contents = [
     false,
@@ -40,7 +40,6 @@ foreach ($widget_states as $state) {
         $template_manifest_current = [
             'label_data' => [
                 'text' => ucfirst(strtolower($state)),
-                'widget_id' => 'widget-states-demo--' . $sequence_index,
             ],
         ];
 
@@ -50,7 +49,6 @@ foreach ($widget_states as $state) {
                 [
                     'widget_data' => [
                         'attributes' => [
-                            'id' => 'widget-states-demo--' . $sequence_index,
                             $state => $state,
                         ]
                     ]
@@ -63,7 +61,6 @@ foreach ($widget_states as $state) {
                 [
                     'widget_data' => [
                         'attributes' => [
-                            'id' => 'widget-states-demo--' . $sequence_index,
                             $state => $state,
                             $context => $content,
                         ]
@@ -109,4 +106,4 @@ foreach ($widget_states as $state) {
 unset($state);
 
 
-echo '<form action="#">' . $rendered_widgets_sequence . '</form>';
+echo $rendered_widgets_sequence;
