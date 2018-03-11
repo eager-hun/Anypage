@@ -13,7 +13,8 @@ return [
      *
      * key 'path-fragment-to-app-assets':
      *   Used internally by the php script and also for creating URLs.
-     *   Don't include "app-assets" itself.
+     *   Include in it the very directory that files of interest are sitting in
+     *   (app-assets).
      *   No leading or trailing slashes.
      *
      * key 'path-fragment-to-themes':
@@ -23,11 +24,6 @@ return [
      *
      * key 'theme-dir-name':
      *   The active theme's directory name.
-     *
-     * key 'path-fragment-to-html-export-dir':
-     *   The subdirectory path leading to the the generated instances' directory.
-     *   Provide the location relative to DIRECTOR_DIR.
-     *   No leading or trailing slashes.
      *
      * key 'html-export-dir-name':
      *   The name of the directory into which static site snapshots are copied.
@@ -40,10 +36,9 @@ return [
      */
     'env' => [
         'web-working-dir'                   => '',
-        'path-fragment-to-app-assets'       => 'public',
-        'path-fragment-to-themes'           => 'public/themes',
+        'path-fragment-to-app-assets'       => 'app-assets',
+        'path-fragment-to-themes'           => 'themes',
         'theme-dir-name'                    => 'frontend-seed',
-        'path-fragment-to-html-export-dir'  => 'public',
         'html-export-dir-name'              => 'generated',
         'http-protocol'                     => 'http',
         'http-protocol-v'                   => '1.1',

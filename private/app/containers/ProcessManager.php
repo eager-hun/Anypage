@@ -145,8 +145,8 @@ class ProcessManager
     {
         $env_config = $this->getConfig('config')['env'];
 
-        $fragment_app_assets = $env_config['path-fragment-to-app-assets']
-            . '/app-assets';
+        $fragment_app_assets = $env_config['path-fragment-to-app-assets'];
+
         $this->setInstruction(
             'path-fragment-to-app-assets',
             $fragment_app_assets
@@ -185,7 +185,7 @@ class ProcessManager
      */
     public $systemPageManifests = [
         'everpresent' => [
-            'generated' => [
+            'list-generated' => [
                 'resource-id'       => 'list_generated',
                 'resource-type'     => 'system_page',
                 'menu'              => [

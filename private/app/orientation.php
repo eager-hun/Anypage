@@ -7,7 +7,7 @@
 // #############################################################################
 // Determining the actually requested path.
 
-$request_uri = $processManager->request->server->get('REQUEST_URI');
+// See http://api.symfony.com/3.4/Symfony/Component/HttpFoundation/Request.html#method_getPathInfo
 $request_path_actual = ltrim(
     $processManager->request->getPathInfo(),
     '/'
@@ -16,21 +16,7 @@ $request_path_actual = ltrim(
 $nice_url_mode = $processManager->getConfig('config')['app']['nice-urls'];
 
 if ($nice_url_mode) {
-    $working_dir = $processManager->getConfig('config')['env']['web-working-dir'];
-
-    if ( ! empty($working_dir)) {
-        $trim_off = $working_dir . '/';
-        $request_path = substr($request_path_actual, strlen($trim_off));
-
-        // Possible indication of an error.
-        if ($request_path === false) {
-            echo 'NOTE: the "web-working-dir" entry in config might be wrong.';
-            exit;
-        }
-    }
-    else {
-        $request_path = $request_path_actual;
-    }
+    $request_path = $request_path_actual;
 }
 else {
 

@@ -340,7 +340,7 @@ class AssetManagement
         else {
             $tools = $this->capacities->get('tools');
 
-            $access_to_theme = DIRECTOR_DIR
+            $access_to_theme = PUBLIC_RESOURCES
                 . DIRECTORY_SEPARATOR
                 . $this
                     ->processManager

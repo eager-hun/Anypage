@@ -64,6 +64,8 @@ class SiteGenerator
             return $this->newSiteInstanceFsPath;
         }
 
+        // Directory name suggestion for the new site instance, sent in a GET
+        // param of the request.
         $destination_subdir = $this
             ->processManager->request->query->get('dir');
 
@@ -145,15 +147,12 @@ class SiteGenerator
     public function listGeneratedStaticSites() {
 
         $base_url = $this->processManager->getInstruction('base-url');
-        $fragment_to_exports = $this->envConfig['path-fragment-to-html-export-dir'];
 
         $exports_dir_for_server = PUBLIC_RESOURCES
             . DIRECTORY_SEPARATOR
             . $this->staticExportsDirName;
 
         $exports_dir_for_browser = $base_url
-            . $fragment_to_exports
-            . '/'
             . $this->staticExportsDirName;
 
         $finder = new Finder;
@@ -279,7 +278,7 @@ class SiteGenerator
      */
     protected function _copySiteFrontendAssets(&$status, &$error)
     {
-        $built_assets_dir = DIRECTOR_DIR
+        $built_assets_dir = PUBLIC_RESOURCES
             . DIRECTORY_SEPARATOR
             . $this->pathToTheme
             . DIRECTORY_SEPARATOR
@@ -300,7 +299,7 @@ class SiteGenerator
             return;
         }
 
-        $static_assets_dir = DIRECTOR_DIR
+        $static_assets_dir = PUBLIC_RESOURCES
             . DIRECTORY_SEPARATOR
             . $this->pathToTheme
             . DIRECTORY_SEPARATOR
@@ -321,7 +320,7 @@ class SiteGenerator
             return;
         }
 
-        $app_assets_dir = DIRECTOR_DIR
+        $app_assets_dir = PUBLIC_RESOURCES
             . DIRECTORY_SEPARATOR
             . $this->pathToAppAssets;
 
