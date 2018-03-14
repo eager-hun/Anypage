@@ -83,9 +83,9 @@ Recursive cloning will set up the submodule in a single command.
 ### Accessing the site
 
 The quickest way is using [php's built-in web-server][php-server] on the command
-line, from the project's root directory (where `index.php` resides).
+line, from the project's `public` directory (where `index.php` resides).
 
-    anypage$ php -S 127.0.0.1:8001
+    anypage/public$ php -S 127.0.0.1:8001
 
 Then the site should be available on the `http://127.0.0.1:8001` URL in the
 browser.
