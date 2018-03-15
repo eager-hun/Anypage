@@ -67,7 +67,10 @@ class AssetManagement
             }
 
             if ($entry['use_as'] == 'reference') {
-                $href = $this->finalizeFrontendAssetUrl($entry['file'], $entry['source']);
+                $href = $this->finalizeFrontendAssetUrl(
+                    $entry['source'],
+                    $entry['file']
+                );
 
                 $output .= $this->capacities->get('tools')->render(
                     'app-infra/stylesheet-link',
@@ -76,10 +79,16 @@ class AssetManagement
                 );
             }
             elseif ($entry['use_as'] == 'inline') {
-                // TODO.
-                $msg = "Inlining stylesheets is not implemented yet.";
-                $this->processManager->sysNotify($msg, 'warning');
-                continue;
+                $file_system_path = $this->determineFrontendAssetInternalPath(
+                    $entry['source'],
+                    $entry['file']
+                );
+                $code = file_get_contents($file_system_path);
+                $output .= $this->capacities->get('tools')->render(
+                    'app-infra/style-tag',
+                    ['code' => $code],
+                    'php'
+                );
             }
         }
         unset($entry);
@@ -143,17 +152,19 @@ class AssetManagement
 
                 $entry['src_value'] =
                     $this->finalizeFrontendAssetUrl(
-                        $entry['file'],
-                        $entry['source']
+                        $entry['source'],
+                        $entry['file']
                     );
 
                 $output .= $this->renderScriptTag($entry);
             }
             elseif ($entry['use_as'] == 'inline') {
-                // TODO.
-                $msg = "Inlining scripts is not implemented yet.";
-                $this->processManager->sysNotify($msg, 'warning');
-                continue;
+                $file_system_path = $this->determineFrontendAssetInternalPath(
+                    $entry['source'],
+                    $entry['file']
+                );
+                $entry['code'] = file_get_contents($file_system_path);
+                $output .= $this->renderScriptTag($entry);
             }
         }
         unset($entry);
@@ -188,7 +199,7 @@ class AssetManagement
         return $this->capacities->get('tools')->render(
             'app-infra/script-tag',
             [
-                'src_attrib'    => $src_attrib,
+                'attributes'    => $src_attrib,
                 'code'          => $code,
             ],
             'php'
@@ -205,7 +216,7 @@ class AssetManagement
      * @param $location
      * @return string
      */
-    protected function finalizeFrontendAssetUrl($path, $location) {
+    protected function finalizeFrontendAssetUrl($location, $path) {
         $sec = $this->capacities->get('security');
 
         $assets_config = $this
@@ -251,6 +262,38 @@ class AssetManagement
         $url .= '?v=' . $sec->escapeValue($cache_bust_str, 'cache_bust_str');
 
         return $url;
+    }
+
+    /**
+     *
+     */
+    protected function determineFrontendAssetInternalPath($location, $path) {
+        $path_to_app_assets = $this
+            ->processManager
+            ->getInstruction('path-fragment-to-app-assets');
+        $path_to_theme = $this
+            ->processManager
+            ->getInstruction('path-fragment-to-theme');
+
+        if ($location == 'app') {
+            $path_fragment_to_asset = $path_to_app_assets;
+        }
+        elseif ($location == 'theme') {
+            $path_fragment_to_asset = $path_to_theme;
+        }
+        else {
+            $msg = 'Wrong argument supplied to determineFrontendAssetInternalPath().';
+            $this->processManager->sysNotify($msg, 'warning');
+            return false;
+        }
+
+        $file_system_path = PUBLIC_RESOURCES
+            . DIRECTORY_SEPARATOR
+            . $path_fragment_to_asset
+            . DIRECTORY_SEPARATOR
+            . $path;
+
+        return $file_system_path;
     }
 
 

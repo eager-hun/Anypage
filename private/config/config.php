@@ -110,7 +110,7 @@ return [
         /**
          * String to use in the '?v=' URL param for .css and .js files.
          */
-        'cache-bust-str' => '20180103-1',
+        'cache-bust-str' => '20180315-1',
 
         /**
          * Stylesheets to be included with the document.
@@ -132,8 +132,7 @@ return [
          *   value 'reference':
          *      A <link> tag will be used.
          *   value 'inline':
-         *      This does not work yet (un-implemented). Would use a <style>
-         *      tag.
+         *      Uses a <style> tag to include styles in the document.
          *
          * key 'ignore':
          *   Boolean. The entry will be ignored. It means you don't have to
@@ -186,8 +185,7 @@ return [
          *      The script tag's `src` attribute will contain an URL pointing
          *      to the file.
          *   value 'inline':
-         *      This does not work yet (un-implemented). Would include the
-         *      script in the document.
+         *      Includes the script in the document in a <script> tag.
          *
          * key 'ignore':
          *   Boolean. The entry will be ignored. It means you don't have to
