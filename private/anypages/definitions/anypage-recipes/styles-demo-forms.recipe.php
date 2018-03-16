@@ -129,11 +129,9 @@ foreach ($page_levels as $payload) {
 // Forms in color zones.
 
 $color_zones = [
+    'blockfill',
     'brand',
-    'accent-1',
-    'accent-2',
-    'dark',
-    'blockfill'
+    'dark'
 ];
 
 $color_zone_form_demos = <<<EOT
