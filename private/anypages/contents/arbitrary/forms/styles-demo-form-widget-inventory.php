@@ -63,11 +63,12 @@ $buttonish_widgets_manifest = [
             'text' => 'Link button',
         ],
         'widget_data' => [
-            'template' => 'forms/link-button',
+            'template' => 'forms/button',
+            'tagname' => 'a',
             'attributes' => [
                 'id' => 'widget-inventory__link-button',
                 'class' => 'button button--primary',
-                'href' => '#',
+                'href' => '#!',
             ],
             'value' => 'Link button'
         ],
@@ -92,11 +93,12 @@ $buttonish_widgets_manifest = [
             'text' => 'Link button with icon',
         ],
         'widget_data' => [
-            'template' => 'forms/link-button',
+            'template' => 'forms/button',
+            'tagname' => 'a',
             'attributes' => [
                 'id' => 'widget-inventory__link-button_w_icon',
                 'class' => 'button button--primary button--icon-prefix',
-                'href' => '#',
+                'href' => '#!',
             ],
             'value' => 'Link button with icon',
             'icon_href' => '#icon-sprite__checkmark',

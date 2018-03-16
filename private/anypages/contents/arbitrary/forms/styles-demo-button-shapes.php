@@ -8,95 +8,139 @@
 
     <div class="widget-container width--full">
 
-        <button type="button" class="button button--primary">
-            <span class="button__text">
-                Button
-            </span>
-        </button>
+        <?php
+            $buttons = [
+                [
+                    'attributes' => [
+                        'type'  => 'button',
+                        'class' => 'button button--primary'
+                    ],
+                    'value' => 'Button'
+                ],
+                [
+                    'attributes' => [
+                        'type'  => 'button',
+                        'class' => 'button button--primary button--oneliner'
+                    ],
+                    'value' => 'Button oneliner'
+                ],
+                [
+                    'tagname' => 'a',
+                    'attributes' => [
+                        'href'    => '#!',
+                        'class'   => 'button button--primary'
+                    ],
+                    'value' => 'Link button'
+                ],
+                [
+                    'tagname' => 'a',
+                    'attributes' => [
+                        'href'    => '#!',
+                        'class'   => 'button button--primary button--oneliner'
+                    ],
+                    'value' => 'Link button oneliner'
+                ]
+            ];
 
-        <button type="button" class="button button--primary button--oneliner">
-            <span class="button__text">
-                Button oneliner
-            </span>
-        </button>
-
-        <a class="button button--primary" href="#">
-            <span class="button__text">
-                Link button
-            </span>
-        </a>
-
-        <a class="button button--primary button--oneliner" href="#">
-            <span class="button__text">
-                Link button oneliner
-            </span>
-        </a>
+            foreach ($buttons as $button_props) {
+                echo $tools->render('forms/button', $button_props);
+            }
+            unset($buttons, $button_props);
+        ?>
 
     </div>
 
     <div class="widget-container width--full">
 
-        <button type="button" class="button button--primary">
-            <span class="button__text">
-                Button<br>multi
-            </span>
-        </button>
+        <?php
+            $buttons = [
+                [
+                    'attributes' => [
+                        'type'  => 'button',
+                        'class' => 'button button--primary'
+                    ],
+                    'value' => 'Button<br>multi'
+                ],
+                [
+                    'attributes' => [
+                        'type'  => 'button',
+                        'class' => 'button button--primary button--oneliner'
+                    ],
+                    'value' => 'Button oneliner'
+                ],
+                [
+                    'tagname' => 'a',
+                    'attributes' => [
+                        'href'    => '#!',
+                        'class'   => 'button button--primary'
+                    ],
+                    'value' => 'Link button<br>multi'
+                ],
+                [
+                    'tagname' => 'a',
+                    'attributes' => [
+                        'href'    => '#!',
+                        'class'   => 'button button--primary button--oneliner'
+                    ],
+                    'value' => 'Link button oneliner'
+                ]
+            ];
 
-        <button type="button" class="button button--primary button--oneliner">
-            <span class="button__text">
-                Button oneliner
-            </span>
-        </button>
-
-        <a class="button button--primary" href="#">
-            <span class="button__text">
-                Link button<br>multi
-            </span>
-        </a>
-
-        <a class="button button--primary button--oneliner" href="#">
-            <span class="button__text">
-                Link button oneliner
-            </span>
-        </a>
+            foreach ($buttons as $button_props) {
+                echo $tools->render('forms/button', $button_props);
+            }
+            unset($buttons, $button_props);
+        ?>
 
     </div>
 
     <div class="widget-container width--half">
-        <button type="button" class="button button--primary button--fullwidth">
-            <span class="button__text">
-                Wide
-            </span>
-        </button>
+        <?php
+            echo $tools->render('forms/button', [
+                'attributes' => [
+                    'type'  => 'button',
+                    'class' => 'button button--primary button--fullwidth'
+                ],
+                'value' => 'Wide'
+            ]);
+        ?>
     </div>
 
     <div class="widget-container width--half">
-        <a href="#" class="button button--primary button--fullwidth">
-            <span class="button__text">
-                Link wide
-            </span>
-        </a>
+        <?php
+            echo $tools->render('forms/button', [
+                'tagname' => 'a',
+                'attributes' => [
+                    'href'    => '#!',
+                    'class' => 'button button--primary button--fullwidth'
+                ],
+                'value' => 'Link wide'
+            ]);
+        ?>
     </div>
 
     <div class="widget-container width--full">
 
-        <button type="button" class="button button--primary button--icon-prefix">
-            <svg class="svg-icon button__icon">
-                <use xlink:href="#icon-sprite__arrow-right"></use>
-            </svg>
-            <span class="button__text">
-                Button
-            </span>
-        </button>
+        <?php
+            echo $tools->render('forms/button', [
+                'attributes' => [
+                    'type'  => 'button',
+                    'class' => 'button button--primary button--icon-prefix'
+                ],
+                'value' => 'Button',
+                'icon_href' => '#icon-sprite__arrow-right'
+            ]);
 
-        <a href="#" class="button button--primary button--icon-suffix">
-            <svg class="svg-icon button__icon">
-                <use xlink:href="#icon-sprite__checkmark"></use>
-            </svg>
-            <span class="button__text">
-                Link
-            </span>
-        </a>
+            echo $tools->render('forms/button', [
+                'tagname' => 'a',
+                'attributes' => [
+                    'href'  => '#!',
+                    'class' => 'button button--primary button--icon-suffix'
+                ],
+                'value' => 'Link',
+                'icon_href' => '#icon-sprite__checkmark'
+            ]);
+        ?>
 
     </div>
 
@@ -107,99 +151,63 @@
 
     <div class="widget-container width--full">
 
-        <button type="button" class="button button--primary button--small">
-            <span class="button__text">
-                Small
-            </span>
-        </button>
+        <?php
+            $sizes = ['small', 'default', 'big'];
 
-        <button type="button" class="button button--primary button--size-default">
-            <span class="button__text">
-                Default
-            </span>
-        </button>
+            foreach ($sizes as $size) {
+                $button_props = [
+                    'attributes' => [
+                        'type'  => 'button',
+                        'class' => 'button button--primary button--size-' . $size
+                    ],
+                    'value' => ucfirst($size)
+                ];
+                echo $tools->render('forms/button', $button_props);
 
-        <button type="button" class="button button--primary button--big">
-            <span class="button__text">
-                Big
-            </span>
-        </button>
-
-        <a class="button button--primary button--small" href="#">
-            <span class="button__text">
-                Link small
-            </span>
-        </a>
-
-        <a class="button button--primary button--size-default" href="#">
-            <span class="button__text">
-                Link default
-            </span>
-        </a>
-
-        <a class="button button--primary button--big" href="#">
-            <span class="button__text">
-                Link big
-            </span>
-        </a>
+                $button_props = [
+                    'tagname' => 'a',
+                    'attributes' => [
+                        'href'  => '#!',
+                        'class' => 'button button--primary button--size-' . $size
+                    ],
+                    'value' => 'Link ' . ucfirst($size)
+                ];
+                echo $tools->render('forms/button', $button_props);
+            }
+            unset($sizes, $size);
+        ?>
 
     </div>
 
     <div class="widget-container width--full">
 
-        <button type="button" class="button button--primary button--icon-prefix button--small">
-            <svg class="svg-icon button__icon">
-                <use xlink:href="#icon-sprite__arrow-right"></use>
-            </svg>
-            <span class="button__text">
-                Button
-            </span>
-        </button>
+        <?php
+            $sizes = ['small', 'default', 'big'];
 
-        <button type="button" class="button button--primary button--icon-prefix button--size-default">
-            <svg class="svg-icon button__icon">
-                <use xlink:href="#icon-sprite__arrow-right"></use>
-            </svg>
-            <span class="button__text">
-                Button
-            </span>
-        </button>
+            foreach ($sizes as $size) {
+                $button_props = [
+                    'attributes' => [
+                        'type'  => 'button',
+                        'class' => 'button button--primary button--icon-prefix button--size-' . $size
+                    ],
+                    'value'     => ucfirst($size),
+                    'icon_href' => '#icon-sprite__arrow-right'
+                ];
+                echo $tools->render('forms/button', $button_props);
 
-        <button type="button" class="button button--primary button--icon-prefix button--big">
-            <svg class="svg-icon button__icon">
-                <use xlink:href="#icon-sprite__arrow-right"></use>
-            </svg>
-            <span class="button__text">
-                Button
-            </span>
-        </button>
-
-        <a href="#" class="button button--primary button--icon-suffix button--small">
-            <svg class="svg-icon button__icon">
-                <use xlink:href="#icon-sprite__checkmark"></use>
-            </svg>
-            <span class="button__text">
-                Link
-            </span>
-        </a>
-
-        <a href="#" class="button button--primary button--icon-suffix button--size-default">
-            <svg class="svg-icon button__icon">
-                <use xlink:href="#icon-sprite__checkmark"></use>
-            </svg>
-            <span class="button__text">
-                Link
-            </span>
-        </a>
-
-        <a href="#" class="button button--primary button--icon-suffix button--big">
-            <svg class="svg-icon button__icon">
-                <use xlink:href="#icon-sprite__checkmark"></use>
-            </svg>
-            <span class="button__text">
-                Link
-            </span>
-        </a>
+                $button_props = [
+                    'tagname' => 'a',
+                    'attributes' => [
+                        'href'  => '#!',
+                        'class' => 'button button--primary button--icon-suffix button--size-' . $size
+                    ],
+                    'value' => 'Link ' . $size,
+                    'icon_href' => '#icon-sprite__checkmark'
+                ];
+                echo $tools->render('forms/button', $button_props);
+            }
+            unset($sizes, $size);
+        ?>
 
     </div>
 

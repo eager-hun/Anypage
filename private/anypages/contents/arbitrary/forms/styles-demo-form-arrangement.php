@@ -45,18 +45,26 @@
     </div>
 
     <div class="widget-container with-blank-label width--half">
-        <button type="button"
-                class="button button--primary button--oneliner">
-            <span class="button__text">
-              Button
-            </span>
-        </button>
 
-        <a class="button button--primary button--oneliner" href="#">
-            <span class="button__text">
-              Link button
-            </span>
-        </a>
+        <?php
+            echo $tools->render('forms/button', [
+                'attributes' => [
+                    'type'  => 'button',
+                    'class' => 'button button--primary button--oneliner'
+                ],
+                'value' => 'Button'
+            ]);
+
+            echo $tools->render('forms/button', [
+                'tagname' => 'a',
+                'attributes' => [
+                    'href'    => '#!',
+                    'class' => 'button button--primary button--oneliner'
+                ],
+                'value' => 'Link button'
+            ]);
+        ?>
+
     </div>
 
     <div class="widget-container width--half">

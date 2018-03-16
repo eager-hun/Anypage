@@ -1,13 +1,13 @@
 
 {% import "macros.html.twig" as macros %}
 
-<button {{ macros.form_widget_attributes(attributes) }}>
+<{{ tagname | default('button') }} {{ macros.form_widget_attributes(attributes) }}>
     {% if icon_href is defined %}
         <svg class="svg-icon button__icon">
             <use xlink:href="{{ icon_href }}"></use>
         </svg>
     {% endif %}
     <span class="button__text">
-        {{ value }}
+        {{ value | raw }}
     </span>
-</button>
+</{{ tagname | default('button') }}>
