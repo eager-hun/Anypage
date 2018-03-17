@@ -13,9 +13,11 @@
         'readonly',
     ] %}
 
-    {% for attribute_name, attribute_value in attributes_array %}
-        {% if attribute_name in attribute_whitelist and attribute_value | length %}
-            {{ attribute_name }}="{{ attribute_value }}"
+    {% for key, value in attributes_array %}
+        {% if key is numeric and value in attribute_whitelist %}
+            {{ value }}
+        {% elseif key in attribute_whitelist and value | length %}
+            {{ key }}="{{ value }}"
         {% endif %}
     {% endfor %}
 {% endmacro %}

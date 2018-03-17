@@ -38,8 +38,23 @@ $twig = new Twig_Environment($twig_loader, $twig_options);
 // #############################################################################
 // Extensions.
 
+// -----------------------------------------------------------------------------
+// Debugging features.
+
 if ( ! empty($twig_options['debug'])) {
     $twig->addExtension(new Twig_Extension_Debug());
 }
+
+// -----------------------------------------------------------------------------
+// Custom test: `numeric`.
+
+$numeric_test = new Twig_Test('numeric', function($arg) {
+    return is_numeric($arg);
+});
+$twig->addTest($numeric_test);
+
+
+// #############################################################################
+// Return.
 
 return $twig;

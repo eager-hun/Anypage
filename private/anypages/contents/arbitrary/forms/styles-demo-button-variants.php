@@ -33,7 +33,7 @@ foreach ($button_color_variants as $color_variant) {
         [
             'value' => "Button $color_variant disabled",
             'attributes' => [
-                'disabled' => 'disabled'
+                'disabled'
             ]
         ]
     );
