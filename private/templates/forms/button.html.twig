@@ -3,9 +3,11 @@
 
 <{{ tagname | default('button') }} {{ macros.form_widget_attributes(attributes) }}>
     {% if icon_href is defined %}
-        <svg class="svg-icon button__icon">
-            <use xlink:href="{{ icon_href }}"></use>
-        </svg>
+        <span class="button__icon-nest">
+            <svg class="svg-icon button__icon">
+                <use xlink:href="{{ icon_href }}"></use>
+            </svg>
+        </span>
     {% endif %}
     <span class="button__text">
         {{ value | raw }}
