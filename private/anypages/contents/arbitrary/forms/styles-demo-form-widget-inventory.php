@@ -97,7 +97,7 @@ $buttonish_widgets_manifest = [
             'tagname' => 'a',
             'attributes' => [
                 'id' => 'widget-inventory__link-button_w_icon',
-                'class' => 'button button--primary button--icon-prefix',
+                'class' => 'button button--primary button--icon-suffix',
                 'href' => '#!',
             ],
             'value' => 'Link button with icon',

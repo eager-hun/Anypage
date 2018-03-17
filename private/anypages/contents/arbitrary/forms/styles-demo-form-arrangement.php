@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="widget-container width--half">
+    <div class="widget-container width--third">
         <label class="label--as-sibling label--above">Text 3</label>
         <input
             type="text"
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <div class="widget-container with-blank-label width--half">
+    <div class="widget-container with-blank-label width--two-thirds">
 
         <?php
             echo $tools->render('forms/button', [
@@ -61,7 +61,26 @@
                     'href'    => '#!',
                     'class' => 'button button--primary button--oneliner'
                 ],
-                'value' => 'Link button'
+                'value' => 'Link'
+            ]);
+
+            echo $tools->render('forms/button', [
+                'attributes' => [
+                    'type'  => 'button',
+                    'class' => 'button button--primary button--icon-prefix'
+                ],
+                'value' => 'Button',
+                'icon_href' => '#icon-sprite__arrow-right'
+            ]);
+
+            echo $tools->render('forms/button', [
+                'tagname' => 'a',
+                'attributes' => [
+                    'href'    => '#!',
+                    'class' => 'button button--primary button--icon-suffix'
+                ],
+                'value' => 'Link',
+                'icon_href' => '#icon-sprite__checkmark'
             ]);
         ?>
 

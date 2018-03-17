@@ -30,7 +30,7 @@
                         'href'    => '#!',
                         'class'   => 'button button--primary'
                     ],
-                    'value' => 'Link button'
+                    'value' => 'Link'
                 ],
                 [
                     'tagname' => 'a',
@@ -38,7 +38,7 @@
                         'href'    => '#!',
                         'class'   => 'button button--primary button--oneliner'
                     ],
-                    'value' => 'Link button oneliner'
+                    'value' => 'Link oneliner'
                 ]
             ];
 
@@ -74,7 +74,7 @@
                         'href'    => '#!',
                         'class'   => 'button button--primary'
                     ],
-                    'value' => 'Link button<br>multi'
+                    'value' => 'Link<br>multi'
                 ],
                 [
                     'tagname' => 'a',
@@ -82,7 +82,7 @@
                         'href'    => '#!',
                         'class'   => 'button button--primary button--oneliner'
                     ],
-                    'value' => 'Link button oneliner'
+                    'value' => 'Link oneliner'
                 ]
             ];
 
@@ -101,7 +101,7 @@
                     'type'  => 'button',
                     'class' => 'button button--primary button--fullwidth'
                 ],
-                'value' => 'Wide'
+                'value' => 'Button fullwidth'
             ]);
         ?>
     </div>
@@ -114,7 +114,7 @@
                     'href'    => '#!',
                     'class' => 'button button--primary button--fullwidth'
                 ],
-                'value' => 'Link wide'
+                'value' => 'Link fullwidth'
             ]);
         ?>
     </div>
@@ -148,67 +148,56 @@
         <h4>Button sizes overridden manually</h4>
     </div>
 
+    <?php
+        $sizes = ['small', 'default', 'big'];
 
-    <div class="widget-container width--full">
+        foreach ($sizes as $size) {
+            echo '<div class="widget-container width--full">';
 
-        <?php
-            $sizes = ['small', 'default', 'big'];
+            $button_props = [
+                'attributes' => [
+                    'type'  => 'button',
+                    'class' => 'button button--primary button--size-' . $size
+                ],
+                'value' => 'Button'
+            ];
+            echo $tools->render('forms/button', $button_props);
 
-            foreach ($sizes as $size) {
-                $button_props = [
-                    'attributes' => [
-                        'type'  => 'button',
-                        'class' => 'button button--primary button--size-' . $size
-                    ],
-                    'value' => ucfirst($size)
-                ];
-                echo $tools->render('forms/button', $button_props);
+            $button_props = [
+                'tagname' => 'a',
+                'attributes' => [
+                    'href'  => '#!',
+                    'class' => 'button button--primary button--size-' . $size
+                ],
+                'value' => 'Link'
+            ];
+            echo $tools->render('forms/button', $button_props);
 
-                $button_props = [
-                    'tagname' => 'a',
-                    'attributes' => [
-                        'href'  => '#!',
-                        'class' => 'button button--primary button--size-' . $size
-                    ],
-                    'value' => 'Link ' . ucfirst($size)
-                ];
-                echo $tools->render('forms/button', $button_props);
-            }
-            unset($sizes, $size);
-        ?>
+            $button_props = [
+                'attributes' => [
+                    'type'  => 'button',
+                    'class' => 'button button--primary button--icon-prefix button--size-' . $size
+                ],
+                'value'     => 'Button',
+                'icon_href' => '#icon-sprite__arrow-right'
+            ];
+            echo $tools->render('forms/button', $button_props);
 
-    </div>
+            $button_props = [
+                'tagname' => 'a',
+                'attributes' => [
+                    'href'  => '#!',
+                    'class' => 'button button--primary button--icon-suffix button--size-' . $size
+                ],
+                'value' => 'Link',
+                'icon_href' => '#icon-sprite__checkmark'
+            ];
+            echo $tools->render('forms/button', $button_props);
 
-    <div class="widget-container width--full">
+            echo '</div>';
 
-        <?php
-            $sizes = ['small', 'default', 'big'];
-
-            foreach ($sizes as $size) {
-                $button_props = [
-                    'attributes' => [
-                        'type'  => 'button',
-                        'class' => 'button button--primary button--icon-prefix button--size-' . $size
-                    ],
-                    'value'     => ucfirst($size),
-                    'icon_href' => '#icon-sprite__arrow-right'
-                ];
-                echo $tools->render('forms/button', $button_props);
-
-                $button_props = [
-                    'tagname' => 'a',
-                    'attributes' => [
-                        'href'  => '#!',
-                        'class' => 'button button--primary button--icon-suffix button--size-' . $size
-                    ],
-                    'value' => 'Link ' . $size,
-                    'icon_href' => '#icon-sprite__checkmark'
-                ];
-                echo $tools->render('forms/button', $button_props);
-            }
-            unset($sizes, $size);
-        ?>
-
-    </div>
+        }
+        unset($sizes, $size);
+    ?>
 
 </div>
