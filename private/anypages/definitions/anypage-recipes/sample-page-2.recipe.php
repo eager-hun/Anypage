@@ -83,10 +83,13 @@ $box_grid = $tools->render('layouts/flex-grid', [
 
 $suffix = $tools->render('layouts/squeeze', [
     'wrapper_extra_classes' => 'stackable',
-    'squeeze_content' => $tools->render('patterns/lists/ul-icon-prefix', [
-        'items' => [
-            'What happens next, you will never belive'
-        ]
+    'squeeze_content' => $tools->render('forms/button', [
+        'value' => 'This button',
+        'attributes' => [
+            'type'  => 'button',
+            'class' => 'button button--accent-2 button--icon-prefix',
+        ],
+        'icon_href' => '#icon-sprite__arrow-right'
     ])
 ]);
 

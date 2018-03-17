@@ -11,27 +11,27 @@ $boxes_data = [
     [
         'wrapper_extra_classes' => 'color-zone--brand',
         'box_title'             => 'Color zone "Brand"',
-        'button_class'          => 'button--gray',
+        'button_color_class'    => 'button--gray',
     ],
     [
         'wrapper_extra_classes' => 'color-zone--accent-1',
         'box_title'             => 'Color zone "Accent 1"',
-        'button_class'          => 'button--gray',
+        'button_color_class'    => 'button--gray',
     ],
     [
         'wrapper_extra_classes' => 'color-zone--accent-2',
         'box_title'             => 'Color zone "Accent 2"',
-        'button_class'          => 'button--gray',
+        'button_color_class'    => 'button--gray',
     ],
     [
         'wrapper_extra_classes' => 'color-zone--dark',
         'box_title'             => 'Color zone "Dark"',
-        'button_class'          => 'button--accent-2',
+        'button_color_class'    => 'button--accent-2',
     ],
     [
         'wrapper_extra_classes' => 'color-zone--blockfill',
         'box_title'             => 'Color zone "Blockfill"',
-        'button_class'          => 'button--primary',
+        'button_color_class'    => 'button--primary',
     ],
 ];
 
@@ -59,18 +59,35 @@ EOT;
 </ul>
 EOT;
 
-    $button_class = $item['button_class'];
+    $button_color_class = $item['button_color_class'];
+    
+    // For whatever reason, in this anonymous function, the "tools" object is
+    // referred to as $this.
+    $button_1 = $this->render('forms/button', [
+        'value' => 'Button',
+        'attributes' => [
+            'type' => 'button',
+            'class' => 'button button--size-big button--icon-prefix ' . $button_color_class
+        ],
+        'icon_href' => '#icon-sprite__checkmark'
+    ]);
+
+    $button_2 = $this->render('forms/button', [
+        'tagname' => 'a',
+        'value' => 'Link',
+        'attributes' => [
+            'href'  => '#!',
+            'class' => 'button button--size-small button--icon-suffix ' . $button_color_class
+        ],
+        'icon_href' => '#icon-sprite__checkmark'
+    ]);
 
     $box_content .= <<<EOT
 <div class="stackable--grid-match">
-    <button type="button" class="button $button_class">
-        <span class="button__text">Button</span>
-    </button>
+    $button_1
 </div>
 <div class="stackable--grid-match">
-    <a href="#" class="button $button_class">
-        <span class="button__text">Link button</span>
-    </a>
+    $button_2
 </div>
 EOT;
 

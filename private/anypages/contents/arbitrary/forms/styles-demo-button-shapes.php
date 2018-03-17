@@ -140,6 +140,25 @@
                 'value' => 'Link',
                 'icon_href' => '#icon-sprite__checkmark'
             ]);
+
+            echo $tools->render('forms/button', [
+                'attributes' => [
+                    'type'  => 'button',
+                    'class' => 'button button--primary button--icon-prefix'
+                ],
+                'value' => 'Button<br>multi',
+                'icon_href' => '#icon-sprite__arrow-right'
+            ]);
+
+            echo $tools->render('forms/button', [
+                'tagname' => 'a',
+                'attributes' => [
+                    'href'  => '#!',
+                    'class' => 'button button--primary button--icon-suffix'
+                ],
+                'value' => 'Link<br>multi',
+                'icon_href' => '#icon-sprite__checkmark'
+            ]);
         ?>
 
     </div>
