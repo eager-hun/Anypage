@@ -19,7 +19,11 @@ $ul_generic_items = [
 $ul_with_checkmarks_title = '<h2>With checkmark icon prefix</h2>';
 
 $ul_with_checkmarks = $tools->render('patterns/lists/ul-icon-prefix', [
-    'wrapper_extra_classes'  => 'icons--green',
+    'wrapper_attributes'     => [
+        'class' => [
+            'icons--green'
+        ]
+    ],
     'icon_id'                => 'icon-sprite__checkmark',
     'items'                  => $ul_generic_items
 ]);

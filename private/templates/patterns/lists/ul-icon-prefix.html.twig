@@ -1,9 +1,10 @@
-<ul class="ul--icon-prefix {{ wrapper_extra_classes | default('') }}">
+
+<ul {{ attr(wrapper_attributes | default | merge_r({ 'class': ['ul--icon-prefix'] })) }}>
 
     {% for item in items %}
         <li>
             <svg class="svg-icon ul--icon-prefix__icon" aria-hidden="true">
-                <use xlink:href="#{{ icon_id | default('icon-sprite__arrow-right') }}"/>
+                <use xlink:href="#{{ icon_id | default('icon-sprite__arrow-right') }}"></use>
             </svg>
             {{ item | raw }}
         </li>
