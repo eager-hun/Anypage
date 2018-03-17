@@ -22,24 +22,6 @@ echo $tools->render('patterns/texts/title-with-description', [
 echo $tools->addFillerText('m', 1, true);
 
 // -----------------------------------------------------------------------------
-// Second example.
-
-$t_2 = '<h2>Example with a bit more description</h2>';
-$t_2_desc_md = <<<EOT
-Several paragraphs might end up appearing within a description of this kind.
-
-Aiming for short, conscise extents of text lengths however might be useful here.
-EOT;
-$t_2_desc = $tools->markdown($t_2_desc_md);
-
-echo $tools->render('patterns/texts/title-with-description', [
-    'title' => $t_2,
-    'description' => $t_2_desc
-]);
-
-echo $tools->addFillerText('m', 2, true);
-
-// -----------------------------------------------------------------------------
 // Third example.
 
 $t_2 = '<h2>Demo title with diverse description</h2>';
