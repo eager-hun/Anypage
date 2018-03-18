@@ -89,6 +89,7 @@ $attributes_func = new Twig_Function('attr', function($attributes) {
         'id',
         'class',
         'href',
+        'name',
         'value',
         'type',
         'placeholder',

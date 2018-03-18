@@ -37,6 +37,11 @@ $button_shapes_html = $tools->importFileContent(
     'php'
 );
 
+$choice_inputs_html = $tools->importFileContent(
+    APS_CONTENTS . '/arbitrary/forms/styles-demo-choice-inputs.php',
+    'php'
+);
+
 $form_arrangement_html = $tools->importFileContent(
     APS_CONTENTS . '/arbitrary/forms/styles-demo-form-arrangement.php',
     'php'
@@ -84,6 +89,15 @@ $buttons_demo = <<<EOT
 EOT;
 
 $page_levels[] = $buttons_title . $buttons_demo;
+
+// -----------------------------------------------------------------------------
+// Checkboxes & radios.
+
+$choices_title = '<h2 id="choice-inputs" class="underlined">Checkboxes & radios</h2>';
+
+$choices = "<form action='#'>$choice_inputs_html</form>";
+
+$page_levels[] = $choices_title . $choices;
 
 // -----------------------------------------------------------------------------
 // Form arrangement.

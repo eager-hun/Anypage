@@ -1,0 +1,10 @@
+
+{% import "macros.html.twig" as macros %}
+
+<label class="label label--choice-input {{ label_extra_classes | default('') }}">
+    <span class="input-nest">
+        <input {{ macros.form_widget_attributes(attributes) }}>
+        <span class="pseudo-input"></span>
+    </span>
+    <span class="label-text">{{ label }}</span>
+</label>

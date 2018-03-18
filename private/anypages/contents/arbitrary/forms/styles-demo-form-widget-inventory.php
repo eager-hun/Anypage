@@ -128,27 +128,23 @@ $misc_widgets_manifest = [
         ],
     ],
     [
-        'label_data' => [
-            'text' => 'Checkbox',
-        ],
         'widget_data' => [
-            'template' => 'forms/input--checkbox',
+            'template' => 'forms/input--choice',
             'attributes' => [
                 'type' => 'checkbox',
                 'id' => 'widget-inventory__checkbox',
             ],
+            'label' => 'Checkbox'
         ],
     ],
     [
-        'label_data' => [
-            'text' => 'Radio',
-        ],
         'widget_data' => [
-            'template' => 'forms/input--radio',
+            'template' => 'forms/input--choice',
             'attributes' => [
                 'type' => 'radio',
                 'id' => 'widget-inventory__radio',
             ],
+            'label' => 'Radio'
         ],
     ],
     [
@@ -207,19 +203,24 @@ foreach ($all_widgets_manifest as $widget_manifest) {
         $widget_manifest['widget_data']
     );
 
-    $rendered_label = $tools->render(
-        'forms/label--as-sibling',
-        [
-            'extra_classes' => 'label--above',
-            'widget_id' => $widget_manifest['widget_data']['attributes']['id'],
-            'text' => $widget_manifest['label_data']['text'],
-        ]
-    );
+    if ( ! empty($widget_manifest['label_data'])) {
+        $rendered_label = $tools->render(
+            'forms/label--as-sibling',
+            [
+                'extra_classes' => 'label--above',
+                'widget_id' => $widget_manifest['widget_data']['attributes']['id'],
+                'text' => $widget_manifest['label_data']['text'],
+            ]
+        );
+    }
 
     $widget_container_data = [
-        'label' => $rendered_label,
         'widget' => $rendered_widget,
     ];
+
+    if ( ! empty($widget_manifest['label_data'])) {
+        $widget_container_data['label'] = $rendered_label;
+    }
 
     if ( ! empty($widget_manifest['container_data']['helptext'])) {
         $widget_container_data['helptext'] =
