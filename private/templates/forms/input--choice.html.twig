@@ -1,10 +1,29 @@
 
 {% import "macros.html.twig" as macros %}
 
+{#
+TODO:
+use a separate SVG icon sprite for these SVGs, such one that is always inlined
+in the HTML document and therefore never requested as a separate file.
+
+Proper working of form inputs are critical, let's not risk losing these icons in
+some network error or somesuch while requesting them.
+#}
+
+{% if attributes.type == 'checkbox' %}
+  {% set icon_id = 'icon-sprite__checkmark' %}
+{% elseif attributes.type == 'radio' %}
+  {% set icon_id = 'icon-sprite__filled-circle' %}
+{% endif %}
+
 <label class="label enhanced-choice {{ wrapper_extra_classes | default('') }}">
     <span class="input-nest">
         <input {{ macros.form_widget_attributes(attributes) }}>
-        <span class="pseudo-input"></span>
+        <span class="pseudo-input">
+            <svg>
+                <use xlink:href="#{{ icon_id }}"></use>
+            </svg>
+        </span>
     </span>
     <span class="label-text">{{ label }}</span>
 </label>
