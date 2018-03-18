@@ -134,7 +134,8 @@ $misc_widgets_manifest = [
                 'type' => 'checkbox',
                 'id' => 'widget-inventory__checkbox',
             ],
-            'label' => 'Checkbox'
+            'label' => 'Checkbox',
+            'wrapper_extra_classes' => 'enhanced-choice--stacked',
         ],
     ],
     [
@@ -144,7 +145,8 @@ $misc_widgets_manifest = [
                 'type' => 'radio',
                 'id' => 'widget-inventory__radio',
             ],
-            'label' => 'Radio'
+            'label' => 'Radio',
+            'wrapper_extra_classes' => 'enhanced-choice--stacked',
         ],
     ],
     [
@@ -233,4 +235,4 @@ foreach ($all_widgets_manifest as $widget_manifest) {
     );
 }
 
-echo "<form action='#'>$rendered_widgets_inventory</form>";
+echo $rendered_widgets_inventory;

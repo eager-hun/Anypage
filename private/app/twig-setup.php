@@ -96,7 +96,7 @@ $attributes_func = new Twig_Function('attr', function($attributes) {
         'required',
         'disabled',
         'readonly',
-        'data-foo'
+        'checked',
     ];
 
     $output = [];
@@ -112,7 +112,7 @@ $attributes_func = new Twig_Function('attr', function($attributes) {
             $output[] = $key . '="' . $value . '"';
         }
     }
-    unset($attributes, $attribute);
+    unset($key, $value);
 
     return implode($output, ' ');
 

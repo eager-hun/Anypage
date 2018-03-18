@@ -8,7 +8,7 @@
         $type = 'checkbox';
         $name = 'liked_fruits';
 
-        $widget_defs = [
+        $multifruit_widget_defs = [
             [
                 'label' => 'Grapes',
                 'attributes' => [
@@ -22,19 +22,31 @@
                 ],
             ],
             [
+                'label' => 'Apple',
+                'attributes' => [
+                    'value' => 'apple'
+                ],
+            ],
+            [
                 'label' => 'Pear',
                 'attributes' => [
                     'value' => 'pear'
                 ],
             ],
         ];
-        foreach ($widget_defs as $widget_props) {
+        foreach ($multifruit_widget_defs as $index => $widget_props) {
             $widget_props['attributes']['type'] = $type;
             $widget_props['attributes']['name'] = $name;
-            $widget_props['label_extra_classes'] = 'choice-input--inline';
+            $widget_props['wrapper_extra_classes'] = 'enhanced-choice--inline';
+
+            switch($index) {
+                case 1:
+                    $widget_props['attributes'][] = 'checked';
+            }
+
             echo $tools->render('forms/input--choice', $widget_props);
         }
-        unset($type, $name, $widget_defs, $widget_props);
+        unset($type, $name, $widget_props);
         ?>
     </div>
 
@@ -45,7 +57,7 @@
         $type = 'radio';
         $name = 'most_liked_fruit';
 
-        $widget_defs = [
+        $singlefruit_widget_defs = [
             [
                 'label' => 'Grapes',
                 'attributes' => [
@@ -59,19 +71,88 @@
                 ],
             ],
             [
+                'label' => 'Apple',
+                'attributes' => [
+                    'value' => 'apple'
+                ],
+            ],
+            [
                 'label' => 'Pear',
                 'attributes' => [
                     'value' => 'pear'
                 ],
             ],
         ];
-        foreach ($widget_defs as $widget_props) {
+        foreach ($singlefruit_widget_defs as $index => $widget_props) {
             $widget_props['attributes']['type'] = $type;
             $widget_props['attributes']['name'] = $name;
-            $widget_props['label_extra_classes'] = 'choice-input--inline';
+            $widget_props['wrapper_extra_classes'] = 'enhanced-choice--inline';
+
+            switch($index) {
+                case 1:
+                    $widget_props['attributes'][] = 'checked';
+            }
+
             echo $tools->render('forms/input--choice', $widget_props);
         }
-        unset($type, $name, $widget_defs, $widget_props);
+        unset($type, $name, $widget_props);
+        ?>
+    </div>
+
+    <div class="widget-container width--half">
+        <h4>Pick some fruits that you like</h4>
+
+        <?php
+        $type = 'checkbox';
+        $name = 'liked_fruits_with_states';
+
+        foreach ($multifruit_widget_defs as $index => $widget_props) {
+            $widget_props['attributes']['type'] = $type;
+            $widget_props['attributes']['name'] = $name;
+            $widget_props['wrapper_extra_classes'] = 'enhanced-choice--inline';
+
+            switch($index) {
+                case 0:
+                    $widget_props['attributes']['class'] = 'has-error';
+                    break;
+                case 1:
+                    $widget_props['attributes']['class'] = 'has-error';
+                    $widget_props['attributes'][] = 'checked';
+                    break;
+                case 2:
+                    $widget_props['attributes'][] = 'disabled';
+                    break;
+                case 3:
+                    $widget_props['attributes'][] = 'disabled';
+                    $widget_props['attributes'][] = 'checked';
+            }
+            echo $tools->render('forms/input--choice', $widget_props);
+        }
+        unset($type, $name, $widget_props);
+        ?>
+    </div>
+
+    <div class="widget-container width--half">
+        <h4>Pick the fruit you like most</h4>
+
+        <?php
+        $type = 'radio';
+        $name = 'most_liked_fruit_with_error';
+
+        foreach ($singlefruit_widget_defs as $index => $widget_props) {
+            $widget_props['attributes']['type'] = $type;
+            $widget_props['attributes']['name'] = $name;
+            $widget_props['attributes']['class'] = 'has-error';
+            $widget_props['wrapper_extra_classes'] = 'enhanced-choice--inline';
+
+            switch($index) {
+                case 1:
+                    $widget_props['attributes'][] = 'checked';
+            }
+
+            echo $tools->render('forms/input--choice', $widget_props);
+        }
+        unset($type, $name, $widget_props);
         ?>
     </div>
 
@@ -82,7 +163,7 @@
         $type = 'checkbox';
         $name = 'why_late_reasons';
 
-        $widget_defs = [
+        $whylate_widget_defs = [
             [
                 'label' => 'I keep telling myself to go to bed by ten in the evening, but last night I did not manage to do so. So I overslept.',
                 'attributes' => [
@@ -101,20 +182,15 @@
                     'value' => 'forgot_where_to_work'
                 ],
             ],
-            [
-                'label' => 'I was not late.',
-                'attributes' => [
-                    'value' => 'denial',
-                    'disabled'
-                ],
-            ],
         ];
-        foreach ($widget_defs as $widget_props) {
+        foreach ($whylate_widget_defs as $widget_props) {
             $widget_props['attributes']['type'] = $type;
             $widget_props['attributes']['name'] = $name;
+            $widget_props['wrapper_extra_classes'] = 'enhanced-choice--stacked';
+
             echo $tools->render('forms/input--choice', $widget_props);
         }
-        unset($type, $name, $widget_defs, $widget_props);
+        unset($type, $name, $widget_props);
         ?>
     </div>
 
@@ -125,7 +201,7 @@
         $type = 'radio';
         $name = 'work_on_first';
 
-        $widget_defs = [
+        $workonfirst_widget_defs = [
             [
                 'label' => 'I could look into implementing these customized, fancy-looking checkboxes and radio-buttons.',
                 'attributes' => [
@@ -144,20 +220,15 @@
                     'value' => 'grids'
                 ],
             ],
-            [
-                'label' => "Install Bootstrap?",
-                'attributes' => [
-                    'value' => 'bs',
-                    'disabled'
-                ],
-            ],
         ];
-        foreach ($widget_defs as $widget_props) {
+        foreach ($workonfirst_widget_defs as $widget_props) {
             $widget_props['attributes']['type'] = $type;
             $widget_props['attributes']['name'] = $name;
+            $widget_props['wrapper_extra_classes'] = 'enhanced-choice--stacked';
+
             echo $tools->render('forms/input--choice', $widget_props);
         }
-        unset($type, $name, $widget_defs, $widget_props);
+        unset($type, $name, $widget_props);
         ?>
     </div>
 

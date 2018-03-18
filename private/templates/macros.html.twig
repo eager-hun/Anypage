@@ -2,16 +2,17 @@
 
 {% macro form_widget_attributes(attributes_array) %}
     {% set attribute_whitelist = [
-        'type',
         'id',
         'class',
-        'placeholder',
+        'href',
         'name',
         'value',
-        'href',
+        'type',
+        'placeholder',
         'required',
         'disabled',
         'readonly',
+        'checked',
     ] %}
 
     {% for key, value in attributes_array %}

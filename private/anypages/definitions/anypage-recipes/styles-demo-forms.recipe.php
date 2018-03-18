@@ -95,9 +95,9 @@ $page_levels[] = $buttons_title . $buttons_demo;
 
 $choices_title = '<h2 id="choice-inputs" class="underlined">Checkboxes & radios</h2>';
 
-$choices = "<form action='#'>$choice_inputs_html</form>";
+$choices_demo = "<form action='#'>$choice_inputs_html</form>";
 
-$page_levels[] = $choices_title . $choices;
+$page_levels[] = $choices_title . $choices_demo;
 
 // -----------------------------------------------------------------------------
 // Form arrangement.
@@ -118,10 +118,12 @@ $form_size_demos = <<<EOT
 <h3>Small form</h3>
 <form action="#" class="form--small">$form_arrangement_html</form>
 <form action="#" class="form--small stackable">$button_shapes_html</form>
+<form action="#" class="form--small stackable">$choice_inputs_html</form>
 
 <h3>Big form</h3>
 <form action="#" class="form--big">$form_arrangement_html</form>
 <form action="#" class="form--big stackable">$button_shapes_html</form>
+<form action="#" class="form--big stackable">$choice_inputs_html</form>
 EOT;
 
 $page_levels[] = $form_size_variants_title . $form_size_demos;
@@ -155,6 +157,10 @@ $color_zone_form_demos = <<<EOT
 
 <form action="#" class="stackable--major">
     $button_variants_html
+</form>
+
+<form action="#" class="stackable--major">
+    $choice_inputs_html
 </form>
 EOT;
 
