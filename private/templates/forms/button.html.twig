@@ -4,7 +4,7 @@
 <{{ tagname | default('button') }} {{ macros.form_widget_attributes(attributes) }}>
     {% if icon_href is defined %}
         <span class="button__icon-nest">
-            <svg class="svg-icon button__icon">
+            <svg class="svg-icon button__icon" focusable="false">
                 <use xlink:href="{{ icon_href }}"></use>
             </svg>
         </span>
