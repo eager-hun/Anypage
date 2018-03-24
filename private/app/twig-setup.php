@@ -97,6 +97,7 @@ $attributes_func = new Twig_Function('attr', function($attributes) {
         'disabled',
         'readonly',
         'checked',
+        'data-foo',
     ];
 
     $output = [];
@@ -119,6 +120,46 @@ $attributes_func = new Twig_Function('attr', function($attributes) {
 }, ['is_safe' => ['html']]);
 
 $twig->addFunction($attributes_func);
+
+// -----------------------------------------------------------------------------
+// Custom function: `extendAttrs`.
+
+$extend_attributes_func = new Twig_Function('extendAttrs', function(
+    $attributes = [], $key, $value, $force = false
+) {
+
+    if ( ! is_array($attributes)) {
+        $attributes = [];
+    }
+
+    // Overriding / modifying existing attribute.
+    if (array_key_exists($key, $attributes)) {
+        if ($key == 'class' && is_string($value)) {
+            // Class attrib's value is expected to be an array.
+            $attributes[$key] = $attributes[$key][] = $value;
+        }
+        elseif ($key == 'class' && is_array($value)) {
+            $attributes[$key] = array_merge($attributes[$key], $value);
+        }
+        elseif ($force == true) {
+            $attributes[$key] = $value;
+        }
+    }
+    // Adding as a new attribute.
+    else {
+        if ($key == 'class' && is_string($value)) {
+            // Class attrib's value is expected to be an array.
+            $attributes[$key] = [$value];
+        }
+        else {
+            $attributes[$key] = $value;
+        }
+    }
+
+    return $attributes;
+});
+
+$twig->addFunction($extend_attributes_func);
 
 
 // #############################################################################

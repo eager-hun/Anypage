@@ -1,5 +1,7 @@
 
-<ul {{ attr(wrapper_attributes | default | merge_r({ 'class': ['ul--icon-prefix'] })) }}>
+{% set wrapper_attributes = extendAttrs(wrapper_attributes | default, 'class', 'ul--icon-prefix') %}
+
+<ul {{ attr(wrapper_attributes) }}>
 
     {% for item in items %}
         <li>
