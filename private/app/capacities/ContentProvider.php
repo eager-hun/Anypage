@@ -18,6 +18,11 @@ class ContentProvider
     {
         $this->processManager = $processManager;
         $this->capacities = $capacities;
+
+        $anypage_functions = ANYPAGES . '/functions.php';
+        if (file_exists($anypage_functions)) {
+            include_once($anypage_functions);
+        }
     }
 
     /**
