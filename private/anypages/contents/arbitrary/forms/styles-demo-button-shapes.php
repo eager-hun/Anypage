@@ -1,6 +1,5 @@
 <div class="form-arrangement">
 
-
     <div class="widget-container width--full">
         <h4>Button sizes inherited from form</h4>
     </div>

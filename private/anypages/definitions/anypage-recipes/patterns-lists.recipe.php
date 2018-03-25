@@ -1,6 +1,5 @@
 <?php
 
-
 $page_title = $tools->render('page/page-title', [
     'page_title_text' => 'Custom lists'
 ]);

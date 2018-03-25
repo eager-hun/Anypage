@@ -18,11 +18,6 @@ class ContentProvider
     {
         $this->processManager = $processManager;
         $this->capacities = $capacities;
-
-        $anypage_functions = ANYPAGES . '/functions.php';
-        if (file_exists($anypage_functions)) {
-            include_once($anypage_functions);
-        }
     }
 
     /**
@@ -52,7 +47,13 @@ class ContentProvider
                 // Let's make helper stuffs available for page recipes.
                 $tools  = $this->capacities->get('tools');
 
-                // Bring in page's content.
+                // Make custom functions available for page recipes.
+                $anypage_functions = ANYPAGES . '/functions.php';
+                if (file_exists($anypage_functions)) {
+                    include_once($anypage_functions);
+                }
+
+                // Bring in the page's content.
                 ob_start();
                 include($recipe_file);
                 $output = ob_get_clean();
