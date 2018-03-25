@@ -99,11 +99,17 @@ $attributes_func = new Twig_Function('attr', function($attributes) {
         $isArrayHoldingAttribute =
             $GLOBALS['ap_security']->isArrayHoldingHtmlAttribute($key);
 
-        if (is_numeric($key) && in_array($value, $attribute_whitelist)) {
+        if (is_numeric($key)) {
+            if ( ! in_array($value, $attribute_whitelist)) {
+                continue;
+            }
+
             $output[] = $value;
         }
-        elseif ( ! empty($isArrayHoldingAttribute)
-            && in_array($key, $attribute_whitelist)) {
+        elseif ( ! empty($isArrayHoldingAttribute)) {
+            if ( ! in_array($key, $attribute_whitelist)) {
+                continue;
+            }
 
             if (array_key_exists('separator', $arrayHoldingHtmlAttributes[$key])) {
                 $glue = $arrayHoldingHtmlAttributes[$key]['separator'];
@@ -111,6 +117,7 @@ $attributes_func = new Twig_Function('attr', function($attributes) {
             else {
                 $glue = ' '; // Fallback.
             }
+
             $output[] = $key . '="' . implode($glue, $value) . '"';
         }
         elseif (in_array($key, $attribute_whitelist)) {
@@ -130,7 +137,7 @@ $twig->addFunction($attributes_func);
 
 $extend_attributes_func = new Twig_Function('extendAttrs',
     function(
-        Twig_Environment $env, $attributes = [], $key, $value, $force = false
+        Twig_Environment $env, $attributes = [], $key, $value = NULL, $force = false
     ) {
 
         if ( ! is_array($attributes)) {
@@ -140,8 +147,11 @@ $extend_attributes_func = new Twig_Function('extendAttrs',
         $isArrayHoldingAttribute =
             $GLOBALS['ap_security']->isArrayHoldingHtmlAttribute($key);
 
+        if (is_null($value)) {
+            $attributes[] = $key;
+        }
         // Overriding / modifying existing attribute.
-        if (array_key_exists($key, $attributes)) {
+        elseif (array_key_exists($key, $attributes)) {
             if ($isArrayHoldingAttribute && is_string($value)) {
                 $attributes[$key][] = $value;
             }
