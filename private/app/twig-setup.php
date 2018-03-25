@@ -71,9 +71,7 @@ $filter_merge_recursive = new Twig_Filter('merge_r', function($arg1, $arg2) {
     elseif (is_array($arg1) && ! is_array($arg2)) {
         return $arg1;
     }
-    else {
-        return [];
-    }
+    return [];
 });
 
 $twig->addFilter($filter_merge_recursive);
@@ -81,9 +79,10 @@ $twig->addFilter($filter_merge_recursive);
 // -----------------------------------------------------------------------------
 // Custom function: `extendAttrs`.
 
-$extend_attributes_func = new Twig_Function('extendAttrs',
+$extend_attributes_func = new Twig_Function(
+    'extendAttrs',
     function(
-        Twig_Environment $env, $attributes = [], $key, $value = NULL, $force = false
+        $attributes = [], $name, $value = NULL, $force = false
     ) {
 
         if ( ! is_array($attributes)) {
@@ -91,37 +90,35 @@ $extend_attributes_func = new Twig_Function('extendAttrs',
         }
 
         $isArrayHoldingAttribute =
-            $GLOBALS['ap_security']->isArrayHoldingHtmlAttribute($key);
+            $GLOBALS['ap_security']->isArrayHoldingHtmlAttribute($name);
 
         if (is_null($value)) {
-            $attributes[] = $key;
+            $attributes[] = $name;
         }
         // Overriding / modifying existing attribute.
-        elseif (array_key_exists($key, $attributes)) {
+        elseif (array_key_exists($name, $attributes)) {
             if ($isArrayHoldingAttribute && is_string($value)) {
-                $attributes[$key][] = $value;
+                $attributes[$name][] = $value;
             }
             elseif ($isArrayHoldingAttribute && is_array($value)) {
-                $attributes[$key] = array_merge($attributes[$key], $value);
+                $attributes[$name] = array_merge($attributes[$name], $value);
             }
             elseif ($force == true) {
-                $attributes[$key] = $value;
+                $attributes[$name] = $value;
             }
         }
         // Adding as a new attribute.
         else {
             if ($isArrayHoldingAttribute && is_string($value)) {
-                $attributes[$key] = [$value];
+                $attributes[$name] = [$value];
             }
             else {
-                $attributes[$key] = $value;
+                $attributes[$name] = $value;
             }
         }
 
         return $attributes;
-    },
-    ['needs_environment' => true]
-);
+    });
 
 $twig->addFunction($extend_attributes_func);
 
