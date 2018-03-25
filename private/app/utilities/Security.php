@@ -10,13 +10,19 @@ class Security
 {
 
     protected $processManager;
+    protected $config;
+    public $arrayHoldingHtmlAttributes;
 
     public function __construct(
         ProcessManager $processManager
     )
     {
         $this->processManager = $processManager;
+        $this->config = $processManager->getConfig('config');
+        $this->arrayHoldingHtmlAttributes = $this
+            ->collectArrayHoldingHtmlAttributes();
     }
+
 
     /**
      * NOTE: unimplemented yet therefore unsafe!
@@ -37,6 +43,7 @@ class Security
                 return $input;
         }
     }
+
 
     /**
      * NOTE: unimplemented yet therefore unsafe!
@@ -80,6 +87,7 @@ class Security
         }
     }
 
+
     /**
      * Validates a string.
      *
@@ -101,5 +109,60 @@ class Security
             );
             return FALSE;
         }
+    }
+
+
+    /**
+     * HTML attribute whitelist.
+     */
+    public $html_attribute_whitelist = [
+        'id',
+        'class',
+        'href',
+        'name',
+        'value',
+        'type',
+        'placeholder',
+        'required',
+        'disabled',
+        'readonly',
+        'checked',
+        'data-foo',
+        'data-foo-array',
+        'data-bar-array',
+    ];
+
+
+    /**
+     * Determines which HTML attributes are handled as arrays.
+     *
+     * @return array
+     */
+    protected function collectArrayHoldingHtmlAttributes() {
+        $default_array_holding_attribs = [
+            'class' => [
+                'separator' => ' ',
+            ],
+        ];
+
+        $custom_array_holding_attribs = $this
+            ->config['code']['html-attribute-values-handled-as-array'];
+
+        // TODO:
+        // Maybe at this point check whether the custom definitions interfere
+        // with the predefined defaults' values.
+
+        return array_merge_recursive(
+            $custom_array_holding_attribs,
+            $default_array_holding_attribs
+        );
+    }
+
+
+    /**
+     * Tells whether an attribute is meant to hold its value as an array.
+     */
+    public function isArrayHoldingHtmlAttribute($attribute_name) {
+        return in_array($attribute_name, array_keys($this->arrayHoldingHtmlAttributes));
     }
 }

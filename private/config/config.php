@@ -99,6 +99,17 @@ return [
         ],
     ],
 
+    'code' => [
+        'html-attribute-values-handled-as-array' => [
+            'data-foo-array' => [
+                'separator' => ', ',
+            ],
+            'data-bar-array' => [
+                'separator' => '; ',
+            ],
+        ]
+    ],
+
     'frontend-assets' => [
         /**
          * Where window.apSettings and window.apAssets js objects get printed.

@@ -83,31 +83,35 @@ $twig->addFilter($filter_merge_recursive);
 
 // NOTE: highly experimental + UNSAFE.
 
-$attributes_func = new Twig_Function('attr', function($attributes) {
+// FIXME.
+$GLOBALS['ap_security'] = $capacities->get('security');
 
-    $attribute_whitelist = [
-        'id',
-        'class',
-        'href',
-        'name',
-        'value',
-        'type',
-        'placeholder',
-        'required',
-        'disabled',
-        'readonly',
-        'checked',
-        'data-foo',
-    ];
+$attributes_func = new Twig_Function('attr', function($attributes) {
 
     $output = [];
 
+    $attribute_whitelist = $GLOBALS['ap_security']->html_attribute_whitelist;
+
+    $arrayHoldingHtmlAttributes =
+        $GLOBALS['ap_security']->arrayHoldingHtmlAttributes;
+
     foreach ($attributes as $key => $value) {
+        $isArrayHoldingAttribute =
+            $GLOBALS['ap_security']->isArrayHoldingHtmlAttribute($key);
+
         if (is_numeric($key) && in_array($value, $attribute_whitelist)) {
             $output[] = $value;
         }
-        elseif ($key == 'class') {
-            $output[] = 'class="' . implode($value, ' ') . '"';
+        elseif ( ! empty($isArrayHoldingAttribute)
+            && in_array($key, $attribute_whitelist)) {
+
+            if (array_key_exists('separator', $arrayHoldingHtmlAttributes[$key])) {
+                $glue = $arrayHoldingHtmlAttributes[$key]['separator'];
+            }
+            else {
+                $glue = ' '; // Fallback.
+            }
+            $output[] = $key . '="' . implode($glue, $value) . '"';
         }
         elseif (in_array($key, $attribute_whitelist)) {
             $output[] = $key . '="' . $value . '"';
@@ -124,40 +128,44 @@ $twig->addFunction($attributes_func);
 // -----------------------------------------------------------------------------
 // Custom function: `extendAttrs`.
 
-$extend_attributes_func = new Twig_Function('extendAttrs', function(
-    $attributes = [], $key, $value, $force = false
-) {
+$extend_attributes_func = new Twig_Function('extendAttrs',
+    function(
+        Twig_Environment $env, $attributes = [], $key, $value, $force = false
+    ) {
 
-    if ( ! is_array($attributes)) {
-        $attributes = [];
-    }
+        if ( ! is_array($attributes)) {
+            $attributes = [];
+        }
 
-    // Overriding / modifying existing attribute.
-    if (array_key_exists($key, $attributes)) {
-        if ($key == 'class' && is_string($value)) {
-            // Class attrib's value is expected to be an array.
-            $attributes[$key] = $attributes[$key][] = $value;
+        $isArrayHoldingAttribute =
+            $GLOBALS['ap_security']->isArrayHoldingHtmlAttribute($key);
+
+        // Overriding / modifying existing attribute.
+        if (array_key_exists($key, $attributes)) {
+            if ($isArrayHoldingAttribute && is_string($value)) {
+                $attributes[$key][] = $value;
+            }
+            elseif ($isArrayHoldingAttribute && is_array($value)) {
+                $attributes[$key] = array_merge($attributes[$key], $value);
+            }
+            elseif ($force == true) {
+                $attributes[$key] = $value;
+            }
         }
-        elseif ($key == 'class' && is_array($value)) {
-            $attributes[$key] = array_merge($attributes[$key], $value);
-        }
-        elseif ($force == true) {
-            $attributes[$key] = $value;
-        }
-    }
-    // Adding as a new attribute.
-    else {
-        if ($key == 'class' && is_string($value)) {
-            // Class attrib's value is expected to be an array.
-            $attributes[$key] = [$value];
-        }
+        // Adding as a new attribute.
         else {
-            $attributes[$key] = $value;
+            if ($isArrayHoldingAttribute && is_string($value)) {
+                $attributes[$key] = [$value];
+            }
+            else {
+                $attributes[$key] = $value;
+            }
         }
-    }
 
-    return $attributes;
-});
+        return $attributes;
+    },
+    ['needs_environment' => true]
+);
 
 $twig->addFunction($extend_attributes_func);
 
