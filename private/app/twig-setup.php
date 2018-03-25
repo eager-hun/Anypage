@@ -81,7 +81,7 @@ $twig->addFilter($filter_merge_recursive);
 
 $extend_attributes_func = new Twig_Function(
     'extendAttrs',
-    function($name, $value = NULL, $attributes = [], $force = false) {
+    function($name, $value = NULL, $attributes, $overwrite = false) {
 
         // It can happen that Twig's `default` filter provides an empty string.
         if ( ! is_array($attributes)) {
@@ -102,7 +102,7 @@ $extend_attributes_func = new Twig_Function(
             elseif ($isArrayHoldingAttribute && is_array($value)) {
                 $attributes[$name] = array_merge($attributes[$name], $value);
             }
-            elseif ($force == true) {
+            elseif ($overwrite == true) {
                 $attributes[$name] = $value;
             }
         }
@@ -126,7 +126,7 @@ $twig->addFunction($extend_attributes_func);
 
 $add_class_func = new Twig_Function(
     'addClass',
-    function($value, $attributes = []) {
+    function($value, $attributes) {
 
         // It can happen that Twig's `default` filter provides an empty string.
         if ( ! is_array($attributes)) {
@@ -158,7 +158,7 @@ $twig->addFunction($add_class_func);
 // FIXME.
 $GLOBALS['ap_security'] = $capacities->get('security');
 
-$attributes_func = new Twig_Function('attr', function($attributes = []) {
+$attributes_func = new Twig_Function('attr', function($attributes) {
 
     $output = [];
 

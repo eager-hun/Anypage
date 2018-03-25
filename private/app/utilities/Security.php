@@ -128,6 +128,7 @@ class Security
         'readonly',
         'checked',
         'data-foo',
+        'data-bar',
         'data-foo-array',
         'data-bar-array',
     ];
