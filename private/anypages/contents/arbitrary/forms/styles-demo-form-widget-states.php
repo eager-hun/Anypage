@@ -37,31 +37,27 @@ foreach ($widget_states as $state) {
     foreach ($widget_contents as $context => $content) {
         $sequence_index++;
 
+        $id = $tools->uniqueId('form-widget-states-demo');
+
         $template_manifest_current = [
             'label_data' => [
+                'widget_id' => $id,
                 'text' => ucfirst(strtolower($state)),
             ],
+            'widget_data' => [
+                'attributes' => [
+                    'id' => $id,
+                    $state => $state,
+                ]
+            ]
         ];
 
-        if (empty($content)) {
+        if ( ! empty($content)) {
             $template_manifest_current = array_merge_recursive(
                 $template_manifest_current,
                 [
                     'widget_data' => [
                         'attributes' => [
-                            $state => $state,
-                        ]
-                    ]
-                ]
-            );
-        }
-        else {
-            $template_manifest_current = array_merge_recursive(
-                $template_manifest_current,
-                [
-                    'widget_data' => [
-                        'attributes' => [
-                            $state => $state,
                             $context => $content,
                         ]
                     ]

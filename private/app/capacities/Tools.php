@@ -209,4 +209,18 @@ class Tools
 
         return $output;
     }
+
+    protected $uniqueIdIndex = 0;
+
+    /**
+     * Ensures an id is unique.
+     *
+     * @param $base_string
+     * @return string
+     */
+    public function uniqueId($base_string) {
+        $this->uniqueIdIndex++;
+
+        return $base_string . '-' . $this->uniqueIdIndex;
+    }
 }

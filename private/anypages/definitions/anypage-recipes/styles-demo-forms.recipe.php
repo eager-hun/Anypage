@@ -17,13 +17,12 @@ $page_levels[] = $tools->render('page/page-title', [
 // #############################################################################
 // Importing reusable demo contents.
 
+// NOTE: most of the demos will end up being non-reusable, due to how the
+// unique-id feature works.
+// To keep HTML id's unique, some demos will repeatedly need to be reincluded.
+
 $widgets_inventory_html = $tools->importFileContent(
     APS_CONTENTS . '/arbitrary/forms/styles-demo-form-widget-inventory.php',
-    'php'
-);
-
-$widgets_states_html = $tools->importFileContent(
-    APS_CONTENTS . '/arbitrary/forms/styles-demo-form-widget-states.php',
     'php'
 );
 
@@ -63,7 +62,12 @@ $page_levels[] = $widgets_inventory_title . $widgets_inventory;
 
 $widgets_states_title = '<h2 class="underlined">Widget states</h2>';
 
-$widgets_states = "<form action='#'>$widgets_states_html</form>";
+$widgets_states = "<form action='#'>";
+$widgets_states .= $tools->importFileContent(
+    APS_CONTENTS . '/arbitrary/forms/styles-demo-form-widget-states.php',
+    'php'
+);
+$widgets_states .= "</form>";
 
 $page_levels[] = $widgets_states_title . $widgets_states;
 
@@ -150,27 +154,34 @@ $color_zones = [
     'dark'
 ];
 
-$color_zone_form_demos = <<<EOT
-<form action="#">
-    $widgets_states_html
-</form>
+foreach ($color_zones as $color_zone_name) {
+    $widgets_states = "<form action='#'>";
+    $widgets_states .= $tools->importFileContent(
+        APS_CONTENTS . '/arbitrary/forms/styles-demo-form-widget-states.php',
+        'php'
+    );
+    $widgets_states .= "</form>";
 
-<form action="#" class="stackable--major">
-    $button_variants_html
-</form>
-
-<form action="#" class="stackable--major">
-    $choice_inputs_html
-</form>
+    $color_zone_form_demos = <<<EOT
+        <form action="#">
+            $widgets_states
+        </form>
+        
+        <form action="#" class="stackable--major">
+            $button_variants_html
+        </form>
+        
+        <form action="#" class="stackable--major">
+            $choice_inputs_html
+        </form>
 EOT;
 
-foreach ($color_zones as $color_zone) {
     echo $tools->render('layouts/page-level', [
-        'wrapper_extra_classes' => 'has-bg color-zone color-zone--' . $color_zone,
+        'wrapper_extra_classes' => 'has-bg color-zone color-zone--' . $color_zone_name,
         'page_level_content' => $tools->render('layouts/squeeze', [
             'wrapper_extra_classes' => 'fit-content',
             'squeeze_content' => '<h2 class="page-level__title">'
-                . "Color zone $color_zone</h2>"
+                . "Color zone $color_zone_name</h2>"
                 . $color_zone_form_demos
         ])
     ]);
