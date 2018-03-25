@@ -81,10 +81,9 @@ $twig->addFilter($filter_merge_recursive);
 
 $extend_attributes_func = new Twig_Function(
     'extendAttrs',
-    function(
-        $attributes = [], $name, $value = NULL, $force = false
-    ) {
+    function($name, $value = NULL, $attributes = [], $force = false) {
 
+        // It can happen that Twig's `default` filter provides an empty string.
         if ( ! is_array($attributes)) {
             $attributes = [];
         }
@@ -123,6 +122,35 @@ $extend_attributes_func = new Twig_Function(
 $twig->addFunction($extend_attributes_func);
 
 // -----------------------------------------------------------------------------
+// Custom function: `addClass`.
+
+$add_class_func = new Twig_Function(
+    'addClass',
+    function($value, $attributes = []) {
+
+        // It can happen that Twig's `default` filter provides an empty string.
+        if ( ! is_array($attributes)) {
+            $attributes = [];
+        }
+
+        // People may provide a single classname as a string.
+        if ( ! is_array($value)) {
+            $value = [$value];
+        }
+
+        if (array_key_exists('class', $attributes)) {
+            $attributes['class'] = array_merge($attributes['class'], $value);
+        }
+        else {
+            $attributes['class'] = $value;
+        }
+
+        return $attributes;
+    });
+
+$twig->addFunction($add_class_func);
+
+// -----------------------------------------------------------------------------
 // Custom function: `attr`.
 
 // NOTE: UNSAFE.
@@ -130,7 +158,7 @@ $twig->addFunction($extend_attributes_func);
 // FIXME.
 $GLOBALS['ap_security'] = $capacities->get('security');
 
-$attributes_func = new Twig_Function('attr', function($attributes) {
+$attributes_func = new Twig_Function('attr', function($attributes = []) {
 
     $output = [];
 

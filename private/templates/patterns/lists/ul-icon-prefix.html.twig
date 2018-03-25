@@ -1,7 +1,11 @@
 
-{% set wrapper_attributes = extendAttrs(wrapper_attributes | default, 'class', 'ul--icon-prefix') %}
+{# Just testing the attribute handling features. #}
+{% set wrapper_attributes = extendAttrs('data-foo', NULL, wrapper_attributes | default) %}
+{% set wrapper_attributes = extendAttrs('data-foo-array', ['foo', 'bar'], wrapper_attributes | default) %}
+{% set wrapper_attributes = extendAttrs('data-bar-array', ['foo', 'bar'], wrapper_attributes | default) %}
+{# End testing. #}
 
-<ul {{ attr(wrapper_attributes) }}>
+<ul {{ attr(addClass('ul--icon-prefix', wrapper_attributes | default)) }}>
 
     {% for item in items %}
         <li>
