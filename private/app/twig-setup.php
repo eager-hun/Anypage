@@ -61,15 +61,15 @@ $twig->addTest($numeric_test);
 
 // NOTE: highly experimental.
 
-$filter_merge_recursive = new Twig_Filter('merge_r', function($arr1, $arr2) {
-    if (is_array($arr1) && is_array($arr2)) {
-        return array_merge_recursive($arr1, $arr2);
+$filter_merge_recursive = new Twig_Filter('merge_r', function($arg1, $arg2) {
+    if (is_array($arg1) && is_array($arg2)) {
+        return array_merge_recursive($arg1, $arg2);
     }
-    elseif ( ! is_array($arr1) && is_array($arr2)) {
-        return $arr2;
+    elseif ( ! is_array($arg1) && is_array($arg2)) {
+        return $arg2;
     }
-    elseif (is_array($arr1) && ! is_array($arr2)) {
-        return $arr1;
+    elseif (is_array($arg1) && ! is_array($arg2)) {
+        return $arg1;
     }
     else {
         return [];
@@ -79,9 +79,56 @@ $filter_merge_recursive = new Twig_Filter('merge_r', function($arr1, $arr2) {
 $twig->addFilter($filter_merge_recursive);
 
 // -----------------------------------------------------------------------------
+// Custom function: `extendAttrs`.
+
+$extend_attributes_func = new Twig_Function('extendAttrs',
+    function(
+        Twig_Environment $env, $attributes = [], $key, $value = NULL, $force = false
+    ) {
+
+        if ( ! is_array($attributes)) {
+            $attributes = [];
+        }
+
+        $isArrayHoldingAttribute =
+            $GLOBALS['ap_security']->isArrayHoldingHtmlAttribute($key);
+
+        if (is_null($value)) {
+            $attributes[] = $key;
+        }
+        // Overriding / modifying existing attribute.
+        elseif (array_key_exists($key, $attributes)) {
+            if ($isArrayHoldingAttribute && is_string($value)) {
+                $attributes[$key][] = $value;
+            }
+            elseif ($isArrayHoldingAttribute && is_array($value)) {
+                $attributes[$key] = array_merge($attributes[$key], $value);
+            }
+            elseif ($force == true) {
+                $attributes[$key] = $value;
+            }
+        }
+        // Adding as a new attribute.
+        else {
+            if ($isArrayHoldingAttribute && is_string($value)) {
+                $attributes[$key] = [$value];
+            }
+            else {
+                $attributes[$key] = $value;
+            }
+        }
+
+        return $attributes;
+    },
+    ['needs_environment' => true]
+);
+
+$twig->addFunction($extend_attributes_func);
+
+// -----------------------------------------------------------------------------
 // Custom function: `attr`.
 
-// NOTE: highly experimental + UNSAFE.
+// NOTE: UNSAFE.
 
 // FIXME.
 $GLOBALS['ap_security'] = $capacities->get('security');
@@ -131,53 +178,6 @@ $attributes_func = new Twig_Function('attr', function($attributes) {
 }, ['is_safe' => ['html']]);
 
 $twig->addFunction($attributes_func);
-
-// -----------------------------------------------------------------------------
-// Custom function: `extendAttrs`.
-
-$extend_attributes_func = new Twig_Function('extendAttrs',
-    function(
-        Twig_Environment $env, $attributes = [], $key, $value = NULL, $force = false
-    ) {
-
-        if ( ! is_array($attributes)) {
-            $attributes = [];
-        }
-
-        $isArrayHoldingAttribute =
-            $GLOBALS['ap_security']->isArrayHoldingHtmlAttribute($key);
-
-        if (is_null($value)) {
-            $attributes[] = $key;
-        }
-        // Overriding / modifying existing attribute.
-        elseif (array_key_exists($key, $attributes)) {
-            if ($isArrayHoldingAttribute && is_string($value)) {
-                $attributes[$key][] = $value;
-            }
-            elseif ($isArrayHoldingAttribute && is_array($value)) {
-                $attributes[$key] = array_merge($attributes[$key], $value);
-            }
-            elseif ($force == true) {
-                $attributes[$key] = $value;
-            }
-        }
-        // Adding as a new attribute.
-        else {
-            if ($isArrayHoldingAttribute && is_string($value)) {
-                $attributes[$key] = [$value];
-            }
-            else {
-                $attributes[$key] = $value;
-            }
-        }
-
-        return $attributes;
-    },
-    ['needs_environment' => true]
-);
-
-$twig->addFunction($extend_attributes_func);
 
 
 // #############################################################################
