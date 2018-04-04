@@ -42,7 +42,6 @@ $page_levels[] = [
 // Another level.
 
 $prefix = $tools->render('layouts/squeeze', [
-    'wrapper_extra_classes' => 'stackable',
     'squeeze_content' => '<h2 class="page-level__title">A cluster of boxes</h2>'
 ]);
 
