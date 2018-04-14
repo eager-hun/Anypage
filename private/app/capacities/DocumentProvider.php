@@ -151,8 +151,10 @@ class DocumentProvider
     protected function documentAttributes()
     {
         $apsSetup = $this->processManager->getConfig('apsSetup');
-        $document_classes = $this->processManager
-            ->getTemplateInfo()['document-classes'];
+        $document_classes = array_merge(
+            ['no-js'],
+            $this->processManager->getTemplateInfo()['document-classes']
+        );
 
         $attribs = [
             'lang' => $apsSetup['document_properties']['html_lang'],

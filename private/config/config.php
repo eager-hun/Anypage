@@ -203,7 +203,18 @@ return [
          *   delete or comment out the entry, if you temporarily don't need it.
          */
         'scripts' => [
-            'head' => [],
+            'head' => [
+                [
+                    'source'    => 'app',
+                    'file'      => 'js-detect.js',
+                    'use_as'    => 'inline',
+                ],
+                [
+                    'source'    => 'theme',
+                    'file'      => 'static-assets/js/feature-detects.js',
+                    'use_as'    => 'reference',
+                ],
+            ],
             'body' => [
                 [
                     'source'    => 'app',
