@@ -2,8 +2,8 @@
 <html {{ document_attributes | default('') | raw }}>
 <head>
 
-	<meta charset="UTF-8">
-	<title>{{ head_title }}</title>
+    <meta charset="UTF-8">
+    <title>{{ head_title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% if head_desc | default('') is not empty %}
@@ -11,16 +11,17 @@
     {% endif %}
 
     {{ head_misc | raw }}
-
     {{ stylesheets | raw }}
     {{ scripts_in_head | raw }}
 
 </head>
 <body class="{{ body_classes }}">
-
     {{ svg_sprites | default('') | raw }}
-    {{ body_content | raw }}
-    {{ scripts_in_body | raw }}
 
+    <div id="vue-app">
+        {{ body_content | raw }}
+    </div>
+
+    {{ scripts_in_body | raw }}
 </body>
 </html>

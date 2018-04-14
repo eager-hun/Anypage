@@ -107,6 +107,13 @@ return [
             'link-text'     => 'Highlights',
         ],
     ],
+    'demo/custom-ui-patterns/agile-accordion' => [
+        'resource-id'       => 'patterns-agile-accordion',
+        'html-filename'     => 'patterns-agile-accordion',
+        'menu'              => [
+            'link-text'     => 'Agile accordion',
+        ],
+    ],
     'demo/custom-ui-patterns/hero-mosaic' => [
         'resource-id'       => 'patterns-hero-mosaic',
         'html-filename'     => 'patterns-hero-mosaic',

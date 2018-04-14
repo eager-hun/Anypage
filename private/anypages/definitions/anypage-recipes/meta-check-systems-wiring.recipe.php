@@ -117,10 +117,10 @@ $vue_desc_raw = "Verify an intact Vue.js build setup by seeing a healthy-enough 
 $vue_desc = $tools->markdown($vue_desc_raw);
 
 $vue_check = <<<EOT
-    <div id="example-vue__mount">
+    <example-vue-component>
         <p><strong>Vue component did not mount.</strong></p>
         <p>(This text should have been replaced by a successfully mounted Vue component.)</p>
-    </div>
+    </example-vue-component>
 EOT;
 
 $check_vue_layout = $tools->render('layouts/flex-grid', [
