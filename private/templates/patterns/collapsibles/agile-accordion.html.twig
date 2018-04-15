@@ -23,15 +23,18 @@
     >
         <div class="accdn__tabs">
             {% for item in items %}
-                <button
+                <div
                     class="accdn__tab"
                     :class="{ 'is-active': currentlyActiveItem === {{ loop.index0 }} }"
-                    @click="toggleItem({{ loop.index0 }})"
                 >
-                    <span class="accdn-tab__text">
-                        {{ item.title }}
-                    </span>
-                </button>
+                    <button
+                        @click="toggleItem({{ loop.index0 }})"
+                    >
+                        <span class="text">
+                            {{ item.title }}
+                        </span>
+                    </button>
+                </div>
             {% endfor %}
         </div>
 
@@ -45,17 +48,19 @@
                 }"
                 {% if item.initially_open | default is not empty %}data-initially-open{% endif %}
             >
-
-                <div class="item__head">
+                <div class="accdn__head">
                     <button
-                        @click="toggleItem({{ loop.index0 }})"
                         type="button"
+                        @click="toggleItem({{ loop.index0 }})"
                     >
-                        {{ item.title }}
+                        <span class="accdn__marker"></span>
+                        <span class="text">
+                            {{ item.title }}
+                        </span>
                     </button>
                 </div>
 
-                <div class="item__body">
+                <div class="accdn__body">
                     {{ item.content | raw }}
                 </div>
 

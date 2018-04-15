@@ -6,7 +6,7 @@ echo $tools->render('page/page-title', [
 
 $accdn_manifest = [
     'settings' => [
-        'tabsAt' => 500,
+        'tabsAt' => 750,
         'exclusiveItems' => 0, // Bool.
     ],
     'items' => [
