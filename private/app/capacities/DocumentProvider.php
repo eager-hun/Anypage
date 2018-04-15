@@ -65,9 +65,6 @@ class DocumentProvider
             $page_variables
         );
 
-        if ($this->config['app']['app-menu']['is-enabled']) {
-            $body_content .= $this->provideAppMenu();
-        }
 
         // Rendering the <html> tag.
 
@@ -84,6 +81,10 @@ class DocumentProvider
         ];
 
         $this->documentHeadAdditions($document_variables);
+
+        if ($this->config['app']['app-menu']['is-enabled']) {
+            $document_variables['app_menu'] = $this->provideAppMenu();
+        }
 
         $document = $tools->render('page/document', $document_variables);
 

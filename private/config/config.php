@@ -222,16 +222,6 @@ return [
                     'use_as'    => 'reference',
                 ],
                 [
-                    'source'    => 'app',
-                    'file'      => 'anypage-app-site-generator.js',
-                    'use_as'    => 'reference',
-                ],
-                [
-                    'source'    => 'app',
-                    'file'      => 'anypage-app-interactions.js',
-                    'use_as'    => 'reference',
-                ],
-                [
                     'source'    => 'theme',
                     'file'      => 'built/gulp-out/js/libs.js',
                     'use_as'    => 'reference',
@@ -250,6 +240,19 @@ return [
                 [
                     'source'    => 'theme',
                     'file'      => 'built/webpack-out/index.built.js',
+                    'use_as'    => 'reference',
+                ],
+                // FIXME: script ordering.
+                // Working around Vue.js eliminating non-vue event listeners.
+                // See https://forum.vuejs.org/t/serious-eventlistener-problem/3662/13
+                [
+                    'source'    => 'app',
+                    'file'      => 'anypage-app-site-generator.js',
+                    'use_as'    => 'reference',
+                ],
+                [
+                    'source'    => 'app',
+                    'file'      => 'anypage-app-interactions.js',
                     'use_as'    => 'reference',
                 ],
             ],
