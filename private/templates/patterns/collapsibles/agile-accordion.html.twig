@@ -2,33 +2,53 @@
 {% set items_data = {} %}
 
 {% for key, item in items %}
-
     {% set item_def = {
         isOpen: item.initially_open | default(false)
     } %}
 
-    {% set friendly_key = 'item_' ~ key %}
-
-    {% set items_data = items_data | merge({ (friendly_key): item_def }) %}
+    {% set items_data = items_data | merge({ (key): item_def }) %}
 {% endfor %}
 
 <agile-accordion
     inline-template
-    :settings="{{ settings | default([]) | raw | json_encode() }}"
-    :items-data="{{ items_data | json_encode() }}"
+    {% if settings is defined %}
+        :settings="{{ settings | raw | json_encode(constant('JSON_FORCE_OBJECT')) }}"
+    {% endif %}
+    :items-data="{{ items_data | raw | json_encode(constant('JSON_FORCE_OBJECT')) }}"
 >
-    <div class="aaccdn">
+    <div
+        class="accdn"
+        :class="currentModeClass"
+        v-cloak
+    >
+        <div class="accdn__tabs">
+            {% for item in items %}
+                <button
+                    class="accdn__tab"
+                    :class="{ 'is-active': currentlyActiveItem === {{ loop.index0 }} }"
+                    @click="toggleItem({{ loop.index0 }})"
+                >
+                    <span class="accdn-tab__text">
+                        {{ item.title }}
+                    </span>
+                </button>
+            {% endfor %}
+        </div>
+
         {% for item in items %}
             <div
-                class="aaccdn__item {{ item.extra_classes | default }}"
-                :class="{ 'is-open': item_{{ loop.index0 }}.isOpen }"
-                {% if item.initially_open | default is not empty %}data-initially-open{% endif %}
                 ref="item_{{ loop.index0 }}"
+                class="accdn__item"
+                :class="{
+                    'is-open': currentlyOpenItems.includes({{ loop.index0 }}),
+                    'is-active': currentlyActiveItem === {{ loop.index0 }}
+                }"
+                {% if item.initially_open | default is not empty %}data-initially-open{% endif %}
             >
 
                 <div class="item__head">
                     <button
-                        @click="toggle({{ loop.index0 }})"
+                        @click="toggleItem({{ loop.index0 }})"
                         type="button"
                     >
                         {{ item.title }}
