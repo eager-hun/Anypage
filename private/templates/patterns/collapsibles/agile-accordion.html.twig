@@ -21,6 +21,22 @@
         :class="currentModeClass"
         v-cloak
     >
+        <div
+            class="accdn__batch-controls"
+            v-if="batchControls && ! exclusiveItems"
+        >
+            <button
+                class="accdn__batch-open"
+                @click="batchOpen"
+                :disabled="currentlyOpenItems.length === itemsCount"
+            >Open all</button>
+            <button
+                class="accdn__batch-close"
+                @click="batchClose"
+                :disabled="currentlyOpenItems.length === 0"
+            >Close all</button>
+        </div>
+
         <div class="accdn__tabs">
             {% for item in items %}
                 <div
@@ -40,12 +56,13 @@
 
         {% for item in items %}
             <div
-                ref="item_{{ loop.index0 }}"
                 class="accdn__item"
                 :class="{
                     'is-open': currentlyOpenItems.includes({{ loop.index0 }}),
                     'is-active': currentlyActiveItem === {{ loop.index0 }}
                 }"
+                ref="item_{{ loop.index0 }}"
+                {% if item.id is defined %}id="{{ item.id }}"{% endif %}
                 {% if item.initially_open | default is not empty %}data-initially-open{% endif %}
             >
                 <div class="accdn__head">

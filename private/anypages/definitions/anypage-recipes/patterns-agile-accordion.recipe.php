@@ -4,32 +4,41 @@ echo $tools->render('page/page-title', [
     'page_title_text' => 'Patterns: agile accordion'
 ]);
 
+function demo_accordion_body($index) {
+    return <<<EOT
+        <p>Item {$index}</p>
+        <p><a href="#!">Link 1</a></p>
+        <p><a href="#!">Link 2</a></p>
+EOT;
+}
+
 $accdn_manifest = [
     'settings' => [
-        'tabsAt' => 750,
+        'tabsAt' => 820,
         'exclusiveItems' => 0, // Bool.
+        'batchControls' => 1, // Bool.
     ],
     'items' => [
         [
+            'id' => $tools->uniqueId('demo-accdn-item'),
             'title' => 'Item 0',
-            'content' => $tools->markdown('Item 0')
-                . $tools->addFillerText('s', 1, true),
+            'content' => demo_accordion_body(0),
         ],
         [
+            'id' => $tools->uniqueId('demo-accdn-item'),
             'title' => 'Item 1',
-            'content' => $tools->markdown('Item 1')
-                . $tools->addFillerText('s', 2, true),
+            'content' => demo_accordion_body(1),
             'initially_open' => true,
         ],
         [
+            'id' => $tools->uniqueId('demo-accdn-item'),
             'title' => 'Item 2',
-            'content' => $tools->markdown('Item 2')
-                . $tools->addFillerText('s', 3, true),
+            'content' => demo_accordion_body(2),
         ],
         [
+            'id' => $tools->uniqueId('demo-accdn-item'),
             'title' => 'Item 3',
-            'content' => $tools->markdown('Item 3')
-                . $tools->addFillerText('s', 4, true),
+            'content' => demo_accordion_body(3),
         ],
     ],
 ];

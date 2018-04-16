@@ -219,8 +219,10 @@ class Tools
      * @return string
      */
     public function uniqueId($base_string) {
+        $id = $base_string . '-' . $this->uniqueIdIndex;
+
         $this->uniqueIdIndex++;
 
-        return $base_string . '-' . $this->uniqueIdIndex;
+        return $id;
     }
 }
