@@ -12,9 +12,9 @@
 <agile-accordion
     inline-template
     {% if settings is defined %}
-        :settings="{{ settings | raw | json_encode(constant('JSON_FORCE_OBJECT')) }}"
+        :settings="{{ settings | json_encode(constant('JSON_FORCE_OBJECT')) }}"
     {% endif %}
-    :items-data="{{ items_data | raw | json_encode(constant('JSON_FORCE_OBJECT')) }}"
+    :items-data="{{ items_data | json_encode(constant('JSON_FORCE_OBJECT')) }}"
 >
     <div
         class="accdn"
@@ -45,8 +45,9 @@
                 >
                     <button
                         @click="toggleItem({{ loop.index0 }})"
+                        ref="tab_{{ loop.index0 }}_button"
                     >
-                        <span class="text">
+                        <span class="text" v-pre>
                             {{ item.title }}
                         </span>
                     </button>
@@ -71,13 +72,13 @@
                         @click="toggleItem({{ loop.index0 }})"
                     >
                         <span class="accdn__marker"></span>
-                        <span class="text">
+                        <span class="text" v-pre>
                             {{ item.title }}
                         </span>
                     </button>
                 </div>
 
-                <div class="accdn__body">
+                <div class="accdn__body" v-pre>
                     {{ item.content | raw }}
                 </div>
 
