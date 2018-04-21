@@ -59,7 +59,7 @@
             <div
                 class="accdn__item"
                 :class="{
-                    'is-open': currentlyOpenItems.includes({{ loop.index0 }}),
+                    'is-open': currentlyOpenItems.indexOf({{ loop.index0 }}) !== -1,
                     'is-active': currentlyActiveItem === {{ loop.index0 }}
                 }"
                 ref="item_{{ loop.index0 }}"
