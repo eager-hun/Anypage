@@ -152,6 +152,13 @@ return [
             'link-text'     => 'Check systems\' wiring',
         ],
     ],
+    'meta/vuejs-studies' => [
+        'resource-id'       => 'meta-vuejs-studies',
+        'html-filename'     => 'meta-vuejs-studies',
+        'menu'              => [
+            'link-text'     => 'Vue.js studies',
+        ],
+    ],
     'meta/anypage-readme' => [
         'resource-id'       => 'meta-anypage-readme',
         'menu'              => [

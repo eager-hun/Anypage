@@ -9,12 +9,12 @@
     {% set items_data = items_data | merge({ (key): item_def }) %}
 {% endfor %}
 
-<agile-accordion
+<agile-accordion-pe
     inline-template
+    :items-data="{{ items_data | json_encode(constant('JSON_FORCE_OBJECT')) }}"
     {% if settings is defined %}
         :settings="{{ settings | json_encode(constant('JSON_FORCE_OBJECT')) }}"
     {% endif %}
-    :items-data="{{ items_data | json_encode(constant('JSON_FORCE_OBJECT')) }}"
 >
     <div
         class="accdn"
@@ -85,4 +85,4 @@
             </div>
         {% endfor  %}
     </div>
-</agile-accordion>
+</agile-accordion-pe>

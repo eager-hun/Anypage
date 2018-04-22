@@ -113,14 +113,21 @@ $page_levels[] = [
 
 $vue_title = '<h2 class="underlined">Vue.js single-file-component</h2>';
 
-$vue_desc_raw = "Verify an intact Vue.js build setup by seeing a healthy-enough Vue component here:";
+$vue_desc_raw = "Verify an intact Vue.js build setup by seeing at least one healthy-enough Vue component here:";
 $vue_desc = $tools->markdown($vue_desc_raw);
 
 $vue_check = <<<EOT
-    <example-vue-component>
-        <p><strong>Vue component did not mount.</strong></p>
-        <p>(This text should have been replaced by a successfully mounted Vue component.)</p>
-    </example-vue-component>
+    <div class="vue-demo-1-runtime-mount">
+        <p><strong>Runtime-mode Vue component did not mount.</strong></p>
+    </div>
+
+    <div class="vue-compiler-dependent-app">
+        <vue-demo-1
+          component-title="Compiler-dependent Vue component"
+        >
+            <p><strong>Compiler-dependent Vue component did not mount.</strong></p>
+        </vue-demo-1>
+    </div>
 EOT;
 
 $check_vue_layout = $tools->render('layouts/flex-grid', [

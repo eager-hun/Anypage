@@ -18,9 +18,7 @@
 <body class="{{ body_classes }}">
     {{ svg_sprites | default('') | raw }}
 
-    <div id="vue-app">
-        {{ body_content | raw }}
-    </div>
+    {{ body_content | raw }}
 
     {{ app_menu | raw }}
     {{ scripts_in_body | raw }}
