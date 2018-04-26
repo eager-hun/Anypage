@@ -14,6 +14,7 @@ $twig_loader = new Twig_Loader_Filesystem(TEMPLATES);
 
 // One can use (and override existing) templates from the anypages' dir.
 $anypage_templates = ANYPAGES . '/templates';
+
 if (file_exists($anypage_templates)) {
     $twig_loader->prependPath($anypage_templates);
 }
@@ -21,9 +22,19 @@ if (file_exists($anypage_templates)) {
 // One can use (and override existing) templates from the theme.
 $path_to_theme = $processManager
     ->getInstruction('path-fragment-to-theme');
+
 $theme_templates = PUBLIC_RESOURCES . '/' . $path_to_theme . '/templates';
+
 if (file_exists($theme_templates)) {
     $twig_loader->prependPath($theme_templates);
+}
+
+// One can use templates from the theme's "src/libs-custom" dir.
+$theme_src_custom_libs_templates =
+    PUBLIC_RESOURCES . '/' . $path_to_theme . '/src/libs-custom';
+
+if (file_exists($theme_src_custom_libs_templates)) {
+    $twig_loader->addPath($theme_src_custom_libs_templates);
 }
 
 

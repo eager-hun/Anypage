@@ -61,13 +61,13 @@ function accdn_runtime_unique_manifest($tools) {
 $runtime_mode_accordions_rendered = $runtime_accordions_title
     . $tools->render('layouts/stackable', [
         'stackable_content' => $tools->render(
-            'patterns/collapsibles/agile-accordion-runtime',
+            'agile-accordion/twig/agile-accordion-runtime',
             accdn_runtime_unique_manifest($tools)
         )
     ])
     . $tools->render('layouts/stackable', [
         'stackable_content' => $tools->render(
-            'patterns/collapsibles/agile-accordion-runtime',
+            'agile-accordion/twig/agile-accordion-runtime',
             accdn_runtime_unique_manifest($tools)
         )
     ]);
@@ -116,11 +116,11 @@ $pe_accordions_title = '<h2>Progressively enhance-able agile accordions</h2>';
 // Just a check to see whether multiple vue-compiler-dependent-apps work.
 
 $pe_accordion_1_rendered = '<div class="vue-compiler-dependent-app stackable">';
-$pe_accordion_1_rendered .= $tools->render('patterns/collapsibles/agile-accordion-pe', accdn_pe_unique_manifest($tools));
+$pe_accordion_1_rendered .= $tools->render('agile-accordion/twig/agile-accordion-pe', accdn_pe_unique_manifest($tools));
 $pe_accordion_1_rendered .= '</div>';
 
 $pe_accordion_2_rendered = '<div class="vue-compiler-dependent-app stackable">';
-$pe_accordion_2_rendered .= $tools->render('patterns/collapsibles/agile-accordion-pe', accdn_pe_unique_manifest($tools));
+$pe_accordion_2_rendered .= $tools->render('agile-accordion/twig/agile-accordion-pe', accdn_pe_unique_manifest($tools));
 $pe_accordion_2_rendered .= '</div>';
 
 $page_contents[] = $pe_accordions_title . $pe_accordion_1_rendered . $pe_accordion_2_rendered;
