@@ -42,7 +42,7 @@ function accdn_runtime_unique_manifest($tools) {
                 'id' => $tools->uniqueId('demo-accdn-item'),
                 'title' => 'Item 1',
                 'content' => demo_accordion_body(1),
-                'initially_open' => true,
+                'is_open' => true,
             ],
             [
                 'id' => $tools->uniqueId('demo-accdn-item'),
@@ -73,7 +73,7 @@ $runtime_accordions_printable = <<<EOT
 
     <div class="stackable">
         {$runtime_mode_accordion_1_rendered}
-    </div>    
+    </div>
     <div class="stackable">
         {$runtime_mode_accordion_2_rendered}
     </div>
@@ -103,7 +103,7 @@ function accdn_pe_unique_manifest($tools) {
                 'id' => $tools->uniqueId('demo-accdn-item'),
                 'title' => 'Item 1',
                 'content' => demo_accordion_body(1),
-                'initially_open' => true,
+                'is_open' => true,
             ],
             [
                 'id' => $tools->uniqueId('demo-accdn-item'),
@@ -146,9 +146,7 @@ $pe_accordions_printable = <<<EOT
     </div>
 EOT;
 
-
 $page_contents[] = $pe_accordions_printable;
-
 
 
 // #############################################################################
