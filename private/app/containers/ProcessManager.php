@@ -119,14 +119,14 @@ class ProcessManager
     {
         $this->addConfig(
             'config',
-            require(PRIVATE_RESOURCES . '/config/config.php')
+            require(CONFIGS . '/config.php')
         );
         $this->addConfig(
             'apsSetup',
-            require(PRIVATE_RESOURCES . '/config/apsSetup.php')
+            require(CONFIGS . '/apsSetup.php')
         );
 
-        $routes_config = require(PRIVATE_RESOURCES . '/config/routes.php');
+        $routes_config = require(CONFIGS . '/routes.php');
         $routes_updated = array_merge(
             $routes_config,
             $this->systemPageManifests['everpresent']

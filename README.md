@@ -98,7 +98,7 @@ In case of any errors showing up, configuration in the following places might
 need adjusting:
 
     anypage/director.php
-    anypage/private/config/config.php
+    anypage/private/anypages/default/config/config.php
     anypage/public/themes/frontend-seed/build-setup/gulp-webpack-hybrid/gulp-setup.js
 
 #### More options for serving

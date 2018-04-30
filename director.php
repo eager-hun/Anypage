@@ -12,10 +12,11 @@ define('DIRECTOR_DIR',      dirname(__FILE__));
 define('PRIVATE_RESOURCES', DIRECTOR_DIR . '/private');
 define('PUBLIC_RESOURCES',  DIRECTOR_DIR . '/public');
 
-define('TEMPLATES',         PRIVATE_RESOURCES . '/templates');
-define('ANYPAGES',          PRIVATE_RESOURCES . '/anypages');
+define('ANYPAGES',          PRIVATE_RESOURCES . '/anypages/default');
+define('CONFIGS',           ANYPAGES . '/config');
 define('APS_DEFINITIONS',   ANYPAGES . '/definitions');
 define('APS_CONTENTS',      ANYPAGES . '/contents');
+define('TEMPLATES',         PRIVATE_RESOURCES . '/templates');
 
 
 // #############################################################################
