@@ -7,4 +7,10 @@ return [
         'site_name'         => 'Anypage',
         'site_tagline_1'    => 'Have fun typing code a lot.',
     ],
+    'meta_tags' => [
+        [
+            'name'      => 'robots',
+            'content'   => 'noindex, nofollow'
+        ],
+    ],
 ];

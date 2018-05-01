@@ -12,6 +12,7 @@ class DocumentProvider
     protected $processManager;
     protected $capacities;
     protected $config;
+    protected $apsSetup;
 
     public function __construct(
         ProcessManager $processManager,
@@ -22,6 +23,7 @@ class DocumentProvider
         $this->capacities = $capacities;
 
         $this->config = $this->processManager->getConfig('config');
+        $this->apsSetup = $this->processManager->getConfig('apsSetup');
     }
 
 
@@ -42,7 +44,6 @@ class DocumentProvider
 
         $asset_management   = $this->capacities->get('asset-management');
         $tools              = $this->capacities->get('tools');
-        $apsSetup           = $this->processManager->getConfig('apsSetup');
         $template_info      = $this->processManager->getTemplateInfo();
         $page_template      = $template_info['templates']['page-template'];
 
@@ -55,7 +56,7 @@ class DocumentProvider
         $page_variables = [
             'page_header_template'  => $template_info['templates']['page-header-template'],
             'page_footer_template'  => $template_info['templates']['page-footer-template'],
-            'document_properties'   => $apsSetup['document_properties'],
+            'document_properties'   => $this->apsSetup['document_properties'],
             'page_payload'          => $page_payload,
         ];
 
@@ -70,7 +71,7 @@ class DocumentProvider
 
         $document_variables = [
             'document_attributes'   => $this->documentAttributes(),
-            'head_title'            => $apsSetup['document_properties']['head_title'],
+            'head_title'            => $this->apsSetup['document_properties']['head_title'],
             'head_misc'             => '',
             'stylesheets'           => $asset_management->provideStylesheets(),
             'scripts_in_head'       => $asset_management->provideScripts('head'),
@@ -115,11 +116,26 @@ class DocumentProvider
 
     /**
      * @param $document_variables
+     *
+     * TODO: secure it.
      */
     protected function documentHeadAdditions(&$document_variables)
     {
-        $livereload = $this->config['enable-livereload'];
+        if ( ! empty($this->apsSetup['meta_tags'])) {
+            foreach ($this->apsSetup['meta_tags'] as $meta_tag_def) {
+                $meta_template_vars = [
+                    'name'    => array_key_exists('name', $meta_tag_def) ? $meta_tag_def['name'] : NULL,
+                    'content' => array_key_exists('content', $meta_tag_def) ? $meta_tag_def['content'] : NULL,
+                ];
 
+                $meta_tag = $this->capacities->get('tools')
+                    ->render('app-infra/meta-tag', $meta_template_vars, 'php');
+
+                $document_variables['head_misc'] .= PHP_EOL . $meta_tag;
+            }
+        }
+
+        $livereload = $this->config['enable-livereload'];
         if ( ! empty($livereload) && empty(BUILDING_STATIC_PAGE)) {
             // See http://stackoverflow.com/questions/26069796/gulp-how-to-implement-livereload-without-chromes-livereload-plugin
             $livereload_script =
@@ -151,14 +167,13 @@ class DocumentProvider
      */
     protected function documentAttributes()
     {
-        $apsSetup = $this->processManager->getConfig('apsSetup');
         $document_classes = array_merge(
             ['no-js'],
             $this->processManager->getTemplateInfo()['document-classes']
         );
 
         $attribs = [
-            'lang' => $apsSetup['document_properties']['html_lang'],
+            'lang' => $this->apsSetup['document_properties']['html_lang'],
         ];
 
         if ( ! empty($document_classes)) {
