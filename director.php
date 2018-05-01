@@ -71,6 +71,10 @@ $capacities::bind('tools', new Tools(
     $processManager,
     $capacities
 ));
+$capacities::bind('navigation', new Navigation(
+    $processManager,
+    $capacities
+));
 $capacities::bind('content-provider', new ContentProvider(
     $processManager,
     $capacities
