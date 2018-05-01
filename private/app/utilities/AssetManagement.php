@@ -49,8 +49,13 @@ class AssetManagement
         $output = '';
 
         foreach ($stylesheets as $entry) {
-            if (!empty($entry['ignore'])) {
-                continue;
+            if ( ! empty($entry['omit'])) {
+                if ($entry['omit'] == 'always') {
+                    continue;
+                }
+                elseif ($entry['omit'] == 'in-static-site' && ! empty(BUILDING_STATIC_PAGE)) {
+                    continue;
+                }
             }
 
             if (empty($entry['source']) || empty($entry['file'])
@@ -129,8 +134,13 @@ class AssetManagement
         $output = '';
 
         foreach ($scripts as $entry) {
-            if (!empty($entry['ignore'])) {
-                continue;
+            if ( ! empty($entry['omit'])) {
+                if ($entry['omit'] == 'always') {
+                    continue;
+                }
+                elseif ($entry['omit'] == 'in-static-site' && ! empty(BUILDING_STATIC_PAGE)) {
+                    continue;
+                }
             }
 
             if (empty($entry['source']) || empty($entry['file'])) {

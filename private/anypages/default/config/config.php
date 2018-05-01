@@ -145,9 +145,13 @@ return [
          *   value 'inline':
          *      Uses a <style> tag to include styles in the document.
          *
-         * key 'ignore':
-         *   Boolean. The entry will be ignored. It means you don't have to
-         *   delete or comment out the entry, if you temporarily don't need it.
+         * key 'omit':
+         *   value 'always'
+         *     The entry will be ignored. It means you don't have to delete or
+         *     comment out the entry, if you temporarily don't need it.
+         *   value 'in-static-site'
+         *      The entry will be used only in the dynamically built pages,
+         *      the generated static site will not use the resource.
          */
         'stylesheets' => [
             [
@@ -169,7 +173,7 @@ return [
                 'source'    => 'theme',
                 'file'      => 'static-assets/css/static.css',
                 'use_as'    => 'reference',
-                'ignore'    => 1,
+                'omit'      => 'always',
             ],
         ],
 
@@ -198,9 +202,13 @@ return [
          *   value 'inline':
          *      Includes the script in the document in a <script> tag.
          *
-         * key 'ignore':
-         *   Boolean. The entry will be ignored. It means you don't have to
-         *   delete or comment out the entry, if you temporarily don't need it.
+         * key 'omit':
+         *   value 'always'
+         *     The entry will be ignored. It means you don't have to delete or
+         *     comment out the entry, if you temporarily don't need it.
+         *   value 'in-static-site'
+         *      The entry will be used only in the dynamically built pages,
+         *      the generated static site will not use the resource.
          */
         'scripts' => [
             'head' => [
@@ -225,7 +233,7 @@ return [
                     'source'    => 'theme',
                     'file'      => 'built/gulp-out/js/libs.js',
                     'use_as'    => 'reference',
-                    'ignore'    => 1,
+                    'omit'      => 'always',
                 ],
                 [
                     'source'    => 'theme',
@@ -249,6 +257,7 @@ return [
                     'source'    => 'app',
                     'file'      => 'anypage-app-site-generator.js',
                     'use_as'    => 'reference',
+                    'omit'      => 'in-static-site',
                 ],
                 [
                     'source'    => 'app',
