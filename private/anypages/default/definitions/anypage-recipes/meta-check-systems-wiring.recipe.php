@@ -1,6 +1,7 @@
 <?php
 
 $tools->usePageTemplate('page/page--fullwidth');
+$tools->addBodyClass('page--check-systems-wiring');
 $tools->usePageHeaderTemplate('page/page-header--alt-1');
 
 $page_levels = [];

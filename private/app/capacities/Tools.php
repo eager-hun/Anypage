@@ -109,6 +109,22 @@ class Tools
         );
     }
 
+     /**
+      * @param $class_string
+      */
+     public function addDocumentClass($class_string)
+     {
+         $this->processManager->addDocumentClass($class_string);
+     }
+
+     /**
+      * @param $class_string
+      */
+     public function addBodyClass($class_string)
+     {
+         $this->processManager->addBodyClass($class_string);
+     }
+
 
     // #########################################################################
     // Retrieving and processing content.
