@@ -28,6 +28,13 @@ class SiteGenerator
     protected $staticExportsDirName;
     protected $newSiteInstanceFsPath;
 
+    // FIXME: wire to config.
+    protected $assetDirNames = [
+        'app' => 'assets-app',
+        'static' => 'assets-static',
+        'built' => 'assets-built',
+    ];
+
     public function __construct(
         ProcessManager $processManager,
         Capacities $capacities
@@ -282,11 +289,11 @@ class SiteGenerator
             . DIRECTORY_SEPARATOR
             . $this->pathToTheme
             . DIRECTORY_SEPARATOR
-            . 'built';
+            . $this->assetDirNames['built'];
 
         $built_assets_dir_copy = $this->getNewSiteInstanceFsPath()
             . DIRECTORY_SEPARATOR
-            . 'built';
+            . $this->assetDirNames['built'];
 
         $this->_mirrorDirectory(
             $built_assets_dir,
@@ -303,11 +310,11 @@ class SiteGenerator
             . DIRECTORY_SEPARATOR
             . $this->pathToTheme
             . DIRECTORY_SEPARATOR
-            . 'static-assets';
+            . $this->assetDirNames['static'];
 
         $static_assets_dir_copy = $this->getNewSiteInstanceFsPath()
             . DIRECTORY_SEPARATOR
-            . 'static-assets';
+            . $this->assetDirNames['static'];
 
         $this->_mirrorDirectory(
             $static_assets_dir,
@@ -326,7 +333,7 @@ class SiteGenerator
 
         $app_assets_dir_copy = $this->getNewSiteInstanceFsPath()
             . DIRECTORY_SEPARATOR
-            . 'app-assets';
+            . $this->assetDirNames['app'];
 
         $this->_mirrorDirectory(
             $app_assets_dir,

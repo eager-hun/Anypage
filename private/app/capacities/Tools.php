@@ -16,6 +16,9 @@ class Tools
     protected $templatingConfig;
     private   $fillerTexts;
 
+    // FIXME: wire to config.
+    protected $staticAssetsDirName = 'assets-static';
+
     public function __construct(
         ProcessManager $processManager,
         Capacities $capacities
@@ -201,10 +204,11 @@ class Tools
             $path_to_theme = $this->processManager
                 ->getInstruction('path-fragment-to-theme');
 
-            $output = $base_url . $path_to_theme . '/static-assets';
+            $output = $base_url . $path_to_theme
+                . '/' . $this->staticAssetsDirName;
         }
         else {
-            $output = 'static-assets';
+            $output = $this->staticAssetsDirName;
         }
 
         return $output;

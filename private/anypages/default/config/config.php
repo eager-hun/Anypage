@@ -14,7 +14,7 @@ return [
      * key 'path-fragment-to-app-assets':
      *   Used internally by the php script and also for creating URLs.
      *   Include in it the very directory that files of interest are sitting in
-     *   (app-assets).
+     *   (assets-app).
      *   No leading or trailing slashes.
      *
      * key 'path-fragment-to-themes':
@@ -36,7 +36,7 @@ return [
      */
     'env' => [
         'web-working-dir'                   => '',
-        'path-fragment-to-app-assets'       => 'app-assets',
+        'path-fragment-to-app-assets'       => 'assets-app',
         'path-fragment-to-themes'           => 'themes',
         'theme-dir-name'                    => 'frontend-seed',
         'html-export-dir-name'              => 'generated',
@@ -121,7 +121,7 @@ return [
         /**
          * String to use in the '?v=' URL param for .css and .js files.
          */
-        'cache-bust-str' => '20180315-1',
+        'cache-bust-str' => '20180919-1',
 
         /**
          * Stylesheets to be included with the document.
@@ -161,17 +161,17 @@ return [
             ],
             [
                 'source'    => 'theme',
-                'file'      => 'built/gulp-out/css/bundle-main.css',
+                'file'      => 'assets-built/gulp-out/css/bundle-main.css',
                 'use_as'    => 'reference',
             ],
             [
                 'source'    => 'theme',
-                'file'      => 'built/gulp-out/css/bundle-styleguide-infra.css',
+                'file'      => 'assets-built/gulp-out/css/bundle-styleguide-infra.css',
                 'use_as'    => 'reference',
             ],
             [
                 'source'    => 'theme',
-                'file'      => 'static-assets/css/static.css',
+                'file'      => 'assets-static/css/static.css',
                 'use_as'    => 'reference',
                 'omit'      => 'always',
             ],
@@ -187,7 +187,7 @@ return [
          *      for assets whose URL should be left alone, used as script src
          *      as is. Ideal for things from CDNs.
          *   value 'app':
-         *      the file will be looked for in the `app-assets` dir.
+         *      the file will be looked for in the `assets-app` dir.
          *   value 'theme':
          *      the file will be looked for in the theme.
          *
@@ -219,7 +219,7 @@ return [
                 ],
                 [
                     'source'    => 'theme',
-                    'file'      => 'static-assets/js/feature-detects.js',
+                    'file'      => 'assets-static/js/feature-detects.js',
                     'use_as'    => 'reference',
                 ],
             ],
@@ -242,23 +242,23 @@ return [
                 ],
                 [
                     'source'    => 'theme',
-                    'file'      => 'built/gulp-out/js/libs.js',
+                    'file'      => 'assets-built/gulp-out/js/libs.js',
                     'use_as'    => 'reference',
                     'omit'      => 'always',
                 ],
                 [
                     'source'    => 'theme',
-                    'file'      => 'built/gulp-out/js/custom.js',
+                    'file'      => 'assets-built/gulp-out/js/custom.js',
                     'use_as'    => 'reference',
                 ],
                 [
                     'source'    => 'theme',
-                    'file'      => 'built/gulp-out/js/styleguide.js',
+                    'file'      => 'assets-built/gulp-out/js/styleguide.js',
                     'use_as'    => 'reference',
                 ],
                 [
                     'source'    => 'theme',
-                    'file'      => 'built/webpack-out/index.built.js',
+                    'file'      => 'assets-built/webpack-out/index.built.js',
                     'use_as'    => 'reference',
                 ],
             ],
@@ -268,7 +268,7 @@ return [
          * NOTE: for SVG sprites, the assumed source is in the "theme".
          */
         'svgSprites' => [
-            'built/gulp-out/graphics/svg-sprite/svg-sprite.symbol-mode.svg',
+            'assets-built/gulp-out/graphics/svg-sprite/svg-sprite.symbol-mode.svg',
         ],
     ],
 
@@ -277,5 +277,5 @@ return [
      *
      * Boolean, any truthy or falsy values will suffice.
      */
-    'enable-livereload' => 0,
+    'enable-livereload' => 1,
 ];

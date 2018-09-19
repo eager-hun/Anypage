@@ -7,6 +7,13 @@ class AssetManagement
     protected $capacities;
     protected $assetsConfig;
 
+    // FIXME: wire to config.
+    protected $assetDirNames = [
+        'app' => 'assets-app',
+        'static' => 'assets-static',
+        'built' => 'assets-built',
+    ];
+
     public function __construct(
         ProcessManager $processManager,
         Capacities $capacities
@@ -255,7 +262,8 @@ class AssetManagement
                     . $sec->escapeValue($path, 'path_with_file');
             }
             else {
-                $url = 'app-assets/' . $sec->escapeValue($path, 'path_with_file');
+                $url = $this->assetDirNames['app']
+                    . '/' . $sec->escapeValue($path, 'path_with_file');
             }
         } elseif ($location == 'theme') {
             if (empty(BUILDING_STATIC_PAGE)) {
