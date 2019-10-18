@@ -14,6 +14,9 @@
     {{ stylesheets | raw }}
     {{ scripts_in_head | raw }}
 
+    <!-- Favicon placeholder, to prevent 404s. -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
 </head>
 <body class="{{ body_classes }}">
     {{ svg_sprites | default('') | raw }}
