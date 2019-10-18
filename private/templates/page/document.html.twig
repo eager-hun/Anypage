@@ -20,7 +20,9 @@
 
     {{ body_content | raw }}
 
-    {{ app_menu | raw }}
+    {% if app_menu | default('') is not empty %}
+        {{ app_menu | raw }}
+    {% endif %}
     {{ scripts_in_body | raw }}
 </body>
 </html>
