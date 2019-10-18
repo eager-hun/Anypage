@@ -4,6 +4,7 @@ class Navigation
 {
     protected $processManager;
     protected $capacities;
+    protected $config;
 
     public function __construct(
         ProcessManager $processManager,
@@ -12,6 +13,7 @@ class Navigation
     {
         $this->processManager = $processManager;
         $this->capacities = $capacities;
+        $this->config = $this->processManager->getConfig('config');
     }
 
     /**
