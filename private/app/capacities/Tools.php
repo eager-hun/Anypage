@@ -19,6 +19,9 @@ class Tools
     // FIXME: wire to config.
     protected $staticAssetsDirName = 'assets-static';
 
+    // FIXME: wire to config.
+    protected $payloadFilesDirName = 'files-payload';
+
     public function __construct(
         ProcessManager $processManager,
         Capacities $capacities
@@ -210,7 +213,21 @@ class Tools
 
 
     // #########################################################################
-    // Misc.
+    // Quick access to frequently used filesystem paths.
+
+    public function pathToPayloadFiles()
+    {
+        if (empty(BUILDING_STATIC_PAGE)) {
+            $base_url = $this->processManager
+                ->getInstruction('base-url');
+            $output = $base_url . $this->payloadFilesDirName;
+        }
+        else {
+            $output = $this->payloadFilesDirName;
+        }
+
+        return $output;
+    }
 
     public function pathToThemeStaticFiles()
     {
@@ -229,6 +246,9 @@ class Tools
 
         return $output;
     }
+
+    // #########################################################################
+    // Misc.
 
     protected $uniqueIdIndex = 0;
 

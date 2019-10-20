@@ -20,6 +20,36 @@ $page_levels[] = [
 
 
 // -----------------------------------------------------------------------------
+// Check page payload files' wiring.
+
+$check_payload_title = '<h2 class="underlined">Files as page payload</h2>';
+
+$check_payload_desc_raw = "Verify correctly handled payload files by seeing an image here:";
+$check_payload_desc = $tools->markdown($check_payload_desc_raw);
+
+$payload_img_src = $tools
+        ->pathToPayloadFiles() . '/colourful-cake.jpg';
+
+$check_payload = <<<EOT
+    <img src="${payload_img_src}" alt="test-image">
+EOT;
+
+
+$check_payload_layout = $tools->render('layouts/flex-grid', [
+    'wrapper_extra_classes' => 'flex-grid--preset-2-cols',
+    'items_extra_classes'   => 'fit-content',
+    'items' => [
+        [ 'item_content' => $check_payload_title . $check_payload_desc, ],
+        [ 'item_content' => $check_payload, ],
+    ],
+]);
+
+$page_levels[] = [
+    'page_level_content' => $check_payload_layout
+];
+
+
+// -----------------------------------------------------------------------------
 // Check Styleguide's assets' wiring.
 
 $sg_assets_title = '<h2 class="underlined">Styleguide assets</h2>';

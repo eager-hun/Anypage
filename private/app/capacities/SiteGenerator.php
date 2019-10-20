@@ -35,6 +35,10 @@ class SiteGenerator
         'built' => 'assets-built',
     ];
 
+    // FIXME: wire to config.
+    protected $copyPayloadFiles = 1;
+    protected $payloadFilesDir = 'files-payload';
+
     public function __construct(
         ProcessManager $processManager,
         Capacities $capacities
@@ -245,6 +249,14 @@ class SiteGenerator
             return $this->_returnFromPageSaving($status, $error);
         }
 
+        if ($this->copyPayloadFiles) {
+            $this->_copySitePayload($status, $error);
+
+            if (!empty($error)) {
+                return $this->_returnFromPageSaving($status, $error);
+            }
+        }
+
         $this->_saveDocumentAsHTML($document, $status, $error);
 
         return $this->_returnFromPageSaving($status, $error);
@@ -342,6 +354,32 @@ class SiteGenerator
             $error
         );
     }
+
+
+    /**
+     * Copies the website's payload dir into the new static site instance.
+     *
+     * @param $status
+     * @param $error
+     */
+    protected function _copySitePayload(&$status, &$error)
+    {
+        $payload_files_dir = PUBLIC_RESOURCES
+            . DIRECTORY_SEPARATOR
+            . $this->payloadFilesDir;
+
+        $payload_files_dir_copy = $this->getNewSiteInstanceFsPath()
+            . DIRECTORY_SEPARATOR
+            . $this->payloadFilesDir;
+
+        $this->_mirrorDirectory(
+            $payload_files_dir,
+            $payload_files_dir_copy,
+            $status,
+            $error
+        );
+    }
+
 
     /**
      * Saves the current page as a HTML file onto disk.
