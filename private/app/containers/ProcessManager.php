@@ -310,8 +310,8 @@ class ProcessManager
     protected $templateInfo = [
         'templates' => [
             'page-template'         => 'page/page--default',
-            'page-header-template'  => 'page/page-header--default',
-            'page-footer-template'  => 'page/page-footer--default'
+            'page-header-template'  => 'page/page-header/page-header',
+            'page-footer-template'  => 'page/page-footer/page-footer'
         ],
         'document-classes' => [],
         'body-classes' => [],
