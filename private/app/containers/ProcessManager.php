@@ -121,6 +121,14 @@ class ProcessManager
             'config',
             require(CONFIGS . '/config.php')
         );
+
+        $theme_configs = require(CONFIGS . '/config-themes.php');
+        $active_theme = $this->getConfig('config')['env']['theme-dir-name'];
+        $this->addConfig(
+            'themeConfig',
+            $theme_configs[$active_theme]
+        );
+
         $this->addConfig(
             'apsSetup',
             require(CONFIGS . '/apsSetup.php')

@@ -5,7 +5,12 @@ class AssetManagement
 
     protected $processManager;
     protected $capacities;
-    protected $assetsConfig;
+    protected $config;
+    protected $themeConfig;
+    protected $internalPathToTheme;
+    protected $bundleConfig;
+    protected $bundleDefs;
+    protected $bundleSourceSymbols = [];
 
     // FIXME: wire to config.
     protected $assetDirNames = [
@@ -21,8 +26,25 @@ class AssetManagement
     {
         $this->processManager = $processManager;
         $this->capacities = $capacities;
-        $this->assetsConfig = $this
-            ->processManager->getConfig('config')['frontend-assets'];
+        $this->config = $this->processManager->getConfig('config');
+        $this->themeConfig = $this->processManager->getConfig('themeConfig');
+        $this->internalPathToTheme = PUBLIC_RESOURCES . '/'
+            . $this->config['env']['path-fragment-to-themes'] . '/'
+            . $this->config['env']['theme-dir-name'];
+
+        if ($this->themeConfig['dev-mode']) {
+            $this->bundleConfig = require(
+                $this->internalPathToTheme . '/'
+                . 'build-setup/bundle-config.php'
+            );
+            $this->bundleDefs = require(
+                $this->internalPathToTheme . '/'
+                . 'build-setup/bundle-defs.php'
+            );
+            foreach ($this->bundleConfig['sources'] as $source_name => $source_defs) {
+                $this->bundleSourceSymbols[$source_defs['symbol']] = $source_defs;
+            }
+        }
     }
 
 
@@ -33,7 +55,7 @@ class AssetManagement
      */
     public function provideStylesheets()
     {
-        $stylesheets = $this->assetsConfig['stylesheets'];
+        $stylesheets = $this->themeConfig['stylesheets'];
 
         $output = '';
 
@@ -56,17 +78,24 @@ class AssetManagement
         $output = '';
 
         foreach ($stylesheets as $entry) {
+
+            // "Omit" feature.
+
             if ( ! empty($entry['omit'])) {
                 if ($entry['omit'] == 'always') {
                     continue;
                 }
-                elseif ($entry['omit'] == 'in-static-site' && ! empty(BUILDING_STATIC_PAGE)) {
+                elseif ($entry['omit'] == 'in-static-site'
+                    && ! empty(BUILDING_STATIC_PAGE)) {
                     continue;
                 }
             }
 
-            if (empty($entry['source']) || empty($entry['file'])
-                || empty($entry['use_as'])) {
+            // Validating config entry.
+
+            if (empty($entry['source'])
+                || empty($entry['file'])
+                || empty($entry['use-as'])) {
                 $msg = 'Missing config values in stylesheet entry definition.';
                 $this->processManager->sysNotify($msg, 'warning');
                 continue;
@@ -78,19 +107,24 @@ class AssetManagement
                 continue;
             }
 
-            if ($entry['use_as'] == 'reference') {
-                $href = $this->finalizeFrontendAssetUrl(
-                    $entry['source'],
-                    $entry['file']
-                );
+            // Rendering.
 
-                $output .= $this->capacities->get('tools')->render(
-                    'app-infra/stylesheet-link',
-                    ['href' => $href],
-                    'php'
-                );
+            if ($entry['use-as'] == 'reference') {
+                if($entry['source'] === 'theme'
+                    && !empty($entry['is-bundle'])
+                    && $this->themeConfig['dev-mode']) {
+                    $output .= $this->renderExtractedAssetBundle($entry, 'styles');
+                }
+                else {
+                    $href = $this->finalizeFrontendAssetUrl(
+                        $entry['source'],
+                        $entry['file']
+                    );
+
+                    $output .= $this->renderStylesheetLink($href);
+                }
             }
-            elseif ($entry['use_as'] == 'inline') {
+            elseif ($entry['use-as'] == 'inline') {
                 $file_system_path = $this->determineFrontendAssetInternalPath(
                     $entry['source'],
                     $entry['file']
@@ -110,6 +144,73 @@ class AssetManagement
 
 
     /**
+     * Render a single stylesheet link.
+     *
+     * @param $href
+     * @return string
+     */
+    public function renderStylesheetLink($href)
+    {
+        return $this->capacities->get('tools')->render(
+            'app-infra/stylesheet-link',
+            ['href' => $href],
+            'php'
+        );
+    }
+
+
+    /**
+     * Renders an extracted asset bundle.
+     */
+    protected function renderExtractedAssetBundle($entry, $discipline)
+    {
+        // Retrieve the definition of this bundle and read out its members.
+        if (strrpos($entry['file'], '/') === FALSE) {
+            $bundle_file_name = $entry['file'];
+        }
+        else {
+            $bundle_file_name = substr($entry['file'], strrpos($entry['file'], '/') + 1);
+        }
+        $bundle_members = $this->bundleDefs[$discipline][$bundle_file_name]['src'];
+
+        // Replace bundle member definitions with valid paths.
+        array_walk($bundle_members, function(&$item, $key, $object) {
+            $item = $object->resolveBundleMemberPath($item);
+        }, $this);
+
+        // Render them in a loop.
+        $output = '';
+
+        foreach($bundle_members as $member) {
+            $href = $this->finalizeFrontendAssetUrl(
+                $entry['source'],
+                $member
+            );
+
+            $output .= $this->renderStylesheetLink($href);
+        }
+        unset($member);
+
+        return $output;
+    }
+
+
+    /**
+     * Resolves path of a bundle member.
+     */
+    protected function resolveBundleMemberPath($str)
+    {
+        // A shortcut: skipping input validation & assuming correct value.
+        $def_parts = explode('|', $str);
+        $source_symbol = $def_parts[0];
+        $file_path = $def_parts[1];
+
+        return $this->bundleSourceSymbols[$source_symbol]['path']
+            . $file_path;
+    }
+
+
+    /**
      * Provides a series of script tags for the app as one rendered string.
      *
      * @param $location
@@ -117,11 +218,11 @@ class AssetManagement
      */
     public function provideScripts($location)
     {
-        $scripts = $this->assetsConfig['scripts'];
+        $scripts = $this->themeConfig['scripts'];
 
         $output = '';
 
-        if ($this->assetsConfig['add-js-settings-object-to'] == $location) {
+        if ($this->themeConfig['add-js-settings-object-to'] == $location) {
             $output .= $this->provideJsSettingsObject();
         }
 
@@ -141,6 +242,9 @@ class AssetManagement
         $output = '';
 
         foreach ($scripts as $entry) {
+
+            // "Omit" feature.
+
             if ( ! empty($entry['omit'])) {
                 if ($entry['omit'] == 'always') {
                     continue;
@@ -149,6 +253,8 @@ class AssetManagement
                     continue;
                 }
             }
+
+            // Validating config entry.
 
             if (empty($entry['source']) || empty($entry['file'])) {
                 $msg = 'Missing config values in script entry definition.';
@@ -163,9 +269,18 @@ class AssetManagement
                 continue;
             }
 
-            if ($entry['use_as'] == 'reference') {
-                // No content for the <script> tag.
+            if ($entry['use-as'] == 'reference') {
+                // Ensure no content for the <script> tag.
                 unset($entry['code']);
+
+                if($entry['source'] === 'theme'
+                    && !empty($entry['is-bundle'])
+                    && $this->themeConfig['dev-mode']) {
+
+                    $msg = "Extracting javascript bundle members is not yet supported.";
+                    $msg .= "<br>The built bundle has been served instead.";
+                    $this->processManager->sysNotify($msg, 'warning');
+                }
 
                 $entry['src_value'] =
                     $this->finalizeFrontendAssetUrl(
@@ -175,7 +290,7 @@ class AssetManagement
 
                 $output .= $this->renderScriptTag($entry);
             }
-            elseif ($entry['use_as'] == 'inline') {
+            elseif ($entry['use-as'] == 'inline') {
                 $file_system_path = $this->determineFrontendAssetInternalPath(
                     $entry['source'],
                     $entry['file']
@@ -233,39 +348,34 @@ class AssetManagement
      * @param $location
      * @return string
      */
-    protected function finalizeFrontendAssetUrl($location, $path) {
+    protected function finalizeFrontendAssetUrl($location, $path)
+    {
         $sec = $this->capacities->get('security');
-
-        $assets_config = $this
-            ->processManager
-            ->getConfig('config')['frontend-assets'];
-
         $base_url = $this->processManager->getInstruction('base-url');
-
-        $path_to_app_assets = $this
-            ->processManager
-            ->getInstruction('path-fragment-to-app-assets');
-
-        $path_to_theme = $this
-            ->processManager
-            ->getInstruction('path-fragment-to-theme');
-
-        $cache_bust_str = $assets_config['cache-bust-str'];
+        $cache_bust_str = $this->themeConfig['cache-bust-str'];
 
         // Finalize asset URL.
 
         if ($location == 'app') {
+            $path_to_app_assets = $this->processManager->getInstruction(
+                'path-fragment-to-app-assets'
+            );
+
             if (empty(BUILDING_STATIC_PAGE)) {
                 $url = $base_url
                     . $path_to_app_assets
-                    . '/'
-                    . $sec->escapeValue($path, 'path_with_file');
+                    . '/' . $sec->escapeValue($path, 'path_with_file');
             }
             else {
                 $url = $this->assetDirNames['app']
                     . '/' . $sec->escapeValue($path, 'path_with_file');
             }
-        } elseif ($location == 'theme') {
+        }
+        elseif ($location == 'theme') {
+            $path_to_theme = $this->processManager->getInstruction(
+                'path-fragment-to-theme'
+            );
+
             if (empty(BUILDING_STATIC_PAGE)) {
                 $url = $base_url
                     . $path_to_theme
@@ -286,12 +396,12 @@ class AssetManagement
      *
      */
     protected function determineFrontendAssetInternalPath($location, $path) {
-        $path_to_app_assets = $this
-            ->processManager
-            ->getInstruction('path-fragment-to-app-assets');
-        $path_to_theme = $this
-            ->processManager
-            ->getInstruction('path-fragment-to-theme');
+        $path_to_app_assets = $this->processManager->getInstruction(
+            'path-fragment-to-app-assets'
+        );
+        $path_to_theme = $this->processManager->getInstruction(
+            'path-fragment-to-theme'
+        );
 
         if ($location == 'app') {
             $path_fragment_to_asset = $path_to_app_assets;
@@ -305,10 +415,8 @@ class AssetManagement
             return false;
         }
 
-        $file_system_path = PUBLIC_RESOURCES
-            . DIRECTORY_SEPARATOR
-            . $path_fragment_to_asset
-            . DIRECTORY_SEPARATOR
+        $file_system_path = PUBLIC_RESOURCES . '/'
+            . $path_fragment_to_asset . '/'
             . $path;
 
         return $file_system_path;
@@ -341,7 +449,7 @@ class AssetManagement
         $resource_id = $this->processManager->getInstruction('resource-id');
 
         if ($this->svgSpritesAreDeliveredViaAjax()) {
-            $settings_items['svgSprites'] = $this->assetsConfig['svgSprites'];
+            $settings_items['svgSprites'] = $this->themeConfig['svgSprites'];
         }
 
         // It would be nice to have events / pub/sub in this app, so that the
@@ -365,7 +473,7 @@ class AssetManagement
         return $scriptTag;
     }
 
-    
+
     /**
      * Are SVG sprites delivered via ajax?
      *
@@ -378,7 +486,7 @@ class AssetManagement
         return empty(BUILDING_STATIC_PAGE);
     }
 
-    
+
     /**
      * SVG sprite delivery.
      *
@@ -386,7 +494,7 @@ class AssetManagement
      */
     public function inlineSvgSprites()
     {
-        $sprite_refs = $this->assetsConfig['svgSprites'];
+        $sprite_refs = $this->themeConfig['svgSprites'];
 
         if (empty($sprite_refs)) {
             return '';
