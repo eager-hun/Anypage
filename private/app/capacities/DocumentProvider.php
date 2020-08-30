@@ -138,7 +138,7 @@ class DocumentProvider
             }
         }
 
-        $livereload = $this->config['enable-livereload'];
+        $livereload = !empty($this->config['enable-livereload']);
         if ( ! empty($livereload) && empty(BUILDING_STATIC_PAGE)) {
             // See http://stackoverflow.com/questions/26069796/gulp-how-to-implement-livereload-without-chromes-livereload-plugin
             $livereload_script =
