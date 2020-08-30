@@ -5,7 +5,7 @@ return [
         'html_lang'         => 'en',
         'head_title'        => 'Anypage',
         'site_name'         => 'Anypage',
-        'site_tagline_1'    => 'Have fun typing code a lot.',
+        'site_tagline_1'    => 'This website uses the frontend-seed theme',
     ],
     'meta_tags' => [
         [
