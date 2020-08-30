@@ -1,13 +1,18 @@
 
-# IDEs:
-nbproject
-.idea
-
 # LIBRARIES AND PACKAGES:
 **/libraries-backend/*
 !**/libraries-backend/.htaccess
 **/node_modules/
 
-# GENERATED CONTENT:
+# THEMES, other than the default one:
+public/themes/*
+!public/themes/frontend-seed
+
+# PAYLOAD FILES:
+public/files-payload/*
+!public/files-payload/.gitkeep
+
+# GENERATED STATIC SITE INSTANCES:
 public/generated/*
 !public/generated/.gitkeep
+
