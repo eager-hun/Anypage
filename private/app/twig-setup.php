@@ -10,31 +10,27 @@ $templating_config = $processManager
 // #############################################################################
 // Setting up template-containing directories.
 
+// The original templates location is defined in the TEMPLATES constant.
 $twig_loader = new Twig_Loader_Filesystem(TEMPLATES);
 
-// One can use (and override existing) templates from the anypages' dir.
-$anypage_templates = ANYPAGES . '/templates';
-
-if (file_exists($anypage_templates)) {
-    $twig_loader->prependPath($anypage_templates);
-}
+$path_to_theme = $processManager->getInstruction('path-fragment-to-theme');
 
 // One can use (and override existing) templates from the theme.
-$path_to_theme = $processManager
-    ->getInstruction('path-fragment-to-theme');
+$theme_templates_dir_components = PUBLIC_RESOURCES
+    . '/' . $path_to_theme
+    . '/components';
 
-$theme_templates = PUBLIC_RESOURCES . '/' . $path_to_theme . '/templates';
-
-if (file_exists($theme_templates)) {
-    $twig_loader->prependPath($theme_templates);
+if (file_exists($theme_templates_dir_components)) {
+    $twig_loader->prependPath($theme_templates_dir_components);
 }
 
-// One can use templates from the theme's "src/libs-custom" dir.
-$theme_src_custom_libs_templates =
+// One can use twig templates from this deprecated, soon-to-be-removed
+// location too.
+$theme_templates_dir_custom_libs =
     PUBLIC_RESOURCES . '/' . $path_to_theme . '/src/libs-custom';
 
-if (file_exists($theme_src_custom_libs_templates)) {
-    $twig_loader->addPath($theme_src_custom_libs_templates);
+if (file_exists($theme_templates_dir_custom_libs)) {
+    $twig_loader->addPath($theme_templates_dir_custom_libs);
 }
 
 
