@@ -4,9 +4,10 @@
 !**/libraries-backend/.htaccess
 **/node_modules/
 
-# THEMES, other than the default one:
-public/themes/*
+# THEMES, other than the submodule'd ones:
+#public/themes/*
 !public/themes/frontend-seed
+!public/themes/plain-theme
 
 # PAYLOAD FILES:
 public/files-payload/*

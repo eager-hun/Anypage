@@ -1,3 +1,6 @@
+https://git-scm.com/docs/git-submodule/en
+
+
 git submodule deinit themes/theme-seed
 git rm themes/theme-seed
 
@@ -15,6 +18,10 @@ git submodule foreach --recursive 'git fetch --tags'
 git submodule update --recursive
 
 
+git config --global status.submoduleSummary true
+
+[status]
+    submoduleSummary = true
 
 
 
