@@ -187,7 +187,12 @@ class AssetManagement
                 $member
             );
 
-            $output .= $this->renderStylesheetLink($href);
+            if ($discipline === 'styles') {
+                $output .= $this->renderStylesheetLink($href);
+            }
+            elseif ($discipline === 'scripts') {
+                $output .= $this->renderScriptTag(['src_value' => $href]);
+            }
         }
         unset($member);
 
@@ -276,19 +281,18 @@ class AssetManagement
                 if($entry['source'] === 'theme'
                     && !empty($entry['is-bundle'])
                     && $this->themeConfig['dev-mode']) {
+                        $output .= $this->renderExtractedAssetBundle($entry, 'scripts');
+                }
+                else {
+                    $entry['src_value'] =
+                        $this->finalizeFrontendAssetUrl(
+                            $entry['source'],
+                            $entry['file']
+                        );
 
-                    $msg = "Extracting javascript bundle members is not yet supported.";
-                    $msg .= "<br>The built bundle has been served instead.";
-                    $this->processManager->sysNotify($msg, 'warning');
+                    $output .= $this->renderScriptTag($entry);
                 }
 
-                $entry['src_value'] =
-                    $this->finalizeFrontendAssetUrl(
-                        $entry['source'],
-                        $entry['file']
-                    );
-
-                $output .= $this->renderScriptTag($entry);
             }
             elseif ($entry['use-as'] == 'inline') {
                 $file_system_path = $this->determineFrontendAssetInternalPath(

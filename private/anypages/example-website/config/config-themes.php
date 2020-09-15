@@ -58,16 +58,15 @@ return [
                 [
                     'source'    => 'theme',
                     'file'      => 'assets-built/scripts/libs.js',
-                    //'is-bundle' => true, // Not yet supported.
+                    'is-bundle' => true,
                     'use-as'    => 'reference',
                     'omit'      => 'never',
                 ],
                 [
                     'source'    => 'theme',
                     'file'      => 'assets-built/scripts/default.js',
-                    //'is-bundle' => true, // Not yet supported.
+                    'is-bundle' => true,
                     'use-as'    => 'reference',
-                    'omit'      => 'never',
                 ],
             ],
         ],
