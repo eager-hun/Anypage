@@ -28,7 +28,7 @@ $check_payload_desc_raw = "Verify correctly handled payload files by seeing an i
 $check_payload_desc = $tools->markdown($check_payload_desc_raw);
 
 $payload_img_src = $tools
-        ->pathToPayloadFiles() . '/colourful-cake.jpg';
+        ->pathToPayloadFiles() . '/demo/img1.png';
 
 $check_payload = <<<EOT
     <img src="${payload_img_src}" alt="test-image">
@@ -58,7 +58,7 @@ $sal_desc_raw = "Verify intact static asset wiring by seeing an image here:";
 $sal_desc = $tools->markdown($sal_desc_raw);
 
 $sal_img_src = $tools
-        ->pathToThemeStaticFiles() . '/images/for-demo/photo-1-700.jpg';
+        ->pathToThemeStaticFiles() . '/demo/img2.png';
 
 $sal_check = <<<EOT
     <img src="${sal_img_src}" alt="test-image">

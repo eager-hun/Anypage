@@ -10,7 +10,7 @@ public/themes/*
 
 # PAYLOAD FILES:
 public/files-payload/*
-!public/files-payload/.gitkeep
+!public/files-payload/demo/
 
 # GENERATED STATIC SITE INSTANCES:
 public/generated/*

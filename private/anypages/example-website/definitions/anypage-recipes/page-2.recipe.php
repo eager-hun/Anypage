@@ -29,15 +29,15 @@ $image_display = $tools->render('images-display/images-display', [
     'description_html' => $tools->addFillerText('s', 1),
     'images' => [
         [
-            'src' => helper_path_to_image($tools, "unsplash-jeremy-perkins.jpg"),
+            'src' => $tools->pathToPayloadFiles() . '/demo/img2.png',
             'desc_html' => $tools->addFillerText('xs', 3),
         ],
         [
-            'src' => helper_path_to_image($tools, "unsplash-sergey-pesterev.jpg"),
+            'src' => $tools->pathToPayloadFiles() . '/demo/img3.png',
             'desc_html' => $tools->addFillerText('xs', 4),
         ],
         [
-            'src' => helper_path_to_image($tools, "unsplash-alexandre-godreau.jpg"),
+            'src' => $tools->pathToPayloadFiles() . '/demo/img4.png',
             'desc_html' => $tools->addFillerText('s', 4),
         ],
     ],
@@ -53,11 +53,11 @@ $image_display = $tools->render('images-display/images-display', [
     'description_html' => $tools->addFillerText('s', 2),
     'images' => [
         [
-            'src' => helper_path_to_image($tools, "unsplash-photo-1.jpg"),
+            'src' => $tools->pathToPayloadFiles() . '/demo/img5.png',
             'desc_html' => $tools->addFillerText('s', 3),
         ],
         [
-            'src' => helper_path_to_image($tools, "unsplash-karsten-wurth.jpg"),
+            'src' => $tools->pathToPayloadFiles() . '/demo/img6.png',
             'desc_html' => $tools->addFillerText('xs', 5),
         ],
     ],

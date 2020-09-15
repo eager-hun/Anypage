@@ -31,7 +31,7 @@ $page_levels[] = [
 $image_display = $tools->render('images-display/images-display', [
     'images' => [
         [
-            'src' => helper_path_to_image($tools, "unsplash-george-hiles.jpg"),
+            'src' => $tools->pathToPayloadFiles() . '/demo/img1.png',
             'desc_html' => $tools->addFillerText('xs', 2),
         ],
     ],

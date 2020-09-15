@@ -32,13 +32,13 @@ $homepage_content = $tools->render('homepage/homepage-content', [
             'wrapper_extra_classes' => 'grid-item grid-item--half',
             'label' => 'Some things',
             'href' => $page_1_href,
-            'bg' => $img_path_prefix . 'files-payload/images/unsplash-george-hiles.jpg',
+            'bg' => $img_path_prefix . 'files-payload/demo/img1.png',
         ],
         [
             'wrapper_extra_classes' => 'grid-item grid-item--half',
             'label' => 'Other things',
             'href' => $page_2_href,
-            'bg' => $img_path_prefix . 'files-payload/images/unsplash-sergey-pesterev.jpg',
+            'bg' => $img_path_prefix . 'files-payload/demo/img2.png',
         ],
     ],
 ]);

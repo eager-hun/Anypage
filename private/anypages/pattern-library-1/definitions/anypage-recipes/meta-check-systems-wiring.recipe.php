@@ -28,7 +28,7 @@ $check_payload_desc_raw = "Verify correctly handled payload files by seeing an i
 $check_payload_desc = $tools->markdown($check_payload_desc_raw);
 
 $payload_img_src = $tools
-        ->pathToPayloadFiles() . '/colourful-cake.jpg';
+        ->pathToPayloadFiles() . '/demo/img1.png';
 
 $check_payload = <<<EOT
     <img src="${payload_img_src}" alt="test-image">
