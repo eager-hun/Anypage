@@ -63,18 +63,30 @@ For installing and using the project, you need on your machine:
 - [Composer][composer],
 - [Node.js / NPM][node],
 - [Gulp][gulp] (installed globally)
-    
+
 Having [git][git] installed also helps.
 
 ### Installing
 
-The repository defines the "[frontend-seed][frontend-seed-github]"
-git submodule, which is — speaking in CMS-terms — comparable to a "theme".
-Recursive cloning will set up the submodule in a single command.
+The repository defines the "[plain-theme][plain-theme-github]" and
+"[frontend-seed][frontend-seed-github]" git submodules, which are — speaking in
+CMS-terms — comparable to "themes".
+
+Recursive cloning should set up the submodules in a single command:
 
     git clone --recursive https://github.com/eager-hun/anypage.git anypage
 
+Installing backend dependencies:
+
     anypage/private$ composer install
+
+The default `plain-theme` does not need any initialization.
+
+The non-default `frontend-seed` theme would need initializing — although it is
+not recommended, as this theme is sort of **abandonware**, and as such, may
+contain several node.js security issues among its numerous dependencies that
+could get executed, already during install. With that in consideration, the
+commands are:
 
     anypage/public/themes/frontend-seed$ npm install
     anypage/public/themes/frontend-seed$ gulp compile
@@ -98,8 +110,17 @@ In case of any errors showing up, configuration in the following places might
 need adjusting:
 
     anypage/director.php
-    anypage/private/anypages/default/config/config.php
+
+Additionally for the default site:
+
+    anypage/private/anypages/example-website/config/*.php
+    anypage/public/themes/plain-theme/build-setup/*.php
+
+Additionally for the alternative (older) site:
+
+    anypage/private/anypages/pattern-library-1/config/*.php
     anypage/public/themes/frontend-seed/build-setup/gulp-webpack-hybrid/gulp-setup.js
+
 
 #### More options for serving
 
@@ -115,6 +136,7 @@ set up, such as [Laravel Homestead][homestead].
 Documentation TODO.
 
 
+[plain-theme-github]: https://github.com/eager-hun/plain-theme
 [frontend-seed-github]: https://github.com/eager-hun/frontend-seed
 [git]: https://git-scm.com/downloads
 [php]: http://php.net/manual/en/install.php
