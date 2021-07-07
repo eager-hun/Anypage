@@ -4,7 +4,7 @@ return [
     'plain-theme' => [
         'dev-mode' => 0,
         'add-js-settings-object-to' => 'body',
-        'cache-bust-str' => '20200828-1',
+        'cache-bust-str' => '20210707-1',
         'stylesheets' => [
             [
                 'source'    => 'app',
