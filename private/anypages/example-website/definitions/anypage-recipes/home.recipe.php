@@ -10,7 +10,8 @@ $page_levels = [];
 // Page title.
 
 $page_title = $tools->render('page/page-title', [
-    'page_title_text' => 'Welcome'
+    'page_title_text' => 'Welcome',
+    'extra_classes' => 'squeeze',
 ]);
 
 $page_levels[] = [
