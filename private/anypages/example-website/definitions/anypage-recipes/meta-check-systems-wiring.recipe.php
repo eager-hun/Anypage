@@ -27,22 +27,22 @@ $check_payload_title = '<h2 class="underlined">Files as page payload</h2>';
 $check_payload_desc_raw = "Verify correctly handled payload files by seeing an image here:";
 $check_payload_desc = $tools->markdown($check_payload_desc_raw);
 
-$payload_img_src = $tools
-        ->pathToPayloadFiles() . '/demo/img1.png';
+$payload_img_src = $tools->pathToPayloadFiles() . '/demo/img1.png';
 
 $check_payload = <<<EOT
     <img src="${payload_img_src}" alt="test-image">
 EOT;
 
-
-$check_payload_layout = $tools->render('layouts/flex-grid', [
-    'wrapper_extra_classes' => 'flex-grid--preset-2-cols',
-    'items_extra_classes'   => 'fit-content',
-    'items' => [
-        [ 'item_content' => $check_payload_title . $check_payload_desc, ],
-        [ 'item_content' => $check_payload, ],
-    ],
-]);
+$check_payload_layout = <<<EOL
+<div class="grid">
+    <div class="grid-item grid-item--half fit-content">
+        $check_payload_title $check_payload_desc
+    </div>
+    <div class="grid-item grid-item--half fit-content">
+        $check_payload
+    </div>
+</div>
+EOL;
 
 $page_levels[] = [
     'page_level_content' => $check_payload_layout
@@ -57,21 +57,22 @@ $sal_title = '<h2 class="underlined">Static assets referenced in HTML</h2>';
 $sal_desc_raw = "Verify intact static asset wiring by seeing an image here:";
 $sal_desc = $tools->markdown($sal_desc_raw);
 
-$sal_img_src = $tools
-        ->pathToThemeStaticFiles() . '/demo/img2.png';
+$sal_img_src = $tools->pathToThemeStaticFiles() . '/demo/img2.png';
 
 $sal_check = <<<EOT
     <img src="${sal_img_src}" alt="test-image">
 EOT;
 
-$check_sal_layout = $tools->render('layouts/flex-grid', [
-    'wrapper_extra_classes' => 'flex-grid--preset-2-cols',
-    'items_extra_classes'   => 'fit-content',
-    'items' => [
-        [ 'item_content' => $sal_title . $sal_desc, ],
-        [ 'item_content' => $sal_check, ],
-    ],
-]);
+$check_sal_layout = <<<EOL
+<div class="grid">
+    <div class="grid-item grid-item--half fit-content">
+        $sal_title $sal_desc
+    </div>
+    <div class="grid-item grid-item--half fit-content">
+        $sal_check
+    </div>
+</div>
+EOL;
 
 $page_levels[] = [
     'page_level_content' => $check_sal_layout
@@ -83,19 +84,21 @@ $page_levels[] = [
 
 $sac_title = '<h2 class="underlined">Static assets referenced in CSS</h2>';
 
-$sac_desc_raw = "Verify intact CSS asset referencing by seeing an image here:";
+$sac_desc_raw = 'Verify intact CSS asset referencing by seeing an image here:';
 $sac_desc = $tools->markdown($sac_desc_raw);
 
 $sac_check = '<div class="meta-check-systems-wiring--css-bg-image"></div>';
 
-$check_sac_layout = $tools->render('layouts/flex-grid', [
-    'wrapper_extra_classes' => 'flex-grid--preset-2-cols',
-    'items_extra_classes'   => 'fit-content',
-    'items' => [
-        [ 'item_content' => $sac_title . $sac_desc, ],
-        [ 'item_content' => $sac_check, ],
-    ],
-]);
+$check_sac_layout = <<<EOL
+<div class="grid">
+    <div class="grid-item grid-item--half fit-content">
+        $sac_title $sac_desc
+    </div>
+    <div class="grid-item grid-item--half fit-content">
+        $sac_check
+    </div>
+</div>
+EOL;
 
 $page_levels[] = [
     'page_level_content' => $check_sac_layout
