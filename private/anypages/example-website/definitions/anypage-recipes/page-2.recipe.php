@@ -34,7 +34,8 @@ $image_display = $tools->render('images-display/images-display', [
         ],
         [
             'src' => $tools->pathToPayloadFiles() . '/demo/img3.png',
-            'desc_html' => $tools->addFillerText('xs', 4),
+            // Let's try one without caption.
+            //'desc_html' => $tools->addFillerText('xs', 4),
         ],
         [
             'src' => $tools->pathToPayloadFiles() . '/demo/img4.png',
