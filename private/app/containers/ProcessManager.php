@@ -131,7 +131,7 @@ class ProcessManager
 
         $this->addConfig(
             'apsSetup',
-            require(CONFIGS . '/apsSetup.php')
+            require(CONFIGS . '/aps-setup.php')
         );
 
         $routes_config = require(CONFIGS . '/routes.php');
