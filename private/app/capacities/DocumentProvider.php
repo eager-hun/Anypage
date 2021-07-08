@@ -45,7 +45,7 @@ class DocumentProvider
         $asset_management   = $this->capacities->get('asset-management');
         $tools              = $this->capacities->get('tools');
         $template_info      = $this->processManager->getTemplateInfo();
-        $page_template      = $template_info['templates']['page-template'];
+        $page_template      = $template_info['templates']['page'];
 
         $this->processManager->addBodyClass(
             'page-template--' . str_replace('/', '__', $page_template)
@@ -54,8 +54,8 @@ class DocumentProvider
         // Rendering the <body> tag's content.
 
         $page_variables = [
-            'page_header_template'  => $template_info['templates']['page-header-template'],
-            'page_footer_template'  => $template_info['templates']['page-footer-template'],
+            'page_header_template'  => $template_info['templates']['page-header'],
+            'page_footer_template'  => $template_info['templates']['page-footer'],
             'document_properties'   => $this->apsSetup['document_properties'],
             'page_payload'          => $page_payload,
         ];

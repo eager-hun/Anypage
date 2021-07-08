@@ -1,6 +1,6 @@
 <?php
 
-$tools->usePageTemplate('page/page--fullwidth');
+$tools->updateTemplateAssignment('page', 'page/page--fullwidth');
 
 $page_levels = [];
 

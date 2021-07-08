@@ -5,6 +5,11 @@ return [
         'dev-mode' => 0,
         'add-js-settings-object-to' => 'body',
         'cache-bust-str' => '20210707-1',
+        'template-defaults' => [
+            'page'        => 'page/page--default',
+            'page-header' => 'page/page-header/page-header',
+            'page-footer' => 'page/page-footer/page-footer',
+        ],
         'stylesheets' => [
             [
                 'source'    => 'app',

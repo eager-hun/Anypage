@@ -1,8 +1,7 @@
 <?php
 
-$tools->usePageTemplate('page/page--fullwidth');
+$tools->updateTemplateAssignment('page', 'page/page--fullwidth');
 $tools->addBodyClass('page--home');
-
 
 $page_levels = [];
 

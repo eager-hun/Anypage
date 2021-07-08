@@ -82,33 +82,11 @@ class Tools
     /**
      * @param $template_name
      */
-    public function usePageTemplate($template_name)
+    public function updateTemplateAssignment($template, $new_assignment)
     {
         $this->processManager->updateTemplateAssignment(
-            'page-template',
-            $template_name
-        );
-    }
-
-    /**
-     * @param $template_name
-     */
-    public function usePageHeaderTemplate($template_name)
-    {
-        $this->processManager->updateTemplateAssignment(
-            'page-header-template',
-            $template_name
-        );
-    }
-
-    /**
-     * @param $template_name
-     */
-    public function usePageFooterTemplate($template_name)
-    {
-        $this->processManager->updateTemplateAssignment(
-            'page-footer-template',
-            $template_name
+            $template,
+            $new_assignment
         );
     }
 
@@ -181,7 +159,7 @@ class Tools
 
         } else {
             $msg = 'ERROR in importFileContent(): did not understand'
-                . 'processing instructions.';
+                . ' processing instructions.';
             $this->processManager->sysNotify($msg, 'warning');
             return false;
         }

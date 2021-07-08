@@ -22,6 +22,7 @@ class ProcessManager
     protected $config = [];
     protected $instructions = [];
     protected $systemNotifications = [];
+    protected $templateInfo = [];
 
     protected $baseUrlHasBeenSet = false;
 
@@ -144,6 +145,12 @@ class ProcessManager
             'routes',
             $routes_updated
         );
+
+        $this->templateInfo = [
+            'templates' => $this->getConfig('themeConfig')['template-defaults'],
+            'document-classes' => [],
+            'body-classes' => [],
+        ];
     }
 
     /**
@@ -303,19 +310,10 @@ class ProcessManager
 
 
     /**
-     * Info about page templates.
+     * Templating helpers.
      *
      * @var array
      */
-    protected $templateInfo = [
-        'templates' => [
-            'page-template'         => 'page/page--default',
-            'page-header-template'  => 'page/page-header/page-header',
-            'page-footer-template'  => 'page/page-footer/page-footer'
-        ],
-        'document-classes' => [],
-        'body-classes' => [],
-    ];
 
     public function updateTemplateAssignment($key, $val)
     {
