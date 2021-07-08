@@ -4,6 +4,8 @@ https://git-scm.com/docs/git-submodule/en
 git submodule deinit themes/theme-seed
 git rm themes/theme-seed
 
+Also see: https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule
+
 
 git submodule add https://github.com/eager-hun/frontend-seed.git public/themes/frontend-seed
 

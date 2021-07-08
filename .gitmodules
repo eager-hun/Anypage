@@ -1,6 +1,3 @@
-[submodule "public/themes/frontend-seed"]
-	path = public/themes/frontend-seed
-	url = https://github.com/eager-hun/frontend-seed.git
 [submodule "public/themes/plain-theme"]
 	path = public/themes/plain-theme
 	url = https://github.com/eager-hun/plain-theme.git
