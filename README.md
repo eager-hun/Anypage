@@ -20,10 +20,6 @@ Further key features:
 - Twig- and/or php-based templating,
 - processing Markdown,
 - simple static site generator for portable, standalone project snapshots,
-- when used together with the [frontend-seed][frontend-seed-github] project:
-    - Gulp / Webpack hybrid frontend build tooling with:
-        - livereload (for a customizable range of files),
-        - Vue.js pre-installed / configured.
 
 
 ### Project state
@@ -61,18 +57,14 @@ For installing and using the project, you need on your machine:
 
 - [php][php],
 - [Composer][composer],
-- [Node.js / NPM][node],
-- [Gulp][gulp] (installed globally)
 
 Having [git][git] installed also helps.
 
 ### Installing
 
-The repository defines the "[plain-theme][plain-theme-github]" and
-"[frontend-seed][frontend-seed-github]" git submodules, which are — speaking in
-CMS-terms — comparable to "themes".
+The repository defines the "[plain-theme][plain-theme-github]" git submodule.
 
-Recursive cloning should set up the submodules in a single command:
+Recursive cloning should set up the submodule in a single command:
 
     git clone --recursive https://github.com/eager-hun/anypage.git anypage
 
@@ -81,16 +73,6 @@ Installing backend dependencies:
     anypage/private$ composer install
 
 The default `plain-theme` does not need any initialization.
-
-The non-default `frontend-seed` theme would need initializing — although it is
-not recommended, as this theme is sort of **abandonware**, and as such, may
-contain several node.js security issues among its numerous dependencies that
-could get executed, already during install. With that in consideration, the
-commands are:
-
-    anypage/public/themes/frontend-seed$ npm install
-    anypage/public/themes/frontend-seed$ gulp compile
-
 
 ### Accessing the site
 
@@ -116,11 +98,6 @@ Additionally for the default site:
     anypage/private/anypages/example-website/config/*.php
     anypage/public/themes/plain-theme/build-setup/*.php
 
-Additionally for the alternative (older) site:
-
-    anypage/private/anypages/pattern-library-1/config/*.php
-    anypage/public/themes/frontend-seed/build-setup/gulp-webpack-hybrid/gulp-setup.js
-
 
 #### More options for serving
 
@@ -137,15 +114,13 @@ Documentation TODO.
 
 
 [plain-theme-github]: https://github.com/eager-hun/plain-theme
-[frontend-seed-github]: https://github.com/eager-hun/frontend-seed
 [git]: https://git-scm.com/downloads
 [php]: http://php.net/manual/en/install.php
 [composer]: https://getcomposer.org/
-[node]: https://nodejs.org/en/
-[gulp]: https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
 [php-server]: http://php.net/manual/en/features.commandline.webserver.php
 [apache]: https://httpd.apache.org/
 [nginx]: https://www.nginx.com/resources/wiki/
 [vagrant]: https://www.vagrantup.com/
 [vagrant-boxes]: https://app.vagrantup.com/boxes/search
 [homestead]: https://laravel.com/docs/master/homestead
+

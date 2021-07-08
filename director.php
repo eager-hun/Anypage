@@ -12,7 +12,6 @@ define('DIRECTOR_DIR',      dirname(__FILE__));
 define('PRIVATE_RESOURCES', DIRECTOR_DIR . '/private');
 define('PUBLIC_RESOURCES',  DIRECTOR_DIR . '/public');
 
-//$active_site = 'pattern-library-1';
 $active_site = 'example-website';
 
 define('ANYPAGES',          PRIVATE_RESOURCES . '/anypages/' . $active_site);
