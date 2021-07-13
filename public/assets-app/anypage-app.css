@@ -1,12 +1,18 @@
 /* ########################################################################## */
 /* APP-MENU. */
 
+:root {
+    --z-index-app-menu: 10000;
+    --z-index-app-menu-screen: 9900;
+    --z-index-app-menu-toggle: 10001;
+}
+
 .app-menu {
   position: fixed;
   top: 0;
   bottom: 0;
   left: -260px;
-  z-index: 10000;
+  z-index: var(--z-index-app-menu);
 
   width: 260px;
 
@@ -17,17 +23,20 @@
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  z-index: 10001;
+  z-index: var(--z-index-app-menu-toggle);
 
-  font-size: 12px;
-  line-height: 2;
+  padding-left: 0.65em;
+  padding-right: 0.65em;
+
+  font-size: 13px;
+  line-height: 2.5;
   text-align: center;
 
   background: #333;
   color: white;
 
   border: 1px solid rgba(255, 255, 255, 0.75);
-  border-radius: 3px;
+  border-radius: 4px;
   box-shadow: rgba(40, 30, 40, 0.75) 0 2px 7px;
 
   overflow: hidden;
@@ -63,16 +72,30 @@
 /* -------------------------------------------------------------------------- */
 /* App menu slided in. */
 
-.app-menu.slide-in {
+.app-menu.is-active {
   left: 0;
 }
 
-.app-menu.slide-in + .app-menu-toggle .text--initial {
+.app-menu-toggle.is-active .text--initial {
   opacity: 0;
 }
 
-.app-menu.slide-in + .app-menu-toggle .text--when-open {
+.app-menu-toggle.is-active .text--when-open {
   opacity: 1;
+}
+
+.app-menu-screen {
+    position: fixed;
+    z-index: var(--z-index-app-menu-screen);
+
+    background: transparent;
+}
+
+.app-menu-screen.is-active {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 /* -------------------------------------------------------------------------- */

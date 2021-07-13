@@ -1,19 +1,36 @@
 (function () {
-  "use strict";
+    "use strict";
 
+    // #########################################################################
+    // Toggling the app-menu.
 
-  // #########################################################################
-  // Toggling the app-menu.
-
-  var appMenuToggle = function (event) {
+    var appMenuActive = false;
     var appMenu = document.getElementById("app-menu");
-    appMenu.classList.toggle("slide-in");
-  };
+    var toggleButton = document.getElementById("app-menu-toggle");
+    var screen = document.getElementById("app-menu-screen");
 
-  var toggleButton = document.getElementById("app-menu-toggle");
+    var appMenuToggle = function (event) {
+        if (!appMenuActive) {
+            appMenu.classList.add("is-active");
+            toggleButton.classList.add("is-active");
+            screen.classList.add("is-active");
 
-  if (toggleButton) {
-    toggleButton.addEventListener('click', appMenuToggle, false);
-  }
+            appMenuActive = true;
+        }
+        else {
+            appMenu.classList.remove("is-active");
+            toggleButton.classList.remove("is-active");
+            screen.classList.remove("is-active");
 
+            appMenuActive = false;
+        }
+    };
+
+    if (toggleButton) {
+        toggleButton.addEventListener('click', appMenuToggle, false);
+    }
+
+    if (screen) {
+        screen.addEventListener('click', appMenuToggle, false);
+    }
 })();

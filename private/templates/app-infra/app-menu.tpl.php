@@ -1,3 +1,4 @@
+<div id="app-menu-screen" class="app-menu-screen"></div>
 
 <nav id="app-menu" class="app-menu">
     <ul>
@@ -27,3 +28,4 @@
         <span class="text text--when-open">&times;</span>
     </span>
 </button>
+
